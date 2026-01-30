@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://hwmmwmdcli2k"]
+
+[ext_resource type="Script" uid="uid://csqlutyqb6v53" path="res://Scripts/UI/SlimeBars.gd" id="1_5g46u"]
+[ext_resource type="Script" uid="uid://d3aw13vjan16g" path="res://Scripts/UI/SlimeHealth.gd" id="1_5wrn8"]
+[ext_resource type="Texture2D" uid="uid://it18rltriwxm" path="res://Sprites/UI/slime alive icon.png" id="1_yu5ul"]
+[ext_resource type="Texture2D" uid="uid://bs52wng8j43pc" path="res://Sprites/UI/slime health bar under.png" id="2_5wrn8"]
+[ext_resource type="Texture2D" uid="uid://dlyaxfgujp3dh" path="res://Sprites/UI/slime health bar over.png" id="3_5g46u"]
+[ext_resource type="Texture2D" uid="uid://bt30r1wtbsyyw" path="res://Sprites/UI/slime health bar white.png" id="4_pup41"]
+[ext_resource type="Texture2D" uid="uid://bm54phr8mwb2r" path="res://Sprites/UI/slime health bar Progress.png" id="5_v8j74"]
+[ext_resource type="Texture2D" uid="uid://b7gfmk3xa62n8" path="res://Sprites/UI/slime mana bar under.png" id="6_4hpcd"]
+[ext_resource type="Texture2D" uid="uid://bnacv43e05dxd" path="res://Sprites/UI/slime mana bar over.png" id="7_unoed"]
+[ext_resource type="Texture2D" uid="uid://ba1we1k6fq0x0" path="res://Sprites/UI/slime mana bar progress.png" id="8_hx5g8"]
+
+[node name="Bars HUD" type="Control" unique_id=616603374]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -534.0
+offset_bottom = -473.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5g46u")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1745163043]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 42.0
+offset_right = 118.0
+offset_bottom = 87.0
+color = Color(0.2140564, 0.00042607746, 0.3502188, 1)
+
+[node name="ManaBar" type="Control" parent="." unique_id=659889968]
+anchors_preset = 0
+offset_left = 106.0
+offset_top = 73.0
+offset_right = 379.0
+offset_bottom = 113.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="ManaBar" unique_id=1776342326]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -4.0
+offset_right = 59.666668
+offset_bottom = 7.333334
+scale = Vector2(3, 3)
+value = 100.0
+texture_under = ExtResource("6_4hpcd")
+texture_over = ExtResource("7_unoed")
+texture_progress = ExtResource("8_hx5g8")
+
+[node name="HealthBar" type="Control" parent="." unique_id=522090862 node_paths=PackedStringArray("back_bar", "front_bar")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_5wrn8")
+back_bar = NodePath("BackBar")
+front_bar = NodePath("FrontBar")
+is_health = true
+
+[node name="BackBar" type="TextureProgressBar" parent="HealthBar" unique_id=1886514897]
+layout_mode = 0
+offset_left = 103.00001
+offset_top = 42.0
+offset_right = 151.0
+offset_bottom = 51.0
+scale = Vector2(3, 3)
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 8
+stretch_margin_right = 8
+texture_under = ExtResource("2_5wrn8")
+texture_over = ExtResource("3_5g46u")
+texture_progress = ExtResource("4_pup41")
+
+[node name="FrontBar" type="TextureProgressBar" parent="HealthBar" unique_id=985361146]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 42.0
+offset_right = 151.0
+offset_bottom = 51.0
+scale = Vector2(3, 3)
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 8
+stretch_margin_right = 8
+texture_progress = ExtResource("5_v8j74")
+
+[node name="Slime" type="Sprite2D" parent="." unique_id=1785308884]
+position = Vector2(79, 66)
+scale = Vector2(3, 3)
+texture = ExtResource("1_yu5ul")

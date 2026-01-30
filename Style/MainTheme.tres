@@ -1,0 +1,9 @@
+[gd_resource type="Theme" format=3 uid="uid://n0swqrnsm5tk"]
+
+[ext_resource type="FontFile" uid="uid://b0efp4kdjt0pa" path="res://Style/Born2bSportyFS.otf" id="1_pvpjx"]
+
+[resource]
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_pvpjx")
+RichTextLabel/font_sizes/normal_font_size = 32
+RichTextLabel/fonts/normal_font = ExtResource("1_pvpjx")

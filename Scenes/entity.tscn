@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bdm3nq6dmx6jt"]
+
+[node name="Entity" type="CharacterBody2D" unique_id=1353218134]
+
+[node name="BodySprite" type="Sprite2D" parent="." unique_id=1414910869]
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1857921334]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1782702692]
+
+[node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1873312395]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=472722610]

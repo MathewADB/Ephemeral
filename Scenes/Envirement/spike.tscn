@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://crbcptnsb3wi7"]
+
+[ext_resource type="Script" uid="uid://4yfy0ncaikjq" path="res://Scripts/Envirement/spike.gd" id="1_8jx02"]
+[ext_resource type="Texture2D" uid="uid://c3vbqw6c5616k" path="res://Sprites/Entities/slime spike group.png" id="1_xti5b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_auwjr"]
+size = Vector2(14, 5)
+
+[node name="Spike" type="Area2D" unique_id=50857655]
+collision_layer = 2
+monitorable = false
+script = ExtResource("1_8jx02")
+
+[node name="Detector" type="CollisionShape2D" parent="." unique_id=2115452956]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_auwjr")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1984952944]
+texture = ExtResource("1_xti5b")
+
+[node name="Timer" type="Timer" parent="." unique_id=182446144]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

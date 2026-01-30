@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bkidlgd6ss2c"]
+
+[ext_resource type="PackedScene" uid="uid://bdm3nq6dmx6jt" path="res://Scenes/entity.tscn" id="1_ykrwm"]
+[ext_resource type="Script" uid="uid://cni8im2fx6dry" path="res://Scripts/Entities/pink_slime.gd" id="2_tgldj"]
+[ext_resource type="Texture2D" uid="uid://d2sj8mvnvsk74" path="res://Sprites/Entities/pink slime no horn.png" id="3_tgldj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x0sfv"]
+radius = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tgldj"]
+size = Vector2(28, 28)
+
+[node name="Pink Slime" unique_id=1353218134 instance=ExtResource("1_ykrwm")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_tgldj")
+stop_distance = 25.0
+
+[node name="BodySprite" parent="." index="0" unique_id=1414910869]
+texture = ExtResource("3_tgldj")
+flip_h = true
+
+[node name="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(1857921334) index="0" unique_id=1782702692]
+visible = false
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_x0sfv")
+
+[node name="BodyCollision" parent="." index="2" unique_id=1873312395]
+visible = false
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_tgldj")
+
+[node name="WallCast" type="RayCast2D" parent="." index="4" unique_id=1723264138]
+target_position = Vector2(32, 0)
+collision_mask = 2
+
+[node name="PlatformCast" type="RayCast2D" parent="." index="5" unique_id=1746913153]
+target_position = Vector2(28, 25)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="ViewRange" type="RayCast2D" parent="." index="6" unique_id=85999478]
+target_position = Vector2(158, 0)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="Spair" type="Timer" parent="." index="7" unique_id=208789393]
+wait_time = 5.0
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="timeout" from="Spair" to="." method="_on_spair_timeout"]

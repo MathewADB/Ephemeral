@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bspq5ak6p8dl3"]
+
+[ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="1_22xfd"]
+[ext_resource type="Script" uid="uid://dwt5qau0ekt1y" path="res://Scripts/UI/tutorial_text.gd" id="2_240k8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_240k8"]
+size = Vector2(209, 114)
+
+[node name="Tutorial Text" type="Control" unique_id=142264002]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_22xfd")
+script = ExtResource("2_240k8")
+
+[node name="Text" type="RichTextLabel" parent="." unique_id=1803146730]
+layout_mode = 0
+offset_left = -51.0
+offset_top = -92.0
+offset_right = 457.0
+offset_bottom = 196.0
+scale = Vector2(0.2, 0.2)
+theme = ExtResource("1_22xfd")
+theme_override_colors/font_outline_color = Color(0.18431373, 0.11764706, 0.27058825, 0.7294118)
+theme_override_constants/outline_size = 32
+theme_override_font_sizes/normal_font_size = 128
+bbcode_enabled = true
+text = "Text"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Detector" type="Area2D" parent="." unique_id=833409594]
+visible = false
+collision_layer = 2
+monitorable = false
+
+[node name="Collision" type="CollisionShape2D" parent="Detector" unique_id=863696631]
+position = Vector2(1.5, -58)
+shape = SubResource("RectangleShape2D_240k8")
+
+[connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
+[connection signal="body_exited" from="Detector" to="." method="_on_detector_body_exited"]

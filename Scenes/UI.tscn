@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://c5lrcweg7lk2s"]
+
+[ext_resource type="Script" uid="uid://cfj4m4i73motg" path="res://Scripts/ui_manager.gd" id="1_dewlx"]
+[ext_resource type="PackedScene" uid="uid://hwmmwmdcli2k" path="res://Scenes/Control/BarsHud.tscn" id="2_hfhsn"]
+[ext_resource type="Texture2D" uid="uid://busi6fo40hl78" path="res://Sprites/UI/moon and sun icons.png" id="3_qwshj"]
+[ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="4_hfhsn"]
+[ext_resource type="FontFile" uid="uid://b0efp4kdjt0pa" path="res://Style/Born2bSportyFS.otf" id="5_qwshj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwshj"]
+bg_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48q88"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="Theme" id="Theme_48q88"]
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("5_qwshj")
+ProgressBar/constants/outline_size = 8
+ProgressBar/font_sizes/font_size = 16
+ProgressBar/styles/background = SubResource("StyleBoxFlat_qwshj")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_48q88")
+RichTextLabel/font_sizes/normal_font_size = 32
+RichTextLabel/fonts/normal_font = ExtResource("5_qwshj")
+
+[node name="UI" type="CanvasLayer" unique_id=1521172341]
+script = ExtResource("1_dewlx")
+
+[node name="Bars HUD" parent="." unique_id=616603374 instance=ExtResource("2_hfhsn")]
+
+[node name="TimeIconSmall" type="Sprite2D" parent="." unique_id=1532518362]
+position = Vector2(1091, 73)
+scale = Vector2(3, 3)
+texture = ExtResource("3_qwshj")
+hframes = 2
+frame = 1
+
+[node name="Quest" type="Control" parent="." unique_id=777518777]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 78.0
+offset_top = -137.0
+offset_right = 360.0
+offset_bottom = -40.0
+grow_vertical = 0
+
+[node name="Quest Name" type="Label" parent="Quest" unique_id=718560805]
+visible = false
+layout_mode = 1
+offset_right = 66.0
+offset_bottom = 36.0
+theme = ExtResource("4_hfhsn")
+text = "Getting Started :"
+
+[node name="Quest Detail" type="RichTextLabel" parent="Quest" unique_id=691514750]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -18.0
+offset_right = 422.0
+offset_bottom = 32.5
+grow_vertical = 2
+theme = ExtResource("4_hfhsn")
+theme_override_colors/font_outline_color = Color(0.18431373, 0.11764706, 0.27058825, 1)
+theme_override_constants/outline_size = 12
+bbcode_enabled = true
+text = "  [wave][rainbow freq =.2 sat=.2] Reach safety before night [/rainbow][/wave]"
+scroll_active = false
+
+[node name="Mining" type="Control" parent="." unique_id=1477990177]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Miningbar" type="ProgressBar" parent="Mining" unique_id=1510313130]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.125
+offset_top = -20.0
+offset_right = 56.125
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_48q88")
+value = 47.57

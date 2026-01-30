@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://c0jb8bi20x7s4"]
+
+[ext_resource type="TileSet" uid="uid://capwod7vgkwwm" path="res://Style/MainTileset.tres" id="2_syfyn"]
+[ext_resource type="PackedScene" uid="uid://cuqnsoy61186" path="res://Scenes/Player.tscn" id="2_vor7h"]
+[ext_resource type="Script" uid="uid://dogym5cgk8esm" path="res://Scripts/UI/TimeCycle.gd" id="4_syfyn"]
+
+[node name="Section" type="Node2D" unique_id=1855033315]
+
+[node name="BackGround" type="Node2D" parent="." unique_id=218195439]
+
+[node name="BackGround1" type="Parallax2D" parent="BackGround" unique_id=2033363653]
+
+[node name="BackGroundSprite" type="Sprite2D" parent="BackGround/BackGround1" unique_id=1211851394]
+
+[node name="BackgorundTileset2" type="Parallax2D" parent="BackGround" unique_id=985264048]
+scroll_scale = Vector2(0.09, 0.09)
+
+[node name="BackgroundParallel" type="TileMapLayer" parent="BackGround/BackgorundTileset2" unique_id=910623442]
+modulate = Color(1, 1, 1, 0.39215687)
+scale = Vector2(0.25, 0.25)
+tile_set = ExtResource("2_syfyn")
+
+[node name="BackgorundTileset" type="Parallax2D" parent="BackGround" unique_id=1083704285]
+scroll_scale = Vector2(0.1, 0.1)
+
+[node name="BackgroundParallel" type="TileMapLayer" parent="BackGround/BackgorundTileset" unique_id=1566981447]
+modulate = Color(1, 1, 1, 0.49019608)
+scale = Vector2(0.3, 0.3)
+tile_set = ExtResource("2_syfyn")
+
+[node name="BackGround2" type="Parallax2D" parent="BackGround" unique_id=1276764484]
+scroll_scale = Vector2(0.2, 0.2)
+
+[node name="BackGroundSprite" type="Sprite2D" parent="BackGround/BackGround2" unique_id=1725102551]
+modulate = Color(1, 1, 1, 0.6117647)
+
+[node name="Backgorund" type="TileMapLayer" parent="." unique_id=804219905]
+tile_set = ExtResource("2_syfyn")
+
+[node name="Main" type="Node2D" parent="." unique_id=1489948153]
+
+[node name="Objects" type="Node2D" parent="Main" unique_id=242974950]
+
+[node name="Player" parent="Main" unique_id=796391081 node_paths=PackedStringArray("tilemap") instance=ExtResource("2_vor7h")]
+tilemap = NodePath("../Main")
+
+[node name="Main" type="TileMapLayer" parent="Main" unique_id=1856157436]
+tile_set = ExtResource("2_syfyn")
+
+[node name="ForeGround" type="Node2D" parent="." unique_id=1938316734]
+
+[node name="ForeGround" type="Parallax2D" parent="ForeGround" unique_id=930130654]
+scroll_scale = Vector2(1.2, 1.2)
+
+[node name="ForeGround" type="TileMapLayer" parent="ForeGround/ForeGround" unique_id=697823319]
+scale = Vector2(2, 2)
+tile_set = ExtResource("2_syfyn")
+
+[node name="Light" type="CanvasModulate" parent="ForeGround" unique_id=2074037511]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(-2, 0)
+script = ExtResource("4_syfyn")
+night_strength = 1.35
+
+[node name="Moonlight" type="DirectionalLight2D" parent="ForeGround" unique_id=1380760645]
+position = Vector2(-1, -92)
+color = Color(0.22745098, 0.21568628, 0.4509804, 0.56078434)
+shadow_enabled = true
