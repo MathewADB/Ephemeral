@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://drxtk5uaolyyf"]
+
+[ext_resource type="Script" uid="uid://ce5g464jsd0fw" path="res://Scripts/UI/inventory_item_row.gd" id="1_xcxiv"]
+[ext_resource type="Texture2D" uid="uid://cbn87xjnk5bx5" path="res://Sprites/Entities/Ruby Stone.png" id="2_mmsn8"]
+[ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="3_d4dbs"]
+
+[node name="InventoryItemRow" type="HBoxContainer" unique_id=1740442094]
+custom_minimum_size = Vector2(0, 60)
+offset_right = 102.0
+offset_bottom = 62.0
+size_flags_horizontal = 3
+script = ExtResource("1_xcxiv")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=27777323]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_mmsn8")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="." unique_id=1835652395]
+layout_mode = 2
+theme = ExtResource("3_d4dbs")
+theme_type_variation = &"LabelLevel"
+text = "1"

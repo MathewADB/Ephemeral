@@ -5,6 +5,38 @@
 [ext_resource type="Texture2D" uid="uid://busi6fo40hl78" path="res://Sprites/UI/moon and sun icons.png" id="3_qwshj"]
 [ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="4_hfhsn"]
 [ext_resource type="FontFile" uid="uid://b0efp4kdjt0pa" path="res://Style/Born2bSportyFS.otf" id="5_qwshj"]
+[ext_resource type="PackedScene" uid="uid://5k5to833qoya" path="res://Scenes/Control/inventory_panel.tscn" id="6_48q88"]
+[ext_resource type="Texture2D" uid="uid://dy1ybeee3ntiv" path="res://Sprites/UI/Leveling Border.png" id="6_j04uc"]
+[ext_resource type="Script" uid="uid://co4xgn02eulih" path="res://Scripts/UI/panel.gd" id="6_mg6lk"]
+[ext_resource type="Texture2D" uid="uid://bjuifygg4o0ef" path="res://Sprites/UI/Leveling Fill.png" id="7_vqx31"]
+[ext_resource type="Script" uid="uid://g1yuabxq51md" path="res://Scripts/UI/fade.gd" id="7_xjg7p"]
+[ext_resource type="Script" uid="uid://ch12jdftfmhwl" path="res://Scripts/UI/settings.gd" id="10_45jp6"]
+[ext_resource type="Script" uid="uid://chy2xyl1ircrd" path="res://Scripts/UI/upgrades.gd" id="10_b1goy"]
+[ext_resource type="Texture2D" uid="uid://cd6ik31lk57yd" path="res://Sprites/Icons/Slime Upgrade Icon.png" id="11_b1goy"]
+[ext_resource type="Texture2D" uid="uid://dxdos8pv4pvmb" path="res://Sprites/Icons/Mining Tier 1 Icon.png" id="12_n04ve"]
+[ext_resource type="Texture2D" uid="uid://df0kgaf25ykks" path="res://Sprites/Icons/Mining Tier 1 Icon unlocked.png" id="13_6maro"]
+[ext_resource type="Texture2D" uid="uid://fqnk2nestn4l" path="res://Sprites/Icons/mobility 1 Icon.png" id="13_13dyv"]
+[ext_resource type="Texture2D" uid="uid://3o4ctlum3nt" path="res://Sprites/Icons/mobility 2 Icon.png" id="14_r71lk"]
+[ext_resource type="Texture2D" uid="uid://g4dotfvyb15w" path="res://Sprites/Icons/Mining Tier 2 Icon unlocked.png" id="15_45jp6"]
+[ext_resource type="Texture2D" uid="uid://cenmwitxas1nr" path="res://Sprites/Icons/Mining Tier 2 Icon.png" id="15_d1ul7"]
+[ext_resource type="Texture2D" uid="uid://cyjpi62vnvm7" path="res://Sprites/Icons/Mining Speed 2 Icon.png" id="16_pinj1"]
+[ext_resource type="Texture2D" uid="uid://ciorf72x74ou1" path="res://Sprites/Icons/Mining Speed 1 Icon.png" id="17_68ajo"]
+[ext_resource type="Texture2D" uid="uid://dphtajtk5w30k" path="res://Sprites/Icons/Mining Speed 1 Icon unlocked.png" id="17_q6a8d"]
+[ext_resource type="Texture2D" uid="uid://bs1ukw0kgbjeo" path="res://Sprites/Icons/Light 1 Icon.png" id="18_q6a8d"]
+[ext_resource type="Texture2D" uid="uid://c4sw3jojo4qr" path="res://Sprites/Icons/Light 2 Icon.png" id="19_6lb63"]
+[ext_resource type="Texture2D" uid="uid://d3tj3pkiq207i" path="res://Sprites/Icons/Mining Speed 2 Icon unlocked.png" id="19_dgrhb"]
+[ext_resource type="Texture2D" uid="uid://r0u31ml2jflk" path="res://Sprites/Icons/Light 3 Icon.png" id="20_dgrhb"]
+[ext_resource type="Texture2D" uid="uid://djphqsnc1wbyg" path="res://Sprites/Icons/Hat Icon.png" id="21_j0pu8"]
+[ext_resource type="Texture2D" uid="uid://buj7shk8lqaoh" path="res://Sprites/Icons/mobility 1 Icon unlocked.png" id="21_wypb4"]
+[ext_resource type="Texture2D" uid="uid://btmfhsgw3ntej" path="res://Sprites/Icons/Double Jump Icon.png" id="22_wypb4"]
+[ext_resource type="Texture2D" uid="uid://48am7tywnvwc" path="res://Sprites/Icons/mobility 2 Icon unlocked.png" id="23_dm5gj"]
+[ext_resource type="Texture2D" uid="uid://b8anmyxhnowq5" path="res://Sprites/Icons/Triple Jump Icon.png" id="23_y1m5i"]
+[ext_resource type="Texture2D" uid="uid://bmr6vfoliiap5" path="res://Sprites/Icons/Light 1 Icon unlocked.png" id="25_qoydj"]
+[ext_resource type="Texture2D" uid="uid://bgi77ts185hl" path="res://Sprites/Icons/Light 2 Icon unlocked.png" id="27_lolh4"]
+[ext_resource type="Texture2D" uid="uid://ctxyfxp1424g8" path="res://Sprites/Icons/Light 3 Icon unlocked.png" id="29_gqamb"]
+[ext_resource type="Texture2D" uid="uid://dhirg8hctlbk4" path="res://Sprites/Icons/Hat Icon unlocked.png" id="31_q8m6m"]
+[ext_resource type="Texture2D" uid="uid://bbya63dnf305k" path="res://Sprites/Icons/Double Jump Icon unlocked.png" id="33_1lsdj"]
+[ext_resource type="Texture2D" uid="uid://sygw6fixrwtc" path="res://Sprites/Icons/Triple Jump Icon unlocked .png" id="35_mtrk6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwshj"]
 bg_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
@@ -41,11 +73,20 @@ RichTextLabel/fonts/normal_font = ExtResource("5_qwshj")
 
 [node name="UI" type="CanvasLayer" unique_id=1521172341]
 script = ExtResource("1_dewlx")
+popup_offset = Vector2(0, -100)
 
 [node name="Bars HUD" parent="." unique_id=616603374 instance=ExtResource("2_hfhsn")]
 
+[node name="Popup" type="Control" parent="." unique_id=13786881]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="TimeIconSmall" type="Sprite2D" parent="." unique_id=1532518362]
-position = Vector2(1091, 73)
+position = Vector2(78, 126)
 scale = Vector2(3, 3)
 texture = ExtResource("3_qwshj")
 hframes = 2
@@ -83,7 +124,7 @@ theme = ExtResource("4_hfhsn")
 theme_override_colors/font_outline_color = Color(0.18431373, 0.11764706, 0.27058825, 1)
 theme_override_constants/outline_size = 12
 bbcode_enabled = true
-text = "  [wave][rainbow freq =.2 sat=.2] Reach safety before night [/rainbow][/wave]"
+text = "  [wave][rainbow freq =.2 sat=.2] Find the caretaker village [/rainbow][/wave]"
 scroll_active = false
 
 [node name="Mining" type="Control" parent="." unique_id=1477990177]
@@ -115,3 +156,512 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_48q88")
 value = 47.57
+
+[node name="Fade" type="ColorRect" parent="." unique_id=850223812]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+script = ExtResource("7_xjg7p")
+
+[node name="Level" type="Control" parent="." unique_id=478546924]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1029.0
+offset_bottom = 145.0
+grow_horizontal = 2
+
+[node name="LevelBar" type="TextureProgressBar" parent="Level" unique_id=1360542286]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 30.0
+offset_right = 25.0
+offset_bottom = 54.0
+scale = Vector2(3, 3)
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("7_vqx31")
+texture_progress = ExtResource("6_j04uc")
+
+[node name="LevelLabel" type="Label" parent="Level" unique_id=882322449]
+layout_mode = 1
+offset_left = 16.0
+offset_top = 46.0
+offset_right = 61.0
+offset_bottom = 82.0
+theme = ExtResource("4_hfhsn")
+theme_type_variation = &"LabelLevel"
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player Panel" type="Control" parent="." unique_id=1801123476]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Player Panel" unique_id=1215582183]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6509804, 0.76862746, 0.7490196, 1)
+
+[node name="E" type="Label" parent="Player Panel/Background" unique_id=302243028]
+z_index = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -267.95502
+offset_top = 22.0
+offset_right = -227.95502
+offset_bottom = 58.0
+grow_horizontal = 0
+theme = ExtResource("4_hfhsn")
+text = "E"
+horizontal_alignment = 1
+
+[node name="Q" type="Label" parent="Player Panel/Background" unique_id=1365721339]
+z_index = 1
+layout_mode = 1
+offset_left = 222.54
+offset_top = 22.0
+offset_right = 262.53998
+offset_bottom = 58.000008
+theme = ExtResource("4_hfhsn")
+text = "Q"
+horizontal_alignment = 1
+
+[node name="Panel" type="TabContainer" parent="Player Panel" unique_id=670470095]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+theme = ExtResource("4_hfhsn")
+tab_alignment = 1
+current_tab = 1
+script = ExtResource("6_mg6lk")
+
+[node name="Settings" type="Control" parent="Player Panel/Panel" unique_id=2016830327]
+visible = false
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("10_45jp6")
+metadata/_tab_index = 0
+
+[node name="Quit" type="Button" parent="Player Panel/Panel/Settings" unique_id=1493065016]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 483.0
+offset_right = 225.0
+offset_bottom = 535.0
+text = "Quit"
+
+[node name="Inventory" type="Control" parent="Player Panel/Panel" unique_id=2097038401]
+layout_mode = 2
+focus_mode = 2
+metadata/_tab_index = 1
+
+[node name="Inventory" parent="Player Panel/Panel/Inventory" unique_id=1379702969 instance=ExtResource("6_48q88")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 75.0
+offset_top = -259.0
+offset_right = 209.0
+offset_bottom = 198.0
+
+[node name="Upgrades" type="Control" parent="Player Panel/Panel" unique_id=1762975685]
+visible = false
+layout_mode = 2
+focus_mode = 2
+theme = ExtResource("4_hfhsn")
+script = ExtResource("10_b1goy")
+metadata/_tab_index = 2
+
+[node name="InfoPanel" type="Panel" parent="Player Panel/Panel/Upgrades" unique_id=1263094567]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -269.0
+offset_bottom = 293.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("4_hfhsn")
+
+[node name="UpgradeName" type="Label" parent="Player Panel/Panel/Upgrades/InfoPanel" unique_id=2011069109]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 63.0
+grow_horizontal = 2
+theme = ExtResource("4_hfhsn")
+theme_type_variation = &"LabelInfo"
+text = "Upgrade Panel"
+horizontal_alignment = 1
+
+[node name="UpgradeInfo" type="Label" parent="Player Panel/Panel/Upgrades/InfoPanel" unique_id=996252192]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 77.0
+offset_right = -12.0
+offset_bottom = -326.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_hfhsn")
+theme_type_variation = &"LabelInfo"
+text = "Select an Upgrade"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="UpgradeCost" type="Label" parent="Player Panel/Panel/Upgrades/InfoPanel" unique_id=191321388]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 238.0
+offset_bottom = -109.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_hfhsn")
+theme_type_variation = &"LabelInfo"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Learn" type="Button" parent="Player Panel/Panel/Upgrades/InfoPanel" unique_id=499688775]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -62.0
+offset_top = -81.0
+offset_right = 63.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+disabled = true
+text = "Learn"
+
+[node name="TextureButton" type="TextureRect" parent="Player Panel/Panel/Upgrades/InfoPanel" unique_id=1426842143]
+layout_mode = 0
+offset_left = -98.0
+offset_top = 228.0
+offset_right = -74.0
+offset_bottom = 252.0
+scale = Vector2(3, 3)
+texture = ExtResource("11_b1goy")
+
+[node name="Buttons" type="Control" parent="Player Panel/Panel/Upgrades" unique_id=329525659]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 26.0
+offset_right = -287.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton1" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=287688282]
+layout_mode = 0
+offset_left = 670.0
+offset_top = 149.0
+offset_right = 694.0
+offset_bottom = 173.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("12_n04ve")
+texture_disabled = ExtResource("13_6maro")
+
+[node name="TextureButton2" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1842243983]
+layout_mode = 0
+offset_left = 562.0
+offset_top = 149.0
+offset_right = 586.0
+offset_bottom = 173.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("15_d1ul7")
+texture_disabled = ExtResource("15_45jp6")
+
+[node name="TextureButton3" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1898888710]
+layout_mode = 0
+offset_left = 670.0
+offset_top = 70.0
+offset_right = 694.0
+offset_bottom = 94.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("17_68ajo")
+texture_disabled = ExtResource("17_q6a8d")
+
+[node name="TextureButton4" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1941602361]
+layout_mode = 0
+offset_left = 562.0
+offset_top = 70.0
+offset_right = 586.0
+offset_bottom = 94.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("16_pinj1")
+texture_disabled = ExtResource("19_dgrhb")
+
+[node name="TextureButton5" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1689820268]
+layout_mode = 0
+offset_left = 670.0
+offset_top = 226.0
+offset_right = 694.0
+offset_bottom = 250.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("13_13dyv")
+texture_disabled = ExtResource("21_wypb4")
+
+[node name="TextureButton6" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=824042633]
+layout_mode = 0
+offset_left = 562.0
+offset_top = 226.0
+offset_right = 586.0
+offset_bottom = 250.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("14_r71lk")
+texture_disabled = ExtResource("23_dm5gj")
+
+[node name="TextureButton7" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=539473197]
+layout_mode = 0
+offset_left = 670.0
+offset_top = 379.0
+offset_right = 694.0
+offset_bottom = 403.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("18_q6a8d")
+texture_disabled = ExtResource("25_qoydj")
+
+[node name="TextureButton8" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1247758076]
+layout_mode = 0
+offset_left = 562.0
+offset_top = 379.0
+offset_right = 586.0
+offset_bottom = 403.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("19_6lb63")
+texture_disabled = ExtResource("27_lolh4")
+
+[node name="TextureButton9" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=763109338]
+layout_mode = 0
+offset_left = 459.00003
+offset_top = 379.0
+offset_right = 483.00003
+offset_bottom = 403.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("20_dgrhb")
+texture_disabled = ExtResource("29_gqamb")
+
+[node name="TextureButton10" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1366240046]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 379.0
+offset_right = 384.0
+offset_bottom = 403.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("21_j0pu8")
+texture_disabled = ExtResource("31_q8m6m")
+
+[node name="TextureButton11" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1100206114]
+layout_mode = 0
+offset_left = 670.0
+offset_top = 303.0
+offset_right = 694.0
+offset_bottom = 327.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("22_wypb4")
+texture_disabled = ExtResource("33_1lsdj")
+
+[node name="TextureButton12" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1786688692]
+layout_mode = 0
+offset_left = 562.0
+offset_top = 303.0
+offset_right = 586.0
+offset_bottom = 327.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("23_y1m5i")
+texture_disabled = ExtResource("35_mtrk6")
+
+[node name="SkillPoints" type="Label" parent="Player Panel/Panel/Upgrades" unique_id=468737102]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 35.0
+offset_right = 141.0
+offset_bottom = 71.0
+theme = ExtResource("4_hfhsn")
+theme_type_variation = &"LabelLevel"
+text = "Skill Points : "
+
+[node name="Quest" type="Control" parent="Player Panel/Panel" unique_id=893934766]
+visible = false
+layout_mode = 2
+focus_mode = 2
+metadata/_tab_index = 3
+
+[node name="NoQuest" type="Label" parent="Player Panel/Panel/Quest" unique_id=1892741266]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -278.0
+offset_top = -36.0
+offset_right = 278.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 64
+text = "No Quests Available"
+horizontal_alignment = 1
+
+[node name="Map" type="Control" parent="Player Panel/Panel" unique_id=678739934]
+visible = false
+layout_mode = 2
+focus_mode = 2
+metadata/_tab_index = 4
+
+[node name="NoMap" type="Label" parent="Player Panel/Panel/Map" unique_id=27068831]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -278.0
+offset_top = -36.0
+offset_right = 278.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 64
+text = "You dont have a map yet"
+
+[node name="Crafting Panel" type="Control" parent="." unique_id=449598579]
+process_mode = 3
+visible = false
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Crafting Panel" unique_id=218169308]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_hfhsn")
+theme_type_variation = &"MenuPanel"
+
+[node name="ProgressBar" type="ProgressBar" parent="Crafting Panel" unique_id=2020762854]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 581.0
+offset_right = 183.0
+offset_bottom = 617.0
+theme = ExtResource("4_hfhsn")
+
+[node name="CloseButton" type="Button" parent="Crafting Panel" unique_id=161906409]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 463.0
+offset_right = 129.0
+offset_bottom = 507.0
+theme = ExtResource("4_hfhsn")
+text = "Close"
+
+[node name="CraftButton" type="Button" parent="Crafting Panel" unique_id=1859212047]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 514.0
+offset_right = 129.0
+offset_bottom = 558.0
+theme = ExtResource("4_hfhsn")
+disabled = true
+text = "Craft"
+
+[node name="ItemList" type="VBoxContainer" parent="Crafting Panel" unique_id=63781857]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -337.0
+offset_top = 41.0
+offset_right = -18.0
+offset_bottom = -41.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Icon" type="TextureRect" parent="Crafting Panel" unique_id=654189446]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 31.0
+offset_right = 265.0
+offset_bottom = 237.0
+
+[node name="Name" type="Label" parent="Crafting Panel" unique_id=2111213894]
+layout_mode = 0
+offset_left = 455.0
+offset_top = 21.0
+offset_right = 595.0
+offset_bottom = 65.0
+theme = ExtResource("4_hfhsn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Crafting Panel" unique_id=2003383284]
+layout_mode = 0
+offset_left = 397.0
+offset_top = 86.0
+offset_right = 652.0
+offset_bottom = 311.0
+theme = ExtResource("4_hfhsn")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Cost" type="Label" parent="Crafting Panel" unique_id=1340498577]
+layout_mode = 0
+offset_left = 396.0
+offset_top = 380.0
+offset_right = 651.0
+offset_bottom = 605.0
+theme = ExtResource("4_hfhsn")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="Player Panel/Panel/Settings/Quit" to="Player Panel/Panel/Settings" method="_on_quit_pressed"]
+[connection signal="pressed" from="Player Panel/Panel/Upgrades/InfoPanel/Learn" to="Player Panel/Panel/Upgrades" method="_on_learn_pressed"]
+[connection signal="pressed" from="Crafting Panel/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="Crafting Panel/CraftButton" to="." method="_on_craft_button_pressed"]

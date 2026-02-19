@@ -17,7 +17,7 @@ fill_to = Vector2(0.9102564, 0.08974359)
 radius = 36.013885
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_licok"]
-size = Vector2(14.5, 10.5)
+size = Vector2(14, 9)
 
 [node name="Collectable" type="Sprite2D" unique_id=613026739]
 texture = ExtResource("1_licok")
@@ -32,7 +32,7 @@ texture = SubResource("GradientTexture2D_3rsma")
 
 [node name="detection" type="Area2D" parent="." unique_id=1728455791]
 collision_layer = 8
-collision_mask = 15
+monitorable = false
 
 [node name="Collision" type="CollisionShape2D" parent="detection" unique_id=340878370]
 shape = SubResource("CircleShape2D_qf81a")
@@ -42,7 +42,7 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=579755393]
-position = Vector2(0.25, 3.25)
+position = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_licok")
 
 [connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]

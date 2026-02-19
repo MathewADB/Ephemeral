@@ -2,8 +2,120 @@
 
 [ext_resource type="FontFile" uid="uid://b0efp4kdjt0pa" path="res://Style/Born2bSportyFS.otf" id="1_pvpjx"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_edwl3"]
+bg_color = Color(0.6509804, 0.76862746, 0.7490196, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4fcp"]
+bg_color = Color(1, 1, 1, 0.3137255)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pvpjx"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4bnx"]
+content_margin_top = 20.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mds0x"]
+content_margin_top = 20.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5wv3"]
+content_margin_top = 20.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a4kif"]
+content_margin_top = 25.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8joc"]
+content_margin_top = 20.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqn4a"]
+bg_color = Color(0.50980395, 0.62352943, 0.6313726, 1)
+border_width_bottom = 1
+border_color = Color(0.6509804, 0.76862746, 0.7490196, 1)
+border_blend = true
+expand_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kt1g"]
+bg_color = Color(0.49803922, 0.21568628, 0.28235295, 1)
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.5803922, 0.29803923, 0.29803923, 1)
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2mgs"]
+bg_color = Color(0.83137256, 0.65882355, 0.39215687, 1)
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.7647059, 0.5568628, 0.39607844, 1)
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfj17"]
+bg_color = Color(0.83137256, 0.65882355, 0.39215687, 1)
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.7647059, 0.5568628, 0.39607844, 1)
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+
 [resource]
-Label/font_sizes/font_size = 24
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_pvpjx")
+Label/constants/outline_size = 8
+Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("1_pvpjx")
+LabelInfo/base_type = &"Label"
+LabelInfo/colors/font_color = Color(0.32156864, 0.3882353, 0.42745098, 1)
+LabelInfo/colors/font_outline_color = Color(0, 0, 0, 0)
+LabelLevel/base_type = &"Label"
+LabelLevel/colors/font_color = Color(1, 1, 1, 1)
+LabelLevel/colors/font_outline_color = Color(0.18431373, 0.11764706, 0.27058825, 1)
+LabelLevel/constants/outline_size = 16
+LabelPopup/base_type = &"Label"
+LabelPopup/font_sizes/font_size = 32
+LabelPopup/fonts/font = ExtResource("1_pvpjx")
+MenuPanel/base_type = &"Panel"
+MenuPanel/styles/panel = SubResource("StyleBoxFlat_edwl3")
+Panel/styles/panel = SubResource("StyleBoxFlat_g4fcp")
 RichTextLabel/font_sizes/normal_font_size = 32
 RichTextLabel/fonts/normal_font = ExtResource("1_pvpjx")
+TabContainer/colors/font_unselected_color = Color(0.32156864, 0.3882353, 0.42745098, 1)
+TabContainer/constants/tab_separation = 20
+TabContainer/font_sizes/font_size = 32
+TabContainer/fonts/font = ExtResource("1_pvpjx")
+TabContainer/styles/panel = SubResource("StyleBoxFlat_pvpjx")
+TabContainer/styles/tab_disabled = SubResource("StyleBoxFlat_j4bnx")
+TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_mds0x")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_h5wv3")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_a4kif")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_f8joc")
+TabContainer/styles/tabbar_background = SubResource("StyleBoxFlat_nqn4a")
+TitleLabel/base_type = &"Label"
+TitleLabel/colors/font_color = Color(1, 1, 1, 1)
+TitleLabel/constants/outline_size = 0
+TitleLabel/font_sizes/font_size = 192
+settingsButton/base_type = &"Button"
+settingsButton/colors/font_color = Color(0.69411767, 0.42352942, 0.34901962, 1)
+settingsButton/colors/font_disabled_color = Color(0.5803922, 0.29803923, 0.29803923, 1)
+settingsButton/colors/font_focus_color = Color(1, 1, 1, 1)
+settingsButton/colors/font_outline_color = Color(1, 1, 1, 1)
+settingsButton/colors/font_pressed_color = Color(1, 1, 1, 1)
+settingsButton/font_sizes/font_size = 32
+settingsButton/fonts/font = ExtResource("1_pvpjx")
+settingsButton/styles/disabled = SubResource("StyleBoxFlat_1kt1g")
+settingsButton/styles/focus = SubResource("StyleBoxFlat_e2mgs")
+settingsButton/styles/hover = SubResource("StyleBoxFlat_e2mgs")
+settingsButton/styles/normal = SubResource("StyleBoxFlat_hfj17")
+settingsButton/styles/pressed = SubResource("StyleBoxFlat_e2mgs")

@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://l5eq7uiw1bbm"]
+
+[ext_resource type="Script" uid="uid://2aefqndgnu5" path="res://Scripts/UI/item_popup.gd" id="1_c4lbu"]
+[ext_resource type="Texture2D" uid="uid://cbn87xjnk5bx5" path="res://Sprites/Entities/Ruby Stone.png" id="1_ph1oi"]
+[ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="2_c4lbu"]
+
+[node name="ItemPopup" type="Control" unique_id=624710198]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -34.0
+offset_right = 37.5
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c4lbu")
+
+[node name="Container" type="VBoxContainer" parent="." unique_id=284298843]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.745003
+offset_top = -46.5
+offset_right = 26.745003
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ItemIcon" type="TextureRect" parent="Container" unique_id=957165584]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_ph1oi")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="ItemText" type="Label" parent="Container" unique_id=1867815260]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("2_c4lbu")
+theme_type_variation = &"LabelPopup"
+text = "+1"
+horizontal_alignment = 1
+vertical_alignment = 2

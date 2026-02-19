@@ -23,13 +23,19 @@ var jump_buffer := 0.0
 var coyote := 0.0
 var jump_released := false
 var base_extra_jumps := 0
-var current_extra_jumps := base_extra_jumps
+var current_extra_jumps := 0
+var can_hide := false
 var hiding := false
 var is_hidden := false
 var can_take_damage := true
 var last_speed_multiplier := 1.0
+var light_level := 0
+var speed_level := 1.0
+var mining_tier := 0
+var mining_speed := 1
 
 func _ready() -> void:
+	Manager.player = self
 	if tutorial == true :
 		save_location = self.position
 		tutorial_timer.start()
@@ -42,7 +48,17 @@ func _ready() -> void:
 		await get_tree().create_timer(1).timeout
 		camera.position_smoothing_enabled = true
 		
+	set_stats()
 	gravity = 850
+	
+func set_stats():
+	mining_speed = Manager.mining_speed_level
+	mining_tier = Manager.mining_tier
+	speed_level = Manager.player_mobility
+	light_level = Manager.light_level
+	can_hide = Manager.hide_unlocked
+	base_extra_jumps = Manager.base_extra_jumps
+	current_extra_jumps = base_extra_jumps
 	
 func _physics_process(delta):
 	handle_mining(delta)
@@ -52,25 +68,29 @@ func _physics_process(delta):
 		handle_vertical(delta)
 		move_and_slide()
 		
-	handle_light()
-	handle_hiding()
+	if light_level != 0 :
+		handle_light()
+	if can_hide :
+		handle_hiding()
 	
 	if is_on_floor():
 		current_extra_jumps = base_extra_jumps
 		jump_released = false
+		
+	update_animation()
 	
 func handle_mining(delta):
 
-	if mineable == null:
+	if mineable == null or mining_tier < mineable.tier :
 		stop_mining()
 		return
 
-	if Input.is_action_pressed("interact"):
+	if Input.is_action_pressed("interact") and is_on_floor():
 
 		mining = true
 		velocity = Vector2.ZERO
 
-		mineable.progress += delta
+		mineable.progress += delta * mining_speed
 
 		UI.set_progress(mineable.progress / mineable.mine_time)
 
@@ -78,11 +98,15 @@ func handle_mining(delta):
 
 			mineable.progress = 0
 			mineable.count -= 1
+			
+			if mineable.xp > 0 :
+				Manager.add_xp(mineable.xp)
 
-			Manager.items[mineable.collectable_name] += 1
-			print(str(Manager.items))
+			Manager.add_item(mineable.collectable_name, 1)
+			UI.show_item_popup(mineable, 1)
 
 			if mineable.count <= 0:
+				Manager.collected_objects[mineable.unique_id] = true
 				mineable.queue_free()
 				stop_mining()
 
@@ -130,7 +154,7 @@ func handle_horizontal(delta):
 		else :
 			last_direction = Vector2.RIGHT
 			
-	var target_speed = direction.x * max_speed * get_speed_multiplier()
+	var target_speed = direction.x * max_speed * get_speed_multiplier() * speed_level
 	velocity.x = move_toward(velocity.x, target_speed, acceleration * delta)
 
 func handle_timers(delta):
@@ -147,6 +171,7 @@ func handle_timers(delta):
 
 	if Input.is_action_just_released("jump"):
 		jump_released = true
+		#Manager.add_xp(100)
 
 func handle_vertical(delta):
 	if jump_buffer > 0:
@@ -175,6 +200,10 @@ func handle_vertical(delta):
 
 func handle_light() :
 	if Input.is_action_just_pressed("light"):
+		if light_level == 2 :
+			self_light.energy = 0.7
+		if light_level == 3 :
+			self_light.energy = 1
 		self_light.visible = !self_light.visible
 		
 func handle_hiding():
@@ -201,8 +230,29 @@ func take_damage(amount):
 func _on_invun_timer_timeout() -> void:
 	can_take_damage = true
 
-
 func _on_save_location_timeout() -> void:
 	if self.is_on_floor() :
 		save_location = position
 	tutorial_timer.start()
+
+# ===== animation
+
+func update_animation():
+	if hiding:
+		return
+		
+	if mining:
+		animation.play("mine")
+		return
+	
+	if not is_on_floor():
+		if velocity.y < 0:
+			animation.play("jump")
+		else:
+			animation.play("fall")
+	else:
+		if abs(velocity.x) > 5:
+			animation.play("walk")
+			pass
+		else:
+			animation.play("idle")

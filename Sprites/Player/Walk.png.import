@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://borw2rqn10xk3"
-path="res://.godot/imported/clouds 1.png-b70c5cb667475c81fdd7b70112e0294d.ctex"
+uid="uid://di5nj0lfq2n2n"
+path="res://.godot/imported/Walk.png-16cb58fd5f20ca169da394b67765d3be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/BackGrounds/clouds 1.png"
-dest_files=["res://.godot/imported/clouds 1.png-b70c5cb667475c81fdd7b70112e0294d.ctex"]
+source_file="res://Sprites/Player/Walk.png"
+dest_files=["res://.godot/imported/Walk.png-16cb58fd5f20ca169da394b67765d3be.ctex"]
 
 [params]
 

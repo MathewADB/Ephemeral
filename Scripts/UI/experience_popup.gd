@@ -1,0 +1,26 @@
+extends Control
+
+@onready var label := $"ExperienceText"
+
+var float_distance := 24
+var lifetime := 1.2
+
+func setup(amount := 100):
+	label.text = "+%d XP" % [amount]
+
+	appear()
+
+func appear():
+	var start_pos := position
+	var end_pos := start_pos + Vector2(0, -float_distance)
+
+	var tween := create_tween()
+	tween.set_parallel()
+
+	tween.tween_property(self, "modulate:a", 1.0, 0.15)
+	tween.tween_property(self, "position", end_pos, lifetime)
+
+	tween.chain()
+	tween.tween_property(self, "modulate:a", 0.0, 0.25)
+
+	tween.finished.connect(queue_free)

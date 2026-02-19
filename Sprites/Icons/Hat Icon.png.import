@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4wskqhgp7amk"
-path="res://.godot/imported/Sky Blue BG.png-8c767e19368b3e9e4a0e5c309c8eb254.ctex"
+uid="uid://djphqsnc1wbyg"
+path="res://.godot/imported/Hat Icon.png-b1b4925340154ef40dcc386948e0a748.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/BackGrounds/Sky Blue BG.png"
-dest_files=["res://.godot/imported/Sky Blue BG.png-8c767e19368b3e9e4a0e5c309c8eb254.ctex"]
+source_file="res://Sprites/Icons/Hat Icon.png"
+dest_files=["res://.godot/imported/Hat Icon.png-b1b4925340154ef40dcc386948e0a748.ctex"]
 
 [params]
 

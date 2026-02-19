@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bnr12tsa6lyfu"]
+
+[ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="1_dbt1i"]
+[ext_resource type="Script" uid="uid://b5yoyvc0j8k8g" path="res://Scripts/UI/text_popup.gd" id="1_hod0q"]
+
+[node name="Text Popup" type="Control" unique_id=174822644]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+script = ExtResource("1_hod0q")
+
+[node name="Label" type="Label" parent="." unique_id=457932883]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -303.0
+offset_top = 28.0
+offset_right = 303.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_dbt1i")
+theme_type_variation = &"LabelLevel"
+text = "Some Text"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

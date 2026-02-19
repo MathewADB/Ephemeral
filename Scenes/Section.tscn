@@ -1,5 +1,10 @@
 [gd_scene format=3 uid="uid://c0jb8bi20x7s4"]
 
+[ext_resource type="Texture2D" uid="uid://cv1op8p0rtojs" path="res://Sprites/BackGrounds/Sky .png" id="1_5qlx2"]
+[ext_resource type="Texture2D" uid="uid://bl0xh8i1xriss" path="res://Sprites/BackGrounds/MushroomBackground smaller.png" id="1_rbv0n"]
+[ext_resource type="Texture2D" uid="uid://cvpue7hoea480" path="res://Sprites/BackGrounds/Rainbow.png" id="2_cogkq"]
+[ext_resource type="Texture2D" uid="uid://bqwsm0qm3tgw5" path="res://Sprites/BackGrounds/clouds Packed.png" id="2_gu7oc"]
+[ext_resource type="Texture2D" uid="uid://xxy62pou6w7e" path="res://Sprites/BackGrounds/MushroomBackground.png" id="2_rbv0n"]
 [ext_resource type="TileSet" uid="uid://capwod7vgkwwm" path="res://Style/MainTileset.tres" id="2_syfyn"]
 [ext_resource type="PackedScene" uid="uid://cuqnsoy61186" path="res://Scenes/Player.tscn" id="2_vor7h"]
 [ext_resource type="Script" uid="uid://dogym5cgk8esm" path="res://Scripts/UI/TimeCycle.gd" id="4_syfyn"]
@@ -8,33 +13,53 @@
 
 [node name="BackGround" type="Node2D" parent="." unique_id=218195439]
 
-[node name="BackGround1" type="Parallax2D" parent="BackGround" unique_id=2033363653]
+[node name="Sky" type="Parallax2D" parent="BackGround" unique_id=29737000]
+scroll_scale = Vector2(0, 0)
 
-[node name="BackGroundSprite" type="Sprite2D" parent="BackGround/BackGround1" unique_id=1211851394]
+[node name="Sky" type="Sprite2D" parent="BackGround/Sky" unique_id=1745947199]
+position = Vector2(542, 317)
+texture = ExtResource("1_5qlx2")
 
-[node name="BackgorundTileset2" type="Parallax2D" parent="BackGround" unique_id=985264048]
-scroll_scale = Vector2(0.09, 0.09)
+[node name="Rainbow" type="Sprite2D" parent="BackGround/Sky" unique_id=1650456577]
+modulate = Color(1, 1, 1, 0.5647059)
+position = Vector2(594.5625, 331.45062)
+scale = Vector2(0.3, 0.31976777)
+texture = ExtResource("2_cogkq")
 
-[node name="BackgroundParallel" type="TileMapLayer" parent="BackGround/BackgorundTileset2" unique_id=910623442]
-modulate = Color(1, 1, 1, 0.39215687)
-scale = Vector2(0.25, 0.25)
-tile_set = ExtResource("2_syfyn")
+[node name="BackgorundLayerBack" type="Parallax2D" parent="BackGround" unique_id=985264048]
+scroll_scale = Vector2(0.1, 0.05)
+repeat_size = Vector2(1024, 0)
 
-[node name="BackgorundTileset" type="Parallax2D" parent="BackGround" unique_id=1083704285]
-scroll_scale = Vector2(0.1, 0.1)
+[node name="BackLayer" type="Sprite2D" parent="BackGround/BackgorundLayerBack" unique_id=646340619]
+modulate = Color(0.8352657, 0.9049064, 0.97566825, 1)
+texture_repeat = 2
+position = Vector2(514, 304)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_rbv0n")
 
-[node name="BackgroundParallel" type="TileMapLayer" parent="BackGround/BackgorundTileset" unique_id=1566981447]
-modulate = Color(1, 1, 1, 0.49019608)
-scale = Vector2(0.3, 0.3)
-tile_set = ExtResource("2_syfyn")
+[node name="BackgorundLayerFront" type="Parallax2D" parent="BackGround" unique_id=1083704285]
+scroll_scale = Vector2(0.2, 0.1)
+repeat_size = Vector2(1024, 0)
 
-[node name="BackGround2" type="Parallax2D" parent="BackGround" unique_id=1276764484]
-scroll_scale = Vector2(0.2, 0.2)
+[node name="FrontLayer" type="Sprite2D" parent="BackGround/BackgorundLayerFront" unique_id=80155381]
+modulate = Color(0.9266021, 0.9573855, 0.9665956, 1)
+texture_repeat = 2
+position = Vector2(513, 354)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_rbv0n")
 
-[node name="BackGroundSprite" type="Sprite2D" parent="BackGround/BackGround2" unique_id=1725102551]
+[node name="Clouds" type="Parallax2D" parent="BackGround" unique_id=1276764484]
+scroll_scale = Vector2(0.2, 0.1)
+repeat_size = Vector2(1024, 256)
+autoscroll = Vector2(10, 0)
+
+[node name="CloudSprite" type="Sprite2D" parent="BackGround/Clouds" unique_id=1725102551]
 modulate = Color(1, 1, 1, 0.6117647)
+texture_repeat = 2
+position = Vector2(582, 313)
+texture = ExtResource("2_gu7oc")
 
-[node name="Backgorund" type="TileMapLayer" parent="." unique_id=804219905]
+[node name="BackgorundTileset" type="TileMapLayer" parent="." unique_id=804219905]
 tile_set = ExtResource("2_syfyn")
 
 [node name="Main" type="Node2D" parent="." unique_id=1489948153]
