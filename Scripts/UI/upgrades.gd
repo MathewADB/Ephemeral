@@ -7,246 +7,103 @@ extends Control
 @onready var info_cost = $InfoPanel/UpgradeCost
 @onready var learn_button = $InfoPanel/Learn
 
-var selected_button: BaseButton = null
-var selected_upgrade = null
-
-var upgrades := {
-	
-	"Mining Tier I":{
-		"name": "Mining Tier I",
-		"info": "Allows Mining Tier I Collectables",
-		"skill_cost": 1,
-		"materials": {},
-		"requires": [],
-		"learned": false
-	},
-	"Mining Tier II":{
-		"name": "Mining Tier II",
-		"info": "Allows Mining Tier I Collectables",
-		"skill_cost": 1,
-		"materials": {"Ruby Gem": 10},
-		"requires": ["Mining Tier I"],
-		"learned": false
-	},
-	"Mining Speed I": {
-		"name": "Mining Speed I",
-		"info": "Increases mining speed",
-		"skill_cost": 1,
-		"materials": {"Ruby Stone": 5}, 
-		"requires": [],
-		"learned": false
-	},
-	"Mining Speed II": {
-		"name": "Mining Speed II",
-		"info": "Greatly increases mining speed",
-		"skill_cost": 1,
-		"materials": {"Ruby Stone": 20},
-		"requires": ["Mining Speed I"],
-		"learned": false
-	},
-	"Mobility I":{
-		"name": "Mobility I",
-		"info": "Makes you move a bit faster",
-		"skill_cost": 1,
-		"materials": {},
-		"requires": [],
-		"learned": false
-	},
-	"Mobility II":{
-		"name": "Mobility II",
-		"info": "Makes you move faster",
-		"skill_cost": 1,
-		"materials": {},
-		"requires": ["Mobility I"],
-		"learned": false
-	},
-	"Light I":{
-		"name": "Light I",
-		"info": "By pressing B You can cast a small light",
-		"skill_cost": 1,
-		"materials": {},
-		"requires": [],
-		"learned": false
-	},
-	"Light II":{
-		"name": "Light II",
-		"info": "By pressing B You can cast a medium light",
-		"skill_cost": 1,
-		"materials": {},
-		"requires": ["Light I"],
-		"learned": false
-	},
-	"Light III":{
-		"name": "Light III",
-		"info": "By pressing B You can cast a huge light",
-		"skill_cost": 1,
-		"materials": {},
-		"requires": ["Light II"],
-		"learned": false
-	},
-	"Hiding":{
-		"name": "Hiding",
-		"info": "Allows you to hide in your hat by pressing C",
-		"skill_cost": 1,
-		"materials": {},
-		"requires": [],
-		"learned": false
-	},
-	"Double Jump":{
-		"name": "Double Jump",
-		"info": "Allows you to jump mid air",
-		"skill_cost": 0,
-		"materials": {"Double Jump Scroll":1},
-		"requires": [],
-		"learned": false
-	},
-	"Triple Jump":{
-		"name": "Triple Jump",
-		"info": "Allows you to jump twice mid air",
-		"skill_cost": 0,
-		"materials": {"Triple Jump Scroll":1},
-		"requires": ["Double Jump"],
-		"learned": false
-	}
-	}
+var selected_button: TextureButton = null
+var selected_upgrade_name: String 
 
 func _ready() -> void:
 	Manager.skill_points_changed.connect(update_skill_points)
+	Manager.upgrades_changed.connect(refresh_upgrade_buttons)
 	update_skill_points(Manager.skill_points)
 
-	for i in range(upgrade_buttons.size()):
-		var btn = upgrade_buttons[i]
-		btn.pressed.connect(Callable(self, "_on_upgrade_button_pressed").bind(i))
+	# Make sure upgrade_buttons contains only TextureButtons
+	upgrade_buttons = upgrade_buttons.filter(func(b): return b is TextureButton)
 
+	var upgrade_names = Manager.upgrades.keys()
+	for i in range(upgrade_buttons.size()):
+		var btn = upgrade_buttons[i] as TextureButton
+		if i < upgrade_names.size():
+			btn.set_meta("upgrade_name", upgrade_names[i])
+		else:
+			btn.set_meta("upgrade_name", "")  # safe empty string
+		btn.pressed.connect(Callable(self, "_on_upgrade_button_pressed").bind(btn))
+
+	# Learn button
 	var learn_callable = Callable(self, "_on_learn_pressed")
 	if learn_button.is_connected("pressed", learn_callable):
-		learn_button.disconnect("pressed", learn_callable)
-	learn_button.connect("pressed", learn_callable)
+		learn_button.pressed.disconnect(learn_callable)
+	learn_button.pressed.connect(learn_callable)
 
 	refresh_upgrade_buttons()
 
-func _on_upgrade_button_pressed(index: int) -> void:
-	var key = upgrades.keys()[index]
-	selected_upgrade = upgrades[key]
 
-	info_name.text = selected_upgrade["name"]
-	info_desc.text = selected_upgrade["info"]
+func update_skill_points(points: int) -> void:
+	PointsLabel.text = "Skill Points: %d" % points
+	refresh_upgrade_buttons()
+
+
+func _on_upgrade_button_pressed(btn: TextureButton) -> void:
+	# Reset previous selected button's color
+	if selected_button and selected_button != btn:
+		var prev_key = selected_button.get_meta("upgrade_name")
+		if prev_key in Manager.learned_upgrades:
+			selected_button.modulate = Color(1,1,1,1)  # learned = normal white
+		elif Manager.can_learn_upgrade(prev_key):
+			selected_button.modulate = Color(1,1,1,1)  # can learn = bright
+		else:
+			selected_button.modulate = Color(0.4,0.4,0.4,1)  # locked = gray
+
+	selected_button = btn
+	selected_upgrade_name = btn.get_meta("upgrade_name")
+	if selected_upgrade_name == null or selected_upgrade_name == "":
+		return
+
+	# Highlight current selection
+	btn.modulate = Color(0.8, 0.9, 1.0, 1)  # light blue tint for selected
+
+	var u = Manager.upgrades[selected_upgrade_name]
+
+	# Use key as display name
+	info_name.text = selected_upgrade_name
+	info_desc.text = u.get("description", "")
 
 	var cost_text = ""
-	if selected_upgrade["skill_cost"] > 0:
-		cost_text += "Skill Points: " + str(selected_upgrade["skill_cost"]) + "\n"
-	if selected_upgrade["materials"].size() > 0:
-		for mat in selected_upgrade["materials"]:
-			cost_text += mat + ": " + str(selected_upgrade["materials"][mat]) + "\n"
-	if selected_upgrade["requires"].size() > 0:
-		cost_text += "Requires: " + ", ".join(selected_upgrade["requires"])
-	
+	if u.get("skill_cost", 0) > 0:
+		cost_text += "Skill Points: %d\n" % u["skill_cost"]
+
+	for mat in u.get("materials", {}).keys():
+		cost_text += "%s: %d\n" % [mat, u["materials"][mat]]
+
+	if u.get("requires", []).size() > 0:
+		cost_text += "Requires: %s" % ", ".join(u["requires"])
+
 	info_cost.text = cost_text
 
-	learn_button.disabled = not can_learn_upgrade(selected_upgrade)
-
-	# --- Update selected button color ---
-	if selected_button:
-		# Reset previous button color
-		var prev_key = upgrades.keys()[upgrade_buttons.find(selected_button)]
-		if upgrades[prev_key].get("learned", false):
-			selected_button.modulate = Color(1,1,1,1)
-		elif not can_learn_upgrade(upgrades[prev_key]):
-			selected_button.modulate = Color(0,0,0,1)
-		else:
-			selected_button.modulate = Color(1,1,1,1)
-
-	selected_button = upgrade_buttons[index]
-	selected_button.modulate = Color(0.728, 0.877, 0.97, 1.0)  # Highlight color
-	
-func update_skill_points(points: int) -> void:
-	PointsLabel.text = "Skill Points: " + str(points)
-
-
-# ===== Upgrade Logic =====
-func can_learn_upgrade(upgrade: Dictionary) -> bool:
-	
-	if upgrade.get("learned", false):
-		return false
-
-	if Manager.skill_points < upgrade["skill_cost"]:
-		return false
-
-	for mat in upgrade["materials"]:
-		if not Manager.items.has(mat) or Manager.items[mat] < upgrade["materials"][mat]:
-			return false
-
-	for req in upgrade["requires"]:
-		if not upgrades[req].get("learned", false):
-			return false
-
-	return true
-
+	learn_button.disabled = not Manager.can_learn_upgrade(selected_upgrade_name)
 
 func _on_learn_pressed() -> void:
-	if selected_upgrade == null:
-		return
-	if not can_learn_upgrade(selected_upgrade):
-		return
+	if selected_upgrade_name and Manager.can_learn_upgrade(selected_upgrade_name):
+		Manager.learn_upgrade(selected_upgrade_name)
+		refresh_upgrade_buttons()
 
-	Manager.skill_points -= selected_upgrade["skill_cost"]
-	Manager.skill_points_changed.emit(Manager.skill_points)
-
-	for mat in selected_upgrade["materials"]:
-		Manager.remove_item(mat, selected_upgrade["materials"][mat])
-
-	selected_upgrade["learned"] = true
-
-	apply_upgrade_effect(selected_upgrade)
-	if Manager.player :
-		Manager.player.set_stats()
-		
-	_on_upgrade_button_pressed(upgrades.keys().find(selected_upgrade["name"]))
-	refresh_upgrade_buttons()
-
-
-# ===== Gray out learned buttons =====
 func refresh_upgrade_buttons() -> void:
-	for i in range(upgrade_buttons.size()):
-		var key = upgrades.keys()[i]
-		var btn = upgrade_buttons[i]
+	for btn in upgrade_buttons:
+		if not btn.has_meta("upgrade_name"):
+			continue
+		var key = btn.get_meta("upgrade_name")
+		if key == "" or key == null:
+			btn.disabled = true
+			btn.modulate = Color(0.2, 0.2, 0.2, 1)
+			continue
 
-		if upgrades[key].get("learned", false):
+		var learned = key in Manager.learned_upgrades
+		var can_learn = Manager.can_learn_upgrade(key)
+
+		if learned:
 			btn.disabled = true
-			btn.modulate = Color(1.0, 1.0, 1.0, 1.0) 
-		elif not can_learn_upgrade(upgrades[key]):
-			btn.disabled = true
-			btn.modulate = Color(0.0, 0.0, 0.0, 1.0) 
-		else:
+			btn.modulate = Color(1, 1, 1, 1)
+		elif can_learn:
 			btn.disabled = false
-			btn.modulate = Color(1.0, 1.0, 1.0, 1.0) 
-
-# ===== Upgrade Effects =====
-func apply_upgrade_effect(upgrade: Dictionary) -> void:
-	match upgrade["name"]:
-		"Mining Speed I":
-			Manager.mining_speed_level = 2
-		"Mining Speed II":
-			Manager.mining_speed_level = 3
-		"Double Jump":
-			Manager.base_extra_jumps = 1
-		"Triple Jump":
-			Manager.base_extra_jumps = 2
-		"Mining Tier I":
-			Manager.mining_tier = 1
-		"Mining Tier II":
-			Manager.mining_tier = 2
-		"Mobility I":
-			Manager.player_mobility = 1.05
-		"Mobility II":
-			Manager.player_mobility = 1.1
-		"Light I":
-			Manager.light_level = 1
-		"Light II":
-			Manager.light_level = 2
-		"Light III":
-			Manager.light_level = 3
-		"Hiding":
-			Manager.hide_unlocked = true
-		_:
-			pass
+			btn.modulate = Color(1, 1, 1, 1)
+		else:
+			btn.disabled = false  # keep interactable
+			btn.modulate = Color(0.4, 0.4, 0.4, 1)

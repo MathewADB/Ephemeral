@@ -9,7 +9,8 @@ extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	Manager.activate_spawn = true
 	Manager.spawn_location = spawn_location
-
+	Manager.current_room_scene = Room 
+	
 	UI.fade.visible = true
 	UI.fade.fade_in()
 

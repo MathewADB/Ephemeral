@@ -43,6 +43,18 @@ border_color = Color(0.6509804, 0.76862746, 0.7490196, 1)
 border_blend = true
 expand_margin_bottom = 24.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8lms4"]
+bg_color = Color(0.22352941, 0.26666668, 0.31764707, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.32156864, 0.3882353, 0.42745098, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kt1g"]
 bg_color = Color(0.49803922, 0.21568628, 0.28235295, 1)
 border_width_top = 4
@@ -106,6 +118,8 @@ TitleLabel/base_type = &"Label"
 TitleLabel/colors/font_color = Color(1, 1, 1, 1)
 TitleLabel/constants/outline_size = 0
 TitleLabel/font_sizes/font_size = 192
+creditPanel/base_type = &"Panel"
+creditPanel/styles/panel = SubResource("StyleBoxFlat_8lms4")
 settingsButton/base_type = &"Button"
 settingsButton/colors/font_color = Color(0.69411767, 0.42352942, 0.34901962, 1)
 settingsButton/colors/font_disabled_color = Color(0.5803922, 0.29803923, 0.29803923, 1)

@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://bq0b2gp87rk7t" path="res://Sprites/Player/Blue Slime Hiding.png" id="3_lhq8l"]
 [ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="4_qpyf4"]
 [ext_resource type="Texture2D" uid="uid://cs2qpfetvkqcu" path="res://Sprites/UI/Rain Drop.png" id="5_5g84f"]
+[ext_resource type="Texture2D" uid="uid://cots3f4b4bw0g" path="res://Sprites/UI/discord icon.png" id="7_m6hyo"]
+[ext_resource type="Texture2D" uid="uid://tuwand0spto2" path="res://Sprites/UI/Wiki Icon.png" id="7_yrb42"]
+[ext_resource type="Texture2D" uid="uid://bipsx11h5mw73" path="res://Sprites/UI/telegram icon.png" id="9_gmial"]
+[ext_resource type="Texture2D" uid="uid://c8emuwetyylfs" path="res://Sprites/UI/instagram icon.png" id="10_bljlc"]
+[ext_resource type="Script" uid="uid://qo2nh3xv70sv" path="res://Scripts/UI/credits_text.gd" id="11_bljlc"]
 
 [sub_resource type="Gradient" id="Gradient_lhq8l"]
 offsets = PackedFloat32Array(0, 0.71428573)
@@ -39,7 +44,7 @@ scale = Vector2(3, 3)
 tile_map_data = PackedByteArray("AAAAAAoAAAACAAMAAAABAAoAAAACAAMAAAACAAoAAAACAAMAAAADAAoAAAACAAMAAAAEAAoAAAACAAMAAAAFAAoAAAACAAMAAAAGAAoAAAACAAMAAAAHAAoAAAACAAMAAAAIAAoAAAACAAMAAAAJAAoAAAACAAMAAAAKAAoAAAACAAMAAAALAAoAAAACAAMAAAAMAAoAAAACAAMAAAANAAoAAAACAAMAAAAOAAoAAAACAAMAAAAPAAoAAAACAAMAAAAQAAoAAAACAAMAAAARAAoAAAACAAMAAAASAAoAAAACAAMAAAATAAoAAAACAAMAAAAUAAoAAAACAAMAAAAVAAoAAAACAAMAAAAWAAoAAAACAAMAAAAXAAoAAAACAAMAAAAAAAsAAAACAAQAAAAAAAwAAAACAAQAAAAAAA0AAAACAAQAAAABAAsAAAACAAQAAAABAAwAAAACAAQAAAABAA0AAAACAAQAAAACAAsAAAACAAQAAAACAAwAAAACAAQAAAACAA0AAAACAAQAAAADAAsAAAACAAQAAAADAAwAAAACAAQAAAADAA0AAAACAAQAAAAEAAsAAAACAAQAAAAEAAwAAAACAAQAAAAEAA0AAAACAAQAAAAFAAsAAAACAAQAAAAFAAwAAAACAAQAAAAFAA0AAAACAAQAAAAGAAsAAAACAAQAAAAGAAwAAAACAAQAAAAGAA0AAAACAAQAAAAHAAsAAAACAAQAAAAHAAwAAAACAAQAAAAHAA0AAAACAAQAAAAIAAsAAAACAAQAAAAIAAwAAAACAAQAAAAIAA0AAAACAAQAAAAJAAsAAAACAAQAAAAJAAwAAAACAAQAAAAJAA0AAAACAAQAAAAKAAsAAAACAAQAAAAKAAwAAAACAAQAAAAKAA0AAAACAAQAAAALAAsAAAACAAQAAAALAAwAAAACAAQAAAALAA0AAAACAAQAAAAMAAsAAAACAAQAAAAMAAwAAAACAAQAAAAMAA0AAAACAAQAAAANAAsAAAACAAQAAAANAAwAAAACAAQAAAANAA0AAAACAAQAAAAOAAsAAAACAAQAAAAOAAwAAAACAAQAAAAOAA0AAAACAAQAAAAPAAsAAAACAAQAAAAPAAwAAAACAAQAAAAPAA0AAAACAAQAAAAQAAsAAAACAAQAAAAQAAwAAAACAAQAAAAQAA0AAAACAAQAAAARAAsAAAACAAQAAAARAAwAAAACAAQAAAARAA0AAAACAAQAAAASAAsAAAACAAQAAAASAAwAAAACAAQAAAASAA0AAAACAAQAAAATAAsAAAACAAQAAAATAAwAAAACAAQAAAATAA0AAAACAAQAAAAUAAsAAAACAAQAAAAUAAwAAAACAAQAAAAUAA0AAAACAAQAAAAVAAsAAAACAAQAAAAVAAwAAAACAAQAAAAVAA0AAAACAAQAAAAWAAsAAAACAAQAAAAWAAwAAAACAAQAAAAWAA0AAAACAAQAAAAXAAsAAAACAAQAAAAXAAwAAAACAAQAAAAXAA0AAAACAAQAAAATAAcAAAAIAAYAAAADAAMAAAAKAAAAABAPAAYAAAAKAAAAAAAWAAQAAAAKAAIAABAFAAkAAAAEAA0AAAAYAAoAAAACAAMAAAAYAAsAAAACAAQAAAAYAAwAAAACAAQAAAAYAA0AAAACAAQAAAAZAAoAAAACAAMAAAAZAAsAAAACAAQAAAAZAAwAAAACAAQAAAAZAA0AAAACAAQAAAAaAAoAAAACAAMAAAAaAAsAAAACAAQAAAAaAAwAAAACAAQAAAAaAA0AAAACAAQAAAAbAAoAAAACAAMAAAAbAAsAAAACAAQAAAAbAAwAAAACAAQAAAAbAA0AAAACAAQAAAAcAAoAAAACAAMAAAAcAAsAAAACAAQAAAAcAAwAAAACAAQAAAAcAA0AAAACAAQAAAAdAAoAAAACAAMAAAAdAAsAAAACAAQAAAAdAAwAAAACAAQAAAAdAA0AAAACAAQAAAA=")
 tile_set = ExtResource("2_qpyf4")
 
-[node name="BlueSlimeHiding" type="Sprite2D" parent="." unique_id=1785453063]
+[node name="SlimeHiding" type="Sprite2D" parent="." unique_id=1785453063]
 position = Vector2(779, 435.00003)
 scale = Vector2(3, 3)
 texture = ExtResource("3_lhq8l")
@@ -47,15 +52,15 @@ flip_h = true
 hframes = 3
 frame = 2
 
-[node name="PointLight2D" type="PointLight2D" parent="BlueSlimeHiding" unique_id=799030044]
+[node name="Light" type="PointLight2D" parent="SlimeHiding" unique_id=799030044]
 position = Vector2(-1.3333435, 11.333328)
 scale = Vector2(3, 3)
 energy = 0.3
 texture = SubResource("GradientTexture2D_5g84f")
 
-[node name="GPUParticles2D" type="CPUParticles2D" parent="." unique_id=667050083]
+[node name="Rain" type="CPUParticles2D" parent="." unique_id=667050083]
 position = Vector2(-66.00003, -20.999985)
-rotation = -0.32463124
+rotation = -0.32463127
 amount = 200
 texture = ExtResource("5_5g84f")
 lifetime = 1.5
@@ -72,7 +77,74 @@ scale_amount_min = 0.6
 scale_amount_max = 0.8
 color = Color(0.87058824, 1, 1, 1)
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=360656769]
+[node name="License" type="Label" parent="." unique_id=377241039]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 762.0
+offset_top = -53.0
+offset_right = 1502.0
+offset_bottom = 19.0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("4_qpyf4")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/font_size = 64
+text = "© 2026 Mathew A • Godot Engine"
+
+[node name="Version" type="Label" parent="." unique_id=1499497587]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -53.0
+offset_right = 499.0
+offset_bottom = 19.0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("4_qpyf4")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/font_size = 64
+text = "v1.0.0.0 development"
+
+[node name="Social" type="HBoxContainer" parent="." unique_id=367837486]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 566.0
+offset_right = 139.99997
+offset_bottom = 598.0
+
+[node name="Wiki" type="TextureButton" parent="Social" unique_id=1782298257]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("7_yrb42")
+stretch_mode = 5
+
+[node name="Discord" type="TextureButton" parent="Social" unique_id=904538776]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("7_m6hyo")
+stretch_mode = 5
+
+[node name="Telegram" type="TextureButton" parent="Social" unique_id=251208887]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("9_gmial")
+stretch_mode = 5
+
+[node name="Instagram" type="TextureButton" parent="Social" unique_id=1770919898]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("10_bljlc")
+stretch_mode = 5
+
+[node name="BackGroundNight" type="ColorRect" parent="." unique_id=360656769]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,7 +152,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.5254902)
+color = Color(0, 0, 0, 0.41960785)
 
 [node name="Title" type="Label" parent="." unique_id=1327776182]
 layout_mode = 1
@@ -95,7 +167,90 @@ theme = ExtResource("4_qpyf4")
 theme_type_variation = &"TitleLabel"
 text = "Misty"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=17232168]
+[node name="Credits" type="Panel" parent="." unique_id=1432674745]
+visible = false
+light_mask = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.0
+offset_top = -292.5
+offset_right = 211.0
+offset_bottom = 292.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"creditPanel"
+script = ExtResource("11_bljlc")
+
+[node name="Credits Text" type="RichTextLabel" parent="Credits" unique_id=1978270334]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 129.5
+offset_right = 410.0
+offset_bottom = 452.5
+mouse_filter = 2
+text = "Made By Mathew A
+
+Game Design : Mathew A
+
+Programming : Mathew A
+
+Art : Mathew A
+
+Thanks To My 
+Discord Friends For 
+Their Support
+
+@Karma dude
+@Dev Noob
+@Josse
+@Therealchrisnorton
+@WilliamIsMe
+
+Game Dev Network
+
+Art created using ASprite
+
+©2026 Mathew A • Godot Engine"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Close Credits" type="Button" parent="Credits" unique_id=438242578]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -131.0
+offset_top = -77.5
+offset_right = 131.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Close"
+
+[node name="Credit Title" type="Label" parent="Credits" unique_id=772398072]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -207.5
+offset_right = 207.5
+offset_bottom = 97.5
+grow_horizontal = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"TitleLabel"
+theme_override_font_sizes/font_size = 64
+text = "Misty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButtons" type="VBoxContainer" parent="." unique_id=17232168]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -105,39 +260,38 @@ offset_right = 169.0
 offset_bottom = 124.0
 grow_vertical = 2
 
-[node name="Continue" type="Button" parent="VBoxContainer" unique_id=872970739]
+[node name="Continue" type="Button" parent="MenuButtons" unique_id=872970739]
 visible = false
 layout_mode = 2
 theme = ExtResource("4_qpyf4")
 theme_type_variation = &"settingsButton"
-disabled = true
 text = "Continue"
 
-[node name="New Game" type="Button" parent="VBoxContainer" unique_id=379659977]
+[node name="New Game" type="Button" parent="MenuButtons" unique_id=379659977]
 layout_mode = 2
 theme = ExtResource("4_qpyf4")
 theme_type_variation = &"settingsButton"
 text = "New Game"
 
-[node name="Settings" type="Button" parent="VBoxContainer" unique_id=665063073]
+[node name="Settings" type="Button" parent="MenuButtons" unique_id=665063073]
 layout_mode = 2
 theme = ExtResource("4_qpyf4")
 theme_type_variation = &"settingsButton"
 text = "Settings"
 
-[node name="Credit" type="Button" parent="VBoxContainer" unique_id=789079974]
+[node name="Credit" type="Button" parent="MenuButtons" unique_id=789079974]
 layout_mode = 2
 theme = ExtResource("4_qpyf4")
 theme_type_variation = &"settingsButton"
 text = "Credits"
 
-[node name="Exit" type="Button" parent="VBoxContainer" unique_id=2074785371]
+[node name="Exit" type="Button" parent="MenuButtons" unique_id=2074785371]
 layout_mode = 2
 theme = ExtResource("4_qpyf4")
 theme_type_variation = &"settingsButton"
 text = "Exit"
 
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=817974201]
+[node name="ForeGroundNight" type="ColorRect" parent="." unique_id=817974201]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -145,6 +299,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.20784314)
+color = Color(0, 0, 0, 0.3019608)
 
-[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[node name="Fade" type="ColorRect" parent="." unique_id=453366609]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="Credits/Close Credits" to="Credits" method="_on_close_credits_pressed"]
+[connection signal="pressed" from="MenuButtons/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="MenuButtons/New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MenuButtons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MenuButtons/Credit" to="." method="_on_credit_pressed"]
+[connection signal="pressed" from="MenuButtons/Exit" to="." method="_on_exit_pressed"]

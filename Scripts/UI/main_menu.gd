@@ -1,8 +1,47 @@
 extends Control
 
+@onready var fade : ColorRect = $Fade
+@onready var credit : Panel = $Credits
+@onready var new_game_btn := $"MenuButtons/New Game"
+@onready var continue_btn := $MenuButtons/Continue
+
 func _ready() -> void:
 	UI.hide_ui()
-
-
+	$Version.text = ProjectSettings.get_setting("application/config/version")
+	fade.modulate = Color(0, 0, 0, 1)
+	fade_out()
+	
+	continue_btn.visible = FileAccess.file_exists(Manager.SAVE_PATH)
+	
+func fade_out():
+	var tween := get_tree().create_tween()
+	tween.tween_property(fade, "modulate:a", 0, 0.5)
+	
+func fade_in():
+	var tween := get_tree().create_tween()
+	tween.tween_property(fade, "modulate:a", 1, 0.5)
+	
 func _on_exit_pressed() -> void:
 	get_tree().quit()
+
+func _on_credit_pressed() -> void:
+	credit.start()
+
+func _on_new_game_pressed() -> void:
+	Manager.reset_game()
+	Manager.save_game()
+	start_game()
+
+func _on_continue_pressed() -> void:
+	Manager.load_game()
+	Manager.save_game()
+	start_game()
+
+func start_game() -> void:
+	fade_in()
+	await get_tree().create_timer(0.5).timeout
+	UI.show_ui()
+	get_tree().change_scene_to_file(Manager.current_room_scene)
+	
+func _on_settings_pressed() -> void:
+	pass

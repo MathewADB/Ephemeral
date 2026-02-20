@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Ephemeral"
-config/version="v0.0.0.2 development"
-run/main_scene="uid://do6lkk2ieqd5i"
+config/version="v0.0.0.3 development"
+run/main_scene="uid://cd2r6e28t5gcl"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://dusgx15j77xnr"
 

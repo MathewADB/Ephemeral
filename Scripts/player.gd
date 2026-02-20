@@ -45,6 +45,7 @@ func _ready() -> void:
 	if Manager.activate_spawn :
 		camera.position_smoothing_enabled = false
 		self.position = Manager.spawn_location
+		Manager.activate_spawn = false
 		await get_tree().create_timer(1).timeout
 		camera.position_smoothing_enabled = true
 		
