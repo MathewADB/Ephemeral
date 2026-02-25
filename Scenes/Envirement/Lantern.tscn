@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://djgxkstf17h4m"]
+
+[ext_resource type="Texture2D" uid="uid://bc5563netia3o" path="res://Sprites/Entities/broken lantern.png" id="1_13j5m"]
+[ext_resource type="Script" uid="uid://ckatws526hhgp" path="res://Scripts/Envirement/lantern.gd" id="1_atptm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_13j5m"]
+size = Vector2(54, 32)
+
+[node name="Lantern" type="Area2D" unique_id=894454615]
+script = ExtResource("1_atptm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1927181970]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_13j5m")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1655612546]
+texture = ExtResource("1_13j5m")
+hframes = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

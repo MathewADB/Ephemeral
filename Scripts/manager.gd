@@ -20,6 +20,11 @@ signal skill_points_changed(points)
 signal inventory_changed
 signal upgrades_changed
 
+# --- AUTOSAVE ---
+
+var autosave_interval: float = 300.0
+var autosave_timer: float = 0.0
+
 # --- PLAYER & TIME ---
 
 var player : CharacterBody2D
@@ -28,6 +33,8 @@ var seconds_per_day := 1200.0
 var start_day_progress := 0.36
 var time_scale := 1.0
 var _is_night := false
+
+var loaded_health = 100
 
 var activate_spawn : bool = false
 var spawn_location : Vector2 = Vector2.ZERO
@@ -50,7 +57,7 @@ var mining_speed_level := BASE_STATS["mining_speed_level"]
 
 # --- INVENTORY & COLLECTION ---
 
-var items : Dictionary = {"Ruby Stone":0, "Ruby Gem":0}
+var items : Dictionary = {"Ruby Stone":0, "Ruby Gem":0, "Dust":0}
 var visited_rooms: Array = []
 var collected_objects : Dictionary = {}
 
@@ -80,6 +87,13 @@ var crafting_recipes := {
 		"icon": preload("res://Sprites/Entities/Ruby Gem.png"),
 		"materials": {"Ruby Stone": 2},
 		"time": 5.0
+	},
+	"Dust Gem": {
+		"name": "Dust Gem",
+		"description": "A refined gem which can be used to activate some broken objects",
+		"icon": preload("res://Sprites/Entities/Dust Gem.png"),
+		"materials": {"Dust": 10},
+		"time": 10.0
 	}
 }
 func _ready():
@@ -94,10 +108,16 @@ func _process(delta):
 	if now_night != _is_night:
 		_is_night = now_night
 		night_changed.emit(_is_night)
-
+	
+	autosave_timer += delta
+	if autosave_timer >= autosave_interval:
+		autosave_timer = 0.0
+		save_game()
+		UI.show_autosave_icon()
 # ================= SAVE/LOAD =================
 		
 func save_game():
+	
 	var save_data = {
 		"skill_points": skill_points,
 		"level": level,
@@ -108,7 +128,8 @@ func save_game():
 		"game_seconds": game_seconds,
 		"learned_upgrades": learned_upgrades,
 		"current_room_scene": current_room_scene,
-		"spawn_location": spawn_location
+		"spawn_location": spawn_location,
+		"player_current_health": player.current_health if player else 100
 	}
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	file.store_string(JSON.stringify(save_data))
@@ -135,7 +156,8 @@ func load_game():
 	collected_objects = data.get("collected_objects",{})
 	game_seconds = data.get("game_seconds",0)
 	current_room_scene = data.get("current_room_scene","res://Scenes/Locations/Mushroom Biome/Tutorial.tscn")
-
+	loaded_health = data.get("player_current_health", 100)
+	
 	var saved_pos = data.get("spawn_location",[0,0])
 	if typeof(saved_pos) == TYPE_ARRAY and saved_pos.size() == 2:
 		spawn_location = Vector2(saved_pos[0], saved_pos[1])
@@ -154,7 +176,7 @@ func reset_game():
 	skill_points = 0
 	level = 1
 	current_xp = 0
-	items = {"Ruby Stone":0, "Ruby Gem":0}
+	items = {"Ruby Stone":0, "Ruby Gem":0, "Dust":0, "Dust Gem":0}
 	visited_rooms.clear()
 	collected_objects.clear()
 	game_seconds = start_day_progress * seconds_per_day

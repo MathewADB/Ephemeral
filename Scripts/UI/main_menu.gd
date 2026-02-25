@@ -7,7 +7,7 @@ extends Control
 
 func _ready() -> void:
 	UI.hide_ui()
-	$Version.text = ProjectSettings.get_setting("application/config/version")
+	$Version.text = ("v"+ProjectSettings.get_setting("application/config/version")+" under developement")
 	fade.modulate = Color(0, 0, 0, 1)
 	fade_out()
 	

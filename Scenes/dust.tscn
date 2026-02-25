@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b3s1dwals7kpt"]
+
+[ext_resource type="PackedScene" uid="uid://xpsns6o8xx8c" path="res://Scenes/collectable.tscn" id="1_why1w"]
+[ext_resource type="Texture2D" uid="uid://bb6rtj2wids0c" path="res://Sprites/Entities/Dust.png" id="2_ts161"]
+
+[node name="Dust" unique_id=613026739 instance=ExtResource("1_why1w")]
+texture = ExtResource("2_ts161")
+count = 1
+collectable_name = "Dust"
+
+[node name="CollisionShape2D" parent="StaticBody2D" parent_id_path=PackedInt32Array(1187357038) index="0" unique_id=579755393]
+disabled = true

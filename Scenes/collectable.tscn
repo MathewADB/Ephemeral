@@ -14,7 +14,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.9102564, 0.08974359)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qf81a"]
-radius = 36.013885
+radius = 30.016663
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_licok"]
 size = Vector2(14, 9)

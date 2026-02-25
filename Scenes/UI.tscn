@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cfj4m4i73motg" path="res://Scripts/ui_manager.gd" id="1_dewlx"]
 [ext_resource type="PackedScene" uid="uid://hwmmwmdcli2k" path="res://Scenes/Control/BarsHud.tscn" id="2_hfhsn"]
+[ext_resource type="Shader" uid="uid://bgwjca7gm7142" path="res://Scenes/DayNightShader.gdshader" id="2_q6a8d"]
+[ext_resource type="Script" uid="uid://dogym5cgk8esm" path="res://Scripts/UI/TimeCycle.gd" id="3_6lb63"]
 [ext_resource type="Texture2D" uid="uid://busi6fo40hl78" path="res://Sprites/UI/moon and sun icons.png" id="3_qwshj"]
 [ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="4_hfhsn"]
 [ext_resource type="FontFile" uid="uid://b0efp4kdjt0pa" path="res://Style/Born2bSportyFS.otf" id="5_qwshj"]
@@ -71,6 +73,12 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_48q88")
 RichTextLabel/font_sizes/normal_font_size = 32
 RichTextLabel/fonts/normal_font = ExtResource("5_qwshj")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6lb63"]
+shader = ExtResource("2_q6a8d")
+shader_parameter/night_factor = 0.0
+shader_parameter/day_color = Vector4(0, 0, 0, 0)
+shader_parameter/night_color = Vector4(0, 0, 0, 0)
+
 [node name="UI" type="CanvasLayer" unique_id=1521172341]
 script = ExtResource("1_dewlx")
 popup_offset = Vector2(0, -100)
@@ -93,6 +101,8 @@ hframes = 2
 frame = 1
 
 [node name="Quest" type="Control" parent="." unique_id=777518777]
+light_mask = 2
+visibility_layer = 2
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -158,17 +168,6 @@ grow_vertical = 2
 theme = SubResource("Theme_48q88")
 value = 47.57
 
-[node name="Fade" type="ColorRect" parent="." unique_id=850223812]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-color = Color(0, 0, 0, 1)
-script = ExtResource("7_xjg7p")
-
 [node name="Level" type="Control" parent="." unique_id=478546924]
 layout_mode = 3
 anchors_preset = 10
@@ -201,6 +200,131 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Fade" type="ColorRect" parent="." unique_id=850223812]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+script = ExtResource("7_xjg7p")
+
+[node name="DayNight" type="ColorRect" parent="." unique_id=1825922128]
+material = SubResource("ShaderMaterial_6lb63")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_6lb63")
+day_color = Color(1, 1, 1, 0)
+night_color = Color(0.14901961, 0.14901961, 0.2509804, 0.78431374)
+
+[node name="Moonlight" type="DirectionalLight2D" parent="." unique_id=676522343]
+position = Vector2(-1, -92)
+color = Color(0.22745098, 0.21568628, 0.4509804, 0.56078434)
+shadow_enabled = true
+
+[node name="Crafting Panel" type="Control" parent="." unique_id=449598579]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Crafting Panel" unique_id=218169308]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_hfhsn")
+theme_type_variation = &"MenuPanel"
+
+[node name="ProgressBar" type="ProgressBar" parent="Crafting Panel" unique_id=2020762854]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 581.0
+offset_right = 183.0
+offset_bottom = 617.0
+theme = ExtResource("4_hfhsn")
+
+[node name="CloseButton" type="Button" parent="Crafting Panel" unique_id=161906409]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 463.0
+offset_right = 129.0
+offset_bottom = 507.0
+theme = ExtResource("4_hfhsn")
+text = "Close"
+
+[node name="CraftButton" type="Button" parent="Crafting Panel" unique_id=1859212047]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 514.0
+offset_right = 129.0
+offset_bottom = 558.0
+theme = ExtResource("4_hfhsn")
+disabled = true
+text = "Craft"
+
+[node name="ItemList" type="VBoxContainer" parent="Crafting Panel" unique_id=63781857]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -337.0
+offset_top = 41.0
+offset_right = -18.0
+offset_bottom = -41.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Icon" type="TextureRect" parent="Crafting Panel" unique_id=654189446]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 31.0
+offset_right = 265.0
+offset_bottom = 237.0
+
+[node name="Name" type="Label" parent="Crafting Panel" unique_id=2111213894]
+layout_mode = 0
+offset_left = 455.0
+offset_top = 21.0
+offset_right = 595.0
+offset_bottom = 65.0
+theme = ExtResource("4_hfhsn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Crafting Panel" unique_id=2003383284]
+layout_mode = 0
+offset_left = 397.0
+offset_top = 86.0
+offset_right = 652.0
+offset_bottom = 311.0
+theme = ExtResource("4_hfhsn")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Cost" type="Label" parent="Crafting Panel" unique_id=1340498577]
+layout_mode = 0
+offset_left = 396.0
+offset_top = 380.0
+offset_right = 651.0
+offset_bottom = 605.0
+theme = ExtResource("4_hfhsn")
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="Player Panel" type="Control" parent="." unique_id=1801123476]
 visible = false
 layout_mode = 3
@@ -209,6 +333,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Background" type="ColorRect" parent="Player Panel" unique_id=1215582183]
 layout_mode = 1
@@ -255,11 +380,10 @@ grow_vertical = 2
 focus_mode = 2
 theme = ExtResource("4_hfhsn")
 tab_alignment = 1
-current_tab = 3
+current_tab = 0
 script = ExtResource("6_mg6lk")
 
 [node name="Settings" type="Control" parent="Player Panel/Panel" unique_id=2016830327]
-visible = false
 layout_mode = 2
 focus_mode = 2
 script = ExtResource("10_45jp6")
@@ -267,11 +391,11 @@ metadata/_tab_index = 0
 
 [node name="Quit" type="Button" parent="Player Panel/Panel/Settings" unique_id=1493065016]
 layout_mode = 0
-offset_left = 63.0
+offset_left = 29.0
 offset_top = 483.0
 offset_right = 225.0
 offset_bottom = 535.0
-text = "Quit"
+text = "Save And Quit"
 
 [node name="Inventory" type="Control" parent="Player Panel/Panel" unique_id=2097038401]
 visible = false
@@ -296,6 +420,49 @@ focus_mode = 2
 theme = ExtResource("4_hfhsn")
 script = ExtResource("10_b1goy")
 metadata/_tab_index = 2
+
+[node name="SkillPoints" type="Label" parent="Player Panel/Panel/Upgrades" unique_id=468737102]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 35.0
+offset_right = 159.0
+offset_bottom = 71.0
+theme = ExtResource("4_hfhsn")
+theme_type_variation = &"LabelLevel"
+text = "Skill Points : "
+
+[node name="Control" type="Control" parent="Player Panel/Panel/Upgrades" unique_id=1838206492]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Line2D" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=531746274]
+position = Vector2(-864, -24)
+points = PackedVector2Array(1480, 157, 1571, 157)
+default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
+
+[node name="Line2D2" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=1290019084]
+position = Vector2(-2, -2.325)
+points = PackedVector2Array(676, 215, 622, 215)
+default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
+
+[node name="Line2D3" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=708062276]
+position = Vector2(-0.015, 1)
+points = PackedVector2Array(679, 289, 622, 289)
+default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
+
+[node name="Line2D4" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=1805121069]
+position = Vector2(5, 1)
+points = PackedVector2Array(680, 367, 620, 367)
+default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
+
+[node name="Line2D5" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=2101477211]
+position = Vector2(11, -3)
+points = PackedVector2Array(684, 445, 513, 445)
+default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
 
 [node name="InfoPanel" type="Panel" parent="Player Panel/Panel/Upgrades" unique_id=1263094567]
 layout_mode = 1
@@ -508,17 +675,8 @@ scale = Vector2(3, 3)
 texture_normal = ExtResource("23_y1m5i")
 texture_disabled = ExtResource("35_mtrk6")
 
-[node name="SkillPoints" type="Label" parent="Player Panel/Panel/Upgrades" unique_id=468737102]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 35.0
-offset_right = 141.0
-offset_bottom = 71.0
-theme = ExtResource("4_hfhsn")
-theme_type_variation = &"LabelLevel"
-text = "Skill Points : "
-
 [node name="Quest" type="Control" parent="Player Panel/Panel" unique_id=893934766]
+visible = false
 layout_mode = 2
 focus_mode = 2
 metadata/_tab_index = 3
@@ -564,105 +722,13 @@ theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 64
 text = "You dont have a map yet"
 
-[node name="Crafting Panel" type="Control" parent="." unique_id=449598579]
-process_mode = 3
+[node name="AutosaveIcon" type="Sprite2D" parent="." unique_id=1756865146]
 visible = false
-z_index = 1
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+position = Vector2(1055, 591)
+scale = Vector2(3, 3)
+texture = ExtResource("11_b1goy")
 
-[node name="Panel" type="Panel" parent="Crafting Panel" unique_id=218169308]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("4_hfhsn")
-theme_type_variation = &"MenuPanel"
-
-[node name="ProgressBar" type="ProgressBar" parent="Crafting Panel" unique_id=2020762854]
-layout_mode = 0
-offset_left = 39.0
-offset_top = 581.0
-offset_right = 183.0
-offset_bottom = 617.0
-theme = ExtResource("4_hfhsn")
-
-[node name="CloseButton" type="Button" parent="Crafting Panel" unique_id=161906409]
-layout_mode = 0
-offset_left = 39.0
-offset_top = 463.0
-offset_right = 129.0
-offset_bottom = 507.0
-theme = ExtResource("4_hfhsn")
-text = "Close"
-
-[node name="CraftButton" type="Button" parent="Crafting Panel" unique_id=1859212047]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 514.0
-offset_right = 129.0
-offset_bottom = 558.0
-theme = ExtResource("4_hfhsn")
-disabled = true
-text = "Craft"
-
-[node name="ItemList" type="VBoxContainer" parent="Crafting Panel" unique_id=63781857]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -337.0
-offset_top = 41.0
-offset_right = -18.0
-offset_bottom = -41.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="Icon" type="TextureRect" parent="Crafting Panel" unique_id=654189446]
-layout_mode = 0
-offset_left = 52.0
-offset_top = 31.0
-offset_right = 265.0
-offset_bottom = 237.0
-
-[node name="Name" type="Label" parent="Crafting Panel" unique_id=2111213894]
-layout_mode = 0
-offset_left = 455.0
-offset_top = 21.0
-offset_right = 595.0
-offset_bottom = 65.0
-theme = ExtResource("4_hfhsn")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Description" type="Label" parent="Crafting Panel" unique_id=2003383284]
-layout_mode = 0
-offset_left = 397.0
-offset_top = 86.0
-offset_right = 652.0
-offset_bottom = 311.0
-theme = ExtResource("4_hfhsn")
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="Cost" type="Label" parent="Crafting Panel" unique_id=1340498577]
-layout_mode = 0
-offset_left = 396.0
-offset_top = 380.0
-offset_right = 651.0
-offset_bottom = 605.0
-theme = ExtResource("4_hfhsn")
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[connection signal="pressed" from="Player Panel/Panel/Settings/Quit" to="Player Panel/Panel/Settings" method="_on_quit_pressed"]
-[connection signal="pressed" from="Player Panel/Panel/Upgrades/InfoPanel/Learn" to="Player Panel/Panel/Upgrades" method="_on_learn_pressed"]
 [connection signal="pressed" from="Crafting Panel/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="Crafting Panel/CraftButton" to="." method="_on_craft_button_pressed"]
+[connection signal="pressed" from="Player Panel/Panel/Settings/Quit" to="Player Panel/Panel/Settings" method="_on_quit_pressed"]
+[connection signal="pressed" from="Player Panel/Panel/Upgrades/InfoPanel/Learn" to="Player Panel/Panel/Upgrades" method="_on_learn_pressed"]

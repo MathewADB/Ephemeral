@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://xxy62pou6w7e" path="res://Sprites/BackGrounds/MushroomBackground.png" id="2_rbv0n"]
 [ext_resource type="TileSet" uid="uid://capwod7vgkwwm" path="res://Style/MainTileset.tres" id="2_syfyn"]
 [ext_resource type="PackedScene" uid="uid://cuqnsoy61186" path="res://Scenes/Player.tscn" id="2_vor7h"]
-[ext_resource type="Script" uid="uid://dogym5cgk8esm" path="res://Scripts/UI/TimeCycle.gd" id="4_syfyn"]
 
 [node name="Section" type="Node2D" unique_id=1855033315]
 
@@ -80,15 +79,3 @@ scroll_scale = Vector2(1.2, 1.2)
 [node name="ForeGround" type="TileMapLayer" parent="ForeGround/ForeGround" unique_id=697823319]
 scale = Vector2(2, 2)
 tile_set = ExtResource("2_syfyn")
-
-[node name="Light" type="CanvasModulate" parent="ForeGround" unique_id=2074037511]
-light_mask = 3
-visibility_layer = 3
-position = Vector2(-2, 0)
-script = ExtResource("4_syfyn")
-night_strength = 1.35
-
-[node name="Moonlight" type="DirectionalLight2D" parent="ForeGround" unique_id=1380760645]
-position = Vector2(-1, -92)
-color = Color(0.22745098, 0.21568628, 0.4509804, 0.56078434)
-shadow_enabled = true

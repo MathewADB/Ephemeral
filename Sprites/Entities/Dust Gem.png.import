@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2sj8mvnvsk74"
-path="res://.godot/imported/pink slime no horn.png-f56151d5a633630efebbab1db4fd5337.ctex"
+uid="uid://cg5w4n7nnfuji"
+path="res://.godot/imported/Dust Gem.png-128a4990ce93f0ca82874dd3ff6a95b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Entities/pink slime no horn.png"
-dest_files=["res://.godot/imported/pink slime no horn.png-f56151d5a633630efebbab1db4fd5337.ctex"]
+source_file="res://Sprites/Entities/Dust Gem.png"
+dest_files=["res://.godot/imported/Dust Gem.png-128a4990ce93f0ca82874dd3ff6a95b4.ctex"]
 
 [params]
 

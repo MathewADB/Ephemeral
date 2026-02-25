@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://bkidlgd6ss2c"]
+
+[ext_resource type="PackedScene" uid="uid://bdm3nq6dmx6jt" path="res://Scenes/entity.tscn" id="1_ykrwm"]
+[ext_resource type="Script" uid="uid://cni8im2fx6dry" path="res://Scripts/Entities/Gray_slime.gd" id="2_61jp3"]
+[ext_resource type="Texture2D" uid="uid://bahtewopr5bif" path="res://Sprites/Entities/Gray Slime Walk.png" id="3_61jp3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x0sfv"]
+radius = 13.038404
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tgldj"]
+size = Vector2(28, 28)
+
+[sub_resource type="Animation" id="Animation_wdun4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodySprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_61jp3")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BodySprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BodySprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_gxdy8"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodySprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_61jp3")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BodySprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BodySprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 2, 0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ad3ii"]
+_data = {
+&"RESET": SubResource("Animation_wdun4"),
+&"walk": SubResource("Animation_gxdy8")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tgldj"]
+radius = 19.026299
+
+[node name="Gray Slime" unique_id=1353218134 instance=ExtResource("1_ykrwm")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_61jp3")
+
+[node name="BodySprite" parent="." index="0" unique_id=1414910869]
+texture = ExtResource("3_61jp3")
+flip_h = true
+hframes = 3
+frame = 1
+
+[node name="Hitbox" parent="." index="1" unique_id=1857921334]
+collision_layer = 4
+monitoring = false
+monitorable = true
+
+[node name="CollisionShape2D" parent="Hitbox" index="0" unique_id=1782702692]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_x0sfv")
+
+[node name="BodyCollision" parent="." index="2" unique_id=1873312395]
+visible = false
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_tgldj")
+
+[node name="AnimationPlayer" parent="." index="3" unique_id=472722610]
+libraries/ = SubResource("AnimationLibrary_ad3ii")
+autoplay = &"walk"
+
+[node name="WallCast" type="RayCast2D" parent="." index="4" unique_id=1723264138]
+target_position = Vector2(32, 0)
+collision_mask = 2
+
+[node name="PlatformCast" type="RayCast2D" parent="." index="5" unique_id=1746913153]
+target_position = Vector2(28, 25)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRange" type="Area2D" parent="." index="6" unique_id=322288349]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange" index="0" unique_id=1824781864]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_tgldj")
+
+[node name="VisionRange" type="Area2D" parent="." index="7" unique_id=1615032007]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionRange" index="0" unique_id=1051005632]
+polygon = PackedVector2Array(-20, 16, -20, 0, -7, -11, 8, -11, 198, -98, 199, 16)
+
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
+[connection signal="body_entered" from="VisionRange" to="." method="_on_vision_range_body_entered"]
+[connection signal="body_exited" from="VisionRange" to="." method="_on_vision_range_body_exited"]

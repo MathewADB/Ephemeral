@@ -24,6 +24,7 @@ var coyote := 0.0
 var jump_released := false
 var base_extra_jumps := 0
 var current_extra_jumps := 0
+var hide_unlocked := false
 var can_hide := false
 var hiding := false
 var is_hidden := false
@@ -33,14 +34,16 @@ var light_level := 0
 var speed_level := 1.0
 var mining_tier := 0
 var mining_speed := 1
+var lock_animation := false
 
 func _ready() -> void:
+	current_health = Manager.loaded_health
 	Manager.player = self
+	camera.limit_right = level_limit_r
+	camera.limit_left = -level_limit_l		
 	if tutorial == true :
 		save_location = self.position
 		tutorial_timer.start()
-		camera.limit_right = level_limit_r
-		camera.limit_left = -level_limit_l
 		
 	if Manager.activate_spawn :
 		camera.position_smoothing_enabled = false
@@ -48,7 +51,7 @@ func _ready() -> void:
 		Manager.activate_spawn = false
 		await get_tree().create_timer(1).timeout
 		camera.position_smoothing_enabled = true
-		
+
 	set_stats()
 	gravity = 850
 	
@@ -57,9 +60,10 @@ func set_stats():
 	mining_tier = Manager.mining_tier
 	speed_level = Manager.player_mobility
 	light_level = Manager.light_level
-	can_hide = Manager.hide_unlocked
+	hide_unlocked = Manager.hide_unlocked
 	base_extra_jumps = Manager.base_extra_jumps
 	current_extra_jumps = base_extra_jumps
+	UI.bars.update_health(current_health,max_health)
 	
 func _physics_process(delta):
 	handle_mining(delta)
@@ -71,7 +75,7 @@ func _physics_process(delta):
 		
 	if light_level != 0 :
 		handle_light()
-	if can_hide :
+	if hide_unlocked :
 		handle_hiding()
 	
 	if is_on_floor():
@@ -208,18 +212,25 @@ func handle_light() :
 		self_light.visible = !self_light.visible
 		
 func handle_hiding():
+	if lock_animation:
+		return
+		
 	if Input.is_action_pressed("hide") and !hiding and !is_hidden and is_on_floor():
 		hiding = true
+		lock_animation = true
 		animation.play("hide")
 		await animation.animation_finished
 		is_hidden = true
+		lock_animation = false
 		
 	elif Input.is_action_just_released("hide") and hiding :
 		hiding = false
+		lock_animation = true
 		animation.play("show") 
-		await  animation.animation_finished
+		await animation.animation_finished
 		is_hidden = false
-
+		lock_animation = false
+	
 func take_damage(amount):
 	current_health = max(current_health - amount,0)
 	if current_health == 0 :
@@ -239,6 +250,9 @@ func _on_save_location_timeout() -> void:
 # ===== animation
 
 func update_animation():
+	if lock_animation:
+		return	
+	
 	if hiding:
 		return
 		

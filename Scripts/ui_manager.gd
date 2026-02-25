@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 @export var popup_offset := Vector2(0, 80)
+@onready var moonlight = $Moonlight
+@onready var autosaveicon = $AutosaveIcon
 @onready var level_bar = $Level/LevelBar
 @onready var level_label = $Level/LevelLabel
 @onready var fade = $Fade
@@ -46,6 +48,36 @@ func _ready() -> void:
 		btn.pressed.connect(_on_recipe_selected.bind(recipe_name))
 		crafting_list.add_child(btn)
 
+# ===== Autosave 
+
+func show_autosave_icon():
+	if autosaveicon == null:
+		return
+	
+	# Stop previous tween if running
+	if current_tween and current_tween.is_running():
+		current_tween.kill()
+
+	autosaveicon.visible = true
+	autosaveicon.modulate.a = 0.0
+
+	current_tween = create_tween()
+
+	# Fade in
+	current_tween.tween_property(autosaveicon, "modulate:a", 1.0, 0.3)
+
+	# Blink 3 times
+	for i in range(3):
+		current_tween.tween_property(autosaveicon, "modulate:a", 0.2, 0.2)
+		current_tween.tween_property(autosaveicon, "modulate:a", 1.0, 0.2)
+
+	# Fade out
+	current_tween.tween_property(autosaveicon, "modulate:a", 0.0, 0.4)
+
+	# Hide after finishing
+	current_tween.tween_callback(func():
+		autosaveicon.visible = false
+	)
 # ===== Crafting
 	
 func hide_ui():

@@ -32,5 +32,9 @@ func get_icon_for_item(item_name : String) -> Texture2D:
 			return preload("res://Sprites/Entities/Ruby Gem.png")
 		"Lore Fragment":
 			return preload("res://Sprites/Entities/Lore Fragment.png")
+		"Dust":
+			return preload("res://Sprites/Entities/Dust.png")
+		"Dust Gem":
+			return preload("res://Sprites/Entities/Dust Gem.png")
 		_:
 			return null
