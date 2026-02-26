@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://b1ru23ihk14b7"]
+
+[ext_resource type="Texture2D" uid="uid://c7k017xoyuodh" path="res://Sprites/Entities/Bridge.png" id="1_fcuet"]
+[ext_resource type="Script" uid="uid://iiafver3uxbg" path="res://Scripts/Envirement/bridge.gd" id="1_mu6mx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mu6mx"]
+size = Vector2(220, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r00am"]
+size = Vector2(384, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fuss"]
+size = Vector2(18, 6)
+
+[node name="Bridge" type="StaticBody2D" unique_id=27138608]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_mu6mx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741932548]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_mu6mx")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=132550051]
+texture = ExtResource("1_fcuet")
+hframes = 3
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1555789407]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=960403643]
+position = Vector2(8, -19.5)
+shape = SubResource("RectangleShape2D_r00am")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=497244180]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1707952567]
+position = Vector2(-119, 5)
+shape = SubResource("RectangleShape2D_3fuss")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=719380489]
+position = Vector2(119, 5)
+shape = SubResource("RectangleShape2D_3fuss")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

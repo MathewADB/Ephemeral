@@ -399,7 +399,7 @@ wait_time = 0.14
 one_shot = true
 
 [node name="Tutorial Timer" type="Timer" parent="." unique_id=2799998]
-wait_time = 2.0
+wait_time = 5.0
 
 [connection signal="timeout" from="Invun Timer" to="." method="_on_invun_timer_timeout"]
 [connection signal="timeout" from="Tutorial Timer" to="." method="_on_save_location_timeout"]

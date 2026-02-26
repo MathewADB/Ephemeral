@@ -73,9 +73,12 @@ tile_set = ExtResource("2_syfyn")
 
 [node name="ForeGround" type="Node2D" parent="." unique_id=1938316734]
 
+[node name="Spawners" type="Node2D" parent="ForeGround" unique_id=1284067958]
+
 [node name="ForeGround" type="Parallax2D" parent="ForeGround" unique_id=930130654]
 scroll_scale = Vector2(1.2, 1.2)
 
 [node name="ForeGround" type="TileMapLayer" parent="ForeGround/ForeGround" unique_id=697823319]
+modulate = Color(0.65834004, 0.6583399, 0.6583399, 1)
 scale = Vector2(2, 2)
 tile_set = ExtResource("2_syfyn")

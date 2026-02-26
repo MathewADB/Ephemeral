@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://obbnmvpiugxx"]
+
+[ext_resource type="Script" uid="uid://8ttvcqsq125j" path="res://Scripts/Envirement/grass.gd" id="1_4xpun"]
+[ext_resource type="Texture2D" uid="uid://dr22vk78p02ov" path="res://Sprites/Entities/Red Grass.png" id="1_f16wj"]
+
+[sub_resource type="Animation" id="Animation_qqdeh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vkwfg"]
+resource_name = "bend"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5nqva"]
+_data = {
+&"RESET": SubResource("Animation_qqdeh"),
+&"bend": SubResource("Animation_vkwfg")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xpun"]
+size = Vector2(16, 7)
+
+[node name="Red Grass" type="Node2D" unique_id=243752201]
+script = ExtResource("1_4xpun")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=37169328]
+texture = ExtResource("1_f16wj")
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2115100643]
+libraries/ = SubResource("AnimationLibrary_5nqva")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1367257530]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2008593689]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_4xpun")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

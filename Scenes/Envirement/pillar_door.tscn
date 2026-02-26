@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b8yiv0ylvxblb"]
+
+[ext_resource type="Script" uid="uid://ck48nkwihaug0" path="res://Scripts/Envirement/pillar_door.gd" id="1_06074"]
+[ext_resource type="Texture2D" uid="uid://bo031weoobfnl" path="res://Sprites/Entities/Door.png" id="1_a1q2x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06074"]
+size = Vector2(10, 80)
+
+[node name="Pillar Door" type="StaticBody2D" unique_id=1110157729]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_06074")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=299676071]
+shape = SubResource("RectangleShape2D_06074")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1347692039]
+texture = ExtResource("1_a1q2x")
+hframes = 2

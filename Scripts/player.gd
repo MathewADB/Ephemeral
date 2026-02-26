@@ -15,6 +15,12 @@ extends Entity
 @export var jump_buffer_time := 0.1
 @export var tilemap: TileMapLayer
 @export var tutorial : bool
+@export var fall_damage_threshold := 700.0
+@export var fall_damage_divisor := 5.0
+
+var max_fall_speed_reached := 0.0
+var was_on_floor := false
+var currently_on_floor := false
 
 var mining := false
 var mineable : Collectable
@@ -35,25 +41,30 @@ var speed_level := 1.0
 var mining_tier := 0
 var mining_speed := 1
 var lock_animation := false
+var ignore_fall_damage = false
 
 func _ready() -> void:
+	camera.position_smoothing_enabled = false
+	gravity = 850
 	current_health = Manager.loaded_health
+	set_stats()
 	Manager.player = self
 	camera.limit_right = level_limit_r
 	camera.limit_left = -level_limit_l		
 	if tutorial == true :
+		ignore_fall_damage = true
 		save_location = self.position
-		tutorial_timer.start()
 		
 	if Manager.activate_spawn :
-		camera.position_smoothing_enabled = false
 		self.position = Manager.spawn_location
 		Manager.activate_spawn = false
-		await get_tree().create_timer(1).timeout
-		camera.position_smoothing_enabled = true
+		
 
-	set_stats()
-	gravity = 850
+	tutorial_timer.start()
+	await get_tree().create_timer(0.2).timeout
+	ignore_fall_damage = false
+	camera.position_smoothing_enabled = true
+
 	
 func set_stats():
 	mining_speed = Manager.mining_speed_level
@@ -73,6 +84,15 @@ func _physics_process(delta):
 		handle_vertical(delta)
 		move_and_slide()
 		
+		if not is_on_floor() and velocity.y > 0:
+			max_fall_speed_reached = max(max_fall_speed_reached, velocity.y)
+			
+	currently_on_floor = is_on_floor()
+	if currently_on_floor and not was_on_floor:
+		_check_fall_damage()
+
+	was_on_floor = currently_on_floor
+	
 	if light_level != 0 :
 		handle_light()
 	if hide_unlocked :
@@ -83,6 +103,21 @@ func _physics_process(delta):
 		jump_released = false
 		
 	update_animation()
+	
+func _check_fall_damage():
+	
+	if ignore_fall_damage:
+		max_fall_speed_reached = 0.0
+		return
+		
+	if max_fall_speed_reached > fall_damage_threshold:
+		var excess = max_fall_speed_reached - fall_damage_threshold
+		var fdamage = int(excess / fall_damage_divisor)
+
+		if fdamage > 0 and can_take_damage:
+			take_damage(fdamage)
+
+	max_fall_speed_reached = 0.0
 	
 func handle_mining(delta):
 
@@ -234,7 +269,7 @@ func handle_hiding():
 func take_damage(amount):
 	current_health = max(current_health - amount,0)
 	if current_health == 0 :
-		print("dead")
+		die()
 	UI.bars.update_health(current_health,max_health)
 	can_take_damage = false
 	invun.start()
@@ -247,6 +282,13 @@ func _on_save_location_timeout() -> void:
 		save_location = position
 	tutorial_timer.start()
 
+func die():
+	if tutorial :
+		ignore_fall_damage = true
+		self.position = save_location
+		take_damage(-100)
+		await get_tree().create_timer(0.2).timeout
+		ignore_fall_damage = false
 # ===== animation
 
 func update_animation():

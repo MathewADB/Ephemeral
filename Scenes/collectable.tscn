@@ -16,9 +16,6 @@ fill_to = Vector2(0.9102564, 0.08974359)
 [sub_resource type="CircleShape2D" id="CircleShape2D_qf81a"]
 radius = 30.016663
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_licok"]
-size = Vector2(14, 9)
-
 [node name="Collectable" type="Sprite2D" unique_id=613026739]
 texture = ExtResource("1_licok")
 script = ExtResource("2_licok")
@@ -41,9 +38,7 @@ shape = SubResource("CircleShape2D_qf81a")
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=579755393]
-position = Vector2(0.25, 0.25)
-shape = SubResource("RectangleShape2D_licok")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=878156720]
 
 [connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]

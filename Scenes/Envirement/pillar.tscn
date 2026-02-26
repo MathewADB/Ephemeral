@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://b24t6i8x21vb7"]
+
+[ext_resource type="Script" uid="uid://ds5g1tq8v1b8o" path="res://Scripts/Envirement/pillar.gd" id="1_6t58x"]
+[ext_resource type="Texture2D" uid="uid://d4ewdkompax0l" path="res://Sprites/Entities/Pillar.png" id="1_tlxyo"]
+[ext_resource type="Texture2D" uid="uid://bjuifygg4o0ef" path="res://Sprites/UI/Leveling Fill.png" id="2_1i27v"]
+[ext_resource type="Texture2D" uid="uid://dy1ybeee3ntiv" path="res://Sprites/UI/Leveling Border.png" id="3_6t58x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iekxd"]
+size = Vector2(118, 87)
+
+[node name="Pillar" type="Area2D" unique_id=2084248514]
+script = ExtResource("1_6t58x")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1460664226]
+texture = ExtResource("1_tlxyo")
+hframes = 2
+frame = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=2140688293]
+visible = false
+offset_left = -12.0
+offset_top = -66.0
+offset_right = 12.0
+offset_bottom = -42.0
+fill_mode = 5
+texture_under = ExtResource("2_1i27v")
+texture_progress = ExtResource("3_6t58x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1297260898]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_iekxd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

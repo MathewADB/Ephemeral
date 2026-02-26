@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://by152lg5q2klq"]
+
+[ext_resource type="Texture2D" uid="uid://x3jnjqy5xlim" path="res://Sprites/UI/Light small.png" id="1_mkstk"]
+[ext_resource type="Script" uid="uid://unjeq1cn5l6l" path="res://Scripts/Envirement/firefly.gd" id="1_q44hq"]
+
+[node name="Firefly" type="Node2D" unique_id=1028079278]
+script = ExtResource("1_q44hq")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1918599451]
+amount = 12
+lifetime = 3.0
+speed_scale = 20.0
+explosiveness = 0.5
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+scale_amount_min = 1.5
+scale_amount_max = 1.5
+color = Color(1, 1, 0.7529412, 1)
+
+[node name="Glow" type="PointLight2D" parent="." unique_id=1875913026]
+scale = Vector2(0.5625, 0.5625)
+color = Color(0.8235294, 0.8156863, 0, 0.5294118)
+texture = ExtResource("1_mkstk")

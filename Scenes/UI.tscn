@@ -39,6 +39,8 @@
 [ext_resource type="Texture2D" uid="uid://dhirg8hctlbk4" path="res://Sprites/Icons/Hat Icon unlocked.png" id="31_q8m6m"]
 [ext_resource type="Texture2D" uid="uid://bbya63dnf305k" path="res://Sprites/Icons/Double Jump Icon unlocked.png" id="33_1lsdj"]
 [ext_resource type="Texture2D" uid="uid://sygw6fixrwtc" path="res://Sprites/Icons/Triple Jump Icon unlocked .png" id="35_mtrk6"]
+[ext_resource type="Texture2D" uid="uid://bex2kubmkmv2h" path="res://Sprites/Icons/Pillar Interaction 1 Icon.png" id="40_wypb4"]
+[ext_resource type="Texture2D" uid="uid://c21hmysp5qllr" path="res://Sprites/Icons/Pillar Interaction 1 Icon unlocked.png" id="41_y1m5i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwshj"]
 bg_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
@@ -222,6 +224,7 @@ mouse_filter = 2
 script = ExtResource("3_6lb63")
 day_color = Color(1, 1, 1, 0)
 night_color = Color(0.14901961, 0.14901961, 0.2509804, 0.78431374)
+night_strength = 1.15
 
 [node name="Moonlight" type="DirectionalLight2D" parent="." unique_id=676522343]
 position = Vector2(-1, -92)
@@ -326,7 +329,6 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Player Panel" type="Control" parent="." unique_id=1801123476]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -380,10 +382,11 @@ grow_vertical = 2
 focus_mode = 2
 theme = ExtResource("4_hfhsn")
 tab_alignment = 1
-current_tab = 0
+current_tab = 2
 script = ExtResource("6_mg6lk")
 
 [node name="Settings" type="Control" parent="Player Panel/Panel" unique_id=2016830327]
+visible = false
 layout_mode = 2
 focus_mode = 2
 script = ExtResource("10_45jp6")
@@ -414,7 +417,6 @@ offset_right = 209.0
 offset_bottom = 198.0
 
 [node name="Upgrades" type="Control" parent="Player Panel/Panel" unique_id=1762975685]
-visible = false
 layout_mode = 2
 focus_mode = 2
 theme = ExtResource("4_hfhsn")
@@ -441,27 +443,58 @@ grow_vertical = 2
 
 [node name="Line2D" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=531746274]
 position = Vector2(-864, -24)
-points = PackedVector2Array(1480, 157, 1571, 157)
+points = PackedVector2Array(1280, 346, 1280, 426)
+default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
+
+[node name="Line2D6" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=2143880953]
+position = Vector2(-864, -24)
+points = PackedVector2Array(1640, 346, 1544, 346)
+default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
+
+[node name="Line2D7" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=187885228]
+position = Vector2(-864, -24)
+points = PackedVector2Array(1640, 426, 1544, 426)
+default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
+
+[node name="Line2D8" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=80569050]
+position = Vector2(-864, -24)
+points = PackedVector2Array(1536, 258, 1536, 346)
+default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
+
+[node name="Line2D9" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=876725613]
+position = Vector2(-864, -24)
+points = PackedVector2Array(1536, 258, 1448, 346)
+default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
+
+[node name="Line2D10" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=599826106]
+position = Vector2(-864, -24)
+points = PackedVector2Array(1536, 266, 1456, 266)
+default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
+
+[node name="Line2D11" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=1950985598]
+position = Vector2(-864, -24)
+points = PackedVector2Array(1536, 266, 1456, 186)
 default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
 
 [node name="Line2D2" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=1290019084]
 position = Vector2(-2, -2.325)
-points = PackedVector2Array(676, 215, 622, 215)
+points = PackedVector2Array(586, 324.325, 586, 404.325)
 default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
 
 [node name="Line2D3" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=708062276]
 position = Vector2(-0.015, 1)
-points = PackedVector2Array(679, 289, 622, 289)
+points = PackedVector2Array(584.015, 241, 312.015, 241)
 default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
 
 [node name="Line2D4" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=1805121069]
 position = Vector2(5, 1)
-points = PackedVector2Array(680, 367, 620, 367)
+points = PackedVector2Array(587, 321, 403, 321)
 default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
 
 [node name="Line2D5" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=2101477211]
-position = Vector2(11, -3)
-points = PackedVector2Array(684, 445, 513, 445)
+position = Vector2(48.33554, -3)
+scale = Vector2(0.9413777, 1)
+points = PackedVector2Array(662.5019, 317, 662.5019, 413)
 default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
 
 [node name="InfoPanel" type="Panel" parent="Player Panel/Panel/Upgrades" unique_id=1263094567]
@@ -538,10 +571,10 @@ text = "Learn"
 
 [node name="TextureButton" type="TextureRect" parent="Player Panel/Panel/Upgrades/InfoPanel" unique_id=1426842143]
 layout_mode = 0
-offset_left = -98.0
-offset_top = 228.0
-offset_right = -74.0
-offset_bottom = 252.0
+offset_left = -224.0
+offset_top = 170.0
+offset_right = -200.0
+offset_bottom = 194.0
 scale = Vector2(3, 3)
 texture = ExtResource("11_b1goy")
 
@@ -557,123 +590,133 @@ grow_vertical = 2
 
 [node name="TextureButton1" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=287688282]
 layout_mode = 0
-offset_left = 670.0
-offset_top = 149.0
-offset_right = 694.0
-offset_bottom = 173.0
+offset_left = 552.0
+offset_top = 256.0
+offset_right = 576.0
+offset_bottom = 280.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("12_n04ve")
 texture_disabled = ExtResource("13_6maro")
 
 [node name="TextureButton2" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1842243983]
 layout_mode = 0
-offset_left = 562.0
-offset_top = 149.0
-offset_right = 586.0
-offset_bottom = 173.0
+offset_left = 376.0
+offset_top = 256.0
+offset_right = 400.0
+offset_bottom = 280.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("15_d1ul7")
 texture_disabled = ExtResource("15_45jp6")
 
 [node name="TextureButton3" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1898888710]
 layout_mode = 0
-offset_left = 670.0
-offset_top = 70.0
-offset_right = 694.0
-offset_bottom = 94.0
+offset_left = 552.0
+offset_top = 336.0
+offset_right = 576.0
+offset_bottom = 360.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("17_68ajo")
 texture_disabled = ExtResource("17_q6a8d")
 
 [node name="TextureButton4" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1941602361]
 layout_mode = 0
-offset_left = 562.0
-offset_top = 70.0
-offset_right = 586.0
-offset_bottom = 94.0
+offset_left = 376.0
+offset_top = 336.0
+offset_right = 400.0
+offset_bottom = 360.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("16_pinj1")
 texture_disabled = ExtResource("19_dgrhb")
 
 [node name="TextureButton5" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1689820268]
 layout_mode = 0
-offset_left = 670.0
-offset_top = 226.0
-offset_right = 694.0
-offset_bottom = 250.0
+offset_left = 744.0
+offset_top = 256.0
+offset_right = 768.0
+offset_bottom = 280.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("13_13dyv")
 texture_disabled = ExtResource("21_wypb4")
 
 [node name="TextureButton6" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=824042633]
 layout_mode = 0
-offset_left = 562.0
-offset_top = 226.0
-offset_right = 586.0
-offset_bottom = 250.0
+offset_left = 744.0
+offset_top = 336.0
+offset_right = 768.0
+offset_bottom = 360.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("14_r71lk")
 texture_disabled = ExtResource("23_dm5gj")
 
 [node name="TextureButton7" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=539473197]
 layout_mode = 0
-offset_left = 670.0
-offset_top = 379.0
-offset_right = 694.0
-offset_bottom = 403.0
+offset_left = 464.0
+offset_top = 176.0
+offset_right = 488.0
+offset_bottom = 200.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("18_q6a8d")
 texture_disabled = ExtResource("25_qoydj")
 
 [node name="TextureButton8" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1247758076]
 layout_mode = 0
-offset_left = 562.0
-offset_top = 379.0
-offset_right = 586.0
-offset_bottom = 403.0
+offset_left = 376.0
+offset_top = 176.0
+offset_right = 400.0
+offset_bottom = 200.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("19_6lb63")
 texture_disabled = ExtResource("27_lolh4")
 
 [node name="TextureButton9" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=763109338]
 layout_mode = 0
-offset_left = 459.00003
-offset_top = 379.0
-offset_right = 483.00003
-offset_bottom = 403.0
+offset_left = 288.0
+offset_top = 176.00002
+offset_right = 312.0
+offset_bottom = 200.00002
 scale = Vector2(3, 3)
 texture_normal = ExtResource("20_dgrhb")
 texture_disabled = ExtResource("29_gqamb")
 
 [node name="TextureButton10" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1366240046]
 layout_mode = 0
-offset_left = 360.0
-offset_top = 379.0
-offset_right = 384.0
-offset_bottom = 403.0
+offset_left = 552.0
+offset_top = 97.0
+offset_right = 576.0
+offset_bottom = 121.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("21_j0pu8")
 texture_disabled = ExtResource("31_q8m6m")
 
 [node name="TextureButton11" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1100206114]
 layout_mode = 0
-offset_left = 670.0
-offset_top = 303.0
-offset_right = 694.0
-offset_bottom = 327.0
+offset_left = 640.0
+offset_top = 256.0
+offset_right = 664.0
+offset_bottom = 280.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("22_wypb4")
 texture_disabled = ExtResource("33_1lsdj")
 
 [node name="TextureButton12" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1786688692]
 layout_mode = 0
-offset_left = 562.0
-offset_top = 303.0
-offset_right = 586.0
-offset_bottom = 327.0
+offset_left = 640.0
+offset_top = 336.0
+offset_right = 664.0
+offset_bottom = 360.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("23_y1m5i")
 texture_disabled = ExtResource("35_mtrk6")
+
+[node name="TextureButton13" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=996558837]
+layout_mode = 0
+offset_left = 552.0
+offset_top = 176.0
+offset_right = 576.0
+offset_bottom = 200.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("40_wypb4")
+texture_disabled = ExtResource("41_y1m5i")
 
 [node name="Quest" type="Control" parent="Player Panel/Panel" unique_id=893934766]
 visible = false

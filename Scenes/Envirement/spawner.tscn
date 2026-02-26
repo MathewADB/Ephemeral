@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://tdy0cjd6ima3"]
+
+[ext_resource type="Script" uid="uid://rb7gnnhnv6qo" path="res://Scripts/bird_spawner.gd" id="1_emti2"]
+[ext_resource type="PackedScene" uid="uid://bk4scnmfvirov" path="res://Scenes/Envirement/blue_bird.tscn" id="2_xc0rx"]
+
+[node name="Spawner" type="Node2D" unique_id=550990425]
+script = ExtResource("1_emti2")
+bird_scene = ExtResource("2_xc0rx")

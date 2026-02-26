@@ -9,10 +9,12 @@ const BASE_STATS := {
 	"hide_unlocked": false,
 	"base_extra_jumps": 0,
 	"mining_tier": 0,
-	"mining_speed_level": 1
+	"mining_speed_level": 1,
+	"pillar_interaction": false
 }
 
 # --- SIGNALS ---
+
 signal night_changed(is_night: bool)
 signal level_changed(level)
 signal xp_changed(current_xp, required_xp)
@@ -54,10 +56,11 @@ var hide_unlocked := BASE_STATS["hide_unlocked"]
 var base_extra_jumps := BASE_STATS["base_extra_jumps"]
 var mining_tier := BASE_STATS["mining_tier"]
 var mining_speed_level := BASE_STATS["mining_speed_level"]
+var pillar_interaction := BASE_STATS["pillar_interaction"]
 
 # --- INVENTORY & COLLECTION ---
 
-var items : Dictionary = {"Ruby Stone":0, "Ruby Gem":0, "Dust":0}
+var items : Dictionary = {"Ruby Stone":0, "Ruby Gem":0, "Dust":0, "Dust Gem":0, "Stone":0, "Lore Fragment":0}
 var visited_rooms: Array = []
 var collected_objects : Dictionary = {}
 
@@ -68,16 +71,17 @@ var learned_upgrades := []
 var upgrades := {
 	"Mining Tier I": {"skill_cost": 1, "materials": {}, "requires": [], "effect": {"mining_tier":1}},
 	"Mining Tier II": {"skill_cost": 1, "materials": {"Ruby Gem":10}, "requires":["Mining Tier I"], "effect":{"mining_tier":2}},
-	"Mining Speed I": {"skill_cost":1, "materials":{"Ruby Stone":5}, "requires":[], "effect":{"mining_speed_level":2}},
-	"Mining Speed II": {"skill_cost":1, "materials":{"Ruby Stone":20}, "requires":["Mining Speed I"], "effect":{"mining_speed_level":3}},
-	"Mobility I": {"skill_cost":1, "materials":{}, "requires":[], "effect":{"player_mobility":1.05}},
-	"Mobility II": {"skill_cost":1, "materials":{}, "requires":["Mobility I"], "effect":{"player_mobility":1.1}},
-	"Light I": {"skill_cost":1, "materials":{}, "requires":[], "effect":{"light_level":1}},
+	"Mining Speed I": {"skill_cost":1, "materials":{"Ruby Stone":5}, "requires":["Mining Tier I"], "effect":{"mining_speed_level":2}},
+	"Mining Speed II": {"skill_cost":1, "materials":{"Ruby Stone":20}, "requires":["Mining Speed I","Mining Tier II"], "effect":{"mining_speed_level":3}},
+	"Mobility I": {"skill_cost":1, "materials":{}, "requires":["Double Jump"], "effect":{"player_mobility":1.05}},
+	"Mobility II": {"skill_cost":1, "materials":{}, "requires":["Mobility I","Triple Jump"], "effect":{"player_mobility":1.1}},
+	"Light I": {"skill_cost":1, "materials":{}, "requires":["Pillar Interaction"], "effect":{"light_level":1}},
 	"Light II": {"skill_cost":1, "materials":{}, "requires":["Light I"], "effect":{"light_level":2}},
 	"Light III": {"skill_cost":1, "materials":{}, "requires":["Light II"], "effect":{"light_level":3}},
 	"Hiding": {"skill_cost":1, "materials":{}, "requires":[], "effect":{"hide_unlocked":true}},
-	"Double Jump": {"skill_cost":0, "materials":{"Double Jump Scroll":1}, "requires":[], "effect":{"base_extra_jumps":1}},
-	"Triple Jump": {"skill_cost":0, "materials":{"Triple Jump Scroll":1}, "requires":["Double Jump"], "effect":{"base_extra_jumps":2}}
+	"Double Jump": {"skill_cost":1, "materials":{"Double Jump Scroll":1}, "requires":[], "effect":{"base_extra_jumps":1}},
+	"Triple Jump": {"skill_cost":1, "materials":{"Triple Jump Scroll":1}, "requires":["Double Jump"], "effect":{"base_extra_jumps":2}},
+	"Pillar Interaction": {"skill_cost":1, "materials":{}, "requires":[], "effect":{"pillar_interaction":true}}
 }
 
 var crafting_recipes := {
@@ -103,7 +107,7 @@ func _ready():
 	
 func _process(delta):
 	game_seconds += delta * time_scale
-	#print(game_seconds - 432)
+	print(game_seconds - 432)
 	var now_night := is_night()
 	if now_night != _is_night:
 		_is_night = now_night
@@ -176,7 +180,7 @@ func reset_game():
 	skill_points = 0
 	level = 1
 	current_xp = 0
-	items = {"Ruby Stone":0, "Ruby Gem":0, "Dust":0, "Dust Gem":0}
+	items = {"Ruby Stone":0, "Ruby Gem":0, "Dust":0, "Dust Gem":0, "Stone":0, "Lore Fragment":0}
 	visited_rooms.clear()
 	collected_objects.clear()
 	game_seconds = start_day_progress * seconds_per_day

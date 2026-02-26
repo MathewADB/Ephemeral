@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://b337va6nrikcb" path="res://Sprites/Entities/Lore Fragment.png" id="2_8sfty"]
 [ext_resource type="Script" uid="uid://b2qbu3sqjpsib" path="res://Scripts/lore_fragment.gd" id="2_xvpy1"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8sfty"]
+
 [node name="Lore Fragment" unique_id=613026739 instance=ExtResource("1_ay6gn")]
 texture = ExtResource("2_8sfty")
 script = ExtResource("2_xvpy1")
@@ -13,7 +15,8 @@ mine_time = 1.0
 collectable_name = "Lore Fragment"
 xp = 100
 
-[node name="CollisionShape2D" parent="StaticBody2D" parent_id_path=PackedInt32Array(1187357038) index="0" unique_id=579755393]
+[node name="CollisionShape2D" parent="StaticBody2D" parent_id_path=PackedInt32Array(1187357038) index="0" unique_id=878156720]
+shape = SubResource("RectangleShape2D_8sfty")
 disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3" unique_id=1820081285]
