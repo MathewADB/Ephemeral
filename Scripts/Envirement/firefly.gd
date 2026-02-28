@@ -10,6 +10,9 @@ var max_light_energy := 1.0
 
 func _ready():
 	if night_only:
+		if Manager.is_night() == true:
+			_on_night_changed(true)
+			
 		modulate.a = 0.0
 		glow.energy = 0.0
 		Manager.night_changed.connect(_on_night_changed)

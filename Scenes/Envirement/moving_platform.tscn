@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cjokj2tewacau"]
+
+[ext_resource type="Script" uid="uid://cqxvnvk5pldir" path="res://Scripts/moving_platform.gd" id="1_1pluy"]
+[ext_resource type="Texture2D" uid="uid://yjtp8or5ml41" path="res://Sprites/Entities/mushroom moving platforrm.png" id="2_kl2pk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ctttr"]
+size = Vector2(46, 13)
+
+[node name="Moving Platform" type="AnimatableBody2D" unique_id=640995173]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_1pluy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=253284862]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ctttr")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1017752233]
+texture = ExtResource("2_kl2pk")

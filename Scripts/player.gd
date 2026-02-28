@@ -56,7 +56,7 @@ func _ready() -> void:
 		save_location = self.position
 		
 	if Manager.activate_spawn :
-		self.position = Manager.spawn_location
+		global_position = Manager.spawn_location
 		Manager.activate_spawn = false
 		
 
@@ -197,8 +197,13 @@ func handle_horizontal(delta):
 	var target_speed = direction.x * max_speed * get_speed_multiplier() * speed_level
 	velocity.x = move_toward(velocity.x, target_speed, acceleration * delta)
 
+#var xpadded = 0
 func handle_timers(delta):
 	if Input.is_action_just_pressed("jump"):
+		#xpadded += 100
+		#Manager.add_xp(100)
+		#print(str(xpadded))
+		#print(Manager.level)
 		jump_buffer = jump_buffer_time
 	else:
 		jump_buffer = max(0, jump_buffer - delta)
@@ -283,12 +288,23 @@ func _on_save_location_timeout() -> void:
 	tutorial_timer.start()
 
 func die():
-	if tutorial :
-		ignore_fall_damage = true
-		self.position = save_location
-		take_damage(-100)
-		await get_tree().create_timer(0.2).timeout
-		ignore_fall_damage = false
+	take_damage(-100)
+	if tutorial:
+		self.global_position = save_location
+		current_health = max_health
+		return
+
+	if Manager.current_room_scene != Manager.spawn_room_scene:
+		Manager.activate_spawn = true
+		call_deferred("_deferred_respawn")
+		return
+
+	self.global_position = Manager.spawn_location
+	current_health = max_health
+	
+func _deferred_respawn():
+	get_tree().change_scene_to_file(Manager.spawn_room_scene)
+	
 # ===== animation
 
 func update_animation():

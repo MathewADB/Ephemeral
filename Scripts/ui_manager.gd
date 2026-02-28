@@ -18,7 +18,6 @@ extends CanvasLayer
 @onready var desc_label = $"Crafting Panel/Description"
 @onready var cost_label = $"Crafting Panel/Cost"
 
-
 var selected_recipe = null
 var crafting := false
 

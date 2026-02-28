@@ -10,8 +10,25 @@ const BASE_STATS := {
 	"base_extra_jumps": 0,
 	"mining_tier": 0,
 	"mining_speed_level": 1,
-	"pillar_interaction": false
+	"pillar_interaction": false,
+	"map_unlocked": false
 }
+const DEFUALT_ROOM_POSITIONS : Dictionary = {
+	"res://Scenes/Locations/Mushroom Biome/Tutorial.tscn" : Vector2(9999,9999),
+	"res://Scenes/Locations/Mushroom Biome/Tutorial2.tscn" : Vector2(1,0),
+	"res://Scenes/Locations/Mushroom Biome/shop.tscn" : Vector2(2,0),
+	"res://Scenes/Locations/Mushroom Biome/Home.tscn" : Vector2(2,1),
+	"res://Scenes/Locations/Mushroom Biome/The Plain.tscn" : Vector2(3,1)
+}
+const ROOM_TYPES : Dictionary = {
+	"res://Scenes/Locations/Mushroom Biome/Tutorial.tscn" : "tutorial",
+	"res://Scenes/Locations/Mushroom Biome/Tutorial2.tscn" : "tutorial",
+	"res://Scenes/Locations/Mushroom Biome/shop.tscn" : "shop",
+	"res://Scenes/Locations/Mushroom Biome/Home.tscn" : "hub",
+	"res://Scenes/Locations/Mushroom Biome/The Plain.tscn" : "mushroom"
+}
+const DEFAULT_SPAWN_ROOM := "res://Scenes/Locations/Mushroom Biome/Home.tscn"
+const DEFAULT_SPAWN_POSITION := Vector2(618,497)
 
 # --- SIGNALS ---
 
@@ -21,6 +38,7 @@ signal xp_changed(current_xp, required_xp)
 signal skill_points_changed(points)
 signal inventory_changed
 signal upgrades_changed
+signal map_updated
 
 # --- AUTOSAVE ---
 
@@ -39,8 +57,9 @@ var _is_night := false
 var loaded_health = 100
 
 var activate_spawn : bool = false
-var spawn_location : Vector2 = Vector2.ZERO
+var spawn_location : Vector2 = DEFAULT_SPAWN_POSITION
 var current_room_scene : String = DEFAULT_ROOM_SCENE
+var spawn_room_scene : String = DEFAULT_SPAWN_ROOM
 
 # --- LEVELING ---
 
@@ -57,12 +76,15 @@ var base_extra_jumps := BASE_STATS["base_extra_jumps"]
 var mining_tier := BASE_STATS["mining_tier"]
 var mining_speed_level := BASE_STATS["mining_speed_level"]
 var pillar_interaction := BASE_STATS["pillar_interaction"]
+var map_unlocked := BASE_STATS["map_unlocked"]
 
 # --- INVENTORY & COLLECTION ---
 
 var items : Dictionary = {"Ruby Stone":0, "Ruby Gem":0, "Dust":0, "Dust Gem":0, "Stone":0, "Lore Fragment":0}
 var visited_rooms: Array = []
 var collected_objects : Dictionary = {}
+
+var room_positions = DEFUALT_ROOM_POSITIONS.duplicate(true)
 
 # --- UPGRADES ---
 
@@ -75,13 +97,14 @@ var upgrades := {
 	"Mining Speed II": {"skill_cost":1, "materials":{"Ruby Stone":20}, "requires":["Mining Speed I","Mining Tier II"], "effect":{"mining_speed_level":3}},
 	"Mobility I": {"skill_cost":1, "materials":{}, "requires":["Double Jump"], "effect":{"player_mobility":1.05}},
 	"Mobility II": {"skill_cost":1, "materials":{}, "requires":["Mobility I","Triple Jump"], "effect":{"player_mobility":1.1}},
-	"Light I": {"skill_cost":1, "materials":{}, "requires":["Pillar Interaction"], "effect":{"light_level":1}},
+	"Light I": {"skill_cost":1, "materials":{"Dust Gem":1}, "requires":["Pillar Interaction"], "effect":{"light_level":1}},
 	"Light II": {"skill_cost":1, "materials":{}, "requires":["Light I"], "effect":{"light_level":2}},
 	"Light III": {"skill_cost":1, "materials":{}, "requires":["Light II"], "effect":{"light_level":3}},
 	"Hiding": {"skill_cost":1, "materials":{}, "requires":[], "effect":{"hide_unlocked":true}},
 	"Double Jump": {"skill_cost":1, "materials":{"Double Jump Scroll":1}, "requires":[], "effect":{"base_extra_jumps":1}},
 	"Triple Jump": {"skill_cost":1, "materials":{"Triple Jump Scroll":1}, "requires":["Double Jump"], "effect":{"base_extra_jumps":2}},
-	"Pillar Interaction": {"skill_cost":1, "materials":{}, "requires":[], "effect":{"pillar_interaction":true}}
+	"Pillar Interaction": {"skill_cost":1, "materials":{}, "requires":[], "effect":{"pillar_interaction":true}},
+	"Map": {"skill_cost":1, "materials":{}, "requires":[], "effect":{"map_unlocked":true}}
 }
 
 var crafting_recipes := {
@@ -118,21 +141,24 @@ func _process(delta):
 		autosave_timer = 0.0
 		save_game()
 		UI.show_autosave_icon()
+		
 # ================= SAVE/LOAD =================
 		
 func save_game():
-	
+		
 	var save_data = {
 		"skill_points": skill_points,
 		"level": level,
 		"current_xp": current_xp,
 		"items": items,
 		"visited_rooms": visited_rooms,
+		"room_positions": room_positions,
 		"collected_objects": collected_objects,
 		"game_seconds": game_seconds,
 		"learned_upgrades": learned_upgrades,
 		"current_room_scene": current_room_scene,
 		"spawn_location": spawn_location,
+		"spawn_room_scene": spawn_room_scene,
 		"player_current_health": player.current_health if player else 100
 	}
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -157,34 +183,54 @@ func load_game():
 	current_xp = data.get("current_xp",0)
 	items = data.get("items",{})
 	visited_rooms = data.get("visited_rooms",[])
+	
+	var loaded_room_positions = data.get("room_positions", {})
+	room_positions = {}
+	for room_path in loaded_room_positions:
+		var pos_data = loaded_room_positions[room_path]
+		if typeof(pos_data) == TYPE_ARRAY and pos_data.size() == 2:
+			room_positions[room_path] = Vector2(pos_data[0], pos_data[1])
+			
+	for room_path in DEFUALT_ROOM_POSITIONS:
+		if room_path not in room_positions:
+			room_positions[room_path] = DEFUALT_ROOM_POSITIONS[room_path]
+			
 	collected_objects = data.get("collected_objects",{})
 	game_seconds = data.get("game_seconds",0)
 	current_room_scene = data.get("current_room_scene","res://Scenes/Locations/Mushroom Biome/Tutorial.tscn")
 	loaded_health = data.get("player_current_health", 100)
-	
+
 	var saved_pos = data.get("spawn_location",[0,0])
 	if typeof(saved_pos) == TYPE_ARRAY and saved_pos.size() == 2:
 		spawn_location = Vector2(saved_pos[0], saved_pos[1])
 	else:
 		spawn_location = Vector2.ZERO
+		
+	if current_room_scene not in visited_rooms:
+		visited_rooms.append(current_room_scene)
+	spawn_room_scene = data.get("spawn_room_scene", DEFAULT_SPAWN_ROOM)
+	
 	apply_learned_upgrades()
 
-	# Refresh signals
 	skill_points_changed.emit(skill_points)
 	xp_changed.emit(current_xp, get_required_xp(level))
 	level_changed.emit(level)
 	inventory_changed.emit()
 	upgrades_changed.emit()
-
+	map_updated.emit()
+	
 func reset_game():
 	skill_points = 0
 	level = 1
 	current_xp = 0
 	items = {"Ruby Stone":0, "Ruby Gem":0, "Dust":0, "Dust Gem":0, "Stone":0, "Lore Fragment":0}
 	visited_rooms.clear()
+	room_positions = DEFUALT_ROOM_POSITIONS.duplicate(true)
 	collected_objects.clear()
 	game_seconds = start_day_progress * seconds_per_day
 	current_room_scene = DEFAULT_ROOM_SCENE
+	spawn_room_scene = DEFAULT_SPAWN_ROOM
+	spawn_location = DEFAULT_SPAWN_POSITION
 	learned_upgrades.clear()
 	apply_learned_upgrades()
 	save_game()
@@ -193,6 +239,7 @@ func reset_game():
 	xp_changed.emit(current_xp, get_required_xp(level))
 	level_changed.emit(level)
 	inventory_changed.emit()
+	map_updated.emit()
 	
 # ================= LEVELING =================
 
@@ -260,10 +307,12 @@ func learn_upgrade(upgrade_name: String) -> void:
 		learned_upgrades.append(upgrade_name)
 
 	apply_learned_upgrades()
-
 	save_game()
 	upgrades_changed.emit()
-
+	if upgrade_name == "Map":
+		
+		map_updated.emit()
+		
 func apply_learned_upgrades():
 	for key in BASE_STATS.keys():
 		self.set(key, BASE_STATS[key])

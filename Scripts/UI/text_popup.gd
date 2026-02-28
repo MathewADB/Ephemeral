@@ -5,7 +5,7 @@ extends Control
 @export var lifetime := 5
 
 func setup(text: String):
-	label.text = text
+	label.text = ("\n" + text)
 	appear()
 
 func appear():

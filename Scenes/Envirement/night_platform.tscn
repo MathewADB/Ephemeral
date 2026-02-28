@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://vxtwbjvpr6s0"]
+
+[ext_resource type="Script" uid="uid://cqhqma6lmxy0c" path="res://Scripts/Envirement/night_platform.gd" id="1_7o1p3"]
+[ext_resource type="Texture2D" uid="uid://be8ig5anvywkt" path="res://Sprites/Entities/mushroom disappearing platform.png" id="1_58pe6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7o1p3"]
+size = Vector2(46, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofuit"]
+size = Vector2(48, 4)
+
+[node name="night platform" type="AnimatableBody2D" unique_id=2091271756]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_7o1p3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1343664677]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_7o1p3")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1108916651]
+texture = ExtResource("1_58pe6")
+
+[node name="BreakTimer" type="Timer" parent="." unique_id=351553004]
+wait_time = 0.3
+one_shot = true
+
+[node name="RespawnTimer" type="Timer" parent="." unique_id=671189649]
+wait_time = 2.0
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1929389603]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=777448549]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_ofuit")
+
+[connection signal="timeout" from="BreakTimer" to="." method="_on_break_timer_timeout"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

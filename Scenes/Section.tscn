@@ -58,6 +58,9 @@ texture_repeat = 2
 position = Vector2(582, 313)
 texture = ExtResource("2_gu7oc")
 
+[node name="WallBackgroundTileset" type="TileMapLayer" parent="." unique_id=712675159]
+tile_set = ExtResource("2_syfyn")
+
 [node name="BackgorundTileset" type="TileMapLayer" parent="." unique_id=804219905]
 tile_set = ExtResource("2_syfyn")
 

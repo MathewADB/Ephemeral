@@ -12,12 +12,16 @@ func _on_body_entered(body: Node2D) -> void:
 	UI.fade.visible = true
 	UI.fade.fade_in()
 	Manager.loaded_health = body.current_health
-	if not Manager.visited_rooms.has(Room):
+
+	var is_new_room = Room not in Manager.visited_rooms
+
+	if is_new_room:
 		Manager.visited_rooms.append(Room)
 		if give_exp :
 			Manager.add_xp(200)
-		UI.show_text_popup(Room_Name)
-
+			UI.show_text_popup(Room_Name)
+	
+	Manager.map_updated.emit()
 	get_tree().call_deferred("change_scene_to_file", Room)
 
 	UI.fade.fade_out()

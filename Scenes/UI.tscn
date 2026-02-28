@@ -41,6 +41,9 @@
 [ext_resource type="Texture2D" uid="uid://sygw6fixrwtc" path="res://Sprites/Icons/Triple Jump Icon unlocked .png" id="35_mtrk6"]
 [ext_resource type="Texture2D" uid="uid://bex2kubmkmv2h" path="res://Sprites/Icons/Pillar Interaction 1 Icon.png" id="40_wypb4"]
 [ext_resource type="Texture2D" uid="uid://c21hmysp5qllr" path="res://Sprites/Icons/Pillar Interaction 1 Icon unlocked.png" id="41_y1m5i"]
+[ext_resource type="Texture2D" uid="uid://dynjkd2e0362" path="res://Sprites/Icons/Map Icon.png" id="42_qoydj"]
+[ext_resource type="Script" uid="uid://demrdhdfbvsvh" path="res://Scripts/UI/map.gd" id="42_y1m5i"]
+[ext_resource type="Texture2D" uid="uid://borl3vfrqc1r5" path="res://Sprites/Icons/Map Icon unlocked.png" id="43_lolh4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwshj"]
 bg_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
@@ -358,6 +361,8 @@ offset_right = -227.95502
 offset_bottom = 58.0
 grow_horizontal = 0
 theme = ExtResource("4_hfhsn")
+theme_type_variation = &"LabelInfo"
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 text = "E"
 horizontal_alignment = 1
 
@@ -369,6 +374,8 @@ offset_top = 22.0
 offset_right = 262.53998
 offset_bottom = 58.000008
 theme = ExtResource("4_hfhsn")
+theme_type_variation = &"LabelInfo"
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 text = "Q"
 horizontal_alignment = 1
 
@@ -430,7 +437,7 @@ offset_top = 35.0
 offset_right = 159.0
 offset_bottom = 71.0
 theme = ExtResource("4_hfhsn")
-theme_type_variation = &"LabelLevel"
+theme_type_variation = &"LabelInfo"
 text = "Skill Points : "
 
 [node name="Control" type="Control" parent="Player Panel/Panel/Upgrades" unique_id=1838206492]
@@ -444,6 +451,11 @@ grow_vertical = 2
 [node name="Line2D" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=531746274]
 position = Vector2(-864, -24)
 points = PackedVector2Array(1280, 346, 1280, 426)
+default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
+
+[node name="Line2D12" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=1527449468]
+position = Vector2(-864, -24)
+points = PackedVector2Array(1536, 186, 1536, 266)
 default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
 
 [node name="Line2D6" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=2143880953]
@@ -572,9 +584,9 @@ text = "Learn"
 [node name="TextureButton" type="TextureRect" parent="Player Panel/Panel/Upgrades/InfoPanel" unique_id=1426842143]
 layout_mode = 0
 offset_left = -224.0
-offset_top = 170.0
+offset_top = 178.0
 offset_right = -200.0
-offset_bottom = 194.0
+offset_bottom = 202.0
 scale = Vector2(3, 3)
 texture = ExtResource("11_b1goy")
 
@@ -630,9 +642,9 @@ texture_disabled = ExtResource("19_dgrhb")
 
 [node name="TextureButton5" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1689820268]
 layout_mode = 0
-offset_left = 744.0
+offset_left = 728.0
 offset_top = 256.0
-offset_right = 768.0
+offset_right = 752.0
 offset_bottom = 280.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("13_13dyv")
@@ -640,9 +652,9 @@ texture_disabled = ExtResource("21_wypb4")
 
 [node name="TextureButton6" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=824042633]
 layout_mode = 0
-offset_left = 744.0
+offset_left = 728.0
 offset_top = 336.0
-offset_right = 768.0
+offset_right = 752.0
 offset_bottom = 360.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("14_r71lk")
@@ -718,6 +730,16 @@ scale = Vector2(3, 3)
 texture_normal = ExtResource("40_wypb4")
 texture_disabled = ExtResource("41_y1m5i")
 
+[node name="TextureButton14" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=143552609]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 96.0
+offset_right = 664.0
+offset_bottom = 120.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("42_qoydj")
+texture_disabled = ExtResource("43_lolh4")
+
 [node name="Quest" type="Control" parent="Player Panel/Panel" unique_id=893934766]
 visible = false
 layout_mode = 2
@@ -761,9 +783,43 @@ offset_right = 278.0
 offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/outline_size = 16
+theme_type_variation = &"LabelInfo"
+theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 64
 text = "You dont have a map yet"
+
+[node name="MapLabel" type="Label" parent="Player Panel/Panel/Map" unique_id=1548568783]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -560.0
+offset_top = -267.0
+offset_right = -4.0
+offset_bottom = -195.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"LabelInfo"
+text = "Map"
+
+[node name="Map" type="Control" parent="Player Panel/Panel/Map" unique_id=607509208]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -352.0
+offset_top = -116.0
+offset_right = 352.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("42_y1m5i")
 
 [node name="AutosaveIcon" type="Sprite2D" parent="." unique_id=1756865146]
 visible = false

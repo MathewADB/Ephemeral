@@ -18,9 +18,9 @@ spread = 180.0
 gravity = Vector2(0, 0)
 scale_amount_min = 1.5
 scale_amount_max = 1.5
-color = Color(1, 1, 0.7529412, 1)
+color = Color(0.9607843, 0.9372549, 0.54901963, 0.85490197)
 
 [node name="Glow" type="PointLight2D" parent="." unique_id=1875913026]
 scale = Vector2(0.5625, 0.5625)
-color = Color(0.8235294, 0.8156863, 0, 0.5294118)
+color = Color(0.8235294, 0.8156863, 0, 0.8980392)
 texture = ExtResource("1_mkstk")
