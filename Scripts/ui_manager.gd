@@ -43,6 +43,7 @@ func _ready() -> void:
 	
 	for recipe_name in Manager.crafting_recipes.keys():
 		var btn = Button.new()
+		btn.theme = load("res://Style/MainTheme.tres")
 		btn.text = recipe_name
 		btn.pressed.connect(_on_recipe_selected.bind(recipe_name))
 		crafting_list.add_child(btn)
@@ -213,6 +214,8 @@ func show_text_popup(text: String):
 	var popup = text_popup_scene.instantiate()
 	$Popup.add_child(popup)
 	popup.setup(text)
+	
+	popup.offset_top = 160   
 
 			
 func set_progress(value):

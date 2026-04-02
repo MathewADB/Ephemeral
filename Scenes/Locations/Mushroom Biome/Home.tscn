@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://djgxkstf17h4m" path="res://Scenes/Envirement/Lantern.tscn" id="3_s8hjm"]
 [ext_resource type="PackedScene" uid="uid://cpxawflq7mw8j" path="res://Scenes/door.tscn" id="4_s8hjm"]
 [ext_resource type="Texture2D" uid="uid://obvxmuqymbkm" path="res://Sprites/Entities/Work in progress Sign.png" id="5_yg4v1"]
+[ext_resource type="PackedScene" uid="uid://bspq5ak6p8dl3" path="res://Scenes/Control/tutorial_text.tscn" id="6_rpxq3"]
 
 [node name="Section" unique_id=1855033315 instance=ExtResource("1_f472y")]
 
@@ -18,7 +19,7 @@ tile_map_data = PackedByteArray("AAAPAAgAAgAKAAEAAAAUAAgAAgAKAAEAAAAZAAgAAgAKAAE
 position = Vector2(1781, 478)
 Room_Name = "Mushroom Plain"
 Room = "res://Scenes/Locations/Mushroom Biome/The Plain.tscn"
-spawn_location = Vector2(250, 496)
+spawn_location = Vector2(130, 496)
 give_exp = true
 
 [node name="CraftingStation" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="1" unique_id=1583295015 instance=ExtResource("2_o70or")]
@@ -37,7 +38,7 @@ position = Vector2(1131, 504)
 unique_id = "Lantern 3"
 
 [node name="Lantern4" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="5" unique_id=1807433393 instance=ExtResource("3_s8hjm")]
-position = Vector2(1444, 505)
+position = Vector2(1444, 504)
 unique_id = "Lantern 4"
 
 [node name="Door2" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="6" unique_id=1344597823 instance=ExtResource("4_s8hjm")]
@@ -71,17 +72,20 @@ texture = ExtResource("5_yg4v1")
 position = Vector2(1680, 368)
 texture = ExtResource("5_yg4v1")
 
-[node name="WorkInProgressSign9" type="Sprite2D" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="13" unique_id=2101104524]
-position = Vector2(1680, 496)
-texture = ExtResource("5_yg4v1")
-
-[node name="WorkInProgressSign5" type="Sprite2D" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="14" unique_id=789991671]
+[node name="WorkInProgressSign5" type="Sprite2D" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="13" unique_id=789991671]
 position = Vector2(695, 496)
 texture = ExtResource("5_yg4v1")
 
-[node name="WorkInProgressSign6" type="Sprite2D" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="15" unique_id=1408590552]
+[node name="WorkInProgressSign6" type="Sprite2D" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="14" unique_id=1408590552]
 position = Vector2(406, 496)
 texture = ExtResource("5_yg4v1")
+
+[node name="Tutorial Text" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="15" unique_id=142264002 instance=ExtResource("6_rpxq3")]
+offset_left = 241.0
+offset_top = 490.0
+offset_right = 241.0
+offset_bottom = 490.0
+hint_text = "E        Craft Menu"
 
 [node name="Player" parent="Main" parent_id_path=PackedInt32Array(1489948153) index="1" unique_id=796391081]
 position = Vector2(618, 497)

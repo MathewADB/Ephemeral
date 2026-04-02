@@ -130,7 +130,7 @@ func _ready():
 	
 func _process(delta):
 	game_seconds += delta * time_scale
-	print(game_seconds - 432)
+	#print(game_seconds - 432)
 	var now_night := is_night()
 	if now_night != _is_night:
 		_is_night = now_night

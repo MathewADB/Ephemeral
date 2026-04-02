@@ -4,9 +4,9 @@ extends Entity
 @onready var sprite = $BodySprite
 @onready var animation = $AnimationPlayer
 @onready var invun = $"Invun Timer"
-@onready var camera = $Camera
 @onready var tutorial_timer =$"Tutorial Timer"
 
+@export var camera : Camera2D
 @export var level_limit_r := 100000
 @export var level_limit_l := 100000
 @export var fall_multiplier := 1.3
@@ -44,7 +44,6 @@ var lock_animation := false
 var ignore_fall_damage = false
 
 func _ready() -> void:
-	camera.position_smoothing_enabled = false
 	gravity = 850
 	current_health = Manager.loaded_health
 	set_stats()
@@ -63,8 +62,6 @@ func _ready() -> void:
 	tutorial_timer.start()
 	await get_tree().create_timer(0.2).timeout
 	ignore_fall_damage = false
-	camera.position_smoothing_enabled = true
-
 	
 func set_stats():
 	mining_speed = Manager.mining_speed_level
@@ -163,9 +160,10 @@ func stop_mining():
 	
 func freeze_camera(value:bool):
 	if value == true :
-		camera.position_smoothing_speed = 0.1
+		camera.position_smoothing_speed = 0.0
 	else :
-		camera.position_smoothing_speed = 5
+		camera.position_smoothing_speed = 5.0
+		
 		
 func get_speed_multiplier() -> float:
 	if not tilemap:
@@ -216,7 +214,6 @@ func handle_timers(delta):
 
 	if Input.is_action_just_released("jump"):
 		jump_released = true
-		#Manager.add_xp(100)
 
 func handle_vertical(delta):
 	if jump_buffer > 0:
@@ -275,6 +272,8 @@ func take_damage(amount):
 	current_health = max(current_health - amount,0)
 	if current_health == 0 :
 		die()
+	if current_health > max_health :
+		current_health = max_health
 	UI.bars.update_health(current_health,max_health)
 	can_take_damage = false
 	invun.start()
@@ -289,6 +288,7 @@ func _on_save_location_timeout() -> void:
 
 func die():
 	take_damage(-100)
+	Manager.loaded_health = max_health
 	if tutorial:
 		self.global_position = save_location
 		current_health = max_health

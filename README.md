@@ -1,2 +1,5 @@
 # Ephemeral
-Ephemeral Beta Version
+A 2d metroidvania adventure game
+with open world aspects
+demo !
+

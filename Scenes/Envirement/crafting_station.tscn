@@ -6,6 +6,93 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_alssv"]
 radius = 47.169907
 
+[sub_resource type="Animation" id="Animation_alssv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_t2yx7")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_nemfj"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+step = 0.1333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1333, 0.2666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.04359015),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_t2yx7")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.26288977),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0y1p0"]
+_data = {
+&"RESET": SubResource("Animation_alssv"),
+&"idle": SubResource("Animation_nemfj")
+}
+
 [node name="CraftingStation" type="Area2D" unique_id=1583295015]
 script = ExtResource("1_alssv")
 
@@ -14,6 +101,11 @@ shape = SubResource("CircleShape2D_alssv")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1999102476]
 texture = ExtResource("1_t2yx7")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=285848513]
+libraries/ = SubResource("AnimationLibrary_0y1p0")
+autoplay = &"idle"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

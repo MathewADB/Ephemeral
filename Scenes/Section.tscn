@@ -62,14 +62,22 @@ texture = ExtResource("2_gu7oc")
 tile_set = ExtResource("2_syfyn")
 
 [node name="BackgorundTileset" type="TileMapLayer" parent="." unique_id=804219905]
+modulate = Color(0.9612289, 0.961229, 0.9612289, 1)
 tile_set = ExtResource("2_syfyn")
 
 [node name="Main" type="Node2D" parent="." unique_id=1489948153]
 
 [node name="Objects" type="Node2D" parent="Main" unique_id=242974950]
 
-[node name="Player" parent="Main" unique_id=796391081 node_paths=PackedStringArray("tilemap") instance=ExtResource("2_vor7h")]
+[node name="Player" parent="Main" unique_id=796391081 node_paths=PackedStringArray("camera", "tilemap") instance=ExtResource("2_vor7h")]
+camera = NodePath("Camera")
 tilemap = NodePath("../Main")
+
+[node name="Camera" type="Camera2D" parent="Main/Player" unique_id=1299815172]
+offset = Vector2(0, -18)
+zoom = Vector2(3, 3)
+limit_smoothed = true
+position_smoothing_enabled = true
 
 [node name="Main" type="TileMapLayer" parent="Main" unique_id=1856157436]
 tile_set = ExtResource("2_syfyn")
