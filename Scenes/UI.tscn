@@ -139,7 +139,7 @@ theme = ExtResource("4_hfhsn")
 theme_override_colors/font_outline_color = Color(0.18431373, 0.11764706, 0.27058825, 1)
 theme_override_constants/outline_size = 12
 bbcode_enabled = true
-text = "  [wave][rainbow freq =.2 sat=.2] Find the caretaker village [/rainbow][/wave]"
+text = "  [wave][rainbow freq =.2 sat=.2] Do whatever you want ! [/rainbow][/wave]"
 scroll_active = false
 
 [node name="Mining" type="Control" parent="." unique_id=1477990177]

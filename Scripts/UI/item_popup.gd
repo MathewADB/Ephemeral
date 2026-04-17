@@ -8,6 +8,8 @@ var lifetime := 1.2
 
 func setup(collectable : Collectable, amount := 1):
 	icon.texture = collectable.texture
+	if icon.texture == load("res://Sprites/Entities/Lore Fragment Idle.png"): 
+		icon.texture = load("res://Sprites/Entities/Lore Fragment.png")
 	label.text = "+%d" % [amount]
 
 	appear()

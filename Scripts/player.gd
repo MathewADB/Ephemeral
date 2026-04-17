@@ -42,8 +42,12 @@ var mining_tier := 0
 var mining_speed := 1
 var lock_animation := false
 var ignore_fall_damage = false
+var default_camera_offset_y := -18.0
+var look_down_offset := 36.0
+var camera_lerp_speed := 8.0 
 
 func _ready() -> void:
+	camera.offset.y = default_camera_offset_y
 	gravity = 850
 	current_health = Manager.loaded_health
 	set_stats()
@@ -89,6 +93,7 @@ func _physics_process(delta):
 		_check_fall_damage()
 
 	was_on_floor = currently_on_floor
+	handle_camera_look(delta)
 	
 	if light_level != 0 :
 		handle_light()
@@ -267,6 +272,14 @@ func handle_hiding():
 		await animation.animation_finished
 		is_hidden = false
 		lock_animation = false
+	
+func handle_camera_look(delta):
+	var target_offset = default_camera_offset_y
+	
+	if Input.is_action_pressed("look_down"):
+		target_offset += look_down_offset
+	
+	camera.offset.y = lerp(camera.offset.y, target_offset, camera_lerp_speed * delta)
 	
 func take_damage(amount):
 	current_health = max(current_health - amount,0)

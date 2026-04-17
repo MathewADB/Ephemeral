@@ -95,6 +95,25 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_font_sizes/font_size = 64
 text = "© 2026 Mathew A • Godot Engine"
 
+[node name="Update" type="Label" parent="." unique_id=387811424]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 760.0
+offset_top = -88.0
+offset_right = 1500.0
+offset_bottom = -16.0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("4_qpyf4")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/font_size = 64
+text = "Demo Version"
+horizontal_alignment = 2
+
 [node name="Version" type="Label" parent="." unique_id=1499497587]
 layout_mode = 1
 anchors_preset = 2
