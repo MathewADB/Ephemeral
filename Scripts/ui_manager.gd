@@ -186,7 +186,7 @@ func set_time(is_night:bool):
 	else :
 		time_icon.frame = 1
 
-func show_item_popup(collectable : Collectable, amount := 1):
+func show_item_popup(collectable, amount := 1):
 	var popup = popup_scene.instantiate()
 	$Popup.add_child(popup)
 

@@ -6,10 +6,18 @@ extends Control
 var float_distance := 24
 var lifetime := 1.2
 
-func setup(collectable : Collectable, amount := 1):
-	icon.texture = collectable.texture
+func setup(collectable, amount := 1):
+	if collectable == null:
+		return
+	
+	# Get texture safely
+	if "texture" in collectable:
+		icon.texture = collectable.texture
+	
+	# Special case
 	if icon.texture == load("res://Sprites/Entities/Lore Fragment Idle.png"): 
 		icon.texture = load("res://Sprites/Entities/Lore Fragment.png")
+	
 	label.text = "+%d" % [amount]
 
 	appear()

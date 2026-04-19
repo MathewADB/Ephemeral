@@ -83,6 +83,7 @@ var map_unlocked := BASE_STATS["map_unlocked"]
 var items : Dictionary = {"Ruby Stone":0, "Ruby Gem":0, "Dust":0, "Dust Gem":0, "Stone":0, "Lore Fragment":0}
 var visited_rooms: Array = []
 var collected_objects : Dictionary = {}
+var resource_nodes := {}
 
 var room_positions = DEFUALT_ROOM_POSITIONS.duplicate(true)
 
@@ -240,7 +241,35 @@ func reset_game():
 	level_changed.emit(level)
 	inventory_changed.emit()
 	map_updated.emit()
+
+# ================= NODES ==================
+
+func update_resource(unique_id: String, max_count: int, regen_time: float):
+	if not resource_nodes.has(unique_id):
+		return
 	
+	var data = resource_nodes[unique_id]
+	var time_passed = game_seconds - data["last_time"]
+	
+	if time_passed <= 0:
+		return
+	
+	var regen_amount = int(time_passed / regen_time)
+	
+	if regen_amount > 0:
+		data["count"] = min(max_count, data["count"] + regen_amount)
+		data["last_time"] = game_seconds
+		
+func set_resource(unique_id: String, count: int):
+	if not resource_nodes.has(unique_id):
+		resource_nodes[unique_id] = {
+			"count": count,
+			"last_time": game_seconds
+		}
+	else:
+		resource_nodes[unique_id]["count"] = count
+		resource_nodes[unique_id]["last_time"] = game_seconds
+		
 # ================= LEVELING =================
 
 func get_required_xp(lvl: int) -> float:

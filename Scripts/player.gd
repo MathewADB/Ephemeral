@@ -23,7 +23,7 @@ var was_on_floor := false
 var currently_on_floor := false
 
 var mining := false
-var mineable : Collectable
+var mineable
 var save_location : Vector2
 var jump_buffer := 0.0
 var coyote := 0.0
@@ -123,7 +123,11 @@ func _check_fall_damage():
 	
 func handle_mining(delta):
 
-	if mineable == null or mining_tier < mineable.tier :
+	if mineable == null or mining_tier < mineable.tier:
+		stop_mining()
+		return
+
+	if mineable is InfiniteCollectable and mineable.count <= 0:
 		stop_mining()
 		return
 
@@ -139,7 +143,10 @@ func handle_mining(delta):
 		if mineable.progress >= mineable.mine_time:
 
 			mineable.progress = 0
-			mineable.count -= 1
+			if mineable is InfiniteCollectable:
+				mineable.mine(1)
+			else:
+				mineable.count -= 1
 			
 			if mineable.xp > 0 :
 				Manager.add_xp(mineable.xp)
@@ -147,10 +154,15 @@ func handle_mining(delta):
 			Manager.add_item(mineable.collectable_name, 1)
 			UI.show_item_popup(mineable, 1)
 
-			if mineable.count <= 0:
-				Manager.collected_objects[mineable.unique_id] = true
-				mineable.queue_free()
-				stop_mining()
+			if mineable is InfiniteCollectable:
+				if mineable.count <= 0:
+					stop_mining()
+			else:
+				if mineable.count <= 0:
+					Manager.collected_objects[mineable.unique_id] = true
+					mineable.queue_free()
+					stop_mining()
+
 
 	else:
 		stop_mining()

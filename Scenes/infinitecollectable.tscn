@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://cjy4s5nf3o2ie"]
+
+[ext_resource type="Texture2D" uid="uid://ydxsibdauusb" path="res://Sprites/Entities/Big Stone.png" id="1_lbrsn"]
+[ext_resource type="Script" uid="uid://djb80gtlporm6" path="res://Scripts/infiniteOre.gd" id="2_eaqxv"]
+[ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="3_topyl"]
+[ext_resource type="FontFile" uid="uid://b0efp4kdjt0pa" path="res://Style/Born2bSportyFS.otf" id="4_y15bj"]
+
+[sub_resource type="Gradient" id="Gradient_kyqiw"]
+offsets = PackedFloat32Array(0.14795919, 0.95408165)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3rsma"]
+gradient = SubResource("Gradient_kyqiw")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.9102564, 0.08974359)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qf81a"]
+radius = 30.016663
+
+[node name="Collectable" type="Sprite2D" unique_id=613026739]
+texture = ExtResource("1_lbrsn")
+script = ExtResource("2_eaqxv")
+
+[node name="SelfLight" type="PointLight2D" parent="." unique_id=1077684399]
+position = Vector2(-2.3841858e-07, 0)
+scale = Vector2(1.5, 1.5)
+color = Color(0.90633154, 0.51112473, 0.11117456, 0.5647059)
+energy = 0.5
+texture = SubResource("GradientTexture2D_3rsma")
+
+[node name="detection" type="Area2D" parent="." unique_id=1728455791]
+collision_layer = 8
+monitorable = false
+
+[node name="Collision" type="CollisionShape2D" parent="detection" unique_id=340878370]
+shape = SubResource("CircleShape2D_qf81a")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1187357038]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=878156720]
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1828553161]
+offset_left = -10.0
+offset_top = -30.0
+offset_right = 66.0
+offset_bottom = 10.0
+scale = Vector2(0.25, 0.25)
+theme = ExtResource("3_topyl")
+theme_override_fonts/font = ExtResource("4_y15bj")
+theme_override_font_sizes/font_size = 32
+
+[connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]
