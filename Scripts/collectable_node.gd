@@ -45,4 +45,4 @@ func update_visual():
 func update_bar():
 	if resource_bar:
 		resource_bar.value = count
-		
+	

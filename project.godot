@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="Ephemeral"
-config/version="0.0.0.9"
+config/version="0.0.0.10"
 run/main_scene="uid://cd2r6e28t5gcl"
 config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="uid://dusgx15j77xnr"
 
 [autoload]

@@ -67,7 +67,7 @@ var skill_points: int = 0
 var level: int = 1
 var current_xp: float = 0
 
-# --- PLAYER STATS (calculated from upgrades) ---
+# --- PLAYER STATS ---
 
 var player_mobility := BASE_STATS["player_mobility"]
 var light_level := BASE_STATS["light_level"]
@@ -124,6 +124,50 @@ var crafting_recipes := {
 		"time": 10.0
 	}
 }
+
+# Achievement stats 
+
+var death_count: int = 0
+var crafted_count: int = 0
+
+var achievements := {
+	"first_xp": {
+		"name": "Getting Started",
+		"description": "Gain your first XP",
+		"unlocked": false
+	},
+	"level_3": {
+		"name": "Growing Stronger",
+		"description": "Reach level 3",
+		"unlocked": false
+	},
+	"first_death": {
+		"name": "First Death",
+		"description": "Die for the first time",
+		"unlocked": false
+	},
+	"first_craft": {
+		"name": "Crafting",
+		"description": "Craft your first item",
+		"unlocked": false
+	},
+	"death_10": {
+		"name": "Getting Used To It",
+		"description": "Die 10 times",
+		"unlocked": false
+	},
+	"death_50": {
+		"name": "Endless Suffering",
+		"description": "Die 50 times",
+		"unlocked": false
+	},
+	"craft_10": {
+		"name": "Apprentice Crafter",
+		"description": "Craft 10 items",
+		"unlocked": false
+	}
+}
+
 func _ready():
 	game_seconds = start_day_progress * seconds_per_day
 	_is_night = is_night()
@@ -160,6 +204,9 @@ func save_game():
 		"current_room_scene": current_room_scene,
 		"spawn_location": spawn_location,
 		"spawn_room_scene": spawn_room_scene,
+		"achievements": achievements,
+		"death_count": death_count,
+		"crafted_count": crafted_count,
 		"player_current_health": player.current_health if player else 100
 	}
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -178,6 +225,9 @@ func load_game():
 	if typeof(data) != TYPE_DICTIONARY:
 		return
 	
+	achievements = data.get("achievements", achievements)
+	death_count = data.get("death_count", 0)
+	crafted_count = data.get("crafted_count", 0)
 	learned_upgrades = data.get("learned_upgrades", [])
 	skill_points = data.get("skill_points",0)
 	level = data.get("level",1)
@@ -270,6 +320,58 @@ func set_resource(unique_id: String, count: int):
 		resource_nodes[unique_id]["count"] = count
 		resource_nodes[unique_id]["last_time"] = game_seconds
 		
+# =============== ACHIEVEMENTS =============
+
+func unlock_achievement(id: String):
+	if not achievements.has(id):
+		return
+	
+	if achievements[id]["unlocked"]:
+		return
+	
+	achievements[id]["unlocked"] = true
+	
+	print("Unlocked:", achievements[id]["name"])
+	
+	UI.show_text_popup("Achievement Unlocked: " + achievements[id]["name"])
+	
+	save_game()
+	
+func add_achievement_progress(id: String, amount := 1):
+	if not achievements.has(id):
+		return
+	
+	var ach = achievements[id]
+	
+	if ach.get("unlocked", false):
+		return
+	
+	ach["progress"] += amount
+	
+	if ach["progress"] >= ach["goal"]:
+		unlock_achievement(id)
+		
+func register_death():
+	death_count += 1
+	
+	if death_count == 1:
+		unlock_achievement("first_death")
+	elif death_count == 10:
+		unlock_achievement("death_10")
+	elif death_count == 50:
+		unlock_achievement("death_50")
+	
+	save_game()
+	
+func register_craft(amount := 1):
+	crafted_count += amount
+	
+	unlock_achievement("first_craft")
+	if crafted_count >= 10:
+		unlock_achievement("craft_10")
+	
+	save_game()
+	
 # ================= LEVELING =================
 
 func get_required_xp(lvl: int) -> float:
@@ -281,6 +383,8 @@ signal xp_gained(amount)
 func add_xp(amount: float):
 	xp_gained.emit(amount) 
 	
+	unlock_achievement("first_xp")
+	
 	current_xp += amount
 	check_level_up()
 	xp_changed.emit(current_xp, get_required_xp(level))
@@ -290,6 +394,9 @@ func check_level_up():
 		current_xp -= get_required_xp(level)
 		level += 1
 		
+		if level >= 3:
+			unlock_achievement("level_3")
+	
 		skill_points += 1
 		skill_points_changed.emit(skill_points)
 		

@@ -137,6 +137,7 @@ func start_crafting(recipe_name: String, time: float):
 	await tween.finished
 	
 	Manager.add_item(recipe_name, 1)
+	Manager.register_craft(1)
 	
 	crafting = false
 	craft_button.disabled = false

@@ -163,7 +163,6 @@ func handle_mining(delta):
 					mineable.queue_free()
 					stop_mining()
 
-
 	else:
 		stop_mining()
 			
@@ -314,6 +313,7 @@ func _on_save_location_timeout() -> void:
 func die():
 	take_damage(-100)
 	Manager.loaded_health = max_health
+	Manager.register_death()
 	if tutorial:
 		self.global_position = save_location
 		current_health = max_health
