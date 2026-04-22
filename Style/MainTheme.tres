@@ -2,6 +2,18 @@
 
 [ext_resource type="FontFile" uid="uid://b0efp4kdjt0pa" path="res://Style/Born2bSportyFS.otf" id="1_pvpjx"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h5wv3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a4kif"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f8joc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nqn4a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j4bnx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g4fcp"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_edwl3"]
 bg_color = Color(0.6509804, 0.76862746, 0.7490196, 1)
 border_width_left = 8
@@ -85,6 +97,18 @@ corner_radius_bottom_right = 8
 [resource]
 Button/font_sizes/font_size = 32
 Button/fonts/font = ExtResource("1_pvpjx")
+CreditsButton/base_type = &"Button"
+CreditsButton/colors/font_color = Color(0.3862508, 0.38625085, 0.38625085, 1)
+CreditsButton/colors/font_hover_color = Color(0.51955754, 0.51955754, 0.51955754, 1)
+CreditsButton/colors/font_pressed_color = Color(0.7179641, 0.7179642, 0.7179641, 1)
+CreditsButton/font_sizes/font_size = 32
+CreditsButton/fonts/font = ExtResource("1_pvpjx")
+CreditsButton/styles/focus = SubResource("StyleBoxEmpty_h5wv3")
+CreditsButton/styles/hover = SubResource("StyleBoxEmpty_a4kif")
+CreditsButton/styles/hover_pressed = SubResource("StyleBoxEmpty_f8joc")
+CreditsButton/styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_nqn4a")
+CreditsButton/styles/normal = SubResource("StyleBoxEmpty_j4bnx")
+CreditsButton/styles/pressed = SubResource("StyleBoxEmpty_g4fcp")
 Label/constants/outline_size = 8
 Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("1_pvpjx")

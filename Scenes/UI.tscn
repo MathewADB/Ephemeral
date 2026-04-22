@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://c5lrcweg7lk2s"]
 
 [ext_resource type="Script" uid="uid://cfj4m4i73motg" path="res://Scripts/ui_manager.gd" id="1_dewlx"]
+[ext_resource type="Texture2D" uid="uid://cv1op8p0rtojs" path="res://Sprites/BackGrounds/Sky .png" id="2_gqamb"]
 [ext_resource type="PackedScene" uid="uid://hwmmwmdcli2k" path="res://Scenes/Control/BarsHud.tscn" id="2_hfhsn"]
 [ext_resource type="Shader" uid="uid://bgwjca7gm7142" path="res://Scenes/DayNightShader.gdshader" id="2_q6a8d"]
 [ext_resource type="Script" uid="uid://dogym5cgk8esm" path="res://Scripts/UI/TimeCycle.gd" id="3_6lb63"]
+[ext_resource type="Texture2D" uid="uid://cvpue7hoea480" path="res://Sprites/BackGrounds/Rainbow.png" id="3_q8m6m"]
 [ext_resource type="Texture2D" uid="uid://busi6fo40hl78" path="res://Sprites/UI/moon and sun icons.png" id="3_qwshj"]
 [ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="4_hfhsn"]
 [ext_resource type="FontFile" uid="uid://b0efp4kdjt0pa" path="res://Style/Born2bSportyFS.otf" id="5_qwshj"]
@@ -87,6 +89,19 @@ shader_parameter/night_color = Vector4(0, 0, 0, 0)
 [node name="UI" type="CanvasLayer" unique_id=1521172341]
 script = ExtResource("1_dewlx")
 popup_offset = Vector2(0, -100)
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=896712118]
+layer = -2
+
+[node name="Sky" type="Sprite2D" parent="Background" unique_id=799062423]
+position = Vector2(576, 324)
+scale = Vector2(1.125, 1.265625)
+texture = ExtResource("2_gqamb")
+
+[node name="Rainbow" type="Sprite2D" parent="Background" unique_id=1100661742]
+modulate = Color(1, 1, 1, 0.5647059)
+position = Vector2(594.5625, 331.45062)
+texture = ExtResource("3_q8m6m")
 
 [node name="Bars HUD" parent="." unique_id=616603374 instance=ExtResource("2_hfhsn")]
 
@@ -207,7 +222,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Fade" type="ColorRect" parent="." unique_id=850223812]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -237,7 +251,6 @@ shadow_enabled = true
 
 [node name="Crafting Panel" type="Control" parent="." unique_id=449598579]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -335,7 +348,6 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Player Panel" type="Control" parent="." unique_id=1801123476]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -827,7 +839,6 @@ grow_vertical = 2
 script = ExtResource("42_y1m5i")
 
 [node name="AutosaveIcon" type="Sprite2D" parent="." unique_id=1756865146]
-visible = false
 position = Vector2(1055, 591)
 scale = Vector2(3, 3)
 texture = ExtResource("11_b1goy")

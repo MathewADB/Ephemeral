@@ -30,10 +30,65 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CurseCured:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ax2s6"]
+resource_name = "credits"
+length = 30.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Exit:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Credits")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_4vtb7"]
-resource_name = "fade white"
-length = 20.0
+resource_name = "ending"
+length = 30.0
 step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -42,7 +97,7 @@ tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(3, 4),
+"times": PackedFloat32Array(6, 8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
@@ -54,7 +109,7 @@ tracks/1/path = NodePath("Credits")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(4),
+"times": PackedFloat32Array(11),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -68,7 +123,19 @@ tracks/2/path = NodePath("Exit:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(19, 20),
+"times": PackedFloat32Array(20, 21),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CurseCured:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -77,7 +144,8 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0pcaf"]
 _data = {
 &"RESET": SubResource("Animation_yq1u8"),
-&"fade white": SubResource("Animation_4vtb7")
+&"credits": SubResource("Animation_ax2s6"),
+&"ending": SubResource("Animation_4vtb7")
 }
 
 [node name="EndScreen" type="Control" unique_id=542828688]
@@ -100,9 +168,9 @@ color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=214201415]
 libraries/ = SubResource("AnimationLibrary_0pcaf")
-autoplay = &"fade white"
 
 [node name="CurseCured" type="Label" parent="." unique_id=1594985800]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -138,16 +206,19 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_4vtb7")
 script = ExtResource("2_0pcaf")
+scroll_speed = 60.0
+fade_time = 2.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Credits" unique_id=337480028]
+[node name="ScrollContainer" type="ScrollContainer" parent="Credits" unique_id=1685225821]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 128.5
-offset_bottom = -113.5
+offset_top = 176.5
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
 
 [node name="Credits Text" type="RichTextLabel" parent="Credits/ScrollContainer" unique_id=1427754482]
 layout_mode = 2
@@ -155,65 +226,68 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "Made By Mathew A
+bbcode_enabled = true
+text = "
+[center][font_size=48]Made By Mathew A[/font_size][/center]
 
-Game Design : Mathew A
+[font_size=32]Game Design[/font_size]
+Mathew A
 
-Programming : Mathew A
+[font_size=32]Programming[/font_size]
+Mathew A
 
-Art : Mathew A
+[font_size=32]Art[/font_size]
+Mathew A
 
-Thanks To My 
-Discord Friends For 
-Their Support
 
-@Karma dude
-@Dev Noob
-@Josse
-@Therealchrisnorton
-@WilliamIsMe
+[center][font_size=40]Thanks To[/font_size][/center]
 
-Also special thanks to
-@Karma dude 
-For testing the demo 
-and helpfull feedbacks
+Discord Friends for their support:
+- @Karma dude
+- @Dev Noob
+- @Josse
+- @Therealchrisnorton
+- @WilliamIsMe
 
-Game Dev Network
 
-Art created using ASprite
+[center][font_size=40]Game Dev Network[/font_size][/center]
 
-©2026 Mathew A • Godot Engine"
+
+[font_size=32]Special Thanks[/font_size]
+@Karma dude  
+For testing the demo and helpful feedback
+
+
+[font_size=32]Tools Used[/font_size]
+
+[font_size=24]Art[/font_size]
+Aseprite
+
+
+[font_size=24]Engine[/font_size]
+Godot Engine
+
+
+[center]©2026 Mathew A • Godot Engine[/center]"
+fit_content = true
 scroll_active = false
 horizontal_alignment = 1
-
-[node name="Close Credits" type="Button" parent="Credits" unique_id=678340292]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -131.0
-offset_top = -77.5
-offset_right = 131.0
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Close"
 
 [node name="Credit Title" type="Label" parent="Credits" unique_id=1376422799]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -207.5
-offset_right = 207.5
-offset_bottom = 97.5
+offset_left = -208.0
+offset_top = -15.5
+offset_right = 207.0
+offset_bottom = 82.0
 grow_horizontal = 2
 theme = ExtResource("1_4vtb7")
 theme_type_variation = &"TitleLabel"
-theme_override_constants/outline_size = 32
-theme_override_font_sizes/font_size = 64
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 128
 text = "Misty"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -226,7 +300,7 @@ offset_top = 568.0
 offset_right = 152.0
 offset_bottom = 620.0
 theme = ExtResource("1_4vtb7")
-text = "Exit"
+theme_type_variation = &"CreditsButton"
+text = "Close"
 
-[connection signal="pressed" from="Credits/Close Credits" to="Credits" method="_on_close_credits_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

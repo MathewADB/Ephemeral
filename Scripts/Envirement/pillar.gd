@@ -20,32 +20,28 @@ func _ready():
 		activate()
 
 
+var interacting := false
+
 func _process(delta):
 	if activated:
 		return
-	
-	if not player_inside:
-		progress = max(progress - drain_speed * delta, 0)
-		progress_bar.value = progress
-		if progress <= 0:
-			progress_bar.visible = false
-		return
-	
-	if not Manager.pillar_interaction:
-		return
-	
-	if Input.is_action_just_pressed("interact"):
+
+	interacting = player_inside and Manager.pillar_interaction and Input.is_action_pressed("interact")
+
+	if interacting:
 		progress_bar.visible = true
-		progress += fill_speed * delta * 8
-		progress_bar.value = progress
-		
-		if progress >= 100:
-			activate()
+		progress += fill_speed * delta
 	else:
-		progress = max(progress - drain_speed * delta, 0)
-		progress_bar.value = progress
-		if progress <= 0:
-			progress_bar.visible = false
+		progress -= drain_speed * delta
+
+	progress = clamp(progress, 0, 100)
+	progress_bar.value = progress
+
+	if progress >= 100:
+		activate()
+
+	if progress <= 0:
+		progress_bar.visible = false
 
 
 func activate():

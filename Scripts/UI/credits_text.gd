@@ -1,5 +1,6 @@
 extends Panel
 
+@onready var scroll_container: ScrollContainer = $ScrollContainer
 @onready var credit_text: RichTextLabel = $"ScrollContainer/Credits Text"
 @onready var scrollbar: VScrollBar = credit_text.get_v_scroll_bar()
 
@@ -16,14 +17,8 @@ func _ready():
 	modulate.a = 0.0  
 
 
-func _process(delta):
-	if not scrolling:
-		return
-	
-	if scrollbar.max_value <= 0:
-		return 
-	
-	scrollbar.value += scroll_speed * delta
+func _process(delta):	
+	scroll_container.scroll_vertical += scroll_speed * delta
 	
 	if scrollbar.value >= scrollbar.max_value:
 		scrollbar.value = scrollbar.max_value
@@ -52,6 +47,3 @@ func stop():
 	await tween.finished
 	scrollbar.value = 0
 	hide()
-
-func _on_close_credits_pressed() -> void:
-	stop()

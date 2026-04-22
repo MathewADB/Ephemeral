@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://c0jb8bi20x7s4"]
 
-[ext_resource type="Texture2D" uid="uid://cv1op8p0rtojs" path="res://Sprites/BackGrounds/Sky .png" id="1_5qlx2"]
 [ext_resource type="Texture2D" uid="uid://bl0xh8i1xriss" path="res://Sprites/BackGrounds/MushroomBackground smaller.png" id="1_rbv0n"]
-[ext_resource type="Texture2D" uid="uid://cvpue7hoea480" path="res://Sprites/BackGrounds/Rainbow.png" id="2_cogkq"]
 [ext_resource type="Texture2D" uid="uid://bqwsm0qm3tgw5" path="res://Sprites/BackGrounds/clouds Packed.png" id="2_gu7oc"]
 [ext_resource type="Texture2D" uid="uid://xxy62pou6w7e" path="res://Sprites/BackGrounds/MushroomBackground.png" id="2_rbv0n"]
 [ext_resource type="TileSet" uid="uid://capwod7vgkwwm" path="res://Style/MainTileset.tres" id="2_syfyn"]
@@ -11,19 +9,6 @@
 [node name="Section" type="Node2D" unique_id=1855033315]
 
 [node name="BackGround" type="Node2D" parent="." unique_id=218195439]
-
-[node name="Sky" type="Parallax2D" parent="BackGround" unique_id=29737000]
-scroll_scale = Vector2(0, 0)
-
-[node name="Sky" type="Sprite2D" parent="BackGround/Sky" unique_id=1745947199]
-position = Vector2(542, 317)
-texture = ExtResource("1_5qlx2")
-
-[node name="Rainbow" type="Sprite2D" parent="BackGround/Sky" unique_id=1650456577]
-modulate = Color(1, 1, 1, 0.5647059)
-position = Vector2(594.5625, 331.45062)
-scale = Vector2(0.3, 0.31976777)
-texture = ExtResource("2_cogkq")
 
 [node name="BackgorundLayerBack" type="Parallax2D" parent="BackGround" unique_id=985264048]
 scroll_scale = Vector2(0.1, 0.05)

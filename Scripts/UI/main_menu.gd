@@ -1,7 +1,6 @@
 extends Control
 
 @onready var fade : ColorRect = $Fade
-@onready var credit : Panel = $Credits
 @onready var new_game_btn := $"MenuButtons/New Game"
 @onready var continue_btn := $MenuButtons/Continue
 
@@ -25,7 +24,7 @@ func _on_exit_pressed() -> void:
 	get_tree().quit()
 
 func _on_credit_pressed() -> void:
-	credit.start()
+	get_tree().change_scene_to_file("res://Scenes/Control/end_screen.tscn")
 
 func _on_new_game_pressed() -> void:
 	Manager.reset_game()
@@ -42,6 +41,5 @@ func start_game() -> void:
 	await get_tree().create_timer(0.5).timeout
 	UI.show_ui()
 	get_tree().change_scene_to_file(Manager.current_room_scene)
-	
 func _on_settings_pressed() -> void:
 	pass

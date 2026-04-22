@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://tuwand0spto2" path="res://Sprites/UI/Wiki Icon.png" id="7_yrb42"]
 [ext_resource type="Texture2D" uid="uid://bipsx11h5mw73" path="res://Sprites/UI/telegram icon.png" id="9_gmial"]
 [ext_resource type="Texture2D" uid="uid://c8emuwetyylfs" path="res://Sprites/UI/instagram icon.png" id="10_bljlc"]
-[ext_resource type="Script" uid="uid://qo2nh3xv70sv" path="res://Scripts/UI/credits_text.gd" id="11_bljlc"]
 
 [node name="Main Menu" type="Control" unique_id=1438550500]
 layout_mode = 3
@@ -171,102 +170,6 @@ theme = ExtResource("4_qpyf4")
 theme_type_variation = &"TitleLabel"
 text = "Misty"
 
-[node name="Credits" type="Panel" parent="." unique_id=1432674745]
-light_mask = 2
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -211.0
-offset_top = -292.5
-offset_right = 211.0
-offset_bottom = 292.5
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("4_qpyf4")
-theme_type_variation = &"creditPanel"
-script = ExtResource("11_bljlc")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Credits" unique_id=375404838]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 104.5
-offset_bottom = -112.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Credits Text" type="RichTextLabel" parent="Credits/ScrollContainer" unique_id=1978270334]
-process_mode = 3
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-text = "Made By Mathew A
-
-Game Design : Mathew A
-
-Programming : Mathew A
-
-Art : Mathew A
-
-Thanks To My 
-Discord Friends For 
-Their Support
-
-@Karma dude
-@Dev Noob
-@Josse
-@Therealchrisnorton
-@WilliamIsMe
-
-Also special thanks to
-@Karma dude 
-For testing the demo 
-and helpfull feedbacks
-
-Game Dev Network
-
-Art created using ASprite
-
-©2026 Mathew A • Godot Engine"
-scroll_active = false
-horizontal_alignment = 1
-
-[node name="Close Credits" type="Button" parent="Credits" unique_id=438242578]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -131.0
-offset_top = -77.5
-offset_right = 131.0
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Close"
-
-[node name="Credit Title" type="Label" parent="Credits" unique_id=772398072]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -207.5
-offset_right = 207.5
-offset_bottom = 97.5
-grow_horizontal = 2
-theme = ExtResource("4_qpyf4")
-theme_type_variation = &"TitleLabel"
-theme_override_font_sizes/font_size = 64
-text = "Misty"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="MenuButtons" type="VBoxContainer" parent="." unique_id=17232168]
 layout_mode = 1
 anchors_preset = 4
@@ -329,7 +232,6 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[connection signal="pressed" from="Credits/Close Credits" to="Credits" method="_on_close_credits_pressed"]
 [connection signal="pressed" from="MenuButtons/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="MenuButtons/New Game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MenuButtons/Settings" to="." method="_on_settings_pressed"]
