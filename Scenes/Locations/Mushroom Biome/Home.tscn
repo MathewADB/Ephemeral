@@ -85,7 +85,7 @@ offset_left = 241.0
 offset_top = 490.0
 offset_right = 241.0
 offset_bottom = 490.0
-hint_text = "E        Craft Menu"
+hint_text = "E                   Crafting"
 
 [node name="Player" parent="Main" parent_id_path=PackedInt32Array(1489948153) index="1" unique_id=796391081]
 position = Vector2(618, 497)

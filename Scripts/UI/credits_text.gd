@@ -1,6 +1,6 @@
 extends Panel
 
-@onready var credit_text: RichTextLabel = $"Credits Text"
+@onready var credit_text: RichTextLabel = $"ScrollContainer/Credits Text"
 @onready var scrollbar: VScrollBar = credit_text.get_v_scroll_bar()
 
 @export var scroll_speed := 30.0

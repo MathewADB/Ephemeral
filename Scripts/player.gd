@@ -46,6 +46,10 @@ var default_camera_offset_y := -18.0
 var look_down_offset := 36.0
 var camera_lerp_speed := 8.0 
 
+func _apply_spawn_position():
+	velocity = Vector2.ZERO
+	global_position = Manager.spawn_location
+	
 func _ready() -> void:
 	camera.offset.y = default_camera_offset_y
 	gravity = 850
@@ -59,10 +63,9 @@ func _ready() -> void:
 		save_location = self.position
 		
 	if Manager.activate_spawn :
-		global_position = Manager.spawn_location
+		call_deferred("_apply_spawn_position")
 		Manager.activate_spawn = false
 		
-
 	tutorial_timer.start()
 	await get_tree().create_timer(0.2).timeout
 	ignore_fall_damage = false
@@ -314,21 +317,22 @@ func die():
 	take_damage(-100)
 	Manager.loaded_health = max_health
 	Manager.register_death()
+
 	if tutorial:
-		self.global_position = save_location
+		global_position = save_location
 		current_health = max_health
 		return
 
-	if Manager.current_room_scene != Manager.spawn_room_scene:
-		Manager.activate_spawn = true
+	if Manager.current_room_scene != Manager.respawn_room_scene:
 		call_deferred("_deferred_respawn")
 		return
 
-	self.global_position = Manager.spawn_location
+	velocity = Vector2.ZERO
+	global_position = Manager.respawn_location
 	current_health = max_health
 	
 func _deferred_respawn():
-	get_tree().change_scene_to_file(Manager.spawn_room_scene)
+	get_tree().change_scene_to_file(Manager.respawn_room_scene)
 	
 # ===== animation
 

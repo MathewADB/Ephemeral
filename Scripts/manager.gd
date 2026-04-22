@@ -57,9 +57,11 @@ var _is_night := false
 var loaded_health = 100
 
 var activate_spawn : bool = false
-var spawn_location : Vector2 = DEFAULT_SPAWN_POSITION
+var respawn_room_scene : String = DEFAULT_SPAWN_ROOM
+var respawn_location : Vector2 = DEFAULT_SPAWN_POSITION
 var current_room_scene : String = DEFAULT_ROOM_SCENE
 var spawn_room_scene : String = DEFAULT_SPAWN_ROOM
+var spawn_location : Vector2 = DEFAULT_SPAWN_POSITION
 
 # --- LEVELING ---
 
@@ -167,6 +169,41 @@ var achievements := {
 		"unlocked": false
 	}
 }
+
+# -- ENDGAME --
+
+var lore_goal := 3
+var end_triggered := false
+
+func check_lore_progress():
+	if end_triggered:
+		return
+
+	if items.get("Lore Fragment", 0) >= lore_goal:
+		trigger_end_game()
+		
+func trigger_end_game():
+	end_triggered = true
+
+	if player:
+		player.set_physics_process(false)
+
+	UI.show_text_popup("Something is awakening...")
+
+	await get_tree().create_timer(2.0).timeout
+
+	play_end_cutscene()
+	
+func play_end_cutscene():
+	UI.fade.visible = true
+	UI.fade.fade_in()
+
+	await get_tree().create_timer(2.0).timeout
+	save_game()
+	UI.hide_ui()
+	get_tree().change_scene_to_file("res://Scenes/Control/end_screen.tscn")
+
+# -- Functions --
 
 func _ready():
 	game_seconds = start_day_progress * seconds_per_day
@@ -473,6 +510,9 @@ func add_item(item_name : String, amount := 1):
 	items[item_name] += amount
 	inventory_changed.emit()
 	
+	if item_name == "Lore Fragment":
+		check_lore_progress()
+		
 func remove_item(item_name : String, amount := 1):
 	if not items.has(item_name):
 		return

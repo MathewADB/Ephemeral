@@ -1,0 +1,232 @@
+[gd_scene format=3 uid="uid://du4a2w4wmeykm"]
+
+[ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="1_4vtb7"]
+[ext_resource type="Script" uid="uid://ckl2w0cuohxtu" path="res://Scripts/UI/end_screen.gd" id="1_ax2s6"]
+[ext_resource type="Script" uid="uid://qo2nh3xv70sv" path="res://Scripts/UI/credits_text.gd" id="2_0pcaf"]
+
+[sub_resource type="Animation" id="Animation_yq1u8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Exit:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4vtb7"]
+resource_name = "fade white"
+length = 20.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Credits")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Exit:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(19, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0pcaf"]
+_data = {
+&"RESET": SubResource("Animation_yq1u8"),
+&"fade white": SubResource("Animation_4vtb7")
+}
+
+[node name="EndScreen" type="Control" unique_id=542828688]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ax2s6")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1436984834]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=214201415]
+libraries/ = SubResource("AnimationLibrary_0pcaf")
+autoplay = &"fade white"
+
+[node name="CurseCured" type="Label" parent="." unique_id=1594985800]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -302.0
+offset_top = -73.5
+offset_right = 302.0
+offset_bottom = 73.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4vtb7")
+theme_type_variation = &"TutorialText"
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 64
+text = "The Curse Has Been Cured
+Thank You Dear Caretaker"
+
+[node name="Credits" type="Panel" parent="." unique_id=2102256836]
+light_mask = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.0
+offset_top = -292.5
+offset_right = 211.0
+offset_bottom = 292.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4vtb7")
+script = ExtResource("2_0pcaf")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Credits" unique_id=337480028]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 128.5
+offset_bottom = -113.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Credits Text" type="RichTextLabel" parent="Credits/ScrollContainer" unique_id=1427754482]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Made By Mathew A
+
+Game Design : Mathew A
+
+Programming : Mathew A
+
+Art : Mathew A
+
+Thanks To My 
+Discord Friends For 
+Their Support
+
+@Karma dude
+@Dev Noob
+@Josse
+@Therealchrisnorton
+@WilliamIsMe
+
+Also special thanks to
+@Karma dude 
+For testing the demo 
+and helpfull feedbacks
+
+Game Dev Network
+
+Art created using ASprite
+
+©2026 Mathew A • Godot Engine"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Close Credits" type="Button" parent="Credits" unique_id=678340292]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -131.0
+offset_top = -77.5
+offset_right = 131.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Close"
+
+[node name="Credit Title" type="Label" parent="Credits" unique_id=1376422799]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -207.5
+offset_right = 207.5
+offset_bottom = 97.5
+grow_horizontal = 2
+theme = ExtResource("1_4vtb7")
+theme_type_variation = &"TitleLabel"
+theme_override_constants/outline_size = 32
+theme_override_font_sizes/font_size = 64
+text = "Misty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="Button" parent="." unique_id=1577034011]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 568.0
+offset_right = 152.0
+offset_bottom = 620.0
+theme = ExtResource("1_4vtb7")
+text = "Exit"
+
+[connection signal="pressed" from="Credits/Close Credits" to="Credits" method="_on_close_credits_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

@@ -121,8 +121,9 @@ grow_vertical = 0
 [node name="Quest Name" type="Label" parent="Quest" unique_id=718560805]
 visible = false
 layout_mode = 1
-offset_right = 66.0
-offset_bottom = 36.0
+offset_top = -6.0
+offset_right = 188.0
+offset_bottom = 30.0
 theme = ExtResource("4_hfhsn")
 text = "Getting Started :"
 
@@ -133,13 +134,13 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -18.0
 offset_right = 422.0
-offset_bottom = 32.5
+offset_bottom = 59.5
 grow_vertical = 2
 theme = ExtResource("4_hfhsn")
-theme_override_colors/font_outline_color = Color(0.18431373, 0.11764706, 0.27058825, 1)
 theme_override_constants/outline_size = 12
 bbcode_enabled = true
-text = "  [wave][rainbow freq =.2 sat=.2] Do whatever you want ! [/rainbow][/wave]"
+text = "  [wave][rainbow freq =.2 sat=.2] Collect All 3 Lore Fragments To
+ Cure the curse [/rainbow][/wave]"
 scroll_active = false
 
 [node name="Mining" type="Control" parent="." unique_id=1477990177]
@@ -334,6 +335,7 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Player Panel" type="Control" parent="." unique_id=1801123476]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -391,7 +393,7 @@ grow_vertical = 2
 focus_mode = 2
 theme = ExtResource("4_hfhsn")
 tab_alignment = 1
-current_tab = 3
+current_tab = 2
 script = ExtResource("6_mg6lk")
 
 [node name="Settings" type="Control" parent="Player Panel/Panel" unique_id=2016830327]
@@ -426,7 +428,6 @@ offset_right = 209.0
 offset_bottom = 198.0
 
 [node name="Upgrades" type="Control" parent="Player Panel/Panel" unique_id=1762975685]
-visible = false
 layout_mode = 2
 focus_mode = 2
 theme = ExtResource("4_hfhsn")
@@ -744,6 +745,7 @@ texture_normal = ExtResource("42_qoydj")
 texture_disabled = ExtResource("43_lolh4")
 
 [node name="Quest" type="Control" parent="Player Panel/Panel" unique_id=893934766]
+visible = false
 layout_mode = 2
 focus_mode = 2
 metadata/_tab_index = 3

@@ -172,7 +172,6 @@ theme_type_variation = &"TitleLabel"
 text = "Misty"
 
 [node name="Credits" type="Panel" parent="." unique_id=1432674745]
-visible = false
 light_mask = 2
 layout_mode = 1
 anchors_preset = 8
@@ -190,12 +189,21 @@ theme = ExtResource("4_qpyf4")
 theme_type_variation = &"creditPanel"
 script = ExtResource("11_bljlc")
 
-[node name="Credits Text" type="RichTextLabel" parent="Credits" unique_id=1978270334]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 129.5
-offset_right = 410.0
-offset_bottom = 452.5
+[node name="ScrollContainer" type="ScrollContainer" parent="Credits" unique_id=375404838]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 104.5
+offset_bottom = -112.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Credits Text" type="RichTextLabel" parent="Credits/ScrollContainer" unique_id=1978270334]
+process_mode = 3
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 text = "Made By Mathew A
 

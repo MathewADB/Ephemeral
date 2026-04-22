@@ -66,16 +66,15 @@ func _alert(delta):
 		else:
 			state = State.PATROL
 
+@warning_ignore("unused_parameter")
 func _chase(delta):
 	if not player or player.is_hidden:
-		# Lost the player — remember last position for a bit
 		memory_timer = detection_memory_time
 		state = State.ALERT
 		return
 
 	last_known_pos = player.global_position
 
-	# Give up if player is too far
 	if global_position.distance_to(last_known_pos) > alert_distance:
 		state = State.RETURN
 		return
@@ -87,8 +86,6 @@ func _chase(delta):
 	if player_in_attack_range:
 		state = State.ATTACK
 	elif wall_ray.is_colliding() or not ground_ray.is_colliding():
-		# Hit a wall/ledge — try to navigate around it
-		# For now, give up and return home (you can add jump logic here later)
 		state = State.RETURN
 	else:
 		velocity.x = direction.x * chase_speed
@@ -124,7 +121,7 @@ func _on_vision_range_body_entered(body: Node2D) -> void:
 		return
 	player = body
 	player_in_vision = true
-	# Enter ALERT briefly before chasing (adds a nice reaction delay)
+	# Enter ALERT
 	last_known_pos = player.global_position
 	memory_timer = 0.3
 	state = State.ALERT
@@ -132,7 +129,6 @@ func _on_vision_range_body_entered(body: Node2D) -> void:
 func _on_vision_range_body_exited(body: Node2D) -> void:
 	if body == player:
 		player_in_vision = false
-		# Don't immediately null player — let memory_timer handle that in ALERT
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	if not body.has_method("take_damage"):
@@ -141,7 +137,6 @@ func _on_attack_range_body_entered(body: Node2D) -> void:
 		return
 	player = body
 	player_in_attack_range = true
-	# Make sure we're in the right state
 	if state == State.CHASE or state == State.ALERT:
 		state = State.ATTACK
 
