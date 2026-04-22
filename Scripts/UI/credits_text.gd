@@ -15,7 +15,8 @@ func _ready():
 	scrollbar.visible = false
 	set_process(false)
 	modulate.a = 0.0  
-
+	
+	credit_text.text = tr("CREDITS_TEXT")
 
 func _process(delta):	
 	scroll_container.scroll_vertical += scroll_speed * delta

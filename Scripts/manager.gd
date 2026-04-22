@@ -203,12 +203,29 @@ func play_end_cutscene():
 	UI.hide_ui()
 	get_tree().change_scene_to_file("res://Scenes/Control/end_screen.tscn")
 
+# -- Settings --
+
+var selected_language = ""
+var fullscreen: bool = false
+	
+func apply_settings():
+	if selected_language == "":
+		selected_language = "EN"
+
+	TranslationServer.set_locale(selected_language)
+
+	if fullscreen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 # -- Functions --
 
 func _ready():
 	game_seconds = start_day_progress * seconds_per_day
 	_is_night = is_night()
 	night_changed.emit(_is_night)
+	load_game()
+	apply_settings()
 	
 func _process(delta):
 	game_seconds += delta * time_scale
@@ -229,6 +246,10 @@ func _process(delta):
 func save_game():
 		
 	var save_data = {
+		"settings": {
+			"selected_language": selected_language,
+			"fullscreen": fullscreen
+		},
 		"skill_points": skill_points,
 		"level": level,
 		"current_xp": current_xp,
@@ -262,6 +283,11 @@ func load_game():
 	if typeof(data) != TYPE_DICTIONARY:
 		return
 	
+	var settings = data.get("settings", {})
+
+	selected_language = settings.get("selected_language", "EN")
+	fullscreen = settings.get("fullscreen", false)
+
 	achievements = data.get("achievements", achievements)
 	death_count = data.get("death_count", 0)
 	crafted_count = data.get("crafted_count", 0)

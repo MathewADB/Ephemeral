@@ -187,8 +187,10 @@ theme = ExtResource("1_4vtb7")
 theme_type_variation = &"TutorialText"
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 64
-text = "The Curse Has Been Cured
-Thank You Dear Caretaker"
+text = "Light returns to this place.
+What was lost begins anew.
+Thank you, Caretaker."
+horizontal_alignment = 1
 
 [node name="Credits" type="Panel" parent="." unique_id=2102256836]
 light_mask = 2

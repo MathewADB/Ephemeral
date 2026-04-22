@@ -1,0 +1,83 @@
+KEY,EN,DE
+NEW_GAME,New Game,Neues Spiel
+CONTINUE,Continue,Fortsetzen
+SETTINGS,Settings,Einstellungen
+CREDITS,Credits,Mitwirkende
+EXIT,Exit,Beenden
+DEMO_VERSION,Demo Version,Demoversion
+UNDER_DEVELOPMENT,under Development,in der Entwicklung 
+CREDITS_TEXT,"[center][font_size=48]Made By Mathew A[/font_size][/center]
+
+[font_size=32]Game Design[/font_size]
+Mathew A
+
+[font_size=32]Programming[/font_size]
+Mathew A
+
+[font_size=32]Art[/font_size]
+Mathew A
+
+[center][font_size=40]Thanks To[/font_size][/center]
+
+Discord Friends for their support:
+- @Karma dude
+- @Dev Noob
+- @Josse
+- @Therealchrisnorton
+- @WilliamIsMe
+
+[center][font_size=40]Game Dev Network[/font_size][/center]
+
+[font_size=32]Special Thanks[/font_size]
+@Karma dude 
+For testing the demo and helpful feedback
+
+[font_size=32]Tools Used[/font_size]
+
+[font_size=24]Art[/font_size]
+Aseprite
+
+[font_size=24]Engine[/font_size]
+Godot Engine
+
+[center]©2026 Mathew A • Godot Engine[/center] ","[center][font_size=48]Erstellt von Mathew A[/font_size][/center]
+
+[font_size=32]Spieldesign[/font_size]
+Mathew A
+
+[font_size=32]Programmierung[/font_size]
+Mathew A
+
+[font_size=32]Grafik[/font_size]
+Mathew A
+
+[center][font_size=40]Danke an[/font_size][/center]
+
+Discord-Freunde für ihre Unterstützung:
+- @Karma dude
+- @Dev Noob
+- @Josse
+- @Therealchrisnorton
+- @WilliamIsMe
+
+[center][font_size=40]Game Dev Netzwerk[/font_size][/center]
+
+[font_size=32]Besonderer Dank[/font_size]
+@Karma dude 
+Für das Testen der Demo und hilfreiches Feedback
+
+[font_size=32]Verwendete Tools[/font_size]
+
+[font_size=24]Grafik[/font_size]
+Aseprite
+
+[font_size=24]Engine[/font_size]
+Godot Engine
+
+[center]©2026 Mathew A • Godot Engine[/center] "
+CLOSE,Close,Schließen 
+ENDING_TEXT,"Light returns to this place.
+What was lost begins anew.
+Thank you, Caretaker. ","Das Licht kehrt zurück.
+Was verloren war, beginnt von Neuem.
+Danke, Hüter. "
