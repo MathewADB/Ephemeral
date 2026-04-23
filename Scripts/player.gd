@@ -314,6 +314,10 @@ func _on_save_location_timeout() -> void:
 	tutorial_timer.start()
 
 func die():
+	UI.show_dead()
+	get_tree().paused = true
+	
+func respawn():
 	take_damage(-100)
 	Manager.loaded_health = max_health
 	Manager.register_death()

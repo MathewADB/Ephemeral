@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://tuwand0spto2" path="res://Sprites/UI/Wiki Icon.png" id="7_yrb42"]
 [ext_resource type="Texture2D" uid="uid://bipsx11h5mw73" path="res://Sprites/UI/telegram icon.png" id="9_gmial"]
 [ext_resource type="Texture2D" uid="uid://c8emuwetyylfs" path="res://Sprites/UI/instagram icon.png" id="10_bljlc"]
+[ext_resource type="Script" uid="uid://b21acya5i4ti7" path="res://Scripts/UI/menu_settings.gd" id="11_bljlc"]
 
 [node name="Main Menu" type="Control" unique_id=1438550500]
 layout_mode = 3
@@ -244,9 +245,68 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
+[node name="MenuSettings" type="Control" parent="." unique_id=2121986885]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_bljlc")
+
+[node name="Panel" type="Panel" parent="MenuSettings" unique_id=1007563156]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"MenuPanel"
+
+[node name="Fullscreen" type="Button" parent="MenuSettings/Panel" unique_id=1778245023]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 96.0
+offset_right = 400.0
+offset_bottom = 140.0
+theme = ExtResource("4_qpyf4")
+text = "Fullscreen
+"
+
+[node name="Reset" type="Button" parent="MenuSettings/Panel" unique_id=1830847322]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 400.0
+offset_bottom = 84.0
+text = "Reset Game
+"
+
+[node name="Close" type="Button" parent="MenuSettings/Panel" unique_id=911361535]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 520.0
+offset_right = 296.0
+offset_bottom = 608.0
+text = "Close"
+
+[node name="Settings" type="Label" parent="MenuSettings/Panel" unique_id=208041109]
+layout_mode = 0
+offset_left = 832.0
+offset_top = 32.0
+offset_right = 1088.0
+offset_bottom = 144.0
+text = "Settings"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="Language" to="." method="_on_language_pressed"]
 [connection signal="pressed" from="MenuButtons/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="MenuButtons/New Game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MenuButtons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MenuButtons/Credit" to="." method="_on_credit_pressed"]
 [connection signal="pressed" from="MenuButtons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MenuSettings/Panel/Fullscreen" to="MenuSettings" method="_on_fullscreen_pressed"]
+[connection signal="pressed" from="MenuSettings/Panel/Reset" to="MenuSettings" method="_on_reset_pressed"]
+[connection signal="pressed" from="MenuSettings/Panel/Close" to="MenuSettings" method="_on_close_pressed"]

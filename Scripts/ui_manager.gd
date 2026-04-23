@@ -48,6 +48,16 @@ func _ready() -> void:
 		btn.pressed.connect(_on_recipe_selected.bind(recipe_name))
 		crafting_list.add_child(btn)
 
+# ===== You Died
+
+func show_dead():
+	$"Dead Panel".visible = true 
+
+# ===== menu settings
+
+func show_menu_settings():
+	$MenuSettings.visible = true
+	
 # ===== Autosave 
 
 func show_autosave_icon():

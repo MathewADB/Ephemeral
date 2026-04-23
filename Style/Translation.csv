@@ -25,12 +25,15 @@ Discord Friends for their support:
 - @Josse
 - @Therealchrisnorton
 - @WilliamIsMe
+- @Austinkool94
 
 [center][font_size=40]Game Dev Network[/font_size][/center]
 
 [font_size=32]Special Thanks[/font_size]
 @Karma dude 
 For testing the demo and helpful feedback
+
+
 
 [font_size=32]Tools Used[/font_size]
 
@@ -59,12 +62,15 @@ Discord-Freunde für ihre Unterstützung:
 - @Josse
 - @Therealchrisnorton
 - @WilliamIsMe
+- @Austinkool94
 
 [center][font_size=40]Game Dev Netzwerk[/font_size][/center]
 
 [font_size=32]Besonderer Dank[/font_size]
 @Karma dude 
 Für das Testen der Demo und hilfreiches Feedback
+
+
 
 [font_size=32]Verwendete Tools[/font_size]
 
@@ -81,3 +87,8 @@ What was lost begins anew.
 Thank you, Caretaker. ","Das Licht kehrt zurück.
 Was verloren war, beginnt von Neuem.
 Danke, Hüter. "
+YOU_DIED,You Died,Du bist gestorben 
+RESPAWN,Respawn,Wiederbeleben 
+FULLSCREEN,Fullscreen,Vollbild 
+RESET_GAME,Reset Game,Spiel zurücksetzen 
+ALPHA_VERSION,Alpha Version,Alpha-Phase 

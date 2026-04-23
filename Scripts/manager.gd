@@ -265,6 +265,7 @@ func save_game():
 		"achievements": achievements,
 		"death_count": death_count,
 		"crafted_count": crafted_count,
+		"end_triggered": end_triggered,
 		"player_current_health": player.current_health if player else 100
 	}
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -288,6 +289,7 @@ func load_game():
 	selected_language = settings.get("selected_language", "EN")
 	fullscreen = settings.get("fullscreen", false)
 
+	end_triggered = data.get("end_triggered", false)
 	achievements = data.get("achievements", achievements)
 	death_count = data.get("death_count", 0)
 	crafted_count = data.get("crafted_count", 0)
@@ -333,21 +335,59 @@ func load_game():
 	upgrades_changed.emit()
 	map_updated.emit()
 	
-func reset_game():
+func reset_game(should_save := true):
+	# --- CORE PROGRESSION ---
 	skill_points = 0
 	level = 1
 	current_xp = 0
-	items = {"Ruby Stone":0, "Ruby Gem":0, "Dust":0, "Dust Gem":0, "Stone":0, "Lore Fragment":0}
+	
+	# --- PLAYER STATE ---
+	loaded_health = 100
+	death_count = 0
+	crafted_count = 0
+	
+	# --- INVENTORY ---
+	items = {
+		"Ruby Stone":0, 
+		"Ruby Gem":0, 
+		"Dust":0, 
+		"Dust Gem":0, 
+		"Stone":0, 
+		"Lore Fragment":0
+	}
+	
+	# --- WORLD STATE ---
 	visited_rooms.clear()
 	room_positions = DEFUALT_ROOM_POSITIONS.duplicate(true)
 	collected_objects.clear()
+	resource_nodes.clear()
+	
+	# --- TIME ---
 	game_seconds = start_day_progress * seconds_per_day
+	
+	# --- POSITION / SCENE ---
 	current_room_scene = DEFAULT_ROOM_SCENE
 	spawn_room_scene = DEFAULT_SPAWN_ROOM
 	spawn_location = DEFAULT_SPAWN_POSITION
+	respawn_room_scene = DEFAULT_SPAWN_ROOM
+	respawn_location = DEFAULT_SPAWN_POSITION
+	
+	# --- UPGRADES ---
 	learned_upgrades.clear()
 	apply_learned_upgrades()
-	save_game()
+	
+	# --- ACHIEVEMENTS RESET ---
+	for key in achievements.keys():
+		achievements[key]["unlocked"] = false
+	
+	# --- ENDGAME RESET ---
+	end_triggered = false
+	
+	# --- SAVE ---
+	if should_save:
+		save_game()
+	
+	# --- SIGNALS ---
 	upgrades_changed.emit()
 	skill_points_changed.emit(skill_points)
 	xp_changed.emit(current_xp, get_required_xp(level))
@@ -355,6 +395,15 @@ func reset_game():
 	inventory_changed.emit()
 	map_updated.emit()
 
+func delete_save():
+	if FileAccess.file_exists(SAVE_PATH):
+		var dir := DirAccess.open("user://")
+		if dir:
+			dir.remove("save_game.json")
+			print("Save deleted")
+		else:
+			print("Failed to open user:// directory")
+			
 # ================= NODES ==================
 
 func update_resource(unique_id: String, max_count: int, regen_time: float):

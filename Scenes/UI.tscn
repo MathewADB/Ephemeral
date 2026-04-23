@@ -46,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://dynjkd2e0362" path="res://Sprites/Icons/Map Icon.png" id="42_qoydj"]
 [ext_resource type="Script" uid="uid://demrdhdfbvsvh" path="res://Scripts/UI/map.gd" id="42_y1m5i"]
 [ext_resource type="Texture2D" uid="uid://borl3vfrqc1r5" path="res://Sprites/Icons/Map Icon unlocked.png" id="43_lolh4"]
+[ext_resource type="Script" uid="uid://b303qufkqm8yk" path="res://Scripts/UI/dead_panel.gd" id="47_q8m6m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwshj"]
 bg_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
@@ -841,6 +842,65 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("42_y1m5i")
 
+[node name="Dead Panel" type="Control" parent="." unique_id=1868140571]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("47_q8m6m")
+
+[node name="Panel" type="Panel" parent="Dead Panel" unique_id=782658978]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -444.0
+offset_top = -200.0
+offset_right = 444.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="You Died" type="Label" parent="Dead Panel/Panel" unique_id=817392507]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -108.0
+offset_right = 296.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_hfhsn")
+theme_type_variation = &"TitleLabel"
+theme_override_font_sizes/font_size = 128
+text = "You Died"
+horizontal_alignment = 1
+
+[node name="Respawn" type="Button" parent="Dead Panel/Panel" unique_id=1837032603]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 188.0
+offset_top = -68.0
+offset_right = -188.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("4_hfhsn")
+text = "Respawn"
+
 [node name="AutosaveIcon" type="Sprite2D" parent="." unique_id=1756865146]
 visible = false
 position = Vector2(1055, 591)
@@ -851,3 +911,4 @@ texture = ExtResource("11_b1goy")
 [connection signal="pressed" from="Crafting Panel/CraftButton" to="." method="_on_craft_button_pressed"]
 [connection signal="pressed" from="Player Panel/Panel/Settings/Quit" to="Player Panel/Panel/Settings" method="_on_quit_pressed"]
 [connection signal="pressed" from="Player Panel/Panel/Upgrades/InfoPanel/Learn" to="Player Panel/Panel/Upgrades" method="_on_learn_pressed"]
+[connection signal="pressed" from="Dead Panel/Panel/Respawn" to="Dead Panel" method="_on_respawn_pressed"]
