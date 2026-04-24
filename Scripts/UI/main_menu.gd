@@ -4,8 +4,11 @@ extends Control
 @onready var new_game_btn := $"MenuButtons/New Game"
 @onready var continue_btn := $MenuButtons/Continue
 
+var debug_hour := -1
+
 func _ready() -> void:
-	
+	update_background_by_time()
+
 	if Manager.fullscreen == true :
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	TranslationServer.set_locale(Manager.selected_language)
@@ -17,6 +20,35 @@ func _ready() -> void:
 	fade_out()
 	
 	continue_btn.visible = FileAccess.file_exists(Manager.SAVE_PATH)
+	
+#defualt 00000d86
+func update_background_by_time():
+	var hour : int
+
+	if debug_hour != -1:
+		hour = debug_hour
+	else:
+		hour = Time.get_datetime_dict_from_system().hour
+
+	var dark := Color(0, 0, 0, 1)
+	var color : Color
+
+	if hour >= 6 and hour < 10:
+		color = dark
+		color.a = 0.25
+
+	elif hour >= 10 and hour < 17:
+		color = dark
+		color.a = 0.35
+
+	elif hour >= 17 and hour < 20:
+		color = dark
+		color.a = 0.6
+	else:
+		color = dark
+		color.a = 0.75
+
+	$Background/BackGroundNight.color = color
 	
 func fade_out():
 	var tween := get_tree().create_tween()
@@ -81,3 +113,5 @@ func refresh_texts():
 		tr("ALPHA_VERSION")
 	]
 	
+func _on_extras_pressed() -> void:
+	$ExtrasSettings.visible = true

@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dop67gfbdm6x2"]
+
+[ext_resource type="Script" uid="uid://cl6rg7y2gvvpd" path="res://Scripts/UI/achievement_item.gd" id="1_7dar2"]
+[ext_resource type="Texture2D" uid="uid://bouvhsnnvoi2" path="res://Sprites/Icons/Achievement/Base.png" id="1_eb6gd"]
+[ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="2_7dar2"]
+
+[node name="AchievementItem" type="Control" unique_id=1847290891]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -680.0
+offset_bottom = -560.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7dar2")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=77230363]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 120.0
+offset_bottom = 104.0
+texture = ExtResource("1_eb6gd")
+
+[node name="Name" type="Label" parent="." unique_id=431810083]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 354.0
+offset_bottom = 44.0
+theme = ExtResource("2_7dar2")
+text = "the name goes here"
+
+[node name="Description" type="Label" parent="." unique_id=1435424667]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 40.0
+offset_right = 576.0
+offset_bottom = 112.0
+theme = ExtResource("2_7dar2")
+theme_override_colors/font_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
+theme_override_constants/line_spacing = -6
+theme_override_font_sizes/font_size = 24
+text = "the details of the achievement are written here
+here goes the second line of details"

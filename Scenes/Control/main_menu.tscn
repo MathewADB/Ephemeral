@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b3m1jt1pbrt36" path="res://Sprites/UI/telegram icon blue.png" id="10_owwpy"]
 [ext_resource type="Script" uid="uid://b21acya5i4ti7" path="res://Scripts/UI/menu_settings.gd" id="11_bljlc"]
 [ext_resource type="Texture2D" uid="uid://jlnfieyqqkq2" path="res://Sprites/UI/instagram icon blue.png" id="11_gied8"]
+[ext_resource type="Script" uid="uid://bqgqlret8q8ky" path="res://Scripts/UI/extras_settings.gd" id="13_8yhkh"]
 
 [node name="Main Menu" type="Control" unique_id=1438550500]
 layout_mode = 3
@@ -305,11 +306,7 @@ offset_left = 48.0
 offset_top = 32.0
 offset_right = 168.0
 offset_bottom = 80.0
-theme_override_colors/font_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
-theme_override_colors/font_shadow_color = Color(0.043137256, 0.050980393, 0.0627451, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_outline_size = 1
+theme = ExtResource("4_qpyf4")
 theme_override_font_sizes/font_size = 48
 text = "Settings"
 horizontal_alignment = 1
@@ -391,6 +388,60 @@ text = "UI
 "
 alignment = 1
 
+[node name="ExtrasSettings" type="Control" parent="." unique_id=515953505]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_8yhkh")
+
+[node name="Panel" type="Panel" parent="ExtrasSettings" unique_id=1810199607]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"MenuPanel"
+
+[node name="Title" type="Label" parent="ExtrasSettings/Panel" unique_id=1502186366]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 288.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 48
+text = "Achievements"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ExtrasSettings/Panel" unique_id=139945440]
+layout_mode = 0
+offset_left = 584.0
+offset_top = 16.0
+offset_right = 1136.0
+offset_bottom = 528.0
+tile_scroll_hint = true
+
+[node name="GridContainer" type="VBoxContainer" parent="ExtrasSettings/Panel/ScrollContainer" unique_id=2089801199]
+custom_minimum_size = Vector2(0, 1000)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+
+[node name="Close" type="Button" parent="ExtrasSettings/Panel" unique_id=454797490]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 568.0
+offset_right = 1104.0
+offset_bottom = 616.0
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"BlueButton"
+text = "Close"
+
 [node name="Fade" type="ColorRect" parent="." unique_id=453366609]
 visible = false
 modulate = Color(1, 1, 1, 0)
@@ -406,6 +457,7 @@ color = Color(0, 0, 0, 1)
 [connection signal="pressed" from="MenuButtons/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="MenuButtons/New Game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MenuButtons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MenuButtons/Extras" to="." method="_on_extras_pressed"]
 [connection signal="pressed" from="MenuButtons/Credit" to="." method="_on_credit_pressed"]
 [connection signal="pressed" from="MenuButtons/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Language" to="." method="_on_language_pressed"]
@@ -413,3 +465,4 @@ color = Color(0, 0, 0, 1)
 [connection signal="pressed" from="MenuSettings/Panel/Container/Reset" to="MenuSettings" method="_on_reset_pressed"]
 [connection signal="toggled" from="MenuSettings/Panel/Container/Fullscreen" to="MenuSettings" method="_on_fullscreen_toggled"]
 [connection signal="toggled" from="MenuSettings/Panel/Container/Music" to="MenuSettings" method="_on_music_toggled"]
+[connection signal="pressed" from="ExtrasSettings/Panel/Close" to="ExtrasSettings" method="_on_close_pressed"]

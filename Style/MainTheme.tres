@@ -240,6 +240,7 @@ CreditsButton/styles/normal = SubResource("StyleBoxEmpty_j4bnx")
 CreditsButton/styles/pressed = SubResource("StyleBoxEmpty_g4fcp")
 InfoPanel/base_type = &"Panel"
 InfoPanel/styles/panel = SubResource("StyleBoxFlat_gjqfl")
+Label/colors/font_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
 Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("1_pvpjx")
 LabelInfo/base_type = &"Label"
