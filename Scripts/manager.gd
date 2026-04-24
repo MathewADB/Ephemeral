@@ -138,9 +138,9 @@ var achievements := {
 		"description": "Gain your first XP",
 		"unlocked": false
 	},
-	"level_3": {
-		"name": "Growing Stronger",
-		"description": "Reach level 3",
+	"level_5": {
+		"name": "Growing Strong",
+		"description": "Reach level 5",
 		"unlocked": false
 	},
 	"first_death": {
@@ -445,7 +445,8 @@ func unlock_achievement(id: String):
 	
 	print("Unlocked:", achievements[id]["name"])
 	
-	UI.show_text_popup("Achievement Unlocked: " + achievements[id]["name"])
+	var ach = achievements[id]
+	UI.show_achievement_popup(ach["name"], ach["description"])
 	
 	save_game()
 	
@@ -506,8 +507,8 @@ func check_level_up():
 		current_xp -= get_required_xp(level)
 		level += 1
 		
-		if level >= 3:
-			unlock_achievement("level_3")
+		if level >= 5:
+			unlock_achievement("level_5")
 	
 		skill_points += 1
 		skill_points_changed.emit(skill_points)

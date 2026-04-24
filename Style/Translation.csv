@@ -1,9 +1,9 @@
 KEY,EN,DE
-NEW_GAME,New Game,Neues Spiel
-CONTINUE,Continue,Fortsetzen
-SETTINGS,Settings,Einstellungen
-CREDITS,Credits,Mitwirkende
-EXIT,Exit,Beenden
+NEW_GAME,NEW GAME,NEUES SPIEL
+CONTINUE,CONTINUE,FORTSETZEN
+SETTINGS,SETTINGS,EINSTELLUNGEN
+CREDITS,CREDITS,MITWIRKENDE
+EXIT,EXIT,BEENDEN
 DEMO_VERSION,Demo Version,Demoversion
 UNDER_DEVELOPMENT,under Development,in der Entwicklung 
 CREDITS_TEXT,"[center][font_size=48]Made By Mathew A[/font_size][/center]
@@ -17,6 +17,18 @@ Mathew A
 [font_size=32]Art[/font_size]
 Mathew A
 
+[font_size=32]Testing[/font_size]
+Karma Dude
+
+[font_size=32]Level Design[/font_size]
+Mathew A
+
+[font_size=32]Music[/font_size]
+Austin
+
+[font_size=32]SFX[/font_size]
+Austin
+
 [center][font_size=40]Thanks To[/font_size][/center]
 
 Discord Friends for their support:
@@ -25,7 +37,7 @@ Discord Friends for their support:
 - @Josse
 - @Therealchrisnorton
 - @WilliamIsMe
-- @Austinkool94
+- Austin
 
 [center][font_size=40]Game Dev Network[/font_size][/center]
 
@@ -54,6 +66,18 @@ Mathew A
 [font_size=32]Grafik[/font_size]
 Mathew A
 
+[font_size=32]Qualitätssicherung[/font_size]
+Karmda Dude
+
+[font_size=32]Leveldesign[/font_size]
+Mathew A
+
+[font_size=32]Musik[/font_size]
+Austin
+
+[font_size=32]Soundeffekte[/font_size]
+Austin
+
 [center][font_size=40]Danke an[/font_size][/center]
 
 Discord-Freunde für ihre Unterstützung:
@@ -62,7 +86,7 @@ Discord-Freunde für ihre Unterstützung:
 - @Josse
 - @Therealchrisnorton
 - @WilliamIsMe
-- @Austinkool94
+- Austin
 
 [center][font_size=40]Game Dev Netzwerk[/font_size][/center]
 
@@ -92,3 +116,19 @@ RESPAWN,Respawn,Wiederbeleben
 FULLSCREEN,Fullscreen,Vollbild 
 RESET_GAME,Reset Game,Spiel zurücksetzen 
 ALPHA_VERSION,Alpha Version,Alpha-Phase 
+GENERAL,General,Allgemein 
+DATA,Data,Daten
+NEW_AREA,New Area Discovered,Neues Gebiet entdeckt 
+AUDIO,Audio,Audio
+SOUND,Sound,Ton
+AUDIO_SETTINGS,Audio Settings,Audioeinstellungen 
+MASTER_VOLUME,Master Volume,Gesamtlautstärke 
+MUSIC_VOLUME,Music Volume ,Musiklautstärke 
+SFX_VOLUME,SFX Volume ,Effektlautstärke 
+UI_VOLUME,UI Volume ,UI-Lautstärke 
+AMBIENCE_VOLUME,Ambience Volume,Umgebungslautstärke 
+MASTER ,Master,Gesamt
+MUSIC,Music,Musik
+SFX,SFX,Effekt
+UI,UI,UI
+AMBIENCE,Ambience,Umgebungs

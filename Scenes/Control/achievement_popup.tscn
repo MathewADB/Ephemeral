@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bhk0eea4bvv3m"]
+
+[ext_resource type="Script" uid="uid://5l5nd8ewnyqj" path="res://Scripts/UI/achievement_popup.gd" id="1_3orde"]
+[ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="1_qxvhf"]
+
+[node name="Achievement_Popup" type="Control" unique_id=355242647]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+script = ExtResource("1_3orde")
+
+[node name="Panel" type="Panel" parent="." unique_id=77934826]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -252.0
+offset_right = 252.0
+offset_bottom = 96.0
+grow_horizontal = 2
+theme = ExtResource("1_qxvhf")
+theme_type_variation = &"AchievementPanel"
+
+[node name="Name" type="Label" parent="Panel" unique_id=467808734]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 108.0
+offset_top = 8.0
+offset_right = -4.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qxvhf")
+theme_override_colors/font_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
+text = "Achievement Unlocked"
+
+[node name="Details" type="Label" parent="Panel" unique_id=1307335752]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 48.0
+offset_right = 464.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0.6509804, 0.76862746, 0.7490196, 1)
+theme_override_font_sizes/font_size = 16
+text = "Achievement Description
+here is the details about the achievements"
+
+[node name="Icon" type="Panel" parent="Panel" unique_id=662508995]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 92.0
+offset_bottom = 88.0

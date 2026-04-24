@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8emuwetyylfs"
-path="res://.godot/imported/instagram icon.png-e2dfdfa467db52f1f5639c9f98f50738.ctex"
+uid="uid://jlnfieyqqkq2"
+path="res://.godot/imported/instagram icon blue.png-a3a3017e09a7d55916309f324a8518b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/instagram icon.png"
-dest_files=["res://.godot/imported/instagram icon.png-e2dfdfa467db52f1f5639c9f98f50738.ctex"]
+source_file="res://Sprites/UI/instagram icon blue.png"
+dest_files=["res://.godot/imported/instagram icon blue.png-a3a3017e09a7d55916309f324a8518b0.ctex"]
 
 [params]
 

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bql1psa83b4oj"]
+
+[ext_resource type="AudioStream" uid="uid://db35dvoy1sppx" path="res://Audio/Music/MistyOST1-no_melody.ogg" id="1_7lj3j"]
+
+[node name="GameMusic" type="AudioStreamPlayer" unique_id=154937070]
+process_mode = 3
+stream = ExtResource("1_7lj3j")
+autoplay = true
+bus = &"Music"
+parameters/looping = true

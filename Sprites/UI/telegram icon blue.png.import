@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bipsx11h5mw73"
-path="res://.godot/imported/telegram icon.png-5058607010b83c974bcbe89fbea68254.ctex"
+uid="uid://b3m1jt1pbrt36"
+path="res://.godot/imported/telegram icon blue.png-2e6bf41a13eed54999e96165453d8b10.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/telegram icon.png"
-dest_files=["res://.godot/imported/telegram icon.png-5058607010b83c974bcbe89fbea68254.ctex"]
+source_file="res://Sprites/UI/telegram icon blue.png"
+dest_files=["res://.godot/imported/telegram icon blue.png-2e6bf41a13eed54999e96165453d8b10.ctex"]
 
 [params]
 

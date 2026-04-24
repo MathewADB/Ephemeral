@@ -19,7 +19,7 @@ func _on_body_entered(body: Node2D) -> void:
 		Manager.visited_rooms.append(Room)
 		if give_exp :
 			Manager.add_xp(200)
-			UI.show_text_popup(Room_Name)
+			UI.show_text_popup(tr("NEW_AREA")+ "\n" +Room_Name)
 	
 	Manager.map_updated.emit()
 	get_tree().call_deferred("change_scene_to_file", Room)

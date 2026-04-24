@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tuwand0spto2"
-path="res://.godot/imported/Wiki Icon.png-decc92d1b5bb582d6484cdd8ab019fb4.ctex"
+uid="uid://cy66r6ix8ly2w"
+path="res://.godot/imported/Wiki Icon blue.png-957ceea787b8f67358bb19c90a27a9fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/Wiki Icon.png"
-dest_files=["res://.godot/imported/Wiki Icon.png-decc92d1b5bb582d6484cdd8ab019fb4.ctex"]
+source_file="res://Sprites/UI/Wiki Icon blue.png"
+dest_files=["res://.godot/imported/Wiki Icon blue.png-957ceea787b8f67358bb19c90a27a9fa.ctex"]
 
 [params]
 

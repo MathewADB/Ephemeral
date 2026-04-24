@@ -6,11 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://bq0b2gp87rk7t" path="res://Sprites/Player/Blue Slime Hiding.png" id="3_lhq8l"]
 [ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="4_qpyf4"]
 [ext_resource type="Texture2D" uid="uid://cs2qpfetvkqcu" path="res://Sprites/UI/Rain Drop.png" id="5_5g84f"]
-[ext_resource type="Texture2D" uid="uid://cots3f4b4bw0g" path="res://Sprites/UI/discord icon.png" id="7_m6hyo"]
-[ext_resource type="Texture2D" uid="uid://tuwand0spto2" path="res://Sprites/UI/Wiki Icon.png" id="7_yrb42"]
-[ext_resource type="Texture2D" uid="uid://bipsx11h5mw73" path="res://Sprites/UI/telegram icon.png" id="9_gmial"]
-[ext_resource type="Texture2D" uid="uid://c8emuwetyylfs" path="res://Sprites/UI/instagram icon.png" id="10_bljlc"]
+[ext_resource type="Texture2D" uid="uid://bndrl217g7sks" path="res://Sprites/UI/globe icon.png" id="7_7bh0h"]
+[ext_resource type="Texture2D" uid="uid://cy66r6ix8ly2w" path="res://Sprites/UI/Wiki Icon blue.png" id="8_8yhkh"]
+[ext_resource type="Texture2D" uid="uid://bmj65mmkyqfi7" path="res://Sprites/UI/discord icon blue.png" id="9_254pk"]
+[ext_resource type="Texture2D" uid="uid://b3m1jt1pbrt36" path="res://Sprites/UI/telegram icon blue.png" id="10_owwpy"]
 [ext_resource type="Script" uid="uid://b21acya5i4ti7" path="res://Scripts/UI/menu_settings.gd" id="11_bljlc"]
+[ext_resource type="Texture2D" uid="uid://jlnfieyqqkq2" path="res://Sprites/UI/instagram icon blue.png" id="11_gied8"]
 
 [node name="Main Menu" type="Control" unique_id=1438550500]
 layout_mode = 3
@@ -32,7 +33,7 @@ texture = ExtResource("1_swixg")
 
 [node name="Background" type="TileMapLayer" parent="." unique_id=2089615401]
 scale = Vector2(3, 3)
-tile_map_data = PackedByteArray("AAAAAAoAAAACAAMAAAABAAoAAAACAAMAAAACAAoAAAACAAMAAAADAAoAAAACAAMAAAAEAAoAAAACAAMAAAAFAAoAAAACAAMAAAAGAAoAAAACAAMAAAAHAAoAAAACAAMAAAAIAAoAAAACAAMAAAAJAAoAAAACAAMAAAAKAAoAAAACAAMAAAALAAoAAAACAAMAAAAMAAoAAAACAAMAAAANAAoAAAACAAMAAAAOAAoAAAACAAMAAAAPAAoAAAACAAMAAAAQAAoAAAACAAMAAAARAAoAAAACAAMAAAASAAoAAAACAAMAAAATAAoAAAACAAMAAAAUAAoAAAACAAMAAAAVAAoAAAACAAMAAAAWAAoAAAACAAMAAAAXAAoAAAACAAMAAAAAAAsAAAACAAQAAAAAAAwAAAACAAQAAAAAAA0AAAACAAQAAAABAAsAAAACAAQAAAABAAwAAAACAAQAAAABAA0AAAACAAQAAAACAAsAAAACAAQAAAACAAwAAAACAAQAAAACAA0AAAACAAQAAAADAAsAAAACAAQAAAADAAwAAAACAAQAAAADAA0AAAACAAQAAAAEAAsAAAACAAQAAAAEAAwAAAACAAQAAAAEAA0AAAACAAQAAAAFAAsAAAACAAQAAAAFAAwAAAACAAQAAAAFAA0AAAACAAQAAAAGAAsAAAACAAQAAAAGAAwAAAACAAQAAAAGAA0AAAACAAQAAAAHAAsAAAACAAQAAAAHAAwAAAACAAQAAAAHAA0AAAACAAQAAAAIAAsAAAACAAQAAAAIAAwAAAACAAQAAAAIAA0AAAACAAQAAAAJAAsAAAACAAQAAAAJAAwAAAACAAQAAAAJAA0AAAACAAQAAAAKAAsAAAACAAQAAAAKAAwAAAACAAQAAAAKAA0AAAACAAQAAAALAAsAAAACAAQAAAALAAwAAAACAAQAAAALAA0AAAACAAQAAAAMAAsAAAACAAQAAAAMAAwAAAACAAQAAAAMAA0AAAACAAQAAAANAAsAAAACAAQAAAANAAwAAAACAAQAAAANAA0AAAACAAQAAAAOAAsAAAACAAQAAAAOAAwAAAACAAQAAAAOAA0AAAACAAQAAAAPAAsAAAACAAQAAAAPAAwAAAACAAQAAAAPAA0AAAACAAQAAAAQAAsAAAACAAQAAAAQAAwAAAACAAQAAAAQAA0AAAACAAQAAAARAAsAAAACAAQAAAARAAwAAAACAAQAAAARAA0AAAACAAQAAAASAAsAAAACAAQAAAASAAwAAAACAAQAAAASAA0AAAACAAQAAAATAAsAAAACAAQAAAATAAwAAAACAAQAAAATAA0AAAACAAQAAAAUAAsAAAACAAQAAAAUAAwAAAACAAQAAAAUAA0AAAACAAQAAAAVAAsAAAACAAQAAAAVAAwAAAACAAQAAAAVAA0AAAACAAQAAAAWAAsAAAACAAQAAAAWAAwAAAACAAQAAAAWAA0AAAACAAQAAAAXAAsAAAACAAQAAAAXAAwAAAACAAQAAAAXAA0AAAACAAQAAAADAAMAAAAKAAAAABAPAAYAAAAKAAAAAAAWAAQAAAAKAAIAABATAAcAAAAIAAYAAAA=")
+tile_map_data = PackedByteArray("AAAAAAoAAAACAAMAAAABAAoAAAACAAMAAAACAAoAAAACAAMAAAADAAoAAAACAAMAAAAEAAoAAAACAAMAAAAFAAoAAAACAAMAAAAGAAoAAAACAAMAAAAHAAoAAAACAAMAAAAIAAoAAAACAAMAAAAJAAoAAAACAAMAAAAKAAoAAAACAAMAAAALAAoAAAACAAMAAAAMAAoAAAACAAMAAAANAAoAAAACAAMAAAAOAAoAAAACAAMAAAAPAAoAAAACAAMAAAAQAAoAAAACAAMAAAARAAoAAAACAAMAAAASAAoAAAACAAMAAAATAAoAAAACAAMAAAAUAAoAAAACAAMAAAAVAAoAAAACAAMAAAAWAAoAAAACAAMAAAAXAAoAAAACAAMAAAAAAAsAAAACAAQAAAAAAAwAAAACAAQAAAAAAA0AAAACAAQAAAABAAsAAAACAAQAAAABAAwAAAACAAQAAAABAA0AAAACAAQAAAACAAsAAAACAAQAAAACAAwAAAACAAQAAAACAA0AAAACAAQAAAADAAsAAAACAAQAAAADAAwAAAACAAQAAAADAA0AAAACAAQAAAAEAAsAAAACAAQAAAAEAAwAAAACAAQAAAAEAA0AAAACAAQAAAAFAAsAAAACAAQAAAAFAAwAAAACAAQAAAAFAA0AAAACAAQAAAAGAAsAAAACAAQAAAAGAAwAAAACAAQAAAAGAA0AAAACAAQAAAAHAAsAAAACAAQAAAAHAAwAAAACAAQAAAAHAA0AAAACAAQAAAAIAAsAAAACAAQAAAAIAAwAAAACAAQAAAAIAA0AAAACAAQAAAAJAAsAAAACAAQAAAAJAAwAAAACAAQAAAAJAA0AAAACAAQAAAAKAAsAAAACAAQAAAAKAAwAAAACAAQAAAAKAA0AAAACAAQAAAALAAsAAAACAAQAAAALAAwAAAACAAQAAAALAA0AAAACAAQAAAAMAAsAAAACAAQAAAAMAAwAAAACAAQAAAAMAA0AAAACAAQAAAANAAsAAAACAAQAAAANAAwAAAACAAQAAAANAA0AAAACAAQAAAAOAAsAAAACAAQAAAAOAAwAAAACAAQAAAAOAA0AAAACAAQAAAAPAAsAAAACAAQAAAAPAAwAAAACAAQAAAAPAA0AAAACAAQAAAAQAAsAAAACAAQAAAAQAAwAAAACAAQAAAAQAA0AAAACAAQAAAARAAsAAAACAAQAAAARAAwAAAACAAQAAAARAA0AAAACAAQAAAASAAsAAAACAAQAAAASAAwAAAACAAQAAAASAA0AAAACAAQAAAATAAsAAAACAAQAAAATAAwAAAACAAQAAAATAA0AAAACAAQAAAAUAAsAAAACAAQAAAAUAAwAAAACAAQAAAAUAA0AAAACAAQAAAAVAAsAAAACAAQAAAAVAAwAAAACAAQAAAAVAA0AAAACAAQAAAAWAAsAAAACAAQAAAAWAAwAAAACAAQAAAAWAA0AAAACAAQAAAAXAAsAAAACAAQAAAAXAAwAAAACAAQAAAAXAA0AAAACAAQAAAAPAAYAAAAKAAAAAAAWAAQAAAAKAAIAABATAAcAAAAIAAYAAAAFAAIAAAAKAAAAABA=")
 tile_set = ExtResource("2_qpyf4")
 
 [node name="SlimeHiding" type="Sprite2D" parent="." unique_id=1785453063]
@@ -48,12 +49,12 @@ position = Vector2(-66.00003, -20.999985)
 rotation = -0.32463127
 amount = 200
 texture = ExtResource("5_5g84f")
-lifetime = 1.5
+lifetime = 2.5
 randomness = 1.0
 local_coords = true
 emission_shape = 3
 emission_rect_extents = Vector2(700, 1)
-gravity = Vector2(0, 800)
+gravity = Vector2(0, 4)
 initial_velocity_min = 600.0
 initial_velocity_max = 600.0
 angle_min = 45.0
@@ -62,21 +63,123 @@ scale_amount_min = 0.6
 scale_amount_max = 0.8
 color = Color(0.87058824, 1, 1, 1)
 
+[node name="BackGroundNight" type="ColorRect" parent="." unique_id=360656769]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0.050980393, 0.5254902)
+
+[node name="MenuButtons" type="VBoxContainer" parent="." unique_id=17232168]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -130.0
+offset_right = 208.0
+offset_bottom = 86.0
+grow_vertical = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"MenuContainer"
+
+[node name="Continue" type="Button" parent="MenuButtons" unique_id=872970739]
+visible = false
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"settingsButton"
+text = "CONTINUE"
+
+[node name="New Game" type="Button" parent="MenuButtons" unique_id=379659977]
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"settingsButton"
+text = "NEW GAME"
+
+[node name="Settings" type="Button" parent="MenuButtons" unique_id=665063073]
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"settingsButton"
+text = "SETTINGS"
+
+[node name="Credit" type="Button" parent="MenuButtons" unique_id=789079974]
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"settingsButton"
+text = "CREDITS"
+
+[node name="Exit" type="Button" parent="MenuButtons" unique_id=2074785371]
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"RedMenuButton"
+text = "EXIT"
+
+[node name="Language" type="Button" parent="." unique_id=2146449591]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.003
+anchor_bottom = 0.006
+offset_left = 1072.0
+offset_top = 16.0
+offset_right = 1132.544
+offset_bottom = 56.112
+theme = ExtResource("4_qpyf4")
+theme_override_colors/font_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
+theme_override_colors/font_focus_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
+theme_override_colors/font_pressed_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
+theme_override_colors/font_hover_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
+text = "EN"
+icon = ExtResource("7_7bh0h")
+icon_alignment = 2
+expand_icon = true
+
+[node name="Social" type="HBoxContainer" parent="." unique_id=367837486]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 566.0
+offset_right = 139.99997
+offset_bottom = 598.0
+
+[node name="Wiki" type="TextureButton" parent="Social" unique_id=1782298257]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("8_8yhkh")
+stretch_mode = 5
+
+[node name="Discord" type="TextureButton" parent="Social" unique_id=904538776]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("9_254pk")
+stretch_mode = 5
+
+[node name="Telegram" type="TextureButton" parent="Social" unique_id=251208887]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("10_owwpy")
+stretch_mode = 5
+
+[node name="Instagram" type="TextureButton" parent="Social" unique_id=1770919898]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("11_gied8")
+stretch_mode = 5
+
 [node name="License" type="Label" parent="." unique_id=377241039]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 762.0
-offset_top = -53.0
-offset_right = 1502.0
-offset_bottom = 19.0
+offset_left = 760.0
+offset_top = -48.0
+offset_right = 1500.0
+offset_bottom = 24.0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_qpyf4")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_type_variation = &"MenuLabel"
 theme_override_font_sizes/font_size = 64
 text = "© 2026 Mathew A • Godot Engine"
 
@@ -92,9 +195,8 @@ offset_bottom = -16.0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_qpyf4")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_type_variation = &"MenuLabel"
+theme_override_constants/shadow_outline_size = 4
 theme_override_font_sizes/font_size = 64
 text = "Demo Version"
 horizontal_alignment = 2
@@ -104,71 +206,34 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 15.0
-offset_top = -53.0
-offset_right = 499.0
-offset_bottom = 19.0
+offset_left = 16.0
+offset_top = -48.0
+offset_right = 500.0
+offset_bottom = 24.0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_qpyf4")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_type_variation = &"MenuLabel"
 theme_override_font_sizes/font_size = 64
 text = "v1.0.0.0 development"
 
-[node name="Language" type="Button" parent="." unique_id=2146449591]
+[node name="Shadow" type="Label" parent="." unique_id=349158524]
+modulate = Color(0.39215687, 0.7647059, 0.87058824, 0.101960786)
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.003
-anchor_bottom = 0.006
-offset_left = 1088.0
-offset_top = 512.0
-offset_right = 1120.544
-offset_bottom = 552.112
-theme = ExtResource("4_qpyf4")
-text = "EN"
-
-[node name="Social" type="HBoxContainer" parent="." unique_id=367837486]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 566.0
-offset_right = 139.99997
-offset_bottom = 598.0
-
-[node name="Wiki" type="TextureButton" parent="Social" unique_id=1782298257]
-layout_mode = 2
-size_flags_horizontal = 3
-texture_normal = ExtResource("7_yrb42")
-stretch_mode = 5
-
-[node name="Discord" type="TextureButton" parent="Social" unique_id=904538776]
-layout_mode = 2
-size_flags_horizontal = 3
-texture_normal = ExtResource("7_m6hyo")
-stretch_mode = 5
-
-[node name="Telegram" type="TextureButton" parent="Social" unique_id=251208887]
-layout_mode = 2
-size_flags_horizontal = 3
-texture_normal = ExtResource("9_gmial")
-stretch_mode = 5
-
-[node name="Instagram" type="TextureButton" parent="Social" unique_id=1770919898]
-layout_mode = 2
-size_flags_horizontal = 3
-texture_normal = ExtResource("10_bljlc")
-stretch_mode = 5
-
-[node name="BackGroundNight" type="ColorRect" parent="." unique_id=360656769]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -186.0
+offset_right = 186.0
+offset_bottom = 216.0
 grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0.41960785)
+scale = Vector2(1.02, 1.02)
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"TitleLabel"
+theme_override_font_sizes/font_size = 128
+text = "Misty"
+horizontal_alignment = 1
+uppercase = true
 
 [node name="Title" type="Label" parent="." unique_id=1327776182]
 layout_mode = 1
@@ -181,69 +246,11 @@ offset_bottom = 216.0
 grow_horizontal = 2
 theme = ExtResource("4_qpyf4")
 theme_type_variation = &"TitleLabel"
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 128
 text = "Misty"
-
-[node name="MenuButtons" type="VBoxContainer" parent="." unique_id=17232168]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -124.0
-offset_right = 169.0
-offset_bottom = 124.0
-grow_vertical = 2
-
-[node name="Continue" type="Button" parent="MenuButtons" unique_id=872970739]
-visible = false
-layout_mode = 2
-theme = ExtResource("4_qpyf4")
-theme_type_variation = &"settingsButton"
-text = "Continue"
-
-[node name="New Game" type="Button" parent="MenuButtons" unique_id=379659977]
-layout_mode = 2
-theme = ExtResource("4_qpyf4")
-theme_type_variation = &"settingsButton"
-text = "New Game"
-
-[node name="Settings" type="Button" parent="MenuButtons" unique_id=665063073]
-layout_mode = 2
-theme = ExtResource("4_qpyf4")
-theme_type_variation = &"settingsButton"
-text = "Settings"
-
-[node name="Credit" type="Button" parent="MenuButtons" unique_id=789079974]
-layout_mode = 2
-theme = ExtResource("4_qpyf4")
-theme_type_variation = &"settingsButton"
-text = "Credits"
-
-[node name="Exit" type="Button" parent="MenuButtons" unique_id=2074785371]
-layout_mode = 2
-theme = ExtResource("4_qpyf4")
-theme_type_variation = &"settingsButton"
-text = "Exit"
-
-[node name="ForeGroundNight" type="ColorRect" parent="." unique_id=817974201]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0.3019608)
-
-[node name="Fade" type="ColorRect" parent="." unique_id=453366609]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+uppercase = true
 
 [node name="MenuSettings" type="Control" parent="." unique_id=2121986885]
 visible = false
@@ -265,48 +272,127 @@ grow_vertical = 2
 theme = ExtResource("4_qpyf4")
 theme_type_variation = &"MenuPanel"
 
-[node name="Fullscreen" type="Button" parent="MenuSettings/Panel" unique_id=1778245023]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 96.0
-offset_right = 400.0
-offset_bottom = 140.0
-theme = ExtResource("4_qpyf4")
-text = "Fullscreen
-"
-
-[node name="Reset" type="Button" parent="MenuSettings/Panel" unique_id=1830847322]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 40.0
-offset_right = 400.0
-offset_bottom = 84.0
-text = "Reset Game
-"
-
 [node name="Close" type="Button" parent="MenuSettings/Panel" unique_id=911361535]
 layout_mode = 0
-offset_left = 56.0
-offset_top = 520.0
-offset_right = 296.0
-offset_bottom = 608.0
+offset_left = 920.0
+offset_top = 568.0
+offset_right = 1104.0
+offset_bottom = 616.0
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"BlueButton"
 text = "Close"
 
 [node name="Settings" type="Label" parent="MenuSettings/Panel" unique_id=208041109]
 layout_mode = 0
-offset_left = 832.0
+offset_left = 48.0
 offset_top = 32.0
-offset_right = 1088.0
-offset_bottom = 144.0
+offset_right = 168.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
+theme_override_colors/font_shadow_color = Color(0.043137256, 0.050980393, 0.0627451, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 1
+theme_override_font_sizes/font_size = 48
 text = "Settings"
 horizontal_alignment = 1
 
-[connection signal="pressed" from="Language" to="." method="_on_language_pressed"]
+[node name="Container" type="VBoxContainer" parent="MenuSettings/Panel" unique_id=2135370774]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 128.0
+offset_right = 280.0
+offset_bottom = 604.0
+
+[node name="Data" type="Label" parent="MenuSettings/Panel/Container" unique_id=793534656]
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"MenuLabel"
+text = "Data"
+
+[node name="Reset" type="Button" parent="MenuSettings/Panel/Container" unique_id=1830847322]
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"RedButton"
+text = "Reset Game
+"
+
+[node name="spacing label" type="Label" parent="MenuSettings/Panel/Container" unique_id=562366245]
+layout_mode = 2
+
+[node name="General" type="Label" parent="MenuSettings/Panel/Container" unique_id=985963664]
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"MenuLabel"
+text = "General"
+
+[node name="Fullscreen" type="CheckBox" parent="MenuSettings/Panel/Container" unique_id=1059566565]
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"SettingsCheckButton"
+text = "Fullscreen
+"
+alignment = 1
+
+[node name="spacing label2" type="Label" parent="MenuSettings/Panel/Container" unique_id=1039358739]
+layout_mode = 2
+
+[node name="Audio" type="Label" parent="MenuSettings/Panel/Container" unique_id=1678908758]
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"MenuLabel"
+text = "Audio"
+
+[node name="Music" type="CheckBox" parent="MenuSettings/Panel/Container" unique_id=757673248]
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"SettingsCheckButton"
+text = "Music
+"
+alignment = 1
+
+[node name="SFX" type="CheckBox" parent="MenuSettings/Panel/Container" unique_id=2011426540]
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"SettingsCheckButton"
+text = "SFX"
+alignment = 1
+
+[node name="Ambient" type="CheckBox" parent="MenuSettings/Panel/Container" unique_id=1449530573]
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"SettingsCheckButton"
+text = "Ambient
+"
+alignment = 1
+
+[node name="UI" type="CheckBox" parent="MenuSettings/Panel/Container" unique_id=451866889]
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"SettingsCheckButton"
+text = "UI
+"
+alignment = 1
+
+[node name="Fade" type="ColorRect" parent="." unique_id=453366609]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
 [connection signal="pressed" from="MenuButtons/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="MenuButtons/New Game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MenuButtons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MenuButtons/Credit" to="." method="_on_credit_pressed"]
 [connection signal="pressed" from="MenuButtons/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="MenuSettings/Panel/Fullscreen" to="MenuSettings" method="_on_fullscreen_pressed"]
-[connection signal="pressed" from="MenuSettings/Panel/Reset" to="MenuSettings" method="_on_reset_pressed"]
+[connection signal="pressed" from="Language" to="." method="_on_language_pressed"]
 [connection signal="pressed" from="MenuSettings/Panel/Close" to="MenuSettings" method="_on_close_pressed"]
+[connection signal="pressed" from="MenuSettings/Panel/Container/Reset" to="MenuSettings" method="_on_reset_pressed"]
+[connection signal="toggled" from="MenuSettings/Panel/Container/Fullscreen" to="MenuSettings" method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="MenuSettings/Panel/Container/Music" to="MenuSettings" method="_on_music_toggled"]

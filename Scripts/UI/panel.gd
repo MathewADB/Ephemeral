@@ -1,7 +1,5 @@
 extends TabContainer
 
-@onready var background: Node = $"../Background"
-
 const TAB_ACTIONS := {
 	"inventory": "Inventory",
 	"map":       "Map",
@@ -12,8 +10,8 @@ const TAB_ACTIONS := {
 
 func _ready() -> void:
 	visible = false
-	if background:
-		background.visible = false
+	$"../Q".visible = false
+	$"../E".visible = false
 	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	focus_mode   = Control.FOCUS_ALL
@@ -155,14 +153,12 @@ func _get_tab_index(tab_title: String) -> int:
 
 
 func _show_background() -> void:
-	if background:
-		background.visible = true
-
+	$"../Q".visible = true
+	$"../E".visible = true
 
 func _hide_background() -> void:
-	if background:
-		background.visible = false
-
+	$"../Q".visible = false
+	$"../E".visible = false
 
 func _mark_handled(_event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()

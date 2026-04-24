@@ -26,6 +26,7 @@ var popup_index := 0
 
 var xp_popup_scene := preload("res://Scenes/Control/experience_popup.tscn")
 var text_popup_scene = preload("res://Scenes/Control/text_popup.tscn")
+var achievement_popup_scene = preload("res://Scenes/Control/achievement_popup.tscn")
 
 var current_tween: Tween
 
@@ -228,6 +229,20 @@ func show_text_popup(text: String):
 	
 	popup.offset_top = 160   
 
+@warning_ignore("shadowed_variable_base_class")
+func show_achievement_popup(name: String, desc: String):
+	var popup = achievement_popup_scene.instantiate()
+	$Popup.add_child(popup)
+
+	popup.anchor_left = 0.5
+	popup.anchor_right = 0.5
+	popup.anchor_top = 0.0
+	popup.anchor_bottom = 0.0
+
+	popup.offset_top = 40      # distance from top
+
+	popup.setup(name, desc)
+	
 			
 func set_progress(value):
 	miningbar.visible = true
