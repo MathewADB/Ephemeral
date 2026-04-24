@@ -69,13 +69,14 @@ func refresh_texts():
 	$MenuButtons/Continue.text = tr("CONTINUE")
 	$"MenuButtons/New Game".text = tr("NEW_GAME")
 	$MenuButtons/Settings.text = tr("SETTINGS")
+	$MenuButtons/Extras.text = tr("EXTRAS")
 	$MenuButtons/Credit.text = tr("CREDITS")
 	$MenuButtons/Exit.text = tr("EXIT")
 	
 	$Language.text = Manager.selected_language
-	$Update.text = tr("ALPHA_VERSION")
+	$Labels/Update.text = tr("ALPHA_VERSION")
 
-	$Version.text = "v%s %s" % [
+	$Labels/Version.text = "v%s %s" % [
 		ProjectSettings.get_setting("application/config/version"),
 		tr("ALPHA_VERSION")
 	]

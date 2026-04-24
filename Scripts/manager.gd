@@ -30,6 +30,43 @@ const ROOM_TYPES : Dictionary = {
 const DEFAULT_SPAWN_ROOM := "res://Scenes/Locations/Mushroom Biome/Home.tscn"
 const DEFAULT_SPAWN_POSITION := Vector2(618,497)
 
+const ACHIEVEMENT_DATA := {
+	"first_xp": {
+		"name": "Getting Started",
+		"description": "Gain your first XP",
+		"icon": preload("res://Sprites/Icons/Achievement/getting started.png")
+	},
+	"level_5": {
+		"name": "Growing Strong",
+		"description": "Reach level 5",
+		"icon": preload("res://Sprites/Icons/Achievement/growing strong.png")
+	},
+	"first_death": {
+		"name": "First Death",
+		"description": "Die for the first time",
+		"icon": preload("res://Sprites/Icons/Achievement/first death.png")
+	},
+	"first_craft": {
+		"name": "Crafting",
+		"description": "Craft your first item",
+		"icon": preload("res://Sprites/Icons/Achievement/first craft.png")
+	},
+	"death_10": {
+		"name": "Getting Used To It",
+		"description": "Die 10 times",
+		"icon": preload("res://Sprites/Icons/Achievement/tenth death.png")
+	},
+	"death_50": {
+		"name": "Endless Suffering",
+		"description": "Die 50 times",
+		"icon": preload("res://Sprites/Icons/Achievement/fifty death.png")
+	},
+	"craft_10": {
+		"name": "Apprentice Crafter",
+		"description": "Craft 10 items",
+		"icon": preload("res://Sprites/Icons/Achievement/tenth craft.png")
+	}
+}
 # --- SIGNALS ---
 
 signal night_changed(is_night: bool)
@@ -133,41 +170,13 @@ var death_count: int = 0
 var crafted_count: int = 0
 
 var achievements := {
-	"first_xp": {
-		"name": "Getting Started",
-		"description": "Gain your first XP",
-		"unlocked": false
-	},
-	"level_5": {
-		"name": "Growing Strong",
-		"description": "Reach level 5",
-		"unlocked": false
-	},
-	"first_death": {
-		"name": "First Death",
-		"description": "Die for the first time",
-		"unlocked": false
-	},
-	"first_craft": {
-		"name": "Crafting",
-		"description": "Craft your first item",
-		"unlocked": false
-	},
-	"death_10": {
-		"name": "Getting Used To It",
-		"description": "Die 10 times",
-		"unlocked": false
-	},
-	"death_50": {
-		"name": "Endless Suffering",
-		"description": "Die 50 times",
-		"unlocked": false
-	},
-	"craft_10": {
-		"name": "Apprentice Crafter",
-		"description": "Craft 10 items",
-		"unlocked": false
-	}
+	"first_xp": {"unlocked": false},
+	"level_5": {"unlocked": false},
+	"first_death": {"unlocked": false},
+	"first_craft": {"unlocked": false},
+	"death_10": {"unlocked": false},
+	"death_50": {"unlocked": false},
+	"craft_10": {"unlocked": false}
 }
 
 # -- ENDGAME --
@@ -290,7 +299,11 @@ func load_game():
 	fullscreen = settings.get("fullscreen", false)
 
 	end_triggered = data.get("end_triggered", false)
-	achievements = data.get("achievements", achievements)
+	var loaded_achievements = data.get("achievements", {})
+
+	for id in achievements.keys():
+		if loaded_achievements.has(id):
+			achievements[id]["unlocked"] = loaded_achievements[id].get("unlocked", false)
 	death_count = data.get("death_count", 0)
 	crafted_count = data.get("crafted_count", 0)
 	learned_upgrades = data.get("learned_upgrades", [])
@@ -443,10 +456,15 @@ func unlock_achievement(id: String):
 	
 	achievements[id]["unlocked"] = true
 	
-	print("Unlocked:", achievements[id]["name"])
+	print("Unlocked:", ACHIEVEMENT_DATA[id]["name"])
 	
-	var ach = achievements[id]
-	UI.show_achievement_popup(ach["name"], ach["description"])
+	var data = ACHIEVEMENT_DATA[id]
+	
+	UI.show_achievement_popup(
+		data["name"],
+		data["description"],
+		data["icon"]
+	)
 	
 	save_game()
 	

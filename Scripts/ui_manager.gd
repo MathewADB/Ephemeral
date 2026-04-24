@@ -230,7 +230,7 @@ func show_text_popup(text: String):
 	popup.offset_top = 160   
 
 @warning_ignore("shadowed_variable_base_class")
-func show_achievement_popup(name: String, desc: String):
+func show_achievement_popup(name: String, desc: String, icon: Texture2D):
 	var popup = achievement_popup_scene.instantiate()
 	$Popup.add_child(popup)
 
@@ -239,9 +239,9 @@ func show_achievement_popup(name: String, desc: String):
 	popup.anchor_top = 0.0
 	popup.anchor_bottom = 0.0
 
-	popup.offset_top = 40      # distance from top
+	popup.offset_top = 40
 
-	popup.setup(name, desc)
+	popup.setup(name, desc, icon)
 	
 			
 func set_progress(value):

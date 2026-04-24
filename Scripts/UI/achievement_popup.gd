@@ -1,14 +1,17 @@
 extends Control
 
-@onready var title := $Panel/Name
-@onready var description := $Panel/Details
-
 @export var lifetime := 3.0
 
 @warning_ignore("shadowed_variable_base_class")
-func setup(name: String, desc: String):
+@onready var icon := $Panel/Icon
+@onready var title := $Panel/Name
+@onready var description := $Panel/Details
+
+@warning_ignore("shadowed_variable_base_class")
+func setup(name: String, desc: String, texture: Texture2D):
 	title.text = "Achievement Unlocked"
 	description.text = name + "\n" + desc
+	icon.texture = texture
 	appear()
 
 func appear():
