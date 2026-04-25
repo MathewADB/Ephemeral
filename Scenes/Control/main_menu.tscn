@@ -130,34 +130,38 @@ theme = ExtResource("4_qpyf4")
 theme_type_variation = &"RedMenuButton"
 text = "EXIT"
 
-[node name="Social" type="HBoxContainer" parent="." unique_id=367837486]
+[node name="Social" type="HBoxContainer" parent="." unique_id=2110908057]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 566.0
-offset_right = 139.99997
-offset_bottom = 598.0
+offset_left = 968.0
+offset_top = 592.0
+offset_right = 1128.0
+offset_bottom = 640.0
 
 [node name="Wiki" type="TextureButton" parent="Social" unique_id=1782298257]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 texture_normal = ExtResource("8_8yhkh")
 stretch_mode = 5
 
 [node name="Discord" type="TextureButton" parent="Social" unique_id=904538776]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 texture_normal = ExtResource("9_254pk")
 stretch_mode = 5
 
 [node name="Telegram" type="TextureButton" parent="Social" unique_id=251208887]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 texture_normal = ExtResource("10_owwpy")
 stretch_mode = 5
 
 [node name="Instagram" type="TextureButton" parent="Social" unique_id=1770919898]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 texture_normal = ExtResource("11_gied8")
 stretch_mode = 5
 
@@ -190,10 +194,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 760.0
-offset_top = 560.0
-offset_right = 1500.0
-offset_bottom = 632.0
+offset_left = 16.0
+offset_top = 552.0
+offset_right = 756.0
+offset_bottom = 624.0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_qpyf4")
@@ -206,10 +210,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 760.0
-offset_top = 520.0
-offset_right = 1500.0
-offset_bottom = 592.0
+offset_left = -200.0
+offset_top = 472.0
+offset_right = 540.0
+offset_bottom = 544.0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_qpyf4")
@@ -225,9 +229,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 16.0
-offset_top = 560.0
+offset_top = 512.0
 offset_right = 500.0
-offset_bottom = 632.0
+offset_bottom = 584.0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_qpyf4")
@@ -264,7 +268,6 @@ offset_bottom = 216.0
 grow_horizontal = 2
 theme = ExtResource("4_qpyf4")
 theme_type_variation = &"TitleLabel"
-theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 128
 text = "Misty"
 horizontal_alignment = 1
@@ -443,7 +446,6 @@ theme_type_variation = &"BlueButton"
 text = "Close"
 
 [node name="Fade" type="ColorRect" parent="." unique_id=453366609]
-visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15

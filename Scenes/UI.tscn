@@ -16,36 +16,36 @@
 [ext_resource type="Script" uid="uid://g1yuabxq51md" path="res://Scripts/UI/fade.gd" id="7_xjg7p"]
 [ext_resource type="Script" uid="uid://ch12jdftfmhwl" path="res://Scripts/UI/settings.gd" id="10_45jp6"]
 [ext_resource type="Script" uid="uid://chy2xyl1ircrd" path="res://Scripts/UI/upgrades.gd" id="10_b1goy"]
-[ext_resource type="Texture2D" uid="uid://cd6ik31lk57yd" path="res://Sprites/Icons/Slime Upgrade Icon.png" id="11_b1goy"]
-[ext_resource type="Texture2D" uid="uid://dxdos8pv4pvmb" path="res://Sprites/Icons/Mining Tier 1 Icon.png" id="12_n04ve"]
-[ext_resource type="Texture2D" uid="uid://df0kgaf25ykks" path="res://Sprites/Icons/Mining Tier 1 Icon unlocked.png" id="13_6maro"]
-[ext_resource type="Texture2D" uid="uid://fqnk2nestn4l" path="res://Sprites/Icons/mobility 1 Icon.png" id="13_13dyv"]
-[ext_resource type="Texture2D" uid="uid://3o4ctlum3nt" path="res://Sprites/Icons/mobility 2 Icon.png" id="14_r71lk"]
-[ext_resource type="Texture2D" uid="uid://g4dotfvyb15w" path="res://Sprites/Icons/Mining Tier 2 Icon unlocked.png" id="15_45jp6"]
-[ext_resource type="Texture2D" uid="uid://cenmwitxas1nr" path="res://Sprites/Icons/Mining Tier 2 Icon.png" id="15_d1ul7"]
-[ext_resource type="Texture2D" uid="uid://cyjpi62vnvm7" path="res://Sprites/Icons/Mining Speed 2 Icon.png" id="16_pinj1"]
-[ext_resource type="Texture2D" uid="uid://ciorf72x74ou1" path="res://Sprites/Icons/Mining Speed 1 Icon.png" id="17_68ajo"]
-[ext_resource type="Texture2D" uid="uid://dphtajtk5w30k" path="res://Sprites/Icons/Mining Speed 1 Icon unlocked.png" id="17_q6a8d"]
-[ext_resource type="Texture2D" uid="uid://bs1ukw0kgbjeo" path="res://Sprites/Icons/Light 1 Icon.png" id="18_q6a8d"]
-[ext_resource type="Texture2D" uid="uid://c4sw3jojo4qr" path="res://Sprites/Icons/Light 2 Icon.png" id="19_6lb63"]
-[ext_resource type="Texture2D" uid="uid://d3tj3pkiq207i" path="res://Sprites/Icons/Mining Speed 2 Icon unlocked.png" id="19_dgrhb"]
-[ext_resource type="Texture2D" uid="uid://r0u31ml2jflk" path="res://Sprites/Icons/Light 3 Icon.png" id="20_dgrhb"]
-[ext_resource type="Texture2D" uid="uid://djphqsnc1wbyg" path="res://Sprites/Icons/Hat Icon.png" id="21_j0pu8"]
-[ext_resource type="Texture2D" uid="uid://buj7shk8lqaoh" path="res://Sprites/Icons/mobility 1 Icon unlocked.png" id="21_wypb4"]
-[ext_resource type="Texture2D" uid="uid://btmfhsgw3ntej" path="res://Sprites/Icons/Double Jump Icon.png" id="22_wypb4"]
-[ext_resource type="Texture2D" uid="uid://48am7tywnvwc" path="res://Sprites/Icons/mobility 2 Icon unlocked.png" id="23_dm5gj"]
-[ext_resource type="Texture2D" uid="uid://b8anmyxhnowq5" path="res://Sprites/Icons/Triple Jump Icon.png" id="23_y1m5i"]
-[ext_resource type="Texture2D" uid="uid://bmr6vfoliiap5" path="res://Sprites/Icons/Light 1 Icon unlocked.png" id="25_qoydj"]
-[ext_resource type="Texture2D" uid="uid://bgi77ts185hl" path="res://Sprites/Icons/Light 2 Icon unlocked.png" id="27_lolh4"]
-[ext_resource type="Texture2D" uid="uid://ctxyfxp1424g8" path="res://Sprites/Icons/Light 3 Icon unlocked.png" id="29_gqamb"]
-[ext_resource type="Texture2D" uid="uid://dhirg8hctlbk4" path="res://Sprites/Icons/Hat Icon unlocked.png" id="31_q8m6m"]
-[ext_resource type="Texture2D" uid="uid://bbya63dnf305k" path="res://Sprites/Icons/Double Jump Icon unlocked.png" id="33_1lsdj"]
-[ext_resource type="Texture2D" uid="uid://sygw6fixrwtc" path="res://Sprites/Icons/Triple Jump Icon unlocked .png" id="35_mtrk6"]
-[ext_resource type="Texture2D" uid="uid://bex2kubmkmv2h" path="res://Sprites/Icons/Pillar Interaction 1 Icon.png" id="40_wypb4"]
-[ext_resource type="Texture2D" uid="uid://c21hmysp5qllr" path="res://Sprites/Icons/Pillar Interaction 1 Icon unlocked.png" id="41_y1m5i"]
-[ext_resource type="Texture2D" uid="uid://dynjkd2e0362" path="res://Sprites/Icons/Map Icon.png" id="42_qoydj"]
+[ext_resource type="Texture2D" uid="uid://dxdos8pv4pvmb" path="res://Sprites/Icons/Upgrade/Mining Tier 1 Icon.png" id="12_n04ve"]
+[ext_resource type="Texture2D" uid="uid://bw22yoml704ad" path="res://Sprites/Icons/Upgrade/Mining Tier 1 Icon Unlocked.png" id="13_6maro"]
+[ext_resource type="Texture2D" uid="uid://bhyklvn0i48wf" path="res://Sprites/Icons/Upgrade/Mining Tier 2 Icon Unlocked.png" id="15_45jp6"]
+[ext_resource type="Texture2D" uid="uid://cenmwitxas1nr" path="res://Sprites/Icons/Upgrade/Mining Tier 2 Icon.png" id="15_d1ul7"]
+[ext_resource type="Texture2D" uid="uid://cyjpi62vnvm7" path="res://Sprites/Icons/Upgrade/Mining Speed 2 Icon.png" id="16_pinj1"]
+[ext_resource type="Texture2D" uid="uid://ciorf72x74ou1" path="res://Sprites/Icons/Upgrade/Mining Speed 1 Icon.png" id="17_68ajo"]
+[ext_resource type="Texture2D" uid="uid://bv7dhgknejtj7" path="res://Sprites/Icons/Upgrade/Slime Upgrade Icon.png" id="17_gqamb"]
+[ext_resource type="Texture2D" uid="uid://3wfop7kkc6ww" path="res://Sprites/Icons/Upgrade/Mining Speed 1 Icon Unlocked.png" id="17_q6a8d"]
+[ext_resource type="Texture2D" uid="uid://bs1ukw0kgbjeo" path="res://Sprites/Icons/Upgrade/Light 1 Icon.png" id="18_q6a8d"]
+[ext_resource type="Texture2D" uid="uid://c4sw3jojo4qr" path="res://Sprites/Icons/Upgrade/Light 2 Icon.png" id="19_6lb63"]
+[ext_resource type="Texture2D" uid="uid://cjm7n0eoq2f40" path="res://Sprites/Icons/Upgrade/Mining Speed 2 Icon Unlocked.png" id="19_dgrhb"]
+[ext_resource type="Texture2D" uid="uid://r0u31ml2jflk" path="res://Sprites/Icons/Upgrade/Light 3 Icon.png" id="20_dgrhb"]
+[ext_resource type="Texture2D" uid="uid://djphqsnc1wbyg" path="res://Sprites/Icons/Upgrade/Hat Icon.png" id="21_j0pu8"]
+[ext_resource type="Texture2D" uid="uid://btmfhsgw3ntej" path="res://Sprites/Icons/Upgrade/Double Jump Icon.png" id="22_wypb4"]
+[ext_resource type="Texture2D" uid="uid://b8anmyxhnowq5" path="res://Sprites/Icons/Upgrade/Triple Jump Icon.png" id="23_y1m5i"]
+[ext_resource type="Texture2D" uid="uid://d2rialq71vh1e" path="res://Sprites/Icons/Upgrade/Light 1 Icon Unlocked.png" id="25_qoydj"]
+[ext_resource type="Texture2D" uid="uid://d3nwxuslv2d8h" path="res://Sprites/Icons/Upgrade/Mobility 1 Icon.png" id="26_q8m6m"]
+[ext_resource type="Texture2D" uid="uid://dsms6hwe3diip" path="res://Sprites/Icons/Upgrade/Mobility 1 Icon Unlocked.png" id="27_1lsdj"]
+[ext_resource type="Texture2D" uid="uid://bkpmp8khshoar" path="res://Sprites/Icons/Upgrade/Light 2 Icon Unlocked.png" id="27_lolh4"]
+[ext_resource type="Texture2D" uid="uid://dvhyj1dfo3ed3" path="res://Sprites/Icons/Upgrade/Mobility 2 Icon.png" id="28_mtrk6"]
+[ext_resource type="Texture2D" uid="uid://dtfj6o1kdmg7q" path="res://Sprites/Icons/Upgrade/Mobility 2 Icon Unlocked.png" id="29_ft0vu"]
+[ext_resource type="Texture2D" uid="uid://6ggks4lxpqr0" path="res://Sprites/Icons/Upgrade/Light 3 Icon Unlocked.png" id="29_gqamb"]
+[ext_resource type="Texture2D" uid="uid://dke6688x56lg8" path="res://Sprites/Icons/Upgrade/Hat Icon Unlocked.png" id="31_q8m6m"]
+[ext_resource type="Texture2D" uid="uid://cqokqly5gq14o" path="res://Sprites/Icons/Upgrade/Double Jump Icon Unlocked.png" id="39_q8m6m"]
+[ext_resource type="Texture2D" uid="uid://dwgsta641u4fx" path="res://Sprites/Icons/Upgrade/Triple Jump Icon Unlocked.png" id="41_1lsdj"]
+[ext_resource type="Texture2D" uid="uid://cigtffgtvty81" path="res://Sprites/Icons/Upgrade/Pillar Activation 1 icon.png" id="41_uqa0b"]
+[ext_resource type="Texture2D" uid="uid://bxxemn5dkw0oi" path="res://Sprites/Icons/Upgrade/Pillar Activation 1 icon Unlocked.png" id="42_hptg1"]
+[ext_resource type="Texture2D" uid="uid://dynjkd2e0362" path="res://Sprites/Icons/Upgrade/Map Icon.png" id="42_qoydj"]
 [ext_resource type="Script" uid="uid://demrdhdfbvsvh" path="res://Scripts/UI/map.gd" id="42_y1m5i"]
-[ext_resource type="Texture2D" uid="uid://borl3vfrqc1r5" path="res://Sprites/Icons/Map Icon unlocked.png" id="43_lolh4"]
+[ext_resource type="Texture2D" uid="uid://bnuv2njmugjsv" path="res://Sprites/Icons/Upgrade/Map Icon Unlocked.png" id="43_lolh4"]
 [ext_resource type="Script" uid="uid://b303qufkqm8yk" path="res://Scripts/UI/dead_panel.gd" id="47_q8m6m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwshj"]
@@ -81,6 +81,9 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_48q88")
 RichTextLabel/font_sizes/normal_font_size = 32
 RichTextLabel/fonts/normal_font = ExtResource("5_qwshj")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_luji1"]
+load_path = "res://.godot/imported/Slime Upgrade Icon.png-2cbb38f93843b5a5bce2103e5c1d37a9.ctex"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6lb63"]
 shader = ExtResource("2_q6a8d")
 shader_parameter/night_factor = 0.0
@@ -113,13 +116,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="TimeIconSmall" type="Sprite2D" parent="." unique_id=1532518362]
-position = Vector2(78, 126)
-scale = Vector2(3, 3)
-texture = ExtResource("3_qwshj")
-hframes = 2
-frame = 1
 
 [node name="Quest" type="Control" parent="." unique_id=777518777]
 visible = false
@@ -233,6 +229,19 @@ theme_type_variation = &"LabelLevel"
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TimeIconSmall" type="Sprite2D" parent="." unique_id=1532518362]
+position = Vector2(78, 126)
+scale = Vector2(3, 3)
+texture = ExtResource("3_qwshj")
+hframes = 2
+frame = 1
+
+[node name="AutosaveIcon" type="Sprite2D" parent="." unique_id=1756865146]
+visible = false
+position = Vector2(1055, 591)
+scale = Vector2(3, 3)
+texture = SubResource("CompressedTexture2D_luji1")
 
 [node name="Fade" type="ColorRect" parent="." unique_id=850223812]
 visible = false
@@ -363,7 +372,6 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Player Panel" type="Control" parent="." unique_id=1801123476]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -411,10 +419,11 @@ grow_vertical = 2
 focus_mode = 2
 theme = ExtResource("4_hfhsn")
 tab_alignment = 1
-current_tab = 0
+current_tab = 2
 script = ExtResource("6_mg6lk")
 
 [node name="Settings" type="Control" parent="Player Panel/Panel" unique_id=2016830327]
+visible = false
 layout_mode = 2
 focus_mode = 2
 script = ExtResource("10_45jp6")
@@ -447,7 +456,6 @@ offset_right = 209.0
 offset_bottom = 198.0
 
 [node name="Upgrades" type="Control" parent="Player Panel/Panel" unique_id=1762975685]
-visible = false
 layout_mode = 2
 focus_mode = 2
 theme = ExtResource("4_hfhsn")
@@ -474,63 +482,8 @@ grow_vertical = 2
 
 [node name="Line2D" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=531746274]
 position = Vector2(-864, -24)
-points = PackedVector2Array(1280, 346, 1280, 426)
-default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
-
-[node name="Line2D12" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=1527449468]
-position = Vector2(-864, -24)
-points = PackedVector2Array(1536, 186, 1536, 266)
-default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
-
-[node name="Line2D6" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=2143880953]
-position = Vector2(-864, -24)
-points = PackedVector2Array(1640, 346, 1544, 346)
-default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
-
-[node name="Line2D7" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=187885228]
-position = Vector2(-864, -24)
-points = PackedVector2Array(1640, 426, 1544, 426)
-default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
-
-[node name="Line2D8" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=80569050]
-position = Vector2(-864, -24)
-points = PackedVector2Array(1536, 258, 1536, 346)
-default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
-
-[node name="Line2D9" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=876725613]
-position = Vector2(-864, -24)
-points = PackedVector2Array(1536, 258, 1448, 346)
-default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
-
-[node name="Line2D10" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=599826106]
-position = Vector2(-864, -24)
-points = PackedVector2Array(1536, 266, 1456, 266)
-default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
-
-[node name="Line2D11" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=1950985598]
-position = Vector2(-864, -24)
-points = PackedVector2Array(1536, 266, 1456, 186)
-default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
-
-[node name="Line2D2" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=1290019084]
-position = Vector2(-2, -2.325)
-points = PackedVector2Array(586, 324.325, 586, 404.325)
-default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
-
-[node name="Line2D3" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=708062276]
-position = Vector2(-0.015, 1)
-points = PackedVector2Array(584.015, 241, 312.015, 241)
-default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
-
-[node name="Line2D4" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=1805121069]
-position = Vector2(5, 1)
-points = PackedVector2Array(587, 321, 403, 321)
-default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
-
-[node name="Line2D5" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=2101477211]
-position = Vector2(48.33554, -3)
-scale = Vector2(0.9413777, 1)
-points = PackedVector2Array(662.5019, 317, 662.5019, 413)
+points = PackedVector2Array(1544, 275, 1416, 275, 1416, 163, 1544, 163, 1416, 163, 1416, 275, 1416, 387, 1664, 387, 1416, 387, 1416, 499, 1680, 499, 1416, 499, 1416, 275, 1024, 275, 1288, 275, 1288, 515)
+width = 15.0
 default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
 
 [node name="InfoPanel" type="Panel" parent="Player Panel/Panel/Upgrades" unique_id=1263094567]
@@ -616,12 +569,12 @@ text = "Learn"
 
 [node name="TextureButton" type="TextureRect" parent="Player Panel/Panel/Upgrades/InfoPanel" unique_id=1426842143]
 layout_mode = 0
-offset_left = -224.0
+offset_left = -232.00002
 offset_top = 203.0
-offset_right = -200.0
-offset_bottom = 227.0
+offset_right = -200.00002
+offset_bottom = 235.0
 scale = Vector2(3, 3)
-texture = ExtResource("11_b1goy")
+texture = ExtResource("17_gqamb")
 
 [node name="Buttons" type="Control" parent="Player Panel/Panel/Upgrades" unique_id=329525659]
 layout_mode = 1
@@ -635,10 +588,10 @@ grow_vertical = 2
 
 [node name="TextureButton1" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=287688282]
 layout_mode = 0
-offset_left = 552.0
-offset_top = 256.0
-offset_right = 576.0
-offset_bottom = 280.0
+offset_left = 504.0
+offset_top = 289.0
+offset_right = 536.0
+offset_bottom = 321.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("12_n04ve")
 texture_disabled = ExtResource("13_6maro")
@@ -646,19 +599,19 @@ texture_disabled = ExtResource("13_6maro")
 [node name="TextureButton2" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1842243983]
 layout_mode = 0
 offset_left = 376.0
-offset_top = 256.0
-offset_right = 400.0
-offset_bottom = 280.0
+offset_top = 289.0
+offset_right = 408.0
+offset_bottom = 321.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("15_d1ul7")
 texture_disabled = ExtResource("15_45jp6")
 
 [node name="TextureButton3" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1898888710]
 layout_mode = 0
-offset_left = 552.0
-offset_top = 336.0
-offset_right = 576.0
-offset_bottom = 360.0
+offset_left = 504.0
+offset_top = 401.00003
+offset_right = 536.0
+offset_bottom = 433.00003
 scale = Vector2(3, 3)
 texture_normal = ExtResource("17_68ajo")
 texture_disabled = ExtResource("17_q6a8d")
@@ -666,109 +619,109 @@ texture_disabled = ExtResource("17_q6a8d")
 [node name="TextureButton4" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1941602361]
 layout_mode = 0
 offset_left = 376.0
-offset_top = 336.0
-offset_right = 400.0
-offset_bottom = 360.0
+offset_top = 401.0
+offset_right = 408.0
+offset_bottom = 433.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("16_pinj1")
 texture_disabled = ExtResource("19_dgrhb")
 
 [node name="TextureButton5" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1689820268]
 layout_mode = 0
-offset_left = 728.0
-offset_top = 256.0
-offset_right = 752.0
-offset_bottom = 280.0
+offset_left = 760.0
+offset_top = 289.0
+offset_right = 792.0
+offset_bottom = 321.0
 scale = Vector2(3, 3)
-texture_normal = ExtResource("13_13dyv")
-texture_disabled = ExtResource("21_wypb4")
+texture_normal = ExtResource("26_q8m6m")
+texture_disabled = ExtResource("27_1lsdj")
 
 [node name="TextureButton6" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=824042633]
 layout_mode = 0
-offset_left = 728.0
-offset_top = 336.0
-offset_right = 752.0
-offset_bottom = 360.0
+offset_left = 760.0
+offset_top = 401.00003
+offset_right = 792.0
+offset_bottom = 433.00003
 scale = Vector2(3, 3)
-texture_normal = ExtResource("14_r71lk")
-texture_disabled = ExtResource("23_dm5gj")
+texture_normal = ExtResource("28_mtrk6")
+texture_disabled = ExtResource("29_ft0vu")
 
 [node name="TextureButton7" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=539473197]
 layout_mode = 0
-offset_left = 464.0
-offset_top = 176.0
-offset_right = 488.0
-offset_bottom = 200.0
+offset_left = 376.0
+offset_top = 177.0
+offset_right = 408.0
+offset_bottom = 209.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("18_q6a8d")
 texture_disabled = ExtResource("25_qoydj")
 
 [node name="TextureButton8" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1247758076]
 layout_mode = 0
-offset_left = 376.0
-offset_top = 176.0
-offset_right = 400.0
-offset_bottom = 200.0
+offset_left = 248.00002
+offset_top = 177.0
+offset_right = 280.0
+offset_bottom = 209.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("19_6lb63")
 texture_disabled = ExtResource("27_lolh4")
 
 [node name="TextureButton9" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=763109338]
 layout_mode = 0
-offset_left = 288.0
-offset_top = 176.00002
-offset_right = 312.0
-offset_bottom = 200.00002
+offset_left = 120.0
+offset_top = 177.00002
+offset_right = 152.0
+offset_bottom = 209.00002
 scale = Vector2(3, 3)
 texture_normal = ExtResource("20_dgrhb")
 texture_disabled = ExtResource("29_gqamb")
 
 [node name="TextureButton10" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1366240046]
 layout_mode = 0
-offset_left = 552.0
-offset_top = 81.0
-offset_right = 576.0
-offset_bottom = 105.0
+offset_left = 504.0
+offset_top = 65.0
+offset_right = 536.0
+offset_bottom = 97.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("21_j0pu8")
 texture_disabled = ExtResource("31_q8m6m")
 
 [node name="TextureButton11" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1100206114]
 layout_mode = 0
-offset_left = 640.0
-offset_top = 256.0
+offset_left = 632.0
+offset_top = 289.0
 offset_right = 664.0
-offset_bottom = 280.0
+offset_bottom = 321.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("22_wypb4")
-texture_disabled = ExtResource("33_1lsdj")
+texture_disabled = ExtResource("39_q8m6m")
 
 [node name="TextureButton12" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1786688692]
 layout_mode = 0
-offset_left = 640.0
-offset_top = 336.0
+offset_left = 632.0
+offset_top = 401.00003
 offset_right = 664.0
-offset_bottom = 360.0
+offset_bottom = 433.00003
 scale = Vector2(3, 3)
 texture_normal = ExtResource("23_y1m5i")
-texture_disabled = ExtResource("35_mtrk6")
+texture_disabled = ExtResource("41_1lsdj")
 
 [node name="TextureButton13" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=996558837]
 layout_mode = 0
-offset_left = 552.0
-offset_top = 176.0
-offset_right = 576.0
-offset_bottom = 200.0
+offset_left = 504.0
+offset_top = 177.0
+offset_right = 536.0
+offset_bottom = 209.0
 scale = Vector2(3, 3)
-texture_normal = ExtResource("40_wypb4")
-texture_disabled = ExtResource("41_y1m5i")
+texture_normal = ExtResource("41_uqa0b")
+texture_disabled = ExtResource("42_hptg1")
 
 [node name="TextureButton14" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=143552609]
 layout_mode = 0
-offset_left = 640.0
-offset_top = 81.0
+offset_left = 632.0
+offset_top = 65.0
 offset_right = 664.0
-offset_bottom = 105.0
+offset_bottom = 97.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("42_qoydj")
 texture_disabled = ExtResource("43_lolh4")
@@ -918,12 +871,6 @@ grow_vertical = 2
 theme = ExtResource("4_hfhsn")
 theme_type_variation = &"RespawnButton"
 text = "Respawn"
-
-[node name="AutosaveIcon" type="Sprite2D" parent="." unique_id=1756865146]
-visible = false
-position = Vector2(1055, 591)
-scale = Vector2(3, 3)
-texture = ExtResource("11_b1goy")
 
 [connection signal="pressed" from="Crafting Panel/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="Crafting Panel/CraftButton" to="." method="_on_craft_button_pressed"]

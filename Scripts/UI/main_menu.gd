@@ -16,7 +16,7 @@ func _ready() -> void:
 	refresh_texts()
 	
 	UI.hide_ui()
-	fade.modulate = Color(0, 0, 0, 1)
+	fade.modulate = Color(0.0, 0.0, 0.0, 1.0)
 	fade_out()
 	
 	continue_btn.visible = FileAccess.file_exists(Manager.SAVE_PATH)
@@ -30,7 +30,7 @@ func update_background_by_time():
 	else:
 		hour = Time.get_datetime_dict_from_system().hour
 
-	var dark := Color(0, 0, 0, 1)
+	var dark := Color(0.0, 0.0, 0.051, 1.0)
 	var color : Color
 
 	if hour >= 6 and hour < 10:

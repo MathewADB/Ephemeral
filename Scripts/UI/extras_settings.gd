@@ -4,6 +4,7 @@ extends Control
 var item_scene = preload("res://Scenes/Control/achievement_item.tscn")
 
 func _ready():
+	$Panel/Close.text = tr("CLOSE")
 	for id in Manager.ACHIEVEMENT_DATA.keys():
 		var item = item_scene.instantiate()
 		container.add_child(item)

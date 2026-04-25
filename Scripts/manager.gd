@@ -34,37 +34,37 @@ const ACHIEVEMENT_DATA := {
 	"first_xp": {
 		"name": "Getting Started",
 		"description": "Gain your first XP",
-		"icon": preload("res://Sprites/Icons/Achievement/getting started.png")
+		"icon": preload("res://Sprites/Icons/Achievement/Level 1.png")
 	},
 	"level_5": {
 		"name": "Growing Strong",
 		"description": "Reach level 5",
-		"icon": preload("res://Sprites/Icons/Achievement/growing strong.png")
+		"icon": preload("res://Sprites/Icons/Achievement/Level 5.png")
 	},
 	"first_death": {
 		"name": "First Death",
 		"description": "Die for the first time",
-		"icon": preload("res://Sprites/Icons/Achievement/first death.png")
+		"icon": preload("res://Sprites/Icons/Achievement/Death 1.png")
 	},
 	"first_craft": {
 		"name": "Crafting",
 		"description": "Craft your first item",
-		"icon": preload("res://Sprites/Icons/Achievement/first craft.png")
+		"icon": preload("res://Sprites/Icons/Achievement/Craft 1.png")
 	},
 	"death_10": {
 		"name": "Getting Used To It",
 		"description": "Die 10 times",
-		"icon": preload("res://Sprites/Icons/Achievement/tenth death.png")
+		"icon": preload("res://Sprites/Icons/Achievement/Death 10.png")
 	},
 	"death_50": {
 		"name": "Endless Suffering",
 		"description": "Die 50 times",
-		"icon": preload("res://Sprites/Icons/Achievement/fifty death.png")
+		"icon": preload("res://Sprites/Icons/Achievement/Death 50.png")
 	},
 	"craft_10": {
 		"name": "Apprentice Crafter",
 		"description": "Craft 10 items",
-		"icon": preload("res://Sprites/Icons/Achievement/tenth craft.png")
+		"icon": preload("res://Sprites/Icons/Achievement/Craft 10.png")
 	}
 }
 # --- SIGNALS ---
