@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c10loduwvqd3q"]
 
 [ext_resource type="Script" uid="uid://8ttvcqsq125j" path="res://Scripts/Envirement/grass.gd" id="1_8xps4"]
-[ext_resource type="Texture2D" uid="uid://beox20exrtqqs" path="res://Sprites/Entities/Grass.png" id="1_65mcr"]
+[ext_resource type="Texture2D" uid="uid://d4gx1yewna2m1" path="res://Sprites/Entities/Green Grass.png" id="2_8xps4"]
 
 [sub_resource type="Animation" id="Animation_8xps4"]
 length = 0.001
@@ -48,7 +48,7 @@ size = Vector2(14, 7)
 script = ExtResource("1_8xps4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1588898356]
-texture = ExtResource("1_65mcr")
+texture = ExtResource("2_8xps4")
 hframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=770213142]

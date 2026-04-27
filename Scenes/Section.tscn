@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://c0jb8bi20x7s4"]
 
-[ext_resource type="Texture2D" uid="uid://bl0xh8i1xriss" path="res://Sprites/BackGrounds/MushroomBackground smaller.png" id="1_rbv0n"]
 [ext_resource type="Texture2D" uid="uid://bqwsm0qm3tgw5" path="res://Sprites/BackGrounds/clouds Packed.png" id="2_gu7oc"]
-[ext_resource type="Texture2D" uid="uid://xxy62pou6w7e" path="res://Sprites/BackGrounds/MushroomBackground.png" id="2_rbv0n"]
+[ext_resource type="Texture2D" uid="uid://cf8apcr8qtyd7" path="res://Sprites/BackGrounds/Floating Island Background.png" id="2_ihxv5"]
 [ext_resource type="TileSet" uid="uid://capwod7vgkwwm" path="res://Style/MainTileset.tres" id="2_syfyn"]
 [ext_resource type="PackedScene" uid="uid://cuqnsoy61186" path="res://Scenes/Player.tscn" id="2_vor7h"]
 
@@ -10,27 +9,41 @@
 
 [node name="BackGround" type="Node2D" parent="." unique_id=218195439]
 
-[node name="BackgorundLayerBack" type="Parallax2D" parent="BackGround" unique_id=985264048]
-scroll_scale = Vector2(0.1, 0.05)
-repeat_size = Vector2(1024, 0)
-
-[node name="BackLayer" type="Sprite2D" parent="BackGround/BackgorundLayerBack" unique_id=646340619]
-modulate = Color(0.8352657, 0.9049064, 0.97566825, 1)
-texture_repeat = 2
-position = Vector2(514, 304)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_rbv0n")
-
 [node name="BackgorundLayerFront" type="Parallax2D" parent="BackGround" unique_id=1083704285]
-scroll_scale = Vector2(0.2, 0.1)
+scroll_scale = Vector2(0.02, 0)
 repeat_size = Vector2(1024, 0)
 
 [node name="FrontLayer" type="Sprite2D" parent="BackGround/BackgorundLayerFront" unique_id=80155381]
-modulate = Color(0.9266021, 0.9573855, 0.9665956, 1)
+visible = false
+modulate = Color(0.9254902, 0.95686275, 0.9647059, 0.19607843)
 texture_repeat = 2
-position = Vector2(513, 354)
+position = Vector2(513, 330)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_rbv0n")
+flip_h = true
+flip_v = true
+
+[node name="BackgorundLayerBack" type="Parallax2D" parent="BackGround" unique_id=985264048]
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(1024, 0)
+
+[node name="BackLayer" type="Sprite2D" parent="BackGround/BackgorundLayerBack" unique_id=646340619]
+modulate = Color(1, 1, 1, 0.6156863)
+texture_repeat = 2
+position = Vector2(514, 263)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ihxv5")
+
+[node name="BackgorundLayerBack2" type="Parallax2D" parent="BackGround" unique_id=1186395104]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(1024, 0)
+
+[node name="BackLayer" type="Sprite2D" parent="BackGround/BackgorundLayerBack2" unique_id=1534542501]
+visible = false
+texture_repeat = 2
+position = Vector2(514, 269)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ihxv5")
+flip_h = true
 
 [node name="Clouds" type="Parallax2D" parent="BackGround" unique_id=1276764484]
 scroll_scale = Vector2(0.2, 0.1)

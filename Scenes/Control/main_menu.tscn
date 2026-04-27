@@ -1,8 +1,9 @@
 [gd_scene format=4 uid="uid://cd2r6e28t5gcl"]
 
 [ext_resource type="Script" uid="uid://dfvh5b5ao5ua8" path="res://Scripts/UI/main_menu.gd" id="1_lhq8l"]
-[ext_resource type="Texture2D" uid="uid://cv1op8p0rtojs" path="res://Sprites/BackGrounds/Sky .png" id="1_swixg"]
+[ext_resource type="Texture2D" uid="uid://bk6gt7ae81v5y" path="res://Sprites/BackGrounds/Sky .png" id="1_swixg"]
 [ext_resource type="TileSet" uid="uid://capwod7vgkwwm" path="res://Style/MainTileset.tres" id="2_qpyf4"]
+[ext_resource type="Texture2D" uid="uid://cf8apcr8qtyd7" path="res://Sprites/BackGrounds/Floating Island Background.png" id="3_254pk"]
 [ext_resource type="Texture2D" uid="uid://bq0b2gp87rk7t" path="res://Sprites/Player/Blue Slime Hiding.png" id="3_lhq8l"]
 [ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="4_qpyf4"]
 [ext_resource type="Texture2D" uid="uid://cs2qpfetvkqcu" path="res://Sprites/UI/Rain Drop.png" id="5_5g84f"]
@@ -40,9 +41,14 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_swixg")
 
+[node name="FloatingIslandBackground" type="Sprite2D" parent="Background" unique_id=174867642]
+modulate = Color(1, 1, 1, 0.6156863)
+position = Vector2(128, 264)
+texture = ExtResource("3_254pk")
+
 [node name="Background" type="TileMapLayer" parent="Background" unique_id=2089615401]
 scale = Vector2(3, 3)
-tile_map_data = PackedByteArray("AAALAAoAAAABAAMAAAAMAAoAAAACAAMAAAANAAoAAAACAAMAAAAOAAoAAAACAAMAAAAPAAoAAAACAAMAAAAQAAoAAAACAAMAAAARAAoAAAACAAMAAAASAAoAAAACAAMAAAATAAoAAAACAAMAAAAUAAoAAAACAAMAAAAVAAoAAAACAAMAAAAWAAoAAAACAAMAAAAXAAoAAAACAAMAAAALAAsAAAABAAQAAAALAAwAAAABAAQAAAALAA0AAAABAAQAAAAMAAsAAAACAAQAAAAMAAwAAAACAAQAAAAMAA0AAAACAAQAAAANAAsAAAACAAQAAAANAAwAAAACAAQAAAANAA0AAAACAAQAAAAOAAsAAAACAAQAAAAOAAwAAAACAAQAAAAOAA0AAAACAAQAAAAPAAsAAAACAAQAAAAPAAwAAAACAAQAAAAPAA0AAAACAAQAAAAQAAsAAAACAAQAAAAQAAwAAAACAAQAAAAQAA0AAAACAAQAAAARAAsAAAACAAQAAAARAAwAAAACAAQAAAARAA0AAAACAAQAAAASAAsAAAACAAQAAAASAAwAAAACAAQAAAASAA0AAAACAAQAAAATAAsAAAACAAQAAAATAAwAAAACAAQAAAATAA0AAAACAAQAAAAUAAsAAAACAAQAAAAUAAwAAAACAAQAAAAUAA0AAAACAAQAAAAVAAsAAAACAAQAAAAVAAwAAAACAAQAAAAVAA0AAAACAAQAAAAWAAsAAAACAAQAAAAWAAwAAAACAAQAAAAWAA0AAAACAAQAAAAXAAsAAAACAAQAAAAXAAwAAAACAAQAAAAXAA0AAAAEAAQAAAAPAAYAAAAKAAAAAAAWAAQAAAAKAAIAABATAAcAAAAIAAYAAAAFAAIAAAAKAAAAABA=")
+tile_map_data = PackedByteArray("AAALAAoABAAAAAAAAAAMAAoABAABAAAAAAANAAoABAABAAAAAAAOAAoABAABAAAAAAAPAAoABAABAAAAAAAQAAoABAABAAAAAAARAAoABAABAAAAAAASAAoABAABAAAAAAATAAoABAABAAAAAAAUAAoABAABAAAAAAAVAAoABAABAAAAAAAWAAoABAABAAAAAAAXAAoABAABAAAAAAALAAsABAAAAAEAAAALAAwABAAAAAEAAAALAA0ABAAAAAEAAAAMAAsABAABAAEAAAAMAAwABAABAAEAAAANAAsABAABAAEAAAANAAwABAABAAEAAAAOAAsABAABAAEAAAAOAAwABAABAAEAAAAPAAsABAABAAEAAAAPAAwABAABAAEAAAAQAAsABAABAAEAAAAQAAwABAABAAEAAAARAAsABAABAAEAAAARAAwABAABAAEAAAASAAsABAABAAEAAAASAAwABAABAAEAAAATAAsABAABAAEAAAATAAwABAABAAEAAAAUAAsABAABAAEAAAAUAAwABAABAAEAAAAVAAsABAABAAEAAAAVAAwABAABAAEAAAAWAAsABAABAAEAAAAWAAwABAABAAEAAAAXAAsABAABAAEAAAAXAAwABAABAAEAAAAXAA0ABAABAAEAAAAPAAYABAAKAAAAAAAWAAQAAAAKAAAAABATAAcABAAPAAMAAAAFAAIABAAKAAAAABAWAA0ABAABAAEAAAAVAA0ABAABAAEAAAAUAA0ABAABAAEAAAATAA0ABAABAAEAAAASAA0ABAABAAEAAAARAA0ABAABAAEAAAAQAA0ABAABAAEAAAAPAA0ABAABAAEAAAAOAA0ABAABAAEAAAANAA0ABAABAAEAAAAMAA0ABAABAAEAAAA=")
 tile_set = ExtResource("2_qpyf4")
 
 [node name="SlimeHiding" type="Sprite2D" parent="Background" unique_id=1785453063]
@@ -132,9 +138,9 @@ text = "EXIT"
 
 [node name="Social" type="HBoxContainer" parent="." unique_id=2110908057]
 layout_mode = 0
-offset_left = 968.0
+offset_left = 8.0
 offset_top = 592.0
-offset_right = 1128.0
+offset_right = 208.0
 offset_bottom = 640.0
 
 [node name="Wiki" type="TextureButton" parent="Social" unique_id=1782298257]
@@ -194,9 +200,9 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 16.0
+offset_left = 766.0
 offset_top = 552.0
-offset_right = 756.0
+offset_right = 1506.0
 offset_bottom = 624.0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
@@ -210,9 +216,9 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -200.0
+offset_left = 776.0
 offset_top = 472.0
-offset_right = 540.0
+offset_right = 1496.0
 offset_bottom = 544.0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
@@ -228,9 +234,9 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 16.0
+offset_left = 712.0
 offset_top = 512.0
-offset_right = 500.0
+offset_right = 1560.0
 offset_bottom = 584.0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
@@ -238,6 +244,7 @@ theme = ExtResource("4_qpyf4")
 theme_type_variation = &"MenuLabel"
 theme_override_font_sizes/font_size = 64
 text = "v1.0.0.0 development"
+horizontal_alignment = 2
 
 [node name="Shadow" type="Label" parent="Labels" unique_id=349158524]
 modulate = Color(0.39215687, 0.7647059, 0.87058824, 0.101960786)
@@ -420,16 +427,50 @@ offset_bottom = 86.0
 theme_override_font_sizes/font_size = 48
 text = "Achievements"
 
+[node name="Playtime" type="Label" parent="ExtrasSettings/Panel" unique_id=661401176]
+layout_mode = 0
+offset_left = 656.0
+offset_top = 32.0
+offset_right = 1056.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 48
+text = "00:00:00"
+
+[node name="Deaths" type="Label" parent="ExtrasSettings/Panel" unique_id=1211961634]
+layout_mode = 0
+offset_left = 656.0
+offset_top = 88.0
+offset_right = 1056.0
+offset_bottom = 160.0
+theme_override_font_sizes/font_size = 48
+text = "0 Deaths"
+
+[node name="Level" type="Label" parent="ExtrasSettings/Panel" unique_id=1832873483]
+layout_mode = 0
+offset_left = 656.0
+offset_top = 144.0
+offset_right = 1056.0
+offset_bottom = 232.0
+theme_override_font_sizes/font_size = 48
+text = "Level :"
+
+[node name="Amount" type="Label" parent="ExtrasSettings/Panel" unique_id=1315997807]
+layout_mode = 0
+offset_left = 328.0
+offset_top = 32.0
+offset_right = 400.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 48
+text = "0/7"
+
 [node name="ScrollContainer" type="ScrollContainer" parent="ExtrasSettings/Panel" unique_id=139945440]
 layout_mode = 0
-offset_left = 584.0
-offset_top = 16.0
-offset_right = 1136.0
-offset_bottom = 528.0
-tile_scroll_hint = true
+offset_left = 8.0
+offset_top = 128.0
+offset_right = 512.0
+offset_bottom = 640.0
 
 [node name="GridContainer" type="VBoxContainer" parent="ExtrasSettings/Panel/ScrollContainer" unique_id=2089801199]
-custom_minimum_size = Vector2(0, 1000)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xxy62pou6w7e"
-path="res://.godot/imported/MushroomBackground.png-3eb146fc513a4f6ae6af5c964d3c650a.ctex"
+uid="uid://cenaw8al4lra8"
+path="res://.godot/imported/mushroom moving platforrm green.png-57ac297f45bc1de0dbadbaec06c026f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/BackGrounds/MushroomBackground.png"
-dest_files=["res://.godot/imported/MushroomBackground.png-3eb146fc513a4f6ae6af5c964d3c650a.ctex"]
+source_file="res://Sprites/Entities/mushroom moving platforrm green.png"
+dest_files=["res://.godot/imported/mushroom moving platforrm green.png-57ac297f45bc1de0dbadbaec06c026f6.ctex"]
 
 [params]
 

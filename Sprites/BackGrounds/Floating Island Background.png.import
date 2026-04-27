@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvpue7hoea480"
-path="res://.godot/imported/Rainbow.png-b9ea58d8bde14b09da1e2e4bc93f89c3.ctex"
+uid="uid://cf8apcr8qtyd7"
+path="res://.godot/imported/Floating Island Background.png-69ef7f3b63cb9ec419bcf67f4ffbd67a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/BackGrounds/Rainbow.png"
-dest_files=["res://.godot/imported/Rainbow.png-b9ea58d8bde14b09da1e2e4bc93f89c3.ctex"]
+source_file="res://Sprites/BackGrounds/Floating Island Background.png"
+dest_files=["res://.godot/imported/Floating Island Background.png-69ef7f3b63cb9ec419bcf67f4ffbd67a.ctex"]
 
 [params]
 

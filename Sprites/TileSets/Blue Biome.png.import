@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bk6gt7ae81v5y"
-path="res://.godot/imported/Sky .png-43ba4aa72fb2dec3a04300d7f07983a4.ctex"
+uid="uid://bhixirc7fhksq"
+path="res://.godot/imported/Blue Biome.png-d2139b22461ed7e35ecb9bc6eda36e4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/BackGrounds/Sky .png"
-dest_files=["res://.godot/imported/Sky .png-43ba4aa72fb2dec3a04300d7f07983a4.ctex"]
+source_file="res://Sprites/TileSets/Blue Biome.png"
+dest_files=["res://.godot/imported/Blue Biome.png-d2139b22461ed7e35ecb9bc6eda36e4a.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cjokj2tewacau"]
 
 [ext_resource type="Script" uid="uid://cqxvnvk5pldir" path="res://Scripts/moving_platform.gd" id="1_1pluy"]
-[ext_resource type="Texture2D" uid="uid://yjtp8or5ml41" path="res://Sprites/Entities/mushroom moving platforrm.png" id="2_kl2pk"]
+[ext_resource type="Texture2D" uid="uid://cenaw8al4lra8" path="res://Sprites/Entities/mushroom moving platforrm green.png" id="2_1pluy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctttr"]
 size = Vector2(46, 13)
@@ -17,4 +17,4 @@ shape = SubResource("RectangleShape2D_ctttr")
 one_way_collision = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1017752233]
-texture = ExtResource("2_kl2pk")
+texture = ExtResource("2_1pluy")
