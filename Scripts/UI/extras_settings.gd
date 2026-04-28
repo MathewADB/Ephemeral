@@ -23,7 +23,7 @@ func _ready():
 	container.set_custom_minimum_size(Vector2(0.0,minimum_space))
 	$Panel/Amount.text = (str(unlocked_achievements)+"/"+str(max_achievements))
 	$Panel/Deaths.text = str(Manager.death_count) + " Deaths"
-	$Panel/Playtime.text = str(int(Manager.game_seconds) -433) + " Seconds"
+	$Panel/Playtime.text = str(int(Manager.game_seconds) -432) + " Seconds"
 	$Panel/Level.text = "Level : " + str(Manager.level)
 	
 func _on_close_pressed() -> void:

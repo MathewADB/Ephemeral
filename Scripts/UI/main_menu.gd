@@ -115,3 +115,6 @@ func refresh_texts():
 	
 func _on_extras_pressed() -> void:
 	$ExtrasSettings.visible = true
+
+func _on_version_pressed() -> void:
+	$UpdatesPage.visible = true

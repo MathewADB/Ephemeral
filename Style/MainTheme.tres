@@ -33,6 +33,14 @@ bg_color = Color(0.08627451, 0.2901961, 0.27058825, 1)
 border_width_left = 2
 border_color = Color(0.22352941, 0.26666668, 0.31764707, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pvpjx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mds0x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_edwl3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1kt1g"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_edwl3"]
 bg_color = Color(0.043137256, 0.050980393, 0.0627451, 1)
 border_width_left = 8
@@ -256,6 +264,15 @@ CreditsButton/styles/normal = SubResource("StyleBoxEmpty_j4bnx")
 CreditsButton/styles/pressed = SubResource("StyleBoxEmpty_g4fcp")
 InfoPanel/base_type = &"Panel"
 InfoPanel/styles/panel = SubResource("StyleBoxFlat_gjqfl")
+InivisbleButton/base_type = &"Button"
+InivisbleButton/colors/font_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
+InivisbleButton/font_sizes/font_size = 64
+InivisbleButton/fonts/font = ExtResource("1_pvpjx")
+InivisbleButton/styles/disabled = SubResource("StyleBoxEmpty_pvpjx")
+InivisbleButton/styles/focus = SubResource("StyleBoxEmpty_mds0x")
+InivisbleButton/styles/hover = SubResource("StyleBoxEmpty_edwl3")
+InivisbleButton/styles/normal = SubResource("StyleBoxEmpty_1kt1g")
+InivisbleButton/styles/pressed = SubResource("StyleBoxEmpty_1kt1g")
 Label/colors/font_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
 Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("1_pvpjx")

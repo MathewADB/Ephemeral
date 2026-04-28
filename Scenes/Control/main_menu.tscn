@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://b21acya5i4ti7" path="res://Scripts/UI/menu_settings.gd" id="11_bljlc"]
 [ext_resource type="Texture2D" uid="uid://jlnfieyqqkq2" path="res://Sprites/UI/instagram icon blue.png" id="11_gied8"]
 [ext_resource type="Script" uid="uid://bqgqlret8q8ky" path="res://Scripts/UI/extras_settings.gd" id="13_8yhkh"]
+[ext_resource type="Script" uid="uid://d108e62se2ny" path="res://Scripts/UI/updates_page.gd" id="15_owwpy"]
 
 [node name="Main Menu" type="Control" unique_id=1438550500]
 layout_mode = 3
@@ -229,7 +230,7 @@ theme_override_font_sizes/font_size = 64
 text = "Demo Version"
 horizontal_alignment = 2
 
-[node name="Version" type="Label" parent="Labels" unique_id=1499497587]
+[node name="Version" type="Button" parent="Labels" unique_id=137168774]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -241,10 +242,11 @@ offset_bottom = 584.0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_qpyf4")
-theme_type_variation = &"MenuLabel"
+theme_type_variation = &"InivisbleButton"
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 64
 text = "v1.0.0.0 development"
-horizontal_alignment = 2
+alignment = 2
 
 [node name="Shadow" type="Label" parent="Labels" unique_id=349158524]
 modulate = Color(0.39215687, 0.7647059, 0.87058824, 0.101960786)
@@ -486,6 +488,60 @@ theme = ExtResource("4_qpyf4")
 theme_type_variation = &"BlueButton"
 text = "Close"
 
+[node name="UpdatesPage" type="Control" parent="." unique_id=917764440]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("15_owwpy")
+
+[node name="Panel" type="Panel" parent="UpdatesPage" unique_id=299018727]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"MenuPanel"
+
+[node name="Title" type="Label" parent="UpdatesPage/Panel" unique_id=1275151205]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 288.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 48
+text = "Whats New !"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UpdatesPage/Panel" unique_id=743892897]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 112.0
+offset_right = 1120.0
+offset_bottom = 624.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UpdatesPage/Panel/ScrollContainer" unique_id=1711006638]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 32
+text = "Update 1.1.3.2 :
+Changes are visible here !"
+
+[node name="Close" type="Button" parent="UpdatesPage/Panel" unique_id=807484637]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 568.0
+offset_right = 1104.0
+offset_bottom = 616.0
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"BlueButton"
+text = "Close"
+
 [node name="Fade" type="ColorRect" parent="." unique_id=453366609]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -504,8 +560,10 @@ color = Color(0, 0, 0, 1)
 [connection signal="pressed" from="MenuButtons/Credit" to="." method="_on_credit_pressed"]
 [connection signal="pressed" from="MenuButtons/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Language" to="." method="_on_language_pressed"]
+[connection signal="pressed" from="Labels/Version" to="." method="_on_version_pressed"]
 [connection signal="pressed" from="MenuSettings/Panel/Close" to="MenuSettings" method="_on_close_pressed"]
 [connection signal="pressed" from="MenuSettings/Panel/Container/Reset" to="MenuSettings" method="_on_reset_pressed"]
 [connection signal="toggled" from="MenuSettings/Panel/Container/Fullscreen" to="MenuSettings" method="_on_fullscreen_toggled"]
 [connection signal="toggled" from="MenuSettings/Panel/Container/Music" to="MenuSettings" method="_on_music_toggled"]
 [connection signal="pressed" from="ExtrasSettings/Panel/Close" to="ExtrasSettings" method="_on_close_pressed"]
+[connection signal="pressed" from="UpdatesPage/Panel/Close" to="UpdatesPage" method="_on_close_pressed"]

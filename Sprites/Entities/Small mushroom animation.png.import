@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddr6tbbfnxn77"
-path="res://.godot/imported/Small mushroom.png-5f874c35c3839a8561ce79747d6661fd.ctex"
+uid="uid://c6mjhkriibrjw"
+path="res://.godot/imported/Small mushroom animation.png-d2734fa82a60da4cd1a026acdb90dac8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Entities/Small mushroom.png"
-dest_files=["res://.godot/imported/Small mushroom.png-5f874c35c3839a8561ce79747d6661fd.ctex"]
+source_file="res://Sprites/Entities/Small mushroom animation.png"
+dest_files=["res://.godot/imported/Small mushroom animation.png-d2734fa82a60da4cd1a026acdb90dac8.ctex"]
 
 [params]
 
