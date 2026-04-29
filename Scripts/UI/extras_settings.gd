@@ -11,11 +11,13 @@ var minimum_space : int = 10.0
 func _ready():
 	$Panel/Close.text = tr("CLOSE")
 	
-	for id in Manager.ACHIEVEMENT_DATA.keys():
+	for id in AchievementManager.ACHIEVEMENTS.keys():
 		minimum_space += 100
 		max_achievements += 1
-		if Manager.achievements[id].unlocked == true :
+
+		if AchievementManager.unlocked.get(id, false):
 			unlocked_achievements += 1
+
 		var item = item_scene.instantiate()
 		container.add_child(item)
 		item.setup(id)

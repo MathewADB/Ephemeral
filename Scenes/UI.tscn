@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://c5lrcweg7lk2s"]
 
-[ext_resource type="Script" uid="uid://cfj4m4i73motg" path="res://Scripts/ui_manager.gd" id="1_dewlx"]
+[ext_resource type="Script" uid="uid://cfj4m4i73motg" path="res://Scripts/Managers/ui_manager.gd" id="1_dewlx"]
 [ext_resource type="Texture2D" uid="uid://bk6gt7ae81v5y" path="res://Sprites/BackGrounds/Sky .png" id="2_1lsdj"]
 [ext_resource type="PackedScene" uid="uid://hwmmwmdcli2k" path="res://Scenes/Control/BarsHud.tscn" id="2_hfhsn"]
-[ext_resource type="Shader" uid="uid://bgwjca7gm7142" path="res://Scenes/DayNightShader.gdshader" id="2_q6a8d"]
+[ext_resource type="Shader" uid="uid://bgwjca7gm7142" path="res://Style/DayNightShader.gdshader" id="2_q6a8d"]
 [ext_resource type="Script" uid="uid://dogym5cgk8esm" path="res://Scripts/UI/TimeCycle.gd" id="3_6lb63"]
 [ext_resource type="Texture2D" uid="uid://busi6fo40hl78" path="res://Sprites/UI/moon and sun icons.png" id="3_qwshj"]
 [ext_resource type="Texture2D" uid="uid://cs2qpfetvkqcu" path="res://Sprites/UI/Rain Drop.png" id="4_1lsdj"]

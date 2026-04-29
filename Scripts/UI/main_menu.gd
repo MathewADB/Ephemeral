@@ -62,14 +62,17 @@ func _on_exit_pressed() -> void:
 	get_tree().quit()
 
 func _on_credit_pressed() -> void:
+	AudioManager.play_sfx("confirm")
 	get_tree().change_scene_to_file("res://Scenes/Control/end_screen.tscn")
 
 func _on_new_game_pressed() -> void:
+	AudioManager.play_sfx("confirm")
 	Manager.reset_game()
 	Manager.save_game()
 	start_game()
 
 func _on_continue_pressed() -> void:
+	AudioManager.play_sfx("confirm")
 	Manager.load_game()
 	Manager.save_game()
 	start_game()
@@ -81,9 +84,11 @@ func start_game() -> void:
 	get_tree().change_scene_to_file(Manager.current_room_scene)
 
 func _on_settings_pressed() -> void:
+	AudioManager.play_sfx("confirm")
 	$MenuSettings.visible = true
 
 func _on_language_pressed() -> void:
+	AudioManager.play_sfx("confirm")
 	if Manager.selected_language == "EN":
 		Manager.selected_language = "DE"
 		$Language.text = "DE"
@@ -114,7 +119,9 @@ func refresh_texts():
 	]
 	
 func _on_extras_pressed() -> void:
+	AudioManager.play_sfx("confirm")
 	$ExtrasSettings.visible = true
 
 func _on_version_pressed() -> void:
+	AudioManager.play_sfx("confirm")
 	$UpdatesPage.visible = true

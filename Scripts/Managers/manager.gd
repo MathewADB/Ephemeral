@@ -30,43 +30,6 @@ const ROOM_TYPES : Dictionary = {
 const DEFAULT_SPAWN_ROOM := "res://Scenes/Locations/Mushroom Biome/Home.tscn"
 const DEFAULT_SPAWN_POSITION := Vector2(618,497)
 
-const ACHIEVEMENT_DATA := {
-	"first_xp": {
-		"name": "Getting Started",
-		"description": "Gain your first XP",
-		"icon": preload("res://Sprites/Icons/Achievement/Level 1.png")
-	},
-	"level_5": {
-		"name": "Growing Strong",
-		"description": "Reach level 5",
-		"icon": preload("res://Sprites/Icons/Achievement/Level 5.png")
-	},
-	"first_death": {
-		"name": "First Death",
-		"description": "Die for the first time",
-		"icon": preload("res://Sprites/Icons/Achievement/Death 1.png")
-	},
-	"first_craft": {
-		"name": "Crafting",
-		"description": "Craft your first item",
-		"icon": preload("res://Sprites/Icons/Achievement/Craft 1.png")
-	},
-	"death_10": {
-		"name": "Getting Used To It",
-		"description": "Die 10 times",
-		"icon": preload("res://Sprites/Icons/Achievement/Death 10.png")
-	},
-	"death_50": {
-		"name": "Endless Suffering",
-		"description": "Die 50 times",
-		"icon": preload("res://Sprites/Icons/Achievement/Death 50.png")
-	},
-	"craft_10": {
-		"name": "Apprentice Crafter",
-		"description": "Craft 10 items",
-		"icon": preload("res://Sprites/Icons/Achievement/Craft 10.png")
-	}
-}
 # --- SIGNALS ---
 
 signal night_changed(is_night: bool)
@@ -164,22 +127,7 @@ var crafting_recipes := {
 	}
 }
 
-# Achievement stats 
-
 var death_count: int = 0
-var crafted_count: int = 0
-
-var achievements := {
-	"first_xp": {"unlocked": false},
-	"level_5": {"unlocked": false},
-	"first_death": {"unlocked": false},
-	"first_craft": {"unlocked": false},
-	"death_10": {"unlocked": false},
-	"death_50": {"unlocked": false},
-	"craft_10": {"unlocked": false}
-}
-
-# -- ENDGAME --
 
 var lore_goal := 3
 var end_triggered := false
@@ -271,25 +219,19 @@ func save_game():
 		"current_room_scene": current_room_scene,
 		"spawn_location": spawn_location,
 		"spawn_room_scene": spawn_room_scene,
-		"achievements": achievements,
+		"achievements": AchievementManager.get_save_data(),
 		"death_count": death_count,
-		"crafted_count": crafted_count,
 		"end_triggered": end_triggered,
 		"player_current_health": player.current_health if player else 100
 	}
-	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-	file.store_string(JSON.stringify(save_data))
-	file.close()
+	SaveManager.save(save_data)
 
 func load_game():
-	if not FileAccess.file_exists(SAVE_PATH):
+	var data = SaveManager.load()
+	
+	if data.is_empty():
 		return
-
-	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
-	var content = file.get_as_text()
-	file.close()
-
-	var data = JSON.parse_string(content)
+		
 	if typeof(data) != TYPE_DICTIONARY:
 		return
 	
@@ -299,13 +241,9 @@ func load_game():
 	fullscreen = settings.get("fullscreen", false)
 
 	end_triggered = data.get("end_triggered", false)
-	var loaded_achievements = data.get("achievements", {})
+	AchievementManager.load_data(data.get("achievements", {}))
 
-	for id in achievements.keys():
-		if loaded_achievements.has(id):
-			achievements[id]["unlocked"] = loaded_achievements[id].get("unlocked", false)
 	death_count = data.get("death_count", 0)
-	crafted_count = data.get("crafted_count", 0)
 	learned_upgrades = data.get("learned_upgrades", [])
 	skill_points = data.get("skill_points",0)
 	level = data.get("level",1)
@@ -349,17 +287,14 @@ func load_game():
 	map_updated.emit()
 	
 func reset_game(should_save := true):
-	# --- CORE PROGRESSION ---
+
 	skill_points = 0
 	level = 1
 	current_xp = 0
 	
-	# --- PLAYER STATE ---
 	loaded_health = 100
 	death_count = 0
-	crafted_count = 0
 	
-	# --- INVENTORY ---
 	items = {
 		"Ruby Stone":0, 
 		"Ruby Gem":0, 
@@ -369,34 +304,26 @@ func reset_game(should_save := true):
 		"Lore Fragment":0
 	}
 	
-	# --- WORLD STATE ---
 	visited_rooms.clear()
 	room_positions = DEFUALT_ROOM_POSITIONS.duplicate(true)
 	collected_objects.clear()
 	resource_nodes.clear()
 	
-	# --- TIME ---
 	game_seconds = start_day_progress * seconds_per_day
 	
-	# --- POSITION / SCENE ---
 	current_room_scene = DEFAULT_ROOM_SCENE
 	spawn_room_scene = DEFAULT_SPAWN_ROOM
 	spawn_location = DEFAULT_SPAWN_POSITION
 	respawn_room_scene = DEFAULT_SPAWN_ROOM
 	respawn_location = DEFAULT_SPAWN_POSITION
 	
-	# --- UPGRADES ---
 	learned_upgrades.clear()
 	apply_learned_upgrades()
 	
-	# --- ACHIEVEMENTS RESET ---
-	for key in achievements.keys():
-		achievements[key]["unlocked"] = false
+	AchievementManager.load_data({})
 	
-	# --- ENDGAME RESET ---
 	end_triggered = false
 	
-	# --- SAVE ---
 	if should_save:
 		save_game()
 	
@@ -407,15 +334,6 @@ func reset_game(should_save := true):
 	level_changed.emit(level)
 	inventory_changed.emit()
 	map_updated.emit()
-
-func delete_save():
-	if FileAccess.file_exists(SAVE_PATH):
-		var dir := DirAccess.open("user://")
-		if dir:
-			dir.remove("save_game.json")
-			print("Save deleted")
-		else:
-			print("Failed to open user:// directory")
 			
 # ================= NODES ==================
 
@@ -445,64 +363,6 @@ func set_resource(unique_id: String, count: int):
 		resource_nodes[unique_id]["count"] = count
 		resource_nodes[unique_id]["last_time"] = game_seconds
 		
-# =============== ACHIEVEMENTS =============
-
-func unlock_achievement(id: String):
-	if not achievements.has(id):
-		return
-	
-	if achievements[id]["unlocked"]:
-		return
-	
-	achievements[id]["unlocked"] = true
-	
-	print("Unlocked:", ACHIEVEMENT_DATA[id]["name"])
-	
-	var data = ACHIEVEMENT_DATA[id]
-	
-	UI.show_achievement_popup(
-		data["name"],
-		data["description"],
-		data["icon"]
-	)
-	
-	save_game()
-	
-func add_achievement_progress(id: String, amount := 1):
-	if not achievements.has(id):
-		return
-	
-	var ach = achievements[id]
-	
-	if ach.get("unlocked", false):
-		return
-	
-	ach["progress"] += amount
-	
-	if ach["progress"] >= ach["goal"]:
-		unlock_achievement(id)
-		
-func register_death():
-	death_count += 1
-	
-	if death_count == 1:
-		unlock_achievement("first_death")
-	elif death_count == 10:
-		unlock_achievement("death_10")
-	elif death_count == 50:
-		unlock_achievement("death_50")
-	
-	save_game()
-	
-func register_craft(amount := 1):
-	crafted_count += amount
-	
-	unlock_achievement("first_craft")
-	if crafted_count >= 10:
-		unlock_achievement("craft_10")
-	
-	save_game()
-	
 # ================= LEVELING =================
 
 func get_required_xp(lvl: int) -> float:
@@ -514,7 +374,7 @@ signal xp_gained(amount)
 func add_xp(amount: float):
 	xp_gained.emit(amount) 
 	
-	unlock_achievement("first_xp")
+	AchievementManager.register_xp()
 	
 	current_xp += amount
 	check_level_up()
@@ -525,8 +385,7 @@ func check_level_up():
 		current_xp -= get_required_xp(level)
 		level += 1
 		
-		if level >= 5:
-			unlock_achievement("level_5")
+		AchievementManager.register_level(level)
 	
 		skill_points += 1
 		skill_points_changed.emit(skill_points)

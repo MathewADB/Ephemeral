@@ -24,16 +24,14 @@ func _on_fullscreen_toggled(toggled_on: bool) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 func _on_reset_pressed() -> void:
-	Manager.delete_save()
+	SaveManager.delete_save()
 	Manager.reset_game(false)
-
+	
 func _on_close_pressed() -> void:
 	self.visible = false
 
-
 func _on_music_toggled(toggled_on: bool) -> void:
-	if toggled_on :
-		Music.stream_paused = false
-		
-	else :
-		Music.stream_paused = true
+		AudioServer.set_bus_mute(
+		AudioServer.get_bus_index("Music"),
+		not toggled_on
+	)

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cjokj2tewacau"]
 
-[ext_resource type="Script" uid="uid://cqxvnvk5pldir" path="res://Scripts/moving_platform.gd" id="1_1pluy"]
+[ext_resource type="Script" uid="uid://cqxvnvk5pldir" path="res://Scripts/Envirement/moving_platform.gd" id="1_1pluy"]
 [ext_resource type="Texture2D" uid="uid://cenaw8al4lra8" path="res://Sprites/Entities/mushroom moving platforrm green.png" id="2_1pluy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctttr"]

@@ -39,6 +39,7 @@ func _ready() -> void:
 	Manager.xp_changed.connect(update_bar)
 	Manager.level_changed.connect(update_level)
 	Manager.xp_gained.connect(show_xp_popup)
+	AchievementManager.achievement_unlocked.connect(show_achievement_popup)
 	update_bar(Manager.current_xp, Manager.get_required_xp(Manager.level))
 	update_level(Manager.level)
 	
@@ -148,7 +149,7 @@ func start_crafting(recipe_name: String, time: float):
 	await tween.finished
 	
 	Manager.add_item(recipe_name, 1)
-	Manager.register_craft(1)
+	AchievementManager.register_craft(1)
 	
 	crafting = false
 	craft_button.disabled = false
@@ -229,8 +230,8 @@ func show_text_popup(text: String):
 	
 	popup.offset_top = 160   
 
-@warning_ignore("shadowed_variable_base_class")
-func show_achievement_popup(name: String, desc: String, icon: Texture2D):
+@warning_ignore("unused_parameter")
+func show_achievement_popup(id: String, data: Dictionary):
 	var popup = achievement_popup_scene.instantiate()
 	$Popup.add_child(popup)
 
@@ -241,7 +242,11 @@ func show_achievement_popup(name: String, desc: String, icon: Texture2D):
 
 	popup.offset_top = 40
 
-	popup.setup(name, desc, icon)
+	popup.setup(
+		data.get("name", ""),
+		data.get("description", ""),
+		data.get("icon", null)
+	)
 	
 			
 func set_progress(value):

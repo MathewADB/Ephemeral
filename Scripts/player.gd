@@ -320,8 +320,9 @@ func die():
 func respawn():
 	take_damage(-100)
 	Manager.loaded_health = max_health
-	Manager.register_death()
-
+	AchievementManager.register_death()
+	Manager.death_count += 1
+	Manager.save_game()
 	if tutorial:
 		global_position = save_location
 		current_health = max_health

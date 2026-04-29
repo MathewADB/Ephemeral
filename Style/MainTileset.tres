@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://c10loduwvqd3q" path="res://Scenes/Envirement/grass.tscn" id="4_lc7sh"]
 [ext_resource type="PackedScene" uid="uid://obbnmvpiugxx" path="res://Scenes/Envirement/red_grass.tscn" id="5_p6cbp"]
 [ext_resource type="Texture2D" uid="uid://c4t3d4ko74758" path="res://Sprites/TileSets/Medieval Biome.png" id="6_8nsh6"]
+[ext_resource type="PackedScene" uid="uid://pxwqaxm2282f" path="res://Scenes/Envirement/disappearing_platform.tscn" id="6_brvk5"]
+[ext_resource type="PackedScene" uid="uid://vxtwbjvpr6s0" path="res://Scenes/Envirement/night_platform.tscn" id="7_mwp7p"]
 [ext_resource type="Texture2D" uid="uid://bhixirc7fhksq" path="res://Sprites/TileSets/Blue Biome.png" id="7_njfxt"]
 [ext_resource type="Texture2D" uid="uid://cdtyxdem8gk7e" path="res://Sprites/TileSets/green.png" id="8_0cngk"]
 
@@ -722,6 +724,8 @@ scenes/1/scene = ExtResource("2_kryip")
 scenes/2/scene = ExtResource("3_kryip")
 scenes/3/scene = ExtResource("4_lc7sh")
 scenes/4/scene = ExtResource("5_p6cbp")
+scenes/5/scene = ExtResource("6_brvk5")
+scenes/6/scene = ExtResource("7_mwp7p")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bd11e"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
