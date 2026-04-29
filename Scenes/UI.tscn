@@ -239,7 +239,7 @@ offset_top = 46.0
 offset_right = 61.0
 offset_bottom = 82.0
 theme = ExtResource("4_hfhsn")
-theme_type_variation = &"LabelLevel"
+theme_type_variation = &"LabelWhite"
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -318,20 +318,20 @@ theme_override_font_sizes/font_size = 32
 
 [node name="CloseButton" type="Button" parent="Crafting Panel" unique_id=161906409]
 layout_mode = 0
-offset_left = 39.0
-offset_top = 463.0
-offset_right = 129.0
-offset_bottom = 507.0
+offset_left = 920.0
+offset_top = 536.0
+offset_right = 1104.0
+offset_bottom = 600.0
 theme = ExtResource("4_hfhsn")
 theme_type_variation = &"GrayButton"
 text = "Close"
 
 [node name="CraftButton" type="Button" parent="Crafting Panel" unique_id=1859212047]
 layout_mode = 0
-offset_left = 40.0
+offset_left = 32.0
 offset_top = 514.0
-offset_right = 129.0
-offset_bottom = 558.0
+offset_right = 184.0
+offset_bottom = 562.0
 theme = ExtResource("4_hfhsn")
 theme_type_variation = &"BlueButtons"
 disabled = true
@@ -346,7 +346,7 @@ anchor_bottom = 1.0
 offset_left = -337.0
 offset_top = 41.0
 offset_right = -18.0
-offset_bottom = -41.0
+offset_bottom = -136.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -400,28 +400,29 @@ mouse_filter = 2
 [node name="Q" type="Label" parent="Player Panel" unique_id=1365721339]
 z_index = 1
 layout_mode = 0
-offset_left = 222.54
+offset_left = 32.0
 offset_top = 22.0
-offset_right = 262.53998
+offset_right = 62.0
 offset_bottom = 58.000008
 theme = ExtResource("4_hfhsn")
-theme_type_variation = &"LabelInfo"
+theme_type_variation = &"MenuLabel"
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 text = "[Q]"
 horizontal_alignment = 1
 
 [node name="E" type="Label" parent="Player Panel" unique_id=302243028]
 z_index = 1
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -267.95502
+offset_left = -536.0
 offset_top = 22.0
-offset_right = -227.95502
+offset_right = -506.0
 offset_bottom = 58.0
 grow_horizontal = 0
 theme = ExtResource("4_hfhsn")
-theme_type_variation = &"LabelInfo"
+theme_type_variation = &"MenuLabel"
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 text = "[E]"
 horizontal_alignment = 1
@@ -435,11 +436,11 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 theme = ExtResource("4_hfhsn")
-tab_alignment = 1
-current_tab = 0
+current_tab = 2
 script = ExtResource("6_mg6lk")
 
 [node name="Settings" type="Control" parent="Player Panel/Panel" unique_id=2016830327]
+visible = false
 layout_mode = 2
 focus_mode = 2
 script = ExtResource("10_45jp6")
@@ -447,10 +448,10 @@ metadata/_tab_index = 0
 
 [node name="Quit" type="Button" parent="Player Panel/Panel/Settings" unique_id=1493065016]
 layout_mode = 0
-offset_left = 29.0
-offset_top = 483.0
-offset_right = 225.0
-offset_bottom = 535.0
+offset_left = 32.0
+offset_top = 443.0
+offset_right = 228.0
+offset_bottom = 495.0
 theme = ExtResource("4_hfhsn")
 theme_type_variation = &"RedButton"
 text = "Save And Quit"
@@ -472,7 +473,6 @@ offset_right = 209.0
 offset_bottom = 198.0
 
 [node name="Upgrades" type="Control" parent="Player Panel/Panel" unique_id=1762975685]
-visible = false
 layout_mode = 2
 focus_mode = 2
 theme = ExtResource("4_hfhsn")
@@ -486,7 +486,7 @@ offset_top = 35.0
 offset_right = 159.0
 offset_bottom = 71.0
 theme = ExtResource("4_hfhsn")
-theme_type_variation = &"LabelWhite"
+theme_type_variation = &"LabelMain"
 text = "Skill Points : "
 
 [node name="Control" type="Control" parent="Player Panel/Panel/Upgrades" unique_id=1838206492]
@@ -494,6 +494,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -37.0
+offset_right = -40.0
+offset_bottom = -29.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -501,7 +505,7 @@ grow_vertical = 2
 position = Vector2(-864, -24)
 points = PackedVector2Array(1544, 275, 1544, 387, 1672, 387, 1544, 387, 1544, 499, 1672, 499, 1544, 499, 1544, 275, 1416, 275, 1544, 275, 1672, 275, 1544, 275, 1544, 163, 1544, 275, 1416, 275, 1544, 275, 1416, 387, 1416, 507, 1416, 387, 1288, 387, 1288, 499, 1288, 387, 1416, 387, 1544, 275, 1416, 275, 1024, 275)
 width = 15.0
-default_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
+default_color = Color(0.15707251, 0.20394054, 0.22267619, 1)
 
 [node name="InfoPanel" type="Panel" parent="Player Panel/Panel/Upgrades" unique_id=1263094567]
 layout_mode = 1
@@ -510,9 +514,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -288.0
+offset_left = -208.0
 offset_top = -285.5
-offset_bottom = 293.0
+offset_right = 32.0
+offset_bottom = 289.25
 grow_horizontal = 0
 grow_vertical = 2
 theme = ExtResource("4_hfhsn")
@@ -522,13 +527,13 @@ theme_type_variation = &"InfoPanel"
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_left = 8.0
 offset_top = 27.0
+offset_right = -8.0
 offset_bottom = 179.0
 grow_horizontal = 2
 theme = ExtResource("4_hfhsn")
-theme_type_variation = &"LabelInfo"
-theme_override_colors/font_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
-theme_override_font_sizes/font_size = 48
+theme_type_variation = &"LabelMain"
 text = "Upgrade Panel"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -539,13 +544,13 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
-offset_top = 139.0
+offset_top = 171.0
 offset_right = -8.0
 offset_bottom = -264.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_hfhsn")
-theme_type_variation = &"LabelInfo"
+theme_type_variation = &"MenuLabel"
 theme_override_colors/font_color = Color(0.6509804, 0.76862746, 0.7490196, 1)
 text = "Select an Upgrade"
 horizontal_alignment = 1
@@ -556,12 +561,12 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 267.0
+offset_top = 291.0
 offset_bottom = -95.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_hfhsn")
-theme_type_variation = &"LabelInfo"
+theme_type_variation = &"MenuLabel"
 theme_override_colors/font_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -586,10 +591,10 @@ text = "Learn"
 
 [node name="TextureButton" type="TextureRect" parent="Player Panel/Panel/Upgrades/InfoPanel" unique_id=1426842143]
 layout_mode = 0
-offset_left = -232.00002
-offset_top = 203.0
-offset_right = -200.00002
-offset_bottom = 235.0
+offset_left = -272.0
+offset_top = 195.0
+offset_right = -240.0
+offset_bottom = 227.0
 scale = Vector2(3, 3)
 texture = ExtResource("17_gqamb")
 
@@ -598,8 +603,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 26.0
-offset_right = -287.0
+offset_left = -24.0
+offset_top = -13.0
+offset_right = -240.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 

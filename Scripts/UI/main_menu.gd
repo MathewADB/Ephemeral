@@ -124,4 +124,4 @@ func _on_extras_pressed() -> void:
 
 func _on_version_pressed() -> void:
 	AudioManager.play_sfx("confirm")
-	$UpdatesPage.visible = true
+	$VersionPage.visible = true
