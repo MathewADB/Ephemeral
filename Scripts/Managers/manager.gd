@@ -44,6 +44,7 @@ signal map_updated
 
 var autosave_interval: float = 300.0
 var autosave_timer: float = 0.0
+var current_slot: int = 0
 
 # --- PLAYER & TIME ---
 
@@ -82,7 +83,6 @@ var map_unlocked := BASE_STATS["map_unlocked"]
 
 # --- INVENTORY & COLLECTION ---
 
-var items : Dictionary = {"Ruby Stone":0, "Ruby Gem":0, "Dust":0, "Dust Gem":0, "Stone":0, "Lore Fragment":0}
 var visited_rooms: Array = []
 var collected_objects : Dictionary = {}
 var resource_nodes := {}
@@ -110,23 +110,6 @@ var upgrades := {
 	"Map": {"skill_cost":1, "materials":{}, "requires":[], "effect":{"map_unlocked":true}}
 }
 
-var crafting_recipes := {
-	"Ruby Gem": {
-		"name": "Ruby Gem",
-		"description": "A refined gem crafted from raw stones",
-		"icon": preload("res://Sprites/Entities/Ruby Gem.png"),
-		"materials": {"Ruby Stone": 2},
-		"time": 5.0
-	},
-	"Dust Gem": {
-		"name": "Dust Gem",
-		"description": "A refined gem which can be used to activate some broken objects",
-		"icon": preload("res://Sprites/Entities/Dust Gem.png"),
-		"materials": {"Dust": 10},
-		"time": 10.0
-	}
-}
-
 var death_count: int = 0
 
 var lore_goal := 3
@@ -136,7 +119,7 @@ func check_lore_progress():
 	if end_triggered:
 		return
 
-	if items.get("Lore Fragment", 0) >= lore_goal:
+	if InventoryManager.get_amount("Lore Fragment") >= lore_goal:
 		trigger_end_game()
 		
 func trigger_end_game():
@@ -178,6 +161,8 @@ func apply_settings():
 # -- Functions --
 
 func _ready():
+	InventoryManager.inventory_changed.connect(func():
+		inventory_changed.emit())
 	game_seconds = start_day_progress * seconds_per_day
 	_is_night = is_night()
 	night_changed.emit(_is_night)
@@ -210,7 +195,7 @@ func save_game():
 		"skill_points": skill_points,
 		"level": level,
 		"current_xp": current_xp,
-		"items": items,
+		"items": InventoryManager.get_save_data(),
 		"visited_rooms": visited_rooms,
 		"room_positions": room_positions,
 		"collected_objects": collected_objects,
@@ -248,7 +233,7 @@ func load_game():
 	skill_points = data.get("skill_points",0)
 	level = data.get("level",1)
 	current_xp = data.get("current_xp",0)
-	items = data.get("items",{})
+	InventoryManager.load_data(data.get("items", {}))
 	visited_rooms = data.get("visited_rooms",[])
 	
 	var loaded_room_positions = data.get("room_positions", {})
@@ -295,14 +280,7 @@ func reset_game(should_save := true):
 	loaded_health = 100
 	death_count = 0
 	
-	items = {
-		"Ruby Stone":0, 
-		"Ruby Gem":0, 
-		"Dust":0, 
-		"Dust Gem":0, 
-		"Stone":0, 
-		"Lore Fragment":0
-	}
+	InventoryManager.reset()
 	
 	visited_rooms.clear()
 	room_positions = DEFUALT_ROOM_POSITIONS.duplicate(true)
@@ -408,7 +386,7 @@ func can_learn_upgrade(upgrade_name: String) -> bool:
 		return false
 
 	for mat in u.materials.keys():
-		if items.get(mat, 0) < u.materials[mat]:
+		if not InventoryManager.has_item(mat, u.materials[mat]):
 			return false
 
 	for req in u.requires:
@@ -427,7 +405,7 @@ func learn_upgrade(upgrade_name: String) -> void:
 	skill_points_changed.emit(skill_points)
 
 	for mat in u.materials.keys():
-		remove_item(mat, u.materials[mat])
+		InventoryManager.remove_item(mat, u.materials[mat])
 
 	if upgrade_name not in learned_upgrades:
 		learned_upgrades.append(upgrade_name)
@@ -453,28 +431,6 @@ func apply_learned_upgrades():
 
 	if player:
 		player.set_stats()
-	
-# ================= INVENTORY =================
-
-func add_item(item_name : String, amount := 1):
-	if not items.has(item_name):
-		items[item_name] = 0
-
-	items[item_name] += amount
-	inventory_changed.emit()
-	
-	if item_name == "Lore Fragment":
-		check_lore_progress()
-		
-func remove_item(item_name : String, amount := 1):
-	if not items.has(item_name):
-		return
-
-	items[item_name] -= amount
-	if items[item_name] <= 0:
-		items.erase(item_name)
-
-	inventory_changed.emit()
 		
 # ================= DAY/NIGHT =================
 		

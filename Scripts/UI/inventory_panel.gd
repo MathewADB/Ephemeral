@@ -4,15 +4,15 @@ extends Control
 var row_scene := preload("res://Scenes/Control/inventory_item_row.tscn")
 
 func _ready():
-	Manager.inventory_changed.connect(update_inventory)
+	InventoryManager.inventory_changed.connect(update_inventory)
 	update_inventory()
 
 func update_inventory():
 	for child in list.get_children():
 		child.queue_free()
 
-	for item_name in Manager.items.keys():
-		var amount : int = Manager.items[item_name]
+	for item_name in InventoryManager.items.keys():
+		var amount : int = InventoryManager.items[item_name]
 		if amount <= 0:
 			continue
 
@@ -22,7 +22,7 @@ func update_inventory():
 		var icon := get_icon_for_item(item_name)
 		row.setup(icon, amount)
 
-	visible = Manager.items.size() > 0
+	visible = InventoryManager.items.size() > 0
 
 func get_icon_for_item(item_name : String) -> Texture2D:
 	match item_name:

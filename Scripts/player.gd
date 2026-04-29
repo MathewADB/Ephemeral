@@ -154,7 +154,7 @@ func handle_mining(delta):
 			if mineable.xp > 0 :
 				Manager.add_xp(mineable.xp)
 
-			Manager.add_item(mineable.collectable_name, 1)
+			InventoryManager.add_item(mineable.collectable_name, 1)
 			UI.show_item_popup(mineable, 1)
 
 			if mineable is InfiniteCollectable:

@@ -258,7 +258,7 @@ scale = Vector2(3, 3)
 texture = SubResource("CompressedTexture2D_luji1")
 
 [node name="Fade" type="ColorRect" parent="." unique_id=850223812]
-visible = false
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -323,6 +323,7 @@ offset_top = 463.0
 offset_right = 129.0
 offset_bottom = 507.0
 theme = ExtResource("4_hfhsn")
+theme_type_variation = &"GrayButton"
 text = "Close"
 
 [node name="CraftButton" type="Button" parent="Crafting Panel" unique_id=1859212047]
@@ -332,6 +333,7 @@ offset_top = 514.0
 offset_right = 129.0
 offset_bottom = 558.0
 theme = ExtResource("4_hfhsn")
+theme_type_variation = &"BlueButtons"
 disabled = true
 text = "Craft"
 
@@ -386,6 +388,7 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Player Panel" type="Control" parent="." unique_id=1801123476]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -433,11 +436,10 @@ grow_vertical = 2
 focus_mode = 2
 theme = ExtResource("4_hfhsn")
 tab_alignment = 1
-current_tab = 2
+current_tab = 0
 script = ExtResource("6_mg6lk")
 
 [node name="Settings" type="Control" parent="Player Panel/Panel" unique_id=2016830327]
-visible = false
 layout_mode = 2
 focus_mode = 2
 script = ExtResource("10_45jp6")
@@ -450,7 +452,7 @@ offset_top = 483.0
 offset_right = 225.0
 offset_bottom = 535.0
 theme = ExtResource("4_hfhsn")
-theme_type_variation = &"RespawnButton"
+theme_type_variation = &"RedButton"
 text = "Save And Quit"
 
 [node name="Inventory" type="Control" parent="Player Panel/Panel" unique_id=2097038401]
@@ -470,6 +472,7 @@ offset_right = 209.0
 offset_bottom = 198.0
 
 [node name="Upgrades" type="Control" parent="Player Panel/Panel" unique_id=1762975685]
+visible = false
 layout_mode = 2
 focus_mode = 2
 theme = ExtResource("4_hfhsn")
@@ -577,7 +580,7 @@ offset_bottom = -28.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("4_hfhsn")
-theme_type_variation = &"UpgradeButton"
+theme_type_variation = &"BlueButtons"
 disabled = true
 text = "Learn"
 
@@ -883,7 +886,7 @@ offset_bottom = 124.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_hfhsn")
-theme_type_variation = &"UpgradeButton"
+theme_type_variation = &"BlueButtons"
 text = "Respawn"
 
 [connection signal="pressed" from="Crafting Panel/CloseButton" to="." method="_on_close_button_pressed"]

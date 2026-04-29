@@ -11,7 +11,7 @@ var player_in := false
 func _ready():
 	if Manager.collected_objects.has(unique_id):
 		set_lit(true)
-	
+
 @warning_ignore("unused_parameter")
 func _process(delta):
 	if is_lit:
@@ -22,24 +22,25 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("interact"):
 		try_light()
-		
+
 func set_lit(state: bool):
 	is_lit = state
 	sprite.frame = int(is_lit)
-	
+
 func try_light():
 	if is_lit:
 		return
 
-	if Manager.items.get("Dust Gem", 0) < dust_gem_cost:
+	if not InventoryManager.has_item("Dust Gem", dust_gem_cost):
 		return
 
-	Manager.remove_item("Dust Gem", dust_gem_cost)
+	InventoryManager.remove_item("Dust Gem", dust_gem_cost)
+
 	Manager.collected_objects[unique_id] = true
 	Manager.save_game()
 	Manager.add_xp(50)
+
 	set_lit(true)
-	
 
 @warning_ignore("unused_parameter")
 func _on_body_entered(body: Node2D) -> void:
@@ -48,4 +49,3 @@ func _on_body_entered(body: Node2D) -> void:
 @warning_ignore("unused_parameter")
 func _on_body_exited(body: Node2D) -> void:
 	player_in = false
-	

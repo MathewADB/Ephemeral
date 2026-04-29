@@ -3,19 +3,19 @@ extends Node2D
 @onready var sprite = $Sprite2D
 @onready var area = $CollisionShape2D
 
-@export var unique_id : String        # unique for saving
+@export var unique_id : String
 @export var stone_required := 10
 @export var dustgem_required := 5
 @export var exp_stage2 := 50
 @export var exp_stage3 := 50
 
-@export var upgrade_time := 30.0  # seconds
+@export var upgrade_time := 30.0
 
 var upgrading := false
 var upgrade_timer := 0.0
 var upgrade_target_stage := 0
 
-var stage := 0       # 0=broken, 1=repaired, 2=fancy
+var stage := 0
 var player_inside := false
 
 func _ready():
@@ -31,17 +31,19 @@ func restore_state():
 func update_sprite():
 	sprite.frame = stage
 	area.disabled = stage == 0
-		
-@warning_ignore("unused_parameter")
+
 func _process(delta):
 	if upgrading:
 		upgrade_timer += delta
+
+		# visual feedback
 		sprite.modulate = Color(1,1,1,0.5 + 0.5*(upgrade_timer/upgrade_time))
+
+		# ⚠️ DO NOT SAVE EVERY FRAME
 		Manager.collected_objects[unique_id + "_upgrading"] = true
 		Manager.collected_objects[unique_id + "_upgrade_timer"] = upgrade_timer
 		Manager.collected_objects[unique_id + "_upgrade_target_stage"] = upgrade_target_stage
-		Manager.save_game()
-		
+
 		if upgrade_timer >= upgrade_time:
 			finish_upgrade()
 		return
@@ -58,43 +60,51 @@ func interact():
 
 	match stage:
 		0:
-			if Manager.items.get("Stone",0) >= stone_required:
-				Manager.remove_item("Stone", stone_required)
+			if InventoryManager.has_item("Stone", stone_required):
+				InventoryManager.remove_item("Stone", stone_required)
 				start_upgrade(1)
 			else:
-				print("Not enough Stone!")
+				UI.show_text_popup("Not enough Stone!")
+
 		1:
-			if Manager.items.get("Dust Gem",0) >= dustgem_required:
-				Manager.remove_item("Dust Gem", dustgem_required)
+			if InventoryManager.has_item("Dust Gem", dustgem_required):
+				InventoryManager.remove_item("Dust Gem", dustgem_required)
 				start_upgrade(2)
 			else:
-				print("Not enough Dust Gem!")
+				UI.show_text_popup("Not enough Dust Gems!")
+
 		2:
-			print("Bridge is already fancy!")
+			UI.show_text_popup("Already fully upgraded!")
 
 func start_upgrade(target_stage):
 	upgrading = true
 	upgrade_timer = 0.0
 	upgrade_target_stage = target_stage
-	sprite.modulate = Color(1,1,1,0.5)  # optional: semi-transparent while upgrading
-	print("Upgrade started to stage ", target_stage)
+
+	sprite.modulate = Color(1,1,1,0.5)
+
+	# save ONCE when starting
+	Manager.collected_objects[unique_id + "_upgrading"] = true
+	Manager.collected_objects[unique_id + "_upgrade_timer"] = 0.0
+	Manager.collected_objects[unique_id + "_upgrade_target_stage"] = target_stage
+	Manager.save_game()
 
 func finish_upgrade():
 	stage = upgrade_target_stage
 	upgrading = false
 	upgrade_timer = 0.0
+
 	sprite.modulate = Color(1,1,1,1)
+
 	Manager.add_xp(exp_stage2 if stage == 1 else exp_stage3)
+
 	Manager.collected_objects[unique_id + "_stage"] = stage
 	Manager.collected_objects.erase(unique_id + "_upgrading")
 	Manager.collected_objects.erase(unique_id + "_upgrade_timer")
 	Manager.collected_objects.erase(unique_id + "_upgrade_target_stage")
-	
+
 	Manager.save_game()
 	update_sprite()
-	print("Upgrade finished! Stage is now ", stage)
-
-# ===== Area signals =====
 
 @warning_ignore("unused_parameter")
 func _on_area_2d_body_entered(body: Node2D) -> void:

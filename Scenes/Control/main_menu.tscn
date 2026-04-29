@@ -309,7 +309,7 @@ offset_top = 568.0
 offset_right = 1104.0
 offset_bottom = 616.0
 theme = ExtResource("4_qpyf4")
-theme_type_variation = &"BlueButton"
+theme_type_variation = &"GrayButton"
 text = "Close"
 
 [node name="Settings" type="Label" parent="MenuSettings/Panel" unique_id=208041109]
@@ -485,7 +485,7 @@ offset_top = 568.0
 offset_right = 1104.0
 offset_bottom = 616.0
 theme = ExtResource("4_qpyf4")
-theme_type_variation = &"BlueButton"
+theme_type_variation = &"GrayButton"
 text = "Close"
 
 [node name="UpdatesPage" type="Control" parent="." unique_id=917764440]
@@ -539,7 +539,7 @@ offset_top = 568.0
 offset_right = 1104.0
 offset_bottom = 616.0
 theme = ExtResource("4_qpyf4")
-theme_type_variation = &"BlueButton"
+theme_type_variation = &"GrayButton"
 text = "Close"
 
 [node name="Fade" type="ColorRect" parent="." unique_id=453366609]

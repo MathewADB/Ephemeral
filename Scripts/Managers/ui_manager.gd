@@ -43,13 +43,17 @@ func _ready() -> void:
 	update_bar(Manager.current_xp, Manager.get_required_xp(Manager.level))
 	update_level(Manager.level)
 	
-	for recipe_name in Manager.crafting_recipes.keys():
+	for recipe_name in InventoryManager.crafting_recipes.keys():
 		var btn = Button.new()
 		btn.theme = load("res://Style/MainTheme.tres")
 		btn.text = recipe_name
 		btn.pressed.connect(_on_recipe_selected.bind(recipe_name))
 		crafting_list.add_child(btn)
 
+func _on_inventory_changed():
+	if selected_recipe != null:
+		craft_button.disabled = not InventoryManager.can_craft(selected_recipe)
+		
 # ===== You Died
 
 func show_dead():
@@ -100,7 +104,7 @@ func show_ui():
 	
 func _on_recipe_selected(recipe_name: String) -> void:
 	selected_recipe = recipe_name
-	var recipe = Manager.crafting_recipes[recipe_name]
+	var recipe = InventoryManager.crafting_recipes[recipe_name]
 	
 	name_label.text = recipe_name
 	desc_label.text = recipe.get("description", "")
@@ -115,10 +119,10 @@ func _on_recipe_selected(recipe_name: String) -> void:
 	craft_button.disabled = not can_craft(recipe_name)
 	
 func can_craft(recipe_name: String) -> bool:
-	var recipe = Manager.crafting_recipes[recipe_name]
+	var recipe = InventoryManager.crafting_recipes[recipe_name]
 	
 	for mat in recipe["materials"]:
-		if not Manager.items.has(mat) or Manager.items[mat] < recipe["materials"][mat]:
+		if not InventoryManager.has_item(mat, recipe["materials"][mat]):
 			return false
 	
 	return true
@@ -130,11 +134,7 @@ func _on_craft_button_pressed() -> void:
 	if not can_craft(selected_recipe):
 		return
 		
-	var recipe = Manager.crafting_recipes[selected_recipe]
-	
-	# remove materials
-	for mat in recipe["materials"]:
-		Manager.remove_item(mat, recipe["materials"][mat])
+	var recipe = InventoryManager.crafting_recipes[selected_recipe]
 	
 	start_crafting(selected_recipe, recipe["time"])
 	
@@ -148,7 +148,7 @@ func start_crafting(recipe_name: String, time: float):
 	
 	await tween.finished
 	
-	Manager.add_item(recipe_name, 1)
+	InventoryManager.craft(recipe_name)
 	AchievementManager.register_craft(1)
 	
 	crafting = false
