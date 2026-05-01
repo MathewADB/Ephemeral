@@ -15,44 +15,42 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7dar2")
 
+[node name="Panel" type="Panel" parent="." unique_id=1150296855]
+modulate = Color(0.3083999, 0.3083999, 0.3083999, 1)
+layout_mode = 0
+offset_left = 40.0
+offset_top = 16.0
+offset_right = 424.0
+offset_bottom = 96.0
+theme = ExtResource("2_7dar2")
+theme_type_variation = &"AchievementPanel"
+
 [node name="Icon" type="TextureRect" parent="." unique_id=77230363]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 8.0
+offset_left = 56.0
+offset_top = 24.0
 offset_right = 120.0
-offset_bottom = 104.0
+offset_bottom = 88.0
 texture = ExtResource("1_eb6gd")
 
 [node name="Name" type="Label" parent="." unique_id=431810083]
 layout_mode = 0
 offset_left = 128.0
 offset_top = 16.0
-offset_right = 354.0
+offset_right = 376.0
 offset_bottom = 52.0
 theme = ExtResource("2_7dar2")
 text = "the name goes here"
 
 [node name="Description" type="Label" parent="." unique_id=1435424667]
 layout_mode = 0
-offset_left = 129.0
+offset_left = 128.0
 offset_top = 45.0
-offset_right = 576.0
-offset_bottom = 98.0
+offset_right = 416.0
+offset_bottom = 95.0
 theme = ExtResource("2_7dar2")
-theme_override_colors/font_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
+theme_type_variation = &"MenuLabel"
 theme_override_constants/line_spacing = -6
 theme_override_font_sizes/font_size = 24
-text = "the details of the achievement are written here
-here goes the second line of details"
-
-[node name="Line2D" type="Line2D" parent="." unique_id=1698086340]
-position = Vector2(0, 43)
-scale = Vector2(1, 0.5)
-points = PackedVector2Array(120, 106, 550, 106)
-default_color = Color(0.108147316, 0.12424227, 0.14953661, 1)
-
-[node name="Line2D2" type="Line2D" parent="." unique_id=1130723234]
-position = Vector2(0, 43)
-scale = Vector2(1, 0.5)
-points = PackedVector2Array(120, -54, 543, -54)
-default_color = Color(0.108147316, 0.12424227, 0.14953661, 1)
+text = "the details
+here goes the second line"

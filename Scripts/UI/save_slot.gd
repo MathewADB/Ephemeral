@@ -1,23 +1,37 @@
-extends Button
+extends HBoxContainer
 
 @export var slot_id: int
 
-func _ready():
-	update_ui()
+@onready var play_button = $Play
+@onready var delete_button = $Delete
 
-func update_ui():
-	if SaveManager.slot_exists(slot_id):
+
+func _ready():
+	add_to_group("save_slots")
+	get_tree().call_group("save_slots", "refresh")
+
+# ================= UI =================
+
+func refresh():
+	var exists = SaveManager.slot_exists(slot_id)
+
+	if exists:
 		var meta = SaveManager.get_slot_meta(slot_id)
 
 		var level = meta.get("level", 1)
 		var playtime = meta.get("playtime", 0)
 
-		text = "Slot %d - Lv.%d - %ds" % [slot_id + 1, level, playtime]
+		play_button.text = "Slot %d - Lv.%d - %ds" % [slot_id + 1, level, playtime - 432] 
+		delete_button.disabled = false
 	else:
-		text = "Slot %d - New Game" % (slot_id + 1)
+		play_button.text = "Slot %d - New Game" % (slot_id + 1)
+		delete_button.disabled = true
 
 
-func _pressed():
+# ================= ACTIONS =================
+
+func _on_play_pressed() -> void:
+	UI.show_ui()
 	if SaveManager.slot_exists(slot_id):
 		Manager.load_game(slot_id)
 	else:
@@ -25,3 +39,14 @@ func _pressed():
 		Manager.reset_game(false)
 
 	get_tree().change_scene_to_file(Manager.current_room_scene)
+
+
+func _on_delete_pressed() -> void:
+	AudioManager.play_sfx("confirm")
+
+	SaveManager.delete_save(slot_id)
+
+	if Manager.current_slot == slot_id:
+		Manager.current_slot = -1
+
+	refresh()

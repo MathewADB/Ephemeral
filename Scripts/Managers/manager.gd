@@ -1,6 +1,7 @@
 extends Node
 
 # --- CONSTANTS ---
+const SETTINGS_PATH := "user://settings.json"
 const DEFAULT_ROOM_SCENE := "res://Scenes/Locations/Mushroom Biome/Tutorial.tscn"
 const SAVE_PATH := "user://save_game.json"
 const BASE_STATS := {
@@ -161,12 +162,13 @@ func apply_settings():
 # -- Functions --
 
 func _ready():
+	load_settings()
+	apply_settings()
 	InventoryManager.inventory_changed.connect(func():
 		inventory_changed.emit())
 	game_seconds = start_day_progress * seconds_per_day
 	_is_night = is_night()
 	night_changed.emit(_is_night)
-	load_game()
 	apply_settings()
 	
 func _process(delta):
@@ -186,36 +188,46 @@ func _process(delta):
 # ================= SAVE/LOAD =================
 		
 func save_game():
-		
 	var save_data = {
-		"settings": {
-			"selected_language": selected_language,
-			"fullscreen": fullscreen
+		"meta": {
+			"level": level,
+			"playtime": int(game_seconds),
+			"last_played": Time.get_unix_time_from_system()
 		},
-		"skill_points": skill_points,
-		"level": level,
-		"current_xp": current_xp,
-		"items": InventoryManager.get_save_data(),
-		"visited_rooms": visited_rooms,
-		"room_positions": room_positions,
-		"collected_objects": collected_objects,
-		"game_seconds": game_seconds,
-		"learned_upgrades": learned_upgrades,
-		"current_room_scene": current_room_scene,
-		"spawn_location": spawn_location,
-		"spawn_room_scene": spawn_room_scene,
-		"achievements": AchievementManager.get_save_data(),
-		"death_count": death_count,
-		"end_triggered": end_triggered,
-		"player_current_health": player.current_health if player else 100
+		"data": {
+			"settings": {
+				"selected_language": selected_language,
+				"fullscreen": fullscreen
+			},
+			"skill_points": skill_points,
+			"level": level,
+			"current_xp": current_xp,
+			"items": InventoryManager.get_save_data(),
+			"achievement_progress": AchievementManager.get_progress_data(),
+			"visited_rooms": visited_rooms,
+			"room_positions": room_positions,
+			"collected_objects": collected_objects,
+			"game_seconds": game_seconds,
+			"learned_upgrades": learned_upgrades,
+			"current_room_scene": current_room_scene,
+			"spawn_location": spawn_location,
+			"spawn_room_scene": spawn_room_scene,
+			"death_count": death_count,
+			"end_triggered": end_triggered,
+			"player_current_health": player.current_health if player else 100
+		}
 	}
-	SaveManager.save(save_data)
 
-func load_game():
-	var data = SaveManager.load()
-	
-	if data.is_empty():
+	SaveManager.save(current_slot, save_data)
+
+func load_game(slot: int):
+	current_slot = slot
+
+	var wrapper = SaveManager.load(slot)
+	if wrapper.is_empty():
 		return
+	
+	var data = wrapper.get("data", {})
 		
 	if typeof(data) != TYPE_DICTIONARY:
 		return
@@ -226,7 +238,9 @@ func load_game():
 	fullscreen = settings.get("fullscreen", false)
 
 	end_triggered = data.get("end_triggered", false)
-	AchievementManager.load_data(data.get("achievements", {}))
+	AchievementManager.load_progress_data(
+	data.get("achievement_progress", {})
+)
 
 	death_count = data.get("death_count", 0)
 	learned_upgrades = data.get("learned_upgrades", [])
@@ -298,8 +312,6 @@ func reset_game(should_save := true):
 	learned_upgrades.clear()
 	apply_learned_upgrades()
 	
-	AchievementManager.load_data({})
-	
 	end_triggered = false
 	
 	if should_save:
@@ -313,6 +325,31 @@ func reset_game(should_save := true):
 	inventory_changed.emit()
 	map_updated.emit()
 			
+func save_settings():
+	var file := FileAccess.open(SETTINGS_PATH, FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify({
+			"selected_language": selected_language,
+			"fullscreen": fullscreen
+		}))
+		file.close()
+		
+func load_settings():
+	if not FileAccess.file_exists(SETTINGS_PATH):
+		return
+	
+	var file := FileAccess.open(SETTINGS_PATH, FileAccess.READ)
+	if file == null:
+		return
+	
+	var data = JSON.parse_string(file.get_as_text())
+	file.close()
+
+	if typeof(data) != TYPE_DICTIONARY:
+		return
+
+	selected_language = data.get("selected_language", "EN")
+	fullscreen = data.get("fullscreen", false)
 # ================= NODES ==================
 
 func update_resource(unique_id: String, max_count: int, regen_time: float):

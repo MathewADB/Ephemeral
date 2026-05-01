@@ -7,6 +7,7 @@ const SFX_POOL_SIZE := 8
 var sfx_players: Array[AudioStreamPlayer] = []
 
 var sounds := {
+	"unlock": preload("res://Audio/SFX/UI_Confirm.wav"),
 	"back": preload("res://Audio/SFX/UI_Back.wav"),
 	"confirm": preload("res://Audio/slime/jump_01.wav"),
 }

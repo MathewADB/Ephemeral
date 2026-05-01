@@ -48,7 +48,6 @@ func add_item(item_name: String, amount := 1):
 	items[item_name] += amount
 	inventory_changed.emit()
 
-	# notify main manager for lore trigger
 	if item_name == "Lore Fragment":
 		Manager.check_lore_progress()
 

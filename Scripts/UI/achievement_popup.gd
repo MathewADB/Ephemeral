@@ -10,7 +10,7 @@ extends Control
 @warning_ignore("shadowed_variable_base_class")
 func setup(name: String, desc: String, texture: Texture2D):
 	title.text = "Achievement Unlocked"
-	description.text = name + "\n" + desc
+	description.text = name + " : " + desc
 	icon.texture = texture
 	appear()
 

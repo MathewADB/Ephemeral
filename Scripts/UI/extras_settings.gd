@@ -4,29 +4,34 @@ extends Control
 var item_scene = preload("res://Scenes/Control/achievement_item.tscn")
 
 var max_achievements : int = 0
-var unlocked_achievements : int = 0
-@warning_ignore("narrowing_conversion")
-var minimum_space : int = 10.0
 
 func _ready():
 	$Panel/Close.text = tr("CLOSE")
-	
-	for id in AchievementManager.ACHIEVEMENTS.keys():
-		minimum_space += 100
-		max_achievements += 1
 
-		if AchievementManager.unlocked.get(id, false):
-			unlocked_achievements += 1
+	for id in AchievementManager.ACHIEVEMENTS.keys():
+		max_achievements += 1
 
 		var item = item_scene.instantiate()
 		container.add_child(item)
 		item.setup(id)
+		
 	
-	container.set_custom_minimum_size(Vector2(0.0,minimum_space))
-	$Panel/Amount.text = (str(unlocked_achievements)+"/"+str(max_achievements))
-	$Panel/Deaths.text = str(Manager.death_count) + " Deaths"
-	$Panel/Playtime.text = str(int(Manager.game_seconds) -432) + " Seconds"
-	$Panel/Level.text = "Level : " + str(Manager.level)
+	$Panel/ProgressBar.max_value = max_achievements
+	refresh()
+
+# ================= REFRESH =================
+
+func refresh():
+	var unlocked_count := 0
+
+	for id in AchievementManager.ACHIEVEMENTS.keys():
+		if AchievementManager.unlocked.get(id, false):
+			unlocked_count += 1
+
+	$Panel/Amount.text = str(unlocked_count) + "/" + str(max_achievements)
+	$Panel/ProgressBar.value = unlocked_count
 	
+# ================= UI =================
+
 func _on_close_pressed() -> void:
 	self.visible = false

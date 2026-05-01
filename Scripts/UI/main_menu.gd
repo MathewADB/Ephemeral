@@ -1,12 +1,16 @@
 extends Control
 
 @onready var fade : ColorRect = $Fade
-@onready var new_game_btn := $"MenuButtons/New Game"
-@onready var continue_btn := $MenuButtons/Continue
 
 var debug_hour := -1
 
 func _ready() -> void:
+	
+	$ProfileSelector.visible = false
+	$MenuSettings.visible = false
+	$ExtrasSettings.visible = false
+	$VersionPage.visible = false
+	
 	update_background_by_time()
 
 	if Manager.fullscreen == true :
@@ -18,9 +22,7 @@ func _ready() -> void:
 	UI.hide_ui()
 	fade.modulate = Color(0.0, 0.0, 0.0, 1.0)
 	fade_out()
-	
-	continue_btn.visible = FileAccess.file_exists(Manager.SAVE_PATH)
-	
+		
 #defualt 00000d86
 func update_background_by_time():
 	var hour : int
@@ -43,7 +45,7 @@ func update_background_by_time():
 
 	elif hour >= 17 and hour < 20:
 		color = dark
-		color.a = 0.6
+		color.a = 0.55
 	else:
 		color = dark
 		color.a = 0.75
@@ -67,15 +69,7 @@ func _on_credit_pressed() -> void:
 
 func _on_new_game_pressed() -> void:
 	AudioManager.play_sfx("confirm")
-	Manager.reset_game()
-	Manager.save_game()
-	start_game()
-
-func _on_continue_pressed() -> void:
-	AudioManager.play_sfx("confirm")
-	Manager.load_game()
-	Manager.save_game()
-	start_game()
+	$ProfileSelector.visible = true
 
 func start_game() -> void:
 	fade_in()
@@ -89,28 +83,25 @@ func _on_settings_pressed() -> void:
 
 func _on_language_pressed() -> void:
 	AudioManager.play_sfx("confirm")
+
 	if Manager.selected_language == "EN":
 		Manager.selected_language = "DE"
-		$Language.text = "DE"
 	else:
 		Manager.selected_language = "EN"
-		$Language.text = "EN"
-	
-	print(TranslationServer.get_locale())
-	TranslationServer.set_locale(Manager.selected_language)
+
 	Manager.apply_settings()
+	Manager.save_settings() 
 
 	refresh_texts()
 			
 func refresh_texts():
-	$MenuButtons/Continue.text = tr("CONTINUE")
-	$"MenuButtons/New Game".text = tr("NEW_GAME")
+	$MenuButtons/Play.text = tr("PLAY")
 	$MenuButtons/Settings.text = tr("SETTINGS")
 	$MenuButtons/Extras.text = tr("EXTRAS")
 	$MenuButtons/Credit.text = tr("CREDITS")
 	$MenuButtons/Exit.text = tr("EXIT")
 	
-	$Language.text = Manager.selected_language
+	$Labels/Language.text = Manager.selected_language
 	$Labels/Update.text = tr("ALPHA_VERSION")
 
 	$Labels/Version.text = "v%s %s" % [
@@ -121,7 +112,11 @@ func refresh_texts():
 func _on_extras_pressed() -> void:
 	AudioManager.play_sfx("confirm")
 	$ExtrasSettings.visible = true
-
+	$ExtrasSettings.refresh()
+	
 func _on_version_pressed() -> void:
 	AudioManager.play_sfx("confirm")
 	$VersionPage.visible = true
+
+func _on_close_pressed() -> void:
+	$ProfileSelector.visible = false

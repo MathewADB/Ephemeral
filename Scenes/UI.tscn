@@ -48,39 +48,6 @@
 [ext_resource type="Texture2D" uid="uid://bnuv2njmugjsv" path="res://Sprites/Icons/Upgrade/Map Icon Unlocked.png" id="43_lolh4"]
 [ext_resource type="Script" uid="uid://b303qufkqm8yk" path="res://Scripts/UI/dead_panel.gd" id="47_q8m6m"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwshj"]
-bg_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48q88"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[sub_resource type="Theme" id="Theme_48q88"]
-Label/font_sizes/font_size = 24
-Label/fonts/font = ExtResource("5_qwshj")
-ProgressBar/constants/outline_size = 8
-ProgressBar/font_sizes/font_size = 16
-ProgressBar/styles/background = SubResource("StyleBoxFlat_qwshj")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_48q88")
-RichTextLabel/font_sizes/normal_font_size = 32
-RichTextLabel/fonts/normal_font = ExtResource("5_qwshj")
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_luji1"]
 load_path = "res://.godot/imported/Slime Upgrade Icon.png-2cbb38f93843b5a5bce2103e5c1d37a9.ctex"
 
@@ -196,7 +163,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Miningbar" type="ProgressBar" parent="Mining" unique_id=1510313130]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -206,11 +172,13 @@ anchor_bottom = 0.5
 offset_left = -56.125
 offset_top = -20.0
 offset_right = 56.125
-offset_bottom = 20.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_48q88")
+theme = ExtResource("4_hfhsn")
+theme_override_font_sizes/font_size = 24
 value = 47.57
+show_percentage = false
 
 [node name="Level" type="Control" parent="." unique_id=478546924]
 layout_mode = 3

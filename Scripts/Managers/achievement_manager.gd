@@ -7,6 +7,8 @@ signal achievement_progress(id: String, progress: int, goal: int)
 
 # DATA
 
+const GLOBAL_SAVE_PATH := "user://achievements_global.json"
+
 const ACHIEVEMENTS := {
 	"first_xp": {
 		"name": "Getting Started",
@@ -53,6 +55,9 @@ const ACHIEVEMENTS := {
 var unlocked := {}
 var progress := {}
 
+func _ready():
+	load_global()
+	
 # CORE API
 
 func unlock(id: String) -> void:
@@ -63,6 +68,9 @@ func unlock(id: String) -> void:
 		return
 	
 	unlocked[id] = true
+	AudioManager.play_sfx("unlock")
+	
+	save_global() 
 	
 	achievement_unlocked.emit(id, ACHIEVEMENTS[id])
 
@@ -110,16 +118,41 @@ func register_level(level: int):
 
 # SAVE / LOAD
 
-func get_save_data() -> Dictionary:
+func get_progress_data() -> Dictionary:
 	return {
-		"unlocked": unlocked,
 		"progress": progress
 	}
+	
+func load_progress_data(data: Dictionary) -> void:
+	progress = data.get("progress", {})
 	
 func load_data(data: Dictionary) -> void:
 	unlocked = data.get("unlocked", {})
 	progress = data.get("progress", {})
 
+func save_global():
+	var file := FileAccess.open(GLOBAL_SAVE_PATH, FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify({
+			"unlocked": unlocked
+		}))
+		file.close()
+
+
+func load_global():
+	if not FileAccess.file_exists(GLOBAL_SAVE_PATH):
+		return
+	
+	var file := FileAccess.open(GLOBAL_SAVE_PATH, FileAccess.READ)
+	if file == null:
+		return
+	
+	var data = JSON.parse_string(file.get_as_text())
+	file.close()
+
+	if typeof(data) == TYPE_DICTIONARY:
+		unlocked = data.get("unlocked", {})
+		
 func reset():
 	unlocked.clear()
 	progress.clear()

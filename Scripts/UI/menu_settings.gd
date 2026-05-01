@@ -24,8 +24,21 @@ func _on_fullscreen_toggled(toggled_on: bool) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 func _on_reset_pressed() -> void:
-	SaveManager.delete_save()
+
+	for i in range(SaveManager.MAX_SLOTS):
+		SaveManager.delete_save(i)
+
+	AchievementManager.unlocked.clear()
+	AchievementManager.progress.clear()
+
+	var dir := DirAccess.open("user://")
+	if dir:
+		dir.remove("achievements_global.json")
+		dir.remove("settings.json")
+
 	Manager.reset_game(false)
+
+	get_tree().reload_current_scene()
 	
 func _on_close_pressed() -> void:
 	self.visible = false

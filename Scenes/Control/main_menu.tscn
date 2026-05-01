@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://jlnfieyqqkq2" path="res://Sprites/UI/instagram icon blue.png" id="11_gied8"]
 [ext_resource type="Script" uid="uid://bqgqlret8q8ky" path="res://Scripts/UI/extras_settings.gd" id="13_8yhkh"]
 [ext_resource type="Script" uid="uid://d108e62se2ny" path="res://Scripts/UI/updates_page.gd" id="15_owwpy"]
+[ext_resource type="Script" uid="uid://dj5hjrg7pp4eq" path="res://Scripts/UI/save_slot.gd" id="16_gied8"]
 
 [node name="Main Menu" type="Control" unique_id=1438550500]
 layout_mode = 3
@@ -100,18 +101,11 @@ grow_vertical = 2
 theme = ExtResource("4_qpyf4")
 theme_type_variation = &"MenuContainer"
 
-[node name="Continue" type="Button" parent="MenuButtons" unique_id=872970739]
-visible = false
+[node name="Play" type="Button" parent="MenuButtons" unique_id=379659977]
 layout_mode = 2
 theme = ExtResource("4_qpyf4")
 theme_type_variation = &"settingsButton"
-text = "CONTINUE"
-
-[node name="New Game" type="Button" parent="MenuButtons" unique_id=379659977]
-layout_mode = 2
-theme = ExtResource("4_qpyf4")
-theme_type_variation = &"settingsButton"
-text = "NEW GAME"
+text = "PLAY"
 
 [node name="Settings" type="Button" parent="MenuButtons" unique_id=665063073]
 layout_mode = 2
@@ -171,26 +165,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource("11_gied8")
 stretch_mode = 5
-
-[node name="Language" type="Button" parent="." unique_id=2146449591]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.003
-anchor_bottom = 0.006
-offset_left = 1072.0
-offset_top = 16.0
-offset_right = 1132.544
-offset_bottom = 56.112
-theme = ExtResource("4_qpyf4")
-theme_override_colors/font_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
-theme_override_colors/font_focus_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
-theme_override_colors/font_pressed_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
-theme_override_colors/font_hover_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
-text = "EN"
-icon = ExtResource("7_7bh0h")
-flat = true
-icon_alignment = 2
-expand_icon = true
 
 [node name="Labels" type="Control" parent="." unique_id=666087986]
 anchors_preset = 0
@@ -283,6 +257,160 @@ theme_override_font_sizes/font_size = 128
 text = "Misty"
 horizontal_alignment = 1
 uppercase = true
+
+[node name="Language" type="Button" parent="Labels" unique_id=2146449591]
+modulate = Color(0.7490196, 0.7372549, 0.81960785, 0.8)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.003
+anchor_bottom = 0.006
+offset_left = 1072.0
+offset_top = 16.0
+offset_right = 1135.88
+offset_bottom = 59.76
+theme = ExtResource("4_qpyf4")
+theme_override_colors/font_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
+theme_override_colors/font_focus_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
+theme_override_colors/font_pressed_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
+theme_override_colors/font_hover_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
+text = "EN"
+icon = ExtResource("7_7bh0h")
+flat = true
+icon_alignment = 2
+expand_icon = true
+
+[node name="ProfileSelector" type="Control" parent="." unique_id=433157620]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="ProfileSelector" unique_id=1378993366]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"MenuPanel"
+
+[node name="ColorRect" type="ColorRect" parent="ProfileSelector/Panel" unique_id=509471529]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_right = 576.0
+offset_bottom = 120.0
+grow_horizontal = 2
+color = Color(0.25882354, 0.5764706, 0.7921569, 0.101960786)
+
+[node name="Title" type="Label" parent="ProfileSelector/Panel" unique_id=914146670]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 288.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 48
+text = "Profile Selection"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ProfileSelector/Panel" unique_id=1603674542]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 152.0
+offset_right = -24.0
+offset_bottom = -192.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="SlotContainer1" type="HBoxContainer" parent="ProfileSelector/Panel/VBoxContainer" unique_id=944863952]
+layout_mode = 2
+script = ExtResource("16_gied8")
+
+[node name="Play" type="Button" parent="ProfileSelector/Panel/VBoxContainer/SlotContainer1" unique_id=1117859374]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"GrayButton"
+text = "Profile 1"
+
+[node name="Delete" type="Button" parent="ProfileSelector/Panel/VBoxContainer/SlotContainer1" unique_id=653209219]
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"GrayButton"
+text = "Delete"
+
+[node name="SlotContainer2" type="HBoxContainer" parent="ProfileSelector/Panel/VBoxContainer" unique_id=830794742]
+layout_mode = 2
+script = ExtResource("16_gied8")
+slot_id = 1
+
+[node name="Play" type="Button" parent="ProfileSelector/Panel/VBoxContainer/SlotContainer2" unique_id=1779046928]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"GrayButton"
+text = "Profile 2"
+
+[node name="Delete" type="Button" parent="ProfileSelector/Panel/VBoxContainer/SlotContainer2" unique_id=963348827]
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"GrayButton"
+text = "Delete"
+
+[node name="SlotContainer3" type="HBoxContainer" parent="ProfileSelector/Panel/VBoxContainer" unique_id=1868140606]
+layout_mode = 2
+script = ExtResource("16_gied8")
+slot_id = 2
+
+[node name="Play" type="Button" parent="ProfileSelector/Panel/VBoxContainer/SlotContainer3" unique_id=1841250084]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"GrayButton"
+text = "Profile 3"
+
+[node name="Delete" type="Button" parent="ProfileSelector/Panel/VBoxContainer/SlotContainer3" unique_id=450930913]
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"GrayButton"
+text = "Delete"
+
+[node name="SlotContainer4" type="HBoxContainer" parent="ProfileSelector/Panel/VBoxContainer" unique_id=659634064]
+layout_mode = 2
+script = ExtResource("16_gied8")
+slot_id = 3
+
+[node name="Play" type="Button" parent="ProfileSelector/Panel/VBoxContainer/SlotContainer4" unique_id=453454130]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"GrayButton"
+text = "Profile 4"
+
+[node name="Delete" type="Button" parent="ProfileSelector/Panel/VBoxContainer/SlotContainer4" unique_id=2099508459]
+layout_mode = 2
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"GrayButton"
+text = "Delete"
+
+[node name="Close" type="Button" parent="ProfileSelector/Panel" unique_id=1201968436]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 536.0
+offset_right = 1104.0
+offset_bottom = 600.0
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"GrayButton"
+text = "Close"
 
 [node name="MenuSettings" type="Control" parent="." unique_id=2121986885]
 visible = false
@@ -414,7 +542,6 @@ text = "UI
 alignment = 1
 
 [node name="ExtrasSettings" type="Control" parent="." unique_id=515953505]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -454,62 +581,44 @@ theme = ExtResource("4_qpyf4")
 theme_type_variation = &"LabelMain"
 text = "Achievements"
 
-[node name="Playtime" type="Label" parent="ExtrasSettings/Panel" unique_id=661401176]
+[node name="ProgressBar" type="ProgressBar" parent="ExtrasSettings/Panel" unique_id=1230246889]
 layout_mode = 0
-offset_left = 656.0
-offset_top = 128.0
-offset_right = 912.0
-offset_bottom = 182.0
+offset_left = 768.0
+offset_top = 40.0
+offset_right = 1104.0
+offset_bottom = 88.0
 theme = ExtResource("4_qpyf4")
-theme_type_variation = &"LabelMain"
-theme_override_font_sizes/font_size = 48
-text = "00:00:00"
-
-[node name="Deaths" type="Label" parent="ExtrasSettings/Panel" unique_id=1211961634]
-layout_mode = 0
-offset_left = 656.0
-offset_top = 176.0
-offset_right = 1152.0
-offset_bottom = 230.0
-theme = ExtResource("4_qpyf4")
-theme_type_variation = &"LabelMain"
-theme_override_font_sizes/font_size = 48
-text = "0 Deaths"
-
-[node name="Level" type="Label" parent="ExtrasSettings/Panel" unique_id=1832873483]
-layout_mode = 0
-offset_left = 656.0
-offset_top = 224.0
-offset_right = 1152.0
-offset_bottom = 278.0
-theme = ExtResource("4_qpyf4")
-theme_type_variation = &"LabelMain"
-theme_override_font_sizes/font_size = 48
-text = "Level :"
+max_value = 4.0
+value = 1.88
+show_percentage = false
 
 [node name="Amount" type="Label" parent="ExtrasSettings/Panel" unique_id=1315997807]
 layout_mode = 0
-offset_left = 312.0
+offset_left = 768.0
 offset_top = 32.0
-offset_right = 372.0
+offset_right = 1104.0
 offset_bottom = 86.0
 theme = ExtResource("4_qpyf4")
 theme_type_variation = &"LabelMain"
 theme_override_font_sizes/font_size = 48
 text = "0/7"
+horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ExtrasSettings/Panel" unique_id=139945440]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 120.0
-offset_right = 488.0
+offset_right = 888.0
 offset_bottom = 632.0
 
-[node name="GridContainer" type="VBoxContainer" parent="ExtrasSettings/Panel/ScrollContainer" unique_id=2089801199]
+[node name="GridContainer" type="GridContainer" parent="ExtrasSettings/Panel/ScrollContainer" unique_id=707838949]
+custom_minimum_size = Vector2(0, 410)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 100
+theme_override_constants/h_separation = 440
+theme_override_constants/v_separation = 110
+columns = 2
 
 [node name="Close" type="Button" parent="ExtrasSettings/Panel" unique_id=454797490]
 layout_mode = 0
@@ -596,92 +705,6 @@ theme = ExtResource("4_qpyf4")
 theme_type_variation = &"GrayButton"
 text = "Close"
 
-[node name="ProfileSelector" type="Control" parent="." unique_id=433157620]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="ProfileSelector" unique_id=1378993366]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("4_qpyf4")
-theme_type_variation = &"MenuPanel"
-
-[node name="ColorRect" type="ColorRect" parent="ProfileSelector/Panel" unique_id=509471529]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -576.0
-offset_right = 576.0
-offset_bottom = 120.0
-grow_horizontal = 2
-color = Color(0.25882354, 0.5764706, 0.7921569, 0.101960786)
-
-[node name="Title" type="Label" parent="ProfileSelector/Panel" unique_id=914146670]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 32.0
-offset_right = 288.0
-offset_bottom = 86.0
-theme_override_font_sizes/font_size = 48
-text = "Profile Selection"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ProfileSelector/Panel" unique_id=1603674542]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = 152.0
-offset_right = -256.0
-offset_bottom = -24.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 16
-
-[node name="Slot_1" type="Button" parent="ProfileSelector/Panel/VBoxContainer" unique_id=1117859374]
-layout_mode = 2
-theme = ExtResource("4_qpyf4")
-theme_type_variation = &"GrayButton"
-text = "Profile 1"
-
-[node name="Slot_2" type="Button" parent="ProfileSelector/Panel/VBoxContainer" unique_id=1779046928]
-layout_mode = 2
-theme = ExtResource("4_qpyf4")
-theme_type_variation = &"GrayButton"
-text = "Profile 2"
-
-[node name="Slot_3" type="Button" parent="ProfileSelector/Panel/VBoxContainer" unique_id=1841250084]
-layout_mode = 2
-theme = ExtResource("4_qpyf4")
-theme_type_variation = &"GrayButton"
-text = "Profile 3"
-
-[node name="Slot_4" type="Button" parent="ProfileSelector/Panel/VBoxContainer" unique_id=453454130]
-layout_mode = 2
-theme = ExtResource("4_qpyf4")
-theme_type_variation = &"GrayButton"
-text = "Profile 4"
-
-[node name="Close" type="Button" parent="ProfileSelector/Panel" unique_id=1201968436]
-layout_mode = 0
-offset_left = 920.0
-offset_top = 536.0
-offset_right = 1104.0
-offset_bottom = 600.0
-theme = ExtResource("4_qpyf4")
-theme_type_variation = &"GrayButton"
-text = "Close"
-
 [node name="Fade" type="ColorRect" parent="." unique_id=453366609]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -693,14 +716,22 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[connection signal="pressed" from="MenuButtons/Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="MenuButtons/New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MenuButtons/Play" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MenuButtons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MenuButtons/Extras" to="." method="_on_extras_pressed"]
 [connection signal="pressed" from="MenuButtons/Credit" to="." method="_on_credit_pressed"]
 [connection signal="pressed" from="MenuButtons/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="Language" to="." method="_on_language_pressed"]
 [connection signal="pressed" from="Labels/Version" to="." method="_on_version_pressed"]
+[connection signal="pressed" from="Labels/Language" to="." method="_on_language_pressed"]
+[connection signal="pressed" from="ProfileSelector/Panel/VBoxContainer/SlotContainer1/Play" to="ProfileSelector/Panel/VBoxContainer/SlotContainer1" method="_on_play_pressed"]
+[connection signal="pressed" from="ProfileSelector/Panel/VBoxContainer/SlotContainer1/Delete" to="ProfileSelector/Panel/VBoxContainer/SlotContainer1" method="_on_delete_pressed"]
+[connection signal="pressed" from="ProfileSelector/Panel/VBoxContainer/SlotContainer2/Play" to="ProfileSelector/Panel/VBoxContainer/SlotContainer2" method="_on_play_pressed"]
+[connection signal="pressed" from="ProfileSelector/Panel/VBoxContainer/SlotContainer2/Delete" to="ProfileSelector/Panel/VBoxContainer/SlotContainer2" method="_on_delete_pressed"]
+[connection signal="pressed" from="ProfileSelector/Panel/VBoxContainer/SlotContainer3/Play" to="ProfileSelector/Panel/VBoxContainer/SlotContainer3" method="_on_play_pressed"]
+[connection signal="pressed" from="ProfileSelector/Panel/VBoxContainer/SlotContainer3/Delete" to="ProfileSelector/Panel/VBoxContainer/SlotContainer3" method="_on_delete_pressed"]
+[connection signal="pressed" from="ProfileSelector/Panel/VBoxContainer/SlotContainer4/Play" to="ProfileSelector/Panel/VBoxContainer/SlotContainer4" method="_on_play_pressed"]
+[connection signal="pressed" from="ProfileSelector/Panel/VBoxContainer/SlotContainer4/Delete" to="ProfileSelector/Panel/VBoxContainer/SlotContainer4" method="_on_delete_pressed"]
+[connection signal="pressed" from="ProfileSelector/Panel/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="MenuSettings/Panel/Close" to="MenuSettings" method="_on_close_pressed"]
 [connection signal="pressed" from="MenuSettings/Panel/Container/Reset" to="MenuSettings" method="_on_reset_pressed"]
 [connection signal="toggled" from="MenuSettings/Panel/Container/Fullscreen" to="MenuSettings" method="_on_fullscreen_toggled"]
