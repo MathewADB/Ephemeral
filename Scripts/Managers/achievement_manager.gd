@@ -9,42 +9,59 @@ signal achievement_progress(id: String, progress: int, goal: int)
 
 const GLOBAL_SAVE_PATH := "user://achievements_global.json"
 
+const RARITY_COLORS = {
+	"common": Color("#52636d"),
+	"uncommon": Color("22783f"),
+	"rare": Color("#345f99"),
+	"epic": Color("#7d2f7e"),
+	"legendary": Color("#e5a732"),
+	"mythic": Color("b41e40"),
+	"platinum": Color("a6c4bf")
+}
+
 const ACHIEVEMENTS := {
 	"first_xp": {
 		"name": "Getting Started",
 		"description": "Gain your first XP",
+		"rarity": "common",
 		"icon": preload("res://Sprites/Icons/Achievement/Level 1.png")
 	},
 	"level_5": {
 		"name": "Growing Strong",
 		"description": "Reach level 5",
+		"rarity": "uncommon",
 		"icon": preload("res://Sprites/Icons/Achievement/Level 5.png")
 	},
 	"first_death": {
 		"name": "First Death",
 		"description": "Die for the first time",
+		"rarity": "common",
 		"icon": preload("res://Sprites/Icons/Achievement/Death 1.png")
 	},
 	"death_10": {
 		"name": "Getting Used To It",
 		"description": "Die 10 times",
+		"rarity": "common",
 		"icon": preload("res://Sprites/Icons/Achievement/Death 10.png"),
 		"goal": 10
 	},
 	"death_50": {
 		"name": "Endless Suffering",
 		"description": "Die 50 times",
+		"rarity": "uncommon",
 		"icon": preload("res://Sprites/Icons/Achievement/Death 50.png"),
 		"goal": 50
 	},
 	"first_craft": {
 		"name": "Crafting",
 		"description": "Craft your first item",
+		"rarity": "common",
 		"icon": preload("res://Sprites/Icons/Achievement/Craft 1.png")
 	},
 	"craft_10": {
 		"name": "Apprentice Crafter",
 		"description": "Craft 10 items",
+		"rarity": "uncommon",
 		"icon": preload("res://Sprites/Icons/Achievement/Craft 10.png"),
 		"goal": 10
 	}

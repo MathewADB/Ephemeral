@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://bqgqlret8q8ky" path="res://Scripts/UI/extras_settings.gd" id="13_8yhkh"]
 [ext_resource type="Script" uid="uid://d108e62se2ny" path="res://Scripts/UI/updates_page.gd" id="15_owwpy"]
 [ext_resource type="Script" uid="uid://dj5hjrg7pp4eq" path="res://Scripts/UI/save_slot.gd" id="16_gied8"]
+[ext_resource type="Texture2D" uid="uid://bouvhsnnvoi2" path="res://Sprites/Icons/Achievement/Base.png" id="16_txxgc"]
 
 [node name="Main Menu" type="Control" unique_id=1438550500]
 layout_mode = 3
@@ -604,6 +605,14 @@ theme_override_font_sizes/font_size = 48
 text = "0/7"
 horizontal_alignment = 1
 
+[node name="Panel" type="Panel" parent="ExtrasSettings/Panel" unique_id=56454885]
+layout_mode = 0
+offset_top = 504.0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"QuestPanel"
+
 [node name="ScrollContainer" type="ScrollContainer" parent="ExtrasSettings/Panel" unique_id=139945440]
 layout_mode = 0
 offset_left = 16.0
@@ -616,9 +625,9 @@ custom_minimum_size = Vector2(0, 410)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/h_separation = 440
-theme_override_constants/v_separation = 110
-columns = 2
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 100
+columns = 10
 
 [node name="Close" type="Button" parent="ExtrasSettings/Panel" unique_id=454797490]
 layout_mode = 0
@@ -630,8 +639,46 @@ theme = ExtResource("4_qpyf4")
 theme_type_variation = &"GrayButton"
 text = "Close"
 
+[node name="InfoPanel" type="HBoxContainer" parent="ExtrasSettings/Panel" unique_id=1967046511]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 512.0
+offset_right = 886.0
+offset_bottom = 648.0
+theme_override_constants/separation = 35
+
+[node name="PanelContainer" type="PanelContainer" parent="ExtrasSettings/Panel/InfoPanel" unique_id=2089720915]
+custom_minimum_size = Vector2(15.465, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"achievementBorder"
+
+[node name="Icon" type="TextureRect" parent="ExtrasSettings/Panel/InfoPanel/PanelContainer" unique_id=1579607073]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("16_txxgc")
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="ExtrasSettings/Panel/InfoPanel" unique_id=1147974638]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("4_qpyf4")
+text = "Achievement Name"
+
+[node name="Details" type="Label" parent="ExtrasSettings/Panel/InfoPanel" unique_id=169972165]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("4_qpyf4")
+theme_type_variation = &"MenuLabel"
+text = "???"
+autowrap_mode = 3
+
 [node name="VersionPage" type="Control" parent="." unique_id=917764440]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -674,7 +721,7 @@ text = "Whats New !"
 layout_mode = 0
 offset_left = 24.0
 offset_top = 136.0
-offset_right = 1120.0
+offset_right = 1136.0
 offset_bottom = 624.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VersionPage/Panel/ScrollContainer" unique_id=1711006638]
@@ -682,7 +729,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 32
-text = "Update 1.1.3.2 :
+bbcode_enabled = true
+text = "[b] Update 1.1.3.2 :
 - Changes are visible here
 
 Update 1.1.3.3 :
@@ -693,7 +741,20 @@ Update 1.1.3.4 :
 - New Areas Added in Plain 
 
 Update 1.1.3.5 :
-- UI Improved "
+- UI Improved 
+
+Update 1.1.3.6 :
+- Save Slots added
+- Achievements Will not reset
+- Settings Save right away
+
+Update 1.1.3.7 :
+- Achievements UI improved
+- Extras Page Improved
+
+
+
+"
 
 [node name="Close" type="Button" parent="VersionPage/Panel" unique_id=807484637]
 layout_mode = 0

@@ -292,6 +292,15 @@ border_color = Color(0.18431373, 0.11764706, 0.27058825, 1)
 border_blend = true
 expand_margin_bottom = 24.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28by3"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(1, 1, 1, 0.6)
+shadow_size = 8
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2mgs"]
 content_margin_left = 16.0
 content_margin_bottom = 8.0
@@ -431,7 +440,6 @@ RedMenuButton/styles/pressed = SubResource("StyleBoxFlat_owh2x")
 RichTextLabel/font_sizes/normal_font_size = 16
 RichTextLabel/fonts/normal_font = ExtResource("1_pvpjx")
 SettingsCheckButton/base_type = &"CheckBox"
-SettingsContainer/base_type = &"PanelContainer"
 SettingsContainer/styles/panel = SubResource("StyleBoxFlat_u6pf2")
 TabContainer/colors/font_hovered_color = Color(0.91764706, 0.91764706, 0.91764706, 1)
 TabContainer/colors/font_selected_color = Color(1, 1, 1, 1)
@@ -458,6 +466,8 @@ TutorialText/base_type = &"RichTextLabel"
 TutorialText/colors/default_color = Color(1, 1, 1, 1)
 TutorialText/constants/outline_size = 32
 TutorialText/font_sizes/normal_font_size = 128
+achievementBorder/base_type = &"PanelContainer"
+achievementBorder/styles/panel = SubResource("StyleBoxFlat_28by3")
 settingsButton/base_type = &"Button"
 settingsButton/colors/font_color = Color(1, 1, 1, 1)
 settingsButton/colors/font_focus_color = Color(1, 1, 1, 1)
