@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bhyklvn0i48wf" path="res://Sprites/Icons/Upgrade/Mining Tier 2 Icon Unlocked.png" id="15_45jp6"]
 [ext_resource type="Texture2D" uid="uid://cenmwitxas1nr" path="res://Sprites/Icons/Upgrade/Mining Tier 2 Icon.png" id="15_d1ul7"]
 [ext_resource type="Texture2D" uid="uid://cyjpi62vnvm7" path="res://Sprites/Icons/Upgrade/Mining Speed 2 Icon.png" id="16_pinj1"]
+[ext_resource type="Script" uid="uid://dh434lpb7q07o" path="res://Scripts/UI/upgrade_lines.gd" id="17_1lsdj"]
 [ext_resource type="Texture2D" uid="uid://ciorf72x74ou1" path="res://Sprites/Icons/Upgrade/Mining Speed 1 Icon.png" id="17_68ajo"]
 [ext_resource type="Texture2D" uid="uid://bv7dhgknejtj7" path="res://Sprites/Icons/Upgrade/Slime Upgrade Icon.png" id="17_gqamb"]
 [ext_resource type="Texture2D" uid="uid://3wfop7kkc6ww" path="res://Sprites/Icons/Upgrade/Mining Speed 1 Icon Unlocked.png" id="17_q6a8d"]
@@ -356,7 +357,6 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Player Panel" type="Control" parent="." unique_id=1801123476]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -457,24 +457,6 @@ theme = ExtResource("4_hfhsn")
 theme_type_variation = &"LabelMain"
 text = "Skill Points : "
 
-[node name="Control" type="Control" parent="Player Panel/Panel/Upgrades" unique_id=1838206492]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -24.0
-offset_top = -37.0
-offset_right = -40.0
-offset_bottom = -29.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Line2D" type="Line2D" parent="Player Panel/Panel/Upgrades/Control" unique_id=531746274]
-position = Vector2(-864, -24)
-points = PackedVector2Array(1544, 275, 1544, 387, 1672, 387, 1544, 387, 1544, 499, 1672, 499, 1544, 499, 1544, 275, 1416, 275, 1544, 275, 1672, 275, 1544, 275, 1544, 163, 1544, 275, 1416, 275, 1544, 275, 1416, 387, 1416, 507, 1416, 387, 1288, 387, 1288, 499, 1288, 387, 1416, 387, 1544, 275, 1416, 275, 1024, 275)
-width = 15.0
-default_color = Color(0.15707251, 0.20394054, 0.22267619, 1)
-
 [node name="InfoPanel" type="Panel" parent="Player Panel/Panel/Upgrades" unique_id=1263094567]
 layout_mode = 1
 anchors_preset = 6
@@ -490,6 +472,15 @@ grow_horizontal = 0
 grow_vertical = 2
 theme = ExtResource("4_hfhsn")
 theme_type_variation = &"InfoPanel"
+
+[node name="Lines" type="Line2D" parent="Player Panel/Panel/Upgrades/InfoPanel" unique_id=531746274]
+position = Vector2(-1768, -29)
+points = PackedVector2Array(1544, 275, 1544, 275, 1544, 275)
+width = 15.0
+default_color = Color(0.15707251, 0.20394054, 0.22267619, 1)
+script = ExtResource("17_1lsdj")
+root_icon_path = NodePath("../../Buttons/TextureButton")
+upgrade_panel_path = NodePath("../..")
 
 [node name="UpgradeName" type="Label" parent="Player Panel/Panel/Upgrades/InfoPanel" unique_id=2011069109]
 layout_mode = 1
@@ -557,26 +548,26 @@ theme_type_variation = &"BlueButtons"
 disabled = true
 text = "Learn"
 
-[node name="TextureButton" type="TextureRect" parent="Player Panel/Panel/Upgrades/InfoPanel" unique_id=1426842143]
-layout_mode = 0
-offset_left = -272.0
-offset_top = 195.0
-offset_right = -240.0
-offset_bottom = 227.0
-scale = Vector2(3, 3)
-texture = ExtResource("17_gqamb")
-
 [node name="Buttons" type="Control" parent="Player Panel/Panel/Upgrades" unique_id=329525659]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -24.0
-offset_top = -13.0
-offset_right = -240.0
-offset_bottom = -8.0
+offset_left = -16.0
+offset_top = 11.0
+offset_right = -232.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureButton" type="TextureRect" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1426842143]
+layout_mode = 0
+offset_left = 632.0
+offset_top = 176.0
+offset_right = 664.0
+offset_bottom = 208.0
+scale = Vector2(3, 3)
+texture = ExtResource("17_gqamb")
 
 [node name="TextureButton1" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=287688282]
 layout_mode = 0
@@ -640,30 +631,30 @@ texture_disabled = ExtResource("29_ft0vu")
 
 [node name="TextureButton7" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=539473197]
 layout_mode = 0
-offset_left = 376.0
-offset_top = 177.0
-offset_right = 408.0
-offset_bottom = 209.0
+offset_left = 304.0
+offset_top = 176.0
+offset_right = 336.0
+offset_bottom = 208.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("18_q6a8d")
 texture_disabled = ExtResource("25_qoydj")
 
 [node name="TextureButton8" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1247758076]
 layout_mode = 0
-offset_left = 248.00002
-offset_top = 177.0
-offset_right = 280.0
-offset_bottom = 209.0
+offset_left = 168.00002
+offset_top = 176.0
+offset_right = 200.00002
+offset_bottom = 208.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("19_6lb63")
 texture_disabled = ExtResource("27_lolh4")
 
 [node name="TextureButton9" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=763109338]
 layout_mode = 0
-offset_left = 120.0
-offset_top = 177.00002
-offset_right = 152.0
-offset_bottom = 209.00002
+offset_left = 32.0
+offset_top = 176.00002
+offset_right = 64.0
+offset_bottom = 208.00002
 scale = Vector2(3, 3)
 texture_normal = ExtResource("20_dgrhb")
 texture_disabled = ExtResource("29_gqamb")
@@ -671,9 +662,9 @@ texture_disabled = ExtResource("29_gqamb")
 [node name="TextureButton10" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1366240046]
 layout_mode = 0
 offset_left = 760.0
-offset_top = 177.0
+offset_top = 176.0
 offset_right = 792.0
-offset_bottom = 209.0
+offset_bottom = 208.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("21_j0pu8")
 texture_disabled = ExtResource("31_q8m6m")
@@ -701,9 +692,9 @@ texture_disabled = ExtResource("41_1lsdj")
 [node name="TextureButton13" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=996558837]
 layout_mode = 0
 offset_left = 504.0
-offset_top = 177.0
+offset_top = 176.0
 offset_right = 536.0
-offset_bottom = 209.0
+offset_bottom = 208.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("41_uqa0b")
 texture_disabled = ExtResource("42_hptg1")

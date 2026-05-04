@@ -24,6 +24,18 @@ func build_grid():
 		child.queue_free()
 	
 	var ids = AchievementManager.ACHIEVEMENTS.keys()
+
+	ids.sort_custom(func(a, b):
+		var ra = AchievementManager.RARITY_ORDER.get(
+			AchievementManager.ACHIEVEMENTS[a]["rarity"], 0
+		)
+		var rb = AchievementManager.RARITY_ORDER.get(
+			AchievementManager.ACHIEVEMENTS[b]["rarity"], 0
+		)
+		
+		return ra < rb
+	)
+
 	max_achievements = ids.size()
 	$Panel/ProgressBar.max_value = ids.size()
 

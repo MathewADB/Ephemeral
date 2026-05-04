@@ -299,7 +299,7 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 shadow_color = Color(1, 1, 1, 0.6)
-shadow_size = 8
+shadow_size = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2mgs"]
 content_margin_left = 16.0

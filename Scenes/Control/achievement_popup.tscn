@@ -53,19 +53,19 @@ text = "Achievement Description"
 
 [node name="PanelContainer" type="PanelContainer" parent="Panel" unique_id=1931344212]
 layout_mode = 0
-offset_left = 24.0
+offset_left = 16.0
 offset_top = 8.0
 offset_right = 80.0
-offset_bottom = 64.0
+offset_bottom = 72.0
 theme = ExtResource("1_qxvhf")
 theme_type_variation = &"achievementBorder"
 
 [node name="Icon" type="TextureRect" parent="Panel" unique_id=1982788580]
 layout_mode = 0
-offset_left = 25.0
-offset_top = 9.0
-offset_right = 79.0
-offset_bottom = 63.0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 80.0
+offset_bottom = 72.0
 theme = ExtResource("1_qxvhf")
 texture = ExtResource("3_5tb2m")
 expand_mode = 1

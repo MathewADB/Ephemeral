@@ -19,6 +19,16 @@ const RARITY_COLORS = {
 	"platinum": Color("a6c4bf")
 }
 
+const RARITY_ORDER := {
+	"common": 0,
+	"uncommon": 1,
+	"rare": 2,
+	"epic": 3,
+	"legendary": 4,
+	"mythic": 5,
+	"platinum": 6
+}
+
 const ACHIEVEMENTS := {
 	"first_xp": {
 		"name": "Getting Started",
@@ -64,6 +74,13 @@ const ACHIEVEMENTS := {
 		"rarity": "uncommon",
 		"icon": preload("res://Sprites/Icons/Achievement/Craft 10.png"),
 		"goal": 10
+	},
+	"craft_25": {
+		"name": "Expert Crafter",
+		"description": "Craft 25 items",
+		"rarity": "rare",
+		"icon": preload("res://Sprites/Icons/Achievement/Craft 25.png"),
+		"goal": 25
 	}
 }
 
@@ -121,6 +138,7 @@ func register_death():
 
 func register_craft(amount := 1):
 	add_progress("craft_10", amount)
+	add_progress("craft_25", amount)
 	unlock("first_craft")
 
 

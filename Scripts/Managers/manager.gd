@@ -90,26 +90,7 @@ var resource_nodes := {}
 
 var room_positions = DEFUALT_ROOM_POSITIONS.duplicate(true)
 
-# --- UPGRADES ---
-
-var learned_upgrades := []
-
-var upgrades := {
-	"Mining Tier I": {"skill_cost": 1, "materials": {}, "requires": [], "effect": {"mining_tier":1}},
-	"Mining Tier II": {"skill_cost": 1, "materials": {"Ruby Gem":10}, "requires":["Mining Tier I"], "effect":{"mining_tier":2}},
-	"Mining Speed I": {"skill_cost":1, "materials":{"Ruby Stone":5}, "requires":["Mining Tier I"], "effect":{"mining_speed_level":2}},
-	"Mining Speed II": {"skill_cost":1, "materials":{"Ruby Stone":20}, "requires":["Mining Speed I","Mining Tier II"], "effect":{"mining_speed_level":3}},
-	"Mobility I": {"skill_cost":1, "materials":{}, "requires":["Double Jump"], "effect":{"player_mobility":1.05}},
-	"Mobility II": {"skill_cost":1, "materials":{}, "requires":["Mobility I","Triple Jump"], "effect":{"player_mobility":1.1}},
-	"Light I": {"skill_cost":1, "materials":{"Dust Gem":1}, "requires":["Pillar Interaction"], "effect":{"light_level":1}},
-	"Light II": {"skill_cost":1, "materials":{}, "requires":["Light I"], "effect":{"light_level":2}},
-	"Light III": {"skill_cost":1, "materials":{}, "requires":["Light II"], "effect":{"light_level":3}},
-	"Hiding": {"skill_cost":1, "materials":{}, "requires":[], "effect":{"hide_unlocked":true}},
-	"Double Jump": {"skill_cost":1, "materials":{"Double Jump Scroll":1}, "requires":[], "effect":{"base_extra_jumps":1}},
-	"Triple Jump": {"skill_cost":1, "materials":{"Triple Jump Scroll":1}, "requires":["Double Jump"], "effect":{"base_extra_jumps":2}},
-	"Pillar Interaction": {"skill_cost":1, "materials":{}, "requires":[], "effect":{"pillar_interaction":true}},
-	"Map": {"skill_cost":1, "materials":{}, "requires":[], "effect":{"map_unlocked":true}}
-}
+# --- PROGRESS ---
 
 var death_count: int = 0
 
@@ -208,7 +189,7 @@ func save_game():
 			"room_positions": room_positions,
 			"collected_objects": collected_objects,
 			"game_seconds": game_seconds,
-			"learned_upgrades": learned_upgrades,
+			"learned_upgrades": UpgradeManager.learned_upgrades,
 			"current_room_scene": current_room_scene,
 			"spawn_location": spawn_location,
 			"spawn_room_scene": spawn_room_scene,
@@ -243,7 +224,8 @@ func load_game(slot: int):
 )
 
 	death_count = data.get("death_count", 0)
-	learned_upgrades = data.get("learned_upgrades", [])
+	UpgradeManager.learned_upgrades = data.get("learned_upgrades", [])
+	UpgradeManager.apply_effects()
 	skill_points = data.get("skill_points",0)
 	level = data.get("level",1)
 	current_xp = data.get("current_xp",0)
@@ -309,8 +291,8 @@ func reset_game(should_save := true):
 	respawn_room_scene = DEFAULT_SPAWN_ROOM
 	respawn_location = DEFAULT_SPAWN_POSITION
 	
-	learned_upgrades.clear()
-	apply_learned_upgrades()
+	UpgradeManager.learned_upgrades.clear()
+	UpgradeManager.apply_effects()
 	
 	end_triggered = false
 	
@@ -409,65 +391,8 @@ func check_level_up():
 
 # ================= UPGRADES =================
 
-func can_learn_upgrade(upgrade_name: String) -> bool:
-	if upgrade_name == null:
-		return false
-	if upgrade_name in learned_upgrades:
-		return false
-		
-	var u = upgrades.get(upgrade_name, null)
-	if u == null:
-		return false
-
-	if skill_points < u.skill_cost:
-		return false
-
-	for mat in u.materials.keys():
-		if not InventoryManager.has_item(mat, u.materials[mat]):
-			return false
-
-	for req in u.requires:
-		if req not in learned_upgrades:
-			return false
-
-	return true
-
-func learn_upgrade(upgrade_name: String) -> void:
-	if not can_learn_upgrade(upgrade_name):
-		return
-
-	var u = upgrades[upgrade_name]
-
-	skill_points -= u.skill_cost
-	skill_points_changed.emit(skill_points)
-
-	for mat in u.materials.keys():
-		InventoryManager.remove_item(mat, u.materials[mat])
-
-	if upgrade_name not in learned_upgrades:
-		learned_upgrades.append(upgrade_name)
-
-	apply_learned_upgrades()
-	save_game()
-	upgrades_changed.emit()
-	if upgrade_name == "Map":
-		
-		map_updated.emit()
-		
 func apply_learned_upgrades():
-	for key in BASE_STATS.keys():
-		self.set(key, BASE_STATS[key])
-
-	for upgrade_name in learned_upgrades:
-		var u = upgrades.get(upgrade_name, null)
-		if u == null:
-			continue
-		var effect = u.get("effect", {})
-		for stat in effect.keys():
-			self.set(stat, effect[stat])
-
-	if player:
-		player.set_stats()
+	UpgradeManager.apply_effects()
 		
 # ================= DAY/NIGHT =================
 		
