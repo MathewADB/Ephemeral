@@ -98,9 +98,12 @@ func show_autosave_icon():
 	
 func hide_ui():
 	self.visible = false
+	$Mining.visible = false
 	
 func show_ui():
 	self.visible = true
+	await get_tree().create_timer(2).timeout
+	$Mining.visible = true
 	
 func _on_recipe_selected(recipe_name: String) -> void:
 	selected_recipe = recipe_name

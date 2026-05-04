@@ -13,9 +13,9 @@ func _ready() -> void:
 	
 	update_background_by_time()
 
-	if Manager.fullscreen == true :
+	if SettingsManager.fullscreen: 
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	TranslationServer.set_locale(Manager.selected_language)
+	TranslationServer.set_locale(SettingsManager.selected_language)
 	
 	refresh_texts()
 	
@@ -71,12 +71,6 @@ func _on_new_game_pressed() -> void:
 	AudioManager.play_sfx("confirm")
 	$ProfileSelector.visible = true
 
-func start_game() -> void:
-	fade_in()
-	await get_tree().create_timer(0.5).timeout
-	UI.show_ui()
-	get_tree().change_scene_to_file(Manager.current_room_scene)
-
 func _on_settings_pressed() -> void:
 	AudioManager.play_sfx("confirm")
 	$MenuSettings.visible = true
@@ -84,13 +78,13 @@ func _on_settings_pressed() -> void:
 func _on_language_pressed() -> void:
 	AudioManager.play_sfx("confirm")
 
-	if Manager.selected_language == "EN":
-		Manager.selected_language = "DE"
+	if SettingsManager.selected_language == "EN":
+		SettingsManager.selected_language = "DE"
 	else:
-		Manager.selected_language = "EN"
+		SettingsManager.selected_language = "EN"
 
-	Manager.apply_settings()
-	Manager.save_settings() 
+	SettingsManager.apply_settings()
+	SettingsManager.save_settings() 
 
 	refresh_texts()
 			
@@ -101,7 +95,7 @@ func refresh_texts():
 	$MenuButtons/Credit.text = tr("CREDITS")
 	$MenuButtons/Exit.text = tr("EXIT")
 	
-	$Labels/Language.text = Manager.selected_language
+	$Labels/Language.text = SettingsManager.selected_language
 	$Labels/Update.text = tr("ALPHA_VERSION")
 
 	$Labels/Version.text = "v%s %s" % [
@@ -120,3 +114,29 @@ func _on_version_pressed() -> void:
 
 func _on_close_pressed() -> void:
 	$ProfileSelector.visible = false
+
+func animate_to_day():
+	var bg = $Background/BackGroundNight
+	
+	var target_color := Color(0.0, 0.0, 0.039, 0.2)
+
+	var tween := get_tree().create_tween()
+	tween.tween_property(bg, "color", target_color, 2.5) \
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_IN_OUT)
+
+	await tween.finished
+	
+func start_game() :
+	$MenuButtons.visible = false
+	$Social.visible = false
+	$Labels.visible = false
+	$ProfileSelector.visible = false
+	animate_to_day()
+	$AnimationPlayer.play("wake_up")
+	await get_tree().create_timer(3.2).timeout 
+	fade_in()
+	await get_tree().create_timer(0.5).timeout 
+	UI.show_ui()
+	get_tree().change_scene_to_file(Manager.current_room_scene)
+	

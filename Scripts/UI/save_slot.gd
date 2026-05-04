@@ -31,14 +31,18 @@ func refresh():
 # ================= ACTIONS =================
 
 func _on_play_pressed() -> void:
-	UI.show_ui()
+	#UI.show_ui()
 	if SaveManager.slot_exists(slot_id):
 		Manager.load_game(slot_id)
 	else:
 		Manager.current_slot = slot_id
 		Manager.reset_game(false)
+	
+	var main_menu = get_parent().get_parent().get_parent().get_parent()
 
-	get_tree().change_scene_to_file(Manager.current_room_scene)
+	main_menu.start_game()
+	
+	#get_tree().change_scene_to_file(Manager.current_room_scene)
 
 
 func _on_delete_pressed() -> void:

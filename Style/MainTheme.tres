@@ -292,6 +292,11 @@ border_color = Color(0.18431373, 0.11764706, 0.27058825, 1)
 border_blend = true
 expand_margin_bottom = 24.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stf6s"]
+bg_color = Color(0.25882354, 0.5764706, 0.7921569, 0.101960786)
+border_width_bottom = 5
+border_color = Color(0.012511276, 0.22575799, 0.39011225, 0.1764706)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28by3"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 6
@@ -462,6 +467,8 @@ TitleLabel/colors/font_shadow_color = Color(0.043137256, 0.050980393, 0.0627451,
 TitleLabel/constants/shadow_offset_x = 3
 TitleLabel/constants/shadow_offset_y = 3
 TitleLabel/font_sizes/font_size = 192
+TopPanel/base_type = &"Panel"
+TopPanel/styles/panel = SubResource("StyleBoxFlat_stf6s")
 TutorialText/base_type = &"RichTextLabel"
 TutorialText/colors/default_color = Color(1, 1, 1, 1)
 TutorialText/constants/outline_size = 32

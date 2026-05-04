@@ -14,15 +14,19 @@ func _ready() -> void:
 	$Panel/Container/SFX.text = tr("SFX")
 	$Panel/Container/Ambient.text = tr("AMBIENCE")
 	$Panel/Container/UI.text = tr("UI")
+	
+	$Panel/Container/Fullscreen.button_pressed = SettingsManager.fullscreen
+
+	$Panel/Container/Music.button_pressed = SettingsManager.music_enabled
+	$Panel/Container/SFX.button_pressed = SettingsManager.sfx_enabled
+	$Panel/Container/Ambient.button_pressed = SettingsManager.ambient_enabled
+	$Panel/Container/UI.button_pressed = SettingsManager.ui_enabled
 
 func _on_fullscreen_toggled(toggled_on: bool) -> void:
-	if toggled_on :
-		Manager.fullscreen = true
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else :
-		Manager.fullscreen = false
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-
+	SettingsManager.fullscreen = toggled_on
+	SettingsManager.apply_settings()
+	SettingsManager.save_settings()
+	
 func _on_reset_pressed() -> void:
 
 	for i in range(SaveManager.MAX_SLOTS):
@@ -44,7 +48,21 @@ func _on_close_pressed() -> void:
 	self.visible = false
 
 func _on_music_toggled(toggled_on: bool) -> void:
-		AudioServer.set_bus_mute(
-		AudioServer.get_bus_index("Music"),
-		not toggled_on
-	)
+	SettingsManager.music_enabled = toggled_on
+	SettingsManager.apply_settings()
+	SettingsManager.save_settings()
+
+func _on_sfx_toggled(toggled_on: bool) -> void:
+	SettingsManager.sfx_enabled = toggled_on
+	SettingsManager.apply_settings()
+	SettingsManager.save_settings()
+
+func _on_ambient_toggled(toggled_on: bool) -> void:
+	SettingsManager.ambient_enabled = toggled_on
+	SettingsManager.apply_settings()
+	SettingsManager.save_settings()
+
+func _on_ui_toggled(toggled_on: bool) -> void:
+	SettingsManager.ui_enabled = toggled_on
+	SettingsManager.apply_settings()
+	SettingsManager.save_settings()

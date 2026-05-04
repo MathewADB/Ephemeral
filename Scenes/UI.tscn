@@ -150,6 +150,7 @@ text = "Find And Collect All 3 Lore Fragments"
 autowrap_mode = 3
 
 [node name="Mining" type="Control" parent="." unique_id=1477990177]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

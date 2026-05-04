@@ -125,32 +125,16 @@ func play_end_cutscene():
 	UI.hide_ui()
 	get_tree().change_scene_to_file("res://Scenes/Control/end_screen.tscn")
 
-# -- Settings --
-
-var selected_language = ""
-var fullscreen: bool = false
-	
-func apply_settings():
-	if selected_language == "":
-		selected_language = "EN"
-
-	TranslationServer.set_locale(selected_language)
-
-	if fullscreen:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 # -- Functions --
 
 func _ready():
-	load_settings()
-	apply_settings()
+	SettingsManager.load_settings()
+	SettingsManager.apply_settings()
 	InventoryManager.inventory_changed.connect(func():
 		inventory_changed.emit())
 	game_seconds = start_day_progress * seconds_per_day
 	_is_night = is_night()
 	night_changed.emit(_is_night)
-	apply_settings()
 	
 func _process(delta):
 	game_seconds += delta * time_scale
@@ -176,10 +160,6 @@ func save_game():
 			"last_played": Time.get_unix_time_from_system()
 		},
 		"data": {
-			"settings": {
-				"selected_language": selected_language,
-				"fullscreen": fullscreen
-			},
 			"skill_points": skill_points,
 			"level": level,
 			"current_xp": current_xp,
@@ -212,11 +192,6 @@ func load_game(slot: int):
 		
 	if typeof(data) != TYPE_DICTIONARY:
 		return
-	
-	var settings = data.get("settings", {})
-
-	selected_language = settings.get("selected_language", "EN")
-	fullscreen = settings.get("fullscreen", false)
 
 	end_triggered = data.get("end_triggered", false)
 	AchievementManager.load_progress_data(
@@ -306,33 +281,8 @@ func reset_game(should_save := true):
 	level_changed.emit(level)
 	inventory_changed.emit()
 	map_updated.emit()
-			
-func save_settings():
-	var file := FileAccess.open(SETTINGS_PATH, FileAccess.WRITE)
-	if file:
-		file.store_string(JSON.stringify({
-			"selected_language": selected_language,
-			"fullscreen": fullscreen
-		}))
-		file.close()
-		
-func load_settings():
-	if not FileAccess.file_exists(SETTINGS_PATH):
-		return
 	
-	var file := FileAccess.open(SETTINGS_PATH, FileAccess.READ)
-	if file == null:
-		return
-	
-	var data = JSON.parse_string(file.get_as_text())
-	file.close()
-
-	if typeof(data) != TYPE_DICTIONARY:
-		return
-
-	selected_language = data.get("selected_language", "EN")
-	fullscreen = data.get("fullscreen", false)
-# ================= NODES ==================
+	# ================= NODES ==================
 
 func update_resource(unique_id: String, max_count: int, regen_time: float):
 	if not resource_nodes.has(unique_id):
