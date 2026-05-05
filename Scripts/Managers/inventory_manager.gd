@@ -4,6 +4,16 @@ signal inventory_changed
 
 # --- DATA ---
 
+const RARITY_COLORS := {
+	"common": Color("#52636d"),
+	"uncommon": Color("#22783f"),
+	"rare": Color("#345f99"),
+	"epic": Color("#7d2f7e"),
+	"legendary": Color("#e5a732"),
+	"mythic": Color("#b41e40"),
+	"platinum": Color("#a6c4bf")
+}
+
 const DEFAULT_ITEMS = {
 	"Ruby Stone": 0,
 	"Ruby Gem": 0,
@@ -36,6 +46,33 @@ var crafting_recipes := {
 		"icon": preload("res://Sprites/Entities/Dust Gem.png"),
 		"materials": {"Dust": 10},
 		"time": 10.0
+	}
+}
+
+const ITEM_DATA := {
+	"Ruby Stone": {
+		"icon": preload("res://Sprites/Entities/Ruby Stone.png"),
+		"rarity": "uncommon"
+	},
+	"Ruby Gem": {
+		"icon": preload("res://Sprites/Entities/Ruby Gem.png"),
+		"rarity": "rare"
+	},
+	"Dust": {
+		"icon": preload("res://Sprites/Entities/Dust.png"),
+		"rarity": "common"
+	},
+	"Dust Gem": {
+		"icon": preload("res://Sprites/Entities/Dust Gem.png"),
+		"rarity": "uncommon"
+	},
+	"Stone": {
+		"icon": preload("res://Sprites/Entities/Stone.png"),
+		"rarity": "common"
+	},
+	"Lore Fragment": {
+		"icon": preload("res://Sprites/Entities/Lore Fragment.png"),
+		"rarity": "epic"
 	}
 }
 
@@ -123,4 +160,21 @@ func load_data(data: Dictionary):
 func reset():
 	items = DEFAULT_ITEMS.duplicate(true)
 	inventory_changed.emit()
+	
+# Helper
+
+func get_item_data(item_name: String) -> Dictionary:
+	return ITEM_DATA.get(item_name, {
+		"icon": null,
+		"rarity": "common"
+	})
+
+func get_item_rarity(item_name: String) -> String:
+	return get_item_data(item_name).get("rarity", "common")
+
+func get_item_icon(item_name: String) -> Texture2D:
+	return get_item_data(item_name).get("icon", null)
+
+func get_rarity_color(rarity: String) -> Color:
+	return RARITY_COLORS.get(rarity, Color.WHITE)
 	

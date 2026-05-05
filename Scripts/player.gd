@@ -87,10 +87,14 @@ func _physics_process(delta):
 		handle_horizontal(delta)
 		handle_vertical(delta)
 		move_and_slide()
-		
+
 		if not is_on_floor() and velocity.y > 0:
 			max_fall_speed_reached = max(max_fall_speed_reached, velocity.y)
-			
+		
+	if hiding :
+		velocity.x = 0
+		move_and_slide()
+		
 	currently_on_floor = is_on_floor()
 	if currently_on_floor and not was_on_floor:
 		_check_fall_damage()

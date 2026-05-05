@@ -4,22 +4,42 @@
 [ext_resource type="Texture2D" uid="uid://cbn87xjnk5bx5" path="res://Sprites/Entities/Ruby Stone.png" id="2_mmsn8"]
 [ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="3_d4dbs"]
 
-[node name="InventoryItemRow" type="HBoxContainer" unique_id=1740442094]
-custom_minimum_size = Vector2(0, 60)
-offset_right = 102.0
-offset_bottom = 62.0
+[node name="InventoryItemRow" type="Panel" unique_id=775104048]
+custom_minimum_size = Vector2(0, 50)
+offset_right = 400.0
+offset_bottom = 64.0
 size_flags_horizontal = 3
+theme = ExtResource("3_d4dbs")
+theme_type_variation = &"InventoryPanel"
 script = ExtResource("1_xcxiv")
 
-[node name="Icon" type="TextureRect" parent="." unique_id=27777323]
+[node name="Container" type="HBoxContainer" parent="." unique_id=595053701]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 8.0
+offset_right = -24.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="TextureRect" parent="Container" unique_id=27777323]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+texture = ExtResource("2_mmsn8")
+stretch_mode = 6
+
+[node name="Name" type="Label" parent="Container" unique_id=1136972116]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_mmsn8")
-expand_mode = 3
-stretch_mode = 5
+theme = ExtResource("3_d4dbs")
+text = "Item name"
+horizontal_alignment = 1
 
-[node name="Amount" type="Label" parent="." unique_id=1835652395]
+[node name="Amount" type="Label" parent="Container" unique_id=1835652395]
 layout_mode = 2
 theme = ExtResource("3_d4dbs")
-theme_type_variation = &"LabelLevel"
 text = "1"
+horizontal_alignment = 1

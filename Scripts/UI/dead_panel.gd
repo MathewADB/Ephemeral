@@ -6,8 +6,8 @@ func _ready() -> void:
 	$"Panel/You Died".text = tr("YOU_DIED")
 
 func _on_respawn_pressed() -> void:
-	UI.fade.fade_in()
 	self.visible = false
+	await UI.fade_in()
 	get_tree().paused = false
 	Manager.player.respawn()
-	UI.fade.fade_out()
+	UI.fade_out(3)

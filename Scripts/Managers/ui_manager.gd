@@ -97,13 +97,55 @@ func show_autosave_icon():
 # ===== Crafting
 	
 func hide_ui():
-	self.visible = false
+
 	$Mining.visible = false
+	$"Bars HUD".visible = false
+	$DayNight.visible = false
+	$Moonlight.visible = false
+	$Level.visible = false
+	$TimeIconSmall.visible = false
+	$Popup.visible = false
+	$Background.visible = false
 	
 func show_ui():
-	self.visible = true
-	await get_tree().create_timer(2).timeout
+
+	$"Bars HUD".visible = true
+	$DayNight.visible = true
+	$Moonlight.visible = true
+	$Level.visible = true
+	$TimeIconSmall.visible = true
+	$Popup.visible = true
+	$Background.visible = true
 	$Mining.visible = true
+	
+var fade_tween: Tween
+
+func fade_in(duration := 0.5):
+	if fade_tween and fade_tween.is_running():
+		fade_tween.kill()
+
+	fade.visible = true
+	fade.modulate.a = 0.0
+
+	fade_tween = create_tween()
+	fade_tween.tween_property(fade, "modulate:a", 1.0, duration)
+
+	await fade_tween.finished
+
+
+func fade_out(duration := 0.5):
+	if fade_tween and fade_tween.is_running():
+		fade_tween.kill()
+
+	fade.visible = true
+	fade.modulate.a = 1.0
+
+	fade_tween = create_tween()
+	fade_tween.tween_property(fade, "modulate:a", 0.0, duration)
+
+	await fade_tween.finished
+
+	fade.visible = false
 	
 func _on_recipe_selected(recipe_name: String) -> void:
 	selected_recipe = recipe_name

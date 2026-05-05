@@ -156,6 +156,20 @@ border_color = Color(0.22352941, 0.26666668, 0.31764707, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1kt1g"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ol2po"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.7179641, 0.7179642, 0.717964, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+shadow_color = Color(0.802191, 0.8021911, 0.802191, 1)
+shadow_size = 6
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_edwl3"]
 bg_color = Color(0.05882353, 0.08627451, 0.1254902, 1)
 border_width_left = 32
@@ -399,6 +413,8 @@ InivisbleButton/styles/focus = SubResource("StyleBoxEmpty_mds0x")
 InivisbleButton/styles/hover = SubResource("StyleBoxEmpty_edwl3")
 InivisbleButton/styles/normal = SubResource("StyleBoxEmpty_1kt1g")
 InivisbleButton/styles/pressed = SubResource("StyleBoxEmpty_1kt1g")
+InventoryPanel/base_type = &"Panel"
+InventoryPanel/styles/panel = SubResource("StyleBoxFlat_ol2po")
 Label/colors/font_color = Color(1, 1, 1, 1)
 Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("1_pvpjx")

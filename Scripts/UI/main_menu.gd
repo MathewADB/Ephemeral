@@ -1,7 +1,5 @@
 extends Control
 
-@onready var fade : ColorRect = $Fade
-
 var debug_hour := -1
 
 func _ready() -> void:
@@ -20,8 +18,7 @@ func _ready() -> void:
 	refresh_texts()
 	
 	UI.hide_ui()
-	fade.modulate = Color(0.0, 0.0, 0.0, 1.0)
-	fade_out()
+	UI.fade_out()
 		
 #defualt 00000d86
 func update_background_by_time():
@@ -51,14 +48,6 @@ func update_background_by_time():
 		color.a = 0.75
 
 	$Background/BackGroundNight.color = color
-	
-func fade_out():
-	var tween := get_tree().create_tween()
-	tween.tween_property(fade, "modulate:a", 0, 0.5)
-	
-func fade_in():
-	var tween := get_tree().create_tween()
-	tween.tween_property(fade, "modulate:a", 1, 0.5)
 	
 func _on_exit_pressed() -> void:
 	get_tree().quit()
@@ -135,8 +124,8 @@ func start_game() :
 	animate_to_day()
 	$AnimationPlayer.play("wake_up")
 	await get_tree().create_timer(3.2).timeout 
-	fade_in()
+	UI.fade_in()
 	await get_tree().create_timer(0.5).timeout 
 	UI.show_ui()
 	get_tree().change_scene_to_file(Manager.current_room_scene)
-	
+	UI.fade_out()

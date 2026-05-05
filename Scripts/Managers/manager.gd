@@ -111,14 +111,11 @@ func trigger_end_game():
 		player.set_physics_process(false)
 
 	UI.show_text_popup("Something is awakening...")
-
 	await get_tree().create_timer(2.0).timeout
-
 	play_end_cutscene()
-	
+
 func play_end_cutscene():
-	UI.fade.visible = true
-	UI.fade.fade_in()
+	UI.fade_in()
 
 	await get_tree().create_timer(2.0).timeout
 	save_game()

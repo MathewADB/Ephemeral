@@ -9,15 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://cs2qpfetvkqcu" path="res://Sprites/UI/Rain Drop.png" id="4_1lsdj"]
 [ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="4_hfhsn"]
 [ext_resource type="FontFile" uid="uid://b0efp4kdjt0pa" path="res://Style/Born2bSportyFS.otf" id="5_qwshj"]
-[ext_resource type="PackedScene" uid="uid://5k5to833qoya" path="res://Scenes/Control/inventory_panel.tscn" id="6_48q88"]
 [ext_resource type="Texture2D" uid="uid://dy1ybeee3ntiv" path="res://Sprites/UI/Leveling Border.png" id="6_j04uc"]
 [ext_resource type="Script" uid="uid://co4xgn02eulih" path="res://Scripts/UI/panel.gd" id="6_mg6lk"]
 [ext_resource type="Texture2D" uid="uid://bjuifygg4o0ef" path="res://Sprites/UI/Leveling Fill.png" id="7_vqx31"]
-[ext_resource type="Script" uid="uid://g1yuabxq51md" path="res://Scripts/UI/fade.gd" id="7_xjg7p"]
 [ext_resource type="Script" uid="uid://ch12jdftfmhwl" path="res://Scripts/UI/settings.gd" id="10_45jp6"]
 [ext_resource type="Script" uid="uid://chy2xyl1ircrd" path="res://Scripts/UI/upgrades.gd" id="10_b1goy"]
 [ext_resource type="Texture2D" uid="uid://dxdos8pv4pvmb" path="res://Sprites/Icons/Upgrade/Mining Tier 1 Icon.png" id="12_n04ve"]
 [ext_resource type="Texture2D" uid="uid://bw22yoml704ad" path="res://Sprites/Icons/Upgrade/Mining Tier 1 Icon Unlocked.png" id="13_6maro"]
+[ext_resource type="Script" uid="uid://cecgweiunpx1d" path="res://Scripts/UI/inventory_panel.gd" id="14_q8m6m"]
 [ext_resource type="Texture2D" uid="uid://bhyklvn0i48wf" path="res://Sprites/Icons/Upgrade/Mining Tier 2 Icon Unlocked.png" id="15_45jp6"]
 [ext_resource type="Texture2D" uid="uid://cenmwitxas1nr" path="res://Sprites/Icons/Upgrade/Mining Tier 2 Icon.png" id="15_d1ul7"]
 [ext_resource type="Texture2D" uid="uid://cyjpi62vnvm7" path="res://Sprites/Icons/Upgrade/Mining Speed 2 Icon.png" id="16_pinj1"]
@@ -99,58 +98,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Quest" type="Control" parent="." unique_id=777518777]
-visible = false
-light_mask = 2
-visibility_layer = 2
-layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 78.0
-offset_top = -137.0
-offset_right = 360.0
-offset_bottom = -40.0
-grow_vertical = 0
-
-[node name="Panel" type="Panel" parent="Quest" unique_id=1024877070]
-layout_mode = 0
-offset_left = -62.0
-offset_top = 49.0
-offset_right = 186.0
-offset_bottom = 121.0
-theme = ExtResource("4_hfhsn")
-theme_type_variation = &"QuestPanel"
-
-[node name="Quest Name" type="Label" parent="Quest/Panel" unique_id=718560805]
-layout_mode = 1
-offset_left = 16.0
-offset_top = 8.0
-offset_right = 256.0
-offset_bottom = 48.0
-theme = ExtResource("4_hfhsn")
-theme_override_colors/font_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
-theme_override_font_sizes/font_size = 24
-text = "Cure The Curse :"
-
-[node name="Quest Detail" type="Label" parent="Quest/Panel" unique_id=669301449]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 21.0
-offset_top = 8.0
-offset_right = 248.0
-offset_bottom = 32.0
-grow_vertical = 2
-theme = ExtResource("4_hfhsn")
-theme_override_colors/font_color = Color(0.6509804, 0.76862746, 0.7490196, 1)
-theme_override_font_sizes/font_size = 16
-text = "Find And Collect All 3 Lore Fragments"
-autowrap_mode = 3
-
 [node name="Mining" type="Control" parent="." unique_id=1477990177]
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -234,9 +182,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
-script = ExtResource("7_xjg7p")
 
 [node name="DayNight" type="ColorRect" parent="." unique_id=1825922128]
 material = SubResource("ShaderMaterial_6lb63")
@@ -405,7 +352,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 theme = ExtResource("4_hfhsn")
-current_tab = 2
+current_tab = 1
 script = ExtResource("6_mg6lk")
 
 [node name="Settings" type="Control" parent="Player Panel/Panel" unique_id=2016830327]
@@ -425,23 +372,23 @@ theme = ExtResource("4_hfhsn")
 theme_type_variation = &"RedButton"
 text = "Save And Quit"
 
-[node name="Inventory" type="Control" parent="Player Panel/Panel" unique_id=2097038401]
-visible = false
+[node name="Inventory" type="Control" parent="Player Panel/Panel" unique_id=1379702969]
 layout_mode = 2
-focus_mode = 2
+script = ExtResource("14_q8m6m")
 metadata/_tab_index = 1
 
-[node name="Inventory" parent="Player Panel/Panel/Inventory" unique_id=1379702969 instance=ExtResource("6_48q88")]
+[node name="ItemList" type="VBoxContainer" parent="Player Panel/Panel/Inventory" unique_id=922009872]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 75.0
-offset_top = -259.0
-offset_right = 209.0
-offset_bottom = 198.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -680.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
 
 [node name="Upgrades" type="Control" parent="Player Panel/Panel" unique_id=1762975685]
+visible = false
 layout_mode = 2
 focus_mode = 2
 theme = ExtResource("4_hfhsn")
@@ -555,9 +502,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -16.0
-offset_top = 11.0
+offset_top = -5.0
 offset_right = -232.0
-offset_bottom = 11.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -573,9 +520,9 @@ texture = ExtResource("17_gqamb")
 [node name="TextureButton1" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=287688282]
 layout_mode = 0
 offset_left = 504.0
-offset_top = 289.0
+offset_top = 296.0
 offset_right = 536.0
-offset_bottom = 321.0
+offset_bottom = 328.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("12_n04ve")
 texture_disabled = ExtResource("13_6maro")
@@ -583,9 +530,9 @@ texture_disabled = ExtResource("13_6maro")
 [node name="TextureButton2" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1842243983]
 layout_mode = 0
 offset_left = 376.0
-offset_top = 289.0
+offset_top = 296.0
 offset_right = 408.0
-offset_bottom = 321.0
+offset_bottom = 328.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("15_d1ul7")
 texture_disabled = ExtResource("15_45jp6")
@@ -593,9 +540,9 @@ texture_disabled = ExtResource("15_45jp6")
 [node name="TextureButton3" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1898888710]
 layout_mode = 0
 offset_left = 504.0
-offset_top = 401.00003
+offset_top = 416.00003
 offset_right = 536.0
-offset_bottom = 433.00003
+offset_bottom = 448.00003
 scale = Vector2(3, 3)
 texture_normal = ExtResource("17_68ajo")
 texture_disabled = ExtResource("17_q6a8d")
@@ -603,9 +550,9 @@ texture_disabled = ExtResource("17_q6a8d")
 [node name="TextureButton4" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1941602361]
 layout_mode = 0
 offset_left = 376.0
-offset_top = 401.0
+offset_top = 416.0
 offset_right = 408.0
-offset_bottom = 433.0
+offset_bottom = 448.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("16_pinj1")
 texture_disabled = ExtResource("19_dgrhb")
@@ -613,9 +560,9 @@ texture_disabled = ExtResource("19_dgrhb")
 [node name="TextureButton5" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1689820268]
 layout_mode = 0
 offset_left = 760.0
-offset_top = 289.0
+offset_top = 296.0
 offset_right = 792.0
-offset_bottom = 321.0
+offset_bottom = 328.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("26_q8m6m")
 texture_disabled = ExtResource("27_1lsdj")
@@ -623,9 +570,9 @@ texture_disabled = ExtResource("27_1lsdj")
 [node name="TextureButton6" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=824042633]
 layout_mode = 0
 offset_left = 760.0
-offset_top = 401.00003
+offset_top = 416.00003
 offset_right = 792.0
-offset_bottom = 433.00003
+offset_bottom = 448.00003
 scale = Vector2(3, 3)
 texture_normal = ExtResource("28_mtrk6")
 texture_disabled = ExtResource("29_ft0vu")
@@ -673,9 +620,9 @@ texture_disabled = ExtResource("31_q8m6m")
 [node name="TextureButton11" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1100206114]
 layout_mode = 0
 offset_left = 632.0
-offset_top = 289.0
+offset_top = 296.0
 offset_right = 664.0
-offset_bottom = 321.0
+offset_bottom = 328.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("22_wypb4")
 texture_disabled = ExtResource("39_q8m6m")
@@ -683,9 +630,9 @@ texture_disabled = ExtResource("39_q8m6m")
 [node name="TextureButton12" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1786688692]
 layout_mode = 0
 offset_left = 632.0
-offset_top = 401.00003
+offset_top = 416.00003
 offset_right = 664.0
-offset_bottom = 433.00003
+offset_bottom = 448.00003
 scale = Vector2(3, 3)
 texture_normal = ExtResource("23_y1m5i")
 texture_disabled = ExtResource("41_1lsdj")
@@ -703,9 +650,9 @@ texture_disabled = ExtResource("42_hptg1")
 [node name="TextureButton14" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=143552609]
 layout_mode = 0
 offset_left = 632.0
-offset_top = 65.0
+offset_top = 56.0
 offset_right = 664.0
-offset_bottom = 97.0
+offset_bottom = 88.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("42_qoydj")
 texture_disabled = ExtResource("43_lolh4")
