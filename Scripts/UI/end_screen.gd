@@ -2,7 +2,7 @@ extends Control
 
 
 func _ready() -> void:
-	UI.visible = false
+	UI.hide_ui()
 	$Exit.text = tr("CLOSE")
 	$CurseCured.text = tr("ENDING_TEXT")
 	if Manager.end_triggered == true :

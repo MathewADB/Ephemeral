@@ -35,11 +35,13 @@ stretch_mode = 6
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_d4dbs")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Item name"
 horizontal_alignment = 1
 
 [node name="Amount" type="Label" parent="Container" unique_id=1835652395]
 layout_mode = 2
 theme = ExtResource("3_d4dbs")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "1"
 horizontal_alignment = 1

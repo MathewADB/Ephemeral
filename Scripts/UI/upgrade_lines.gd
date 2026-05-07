@@ -39,7 +39,7 @@ func _draw() -> void:
 		return
 
 	var buttons = panel.upgrade_buttons
-	var upgrades = UpgradeManager.upgrades
+	var upgrades = UpgradeManager.UPGRADES
 	var learned = UpgradeManager.learned_upgrades
 
 	@warning_ignore("shadowed_variable")
@@ -120,7 +120,7 @@ func _spawn_pulses() -> void:
 		return
 
 	var buttons = panel.upgrade_buttons
-	var upgrades = UpgradeManager.upgrades
+	var upgrades = UpgradeManager.UPGRADES
 	var learned = UpgradeManager.learned_upgrades
 
 	for btn in buttons:

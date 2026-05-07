@@ -78,7 +78,7 @@ func set_stats():
 	hide_unlocked = Manager.hide_unlocked
 	base_extra_jumps = Manager.base_extra_jumps
 	current_extra_jumps = base_extra_jumps
-	UI.bars.update_health(current_health,max_health)
+	UI._bars_hud.update_health(current_health,max_health)
 	
 func _physics_process(delta):
 	handle_mining(delta)
@@ -145,7 +145,7 @@ func handle_mining(delta):
 
 		mineable.progress += delta * mining_speed
 
-		UI.set_progress(mineable.progress / mineable.mine_time)
+		UI.set_mining_progress(mineable.progress / mineable.mine_time)
 
 		if mineable.progress >= mineable.mine_time:
 
@@ -179,7 +179,7 @@ func stop_mining():
 	if mineable:
 		mineable.progress = 0
 
-	UI.hide_progress()
+	UI.hide_mining_progress()
 	
 func freeze_camera(value:bool):
 	if value == true :
@@ -305,7 +305,7 @@ func take_damage(amount):
 		die()
 	if current_health > max_health :
 		current_health = max_health
-	UI.bars.update_health(current_health,max_health)
+	UI._bars_hud.update_health(current_health,max_health)
 	can_take_damage = false
 	invun.start()
 	

@@ -52,7 +52,7 @@ load_path = "res://.godot/imported/Slime Upgrade Icon.png-2cbb38f93843b5a5bce210
 [node name="UI" type="CanvasLayer" unique_id=1521172341]
 script = ExtResource("1_dewlx")
 
-[node name="Background" type="CanvasLayer" parent="." unique_id=2137228397]
+[node name="Background" type="CanvasLayer" parent="." unique_id=896712118]
 layer = -2
 
 [node name="Sky" type="Sprite2D" parent="Background" unique_id=799062423]
@@ -79,54 +79,15 @@ color = Color(0.25882354, 0.5764706, 0.7921569, 1)
 anim_speed_min = 0.2
 anim_speed_max = 0.8
 
-[node name="SkyRect" type="ColorRect" parent="Background" unique_id=1499192972]
-modulate = Color(0.92941177, 1, 1, 0.49803922)
+[node name="Bars HUD" parent="." unique_id=616603374 instance=ExtResource("2_hfhsn")]
+
+[node name="Popup" type="Control" parent="." unique_id=13786881]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-
-[node name="BarsHUD" parent="." unique_id=616603374 instance=ExtResource("2_hfhsn")]
-
-[node name="Level" type="Control" parent="." unique_id=478546924]
-layout_mode = 3
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 1029.0
-offset_bottom = 145.0
-grow_horizontal = 2
-
-[node name="LevelBar" type="TextureProgressBar" parent="Level" unique_id=1360542286]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 30.0
-offset_right = 25.0
-offset_bottom = 54.0
-scale = Vector2(3, 3)
-fill_mode = 3
-nine_patch_stretch = true
-texture_under = ExtResource("7_vqx31")
-texture_progress = ExtResource("6_j04uc")
-
-[node name="LevelLabel" type="Label" parent="Level" unique_id=882322449]
-layout_mode = 1
-offset_left = 16.0
-offset_top = 46.0
-offset_right = 61.0
-offset_bottom = 82.0
-theme = ExtResource("4_hfhsn")
-theme_type_variation = &"LabelWhite"
-text = "1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AutosaveIcon" type="Sprite2D" parent="." unique_id=1756865146]
-visible = false
-position = Vector2(1055, 591)
-scale = Vector2(3, 3)
-texture = SubResource("CompressedTexture2D_luji1")
 
 [node name="Mining" type="Control" parent="." unique_id=1477990177]
 layout_mode = 3
@@ -160,38 +121,59 @@ theme_override_font_sizes/font_size = 24
 value = 47.57
 show_percentage = false
 
-[node name="Popup" type="Control" parent="." unique_id=13786881]
+[node name="Level" type="Control" parent="." unique_id=478546924]
 layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1029.0
+offset_bottom = 145.0
+grow_horizontal = 2
+
+[node name="LevelBar" type="TextureProgressBar" parent="Level" unique_id=1360542286]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 30.0
+offset_right = 25.0
+offset_bottom = 54.0
+scale = Vector2(3, 3)
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("7_vqx31")
+texture_progress = ExtResource("6_j04uc")
+
+[node name="LevelLabel" type="Label" parent="Level" unique_id=882322449]
+layout_mode = 1
+offset_left = 16.0
+offset_top = 46.0
+offset_right = 61.0
+offset_bottom = 82.0
+theme = ExtResource("4_hfhsn")
+theme_type_variation = &"LabelWhite"
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DayNight" type="ColorRect" parent="." unique_id=1499192972]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
-[node name="DayNight" type="Control" parent="." unique_id=749587078]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SunMoon" type="Sprite2D" parent="DayNight" unique_id=1532518362]
+[node name="SunMoon" type="Sprite2D" parent="." unique_id=1532518362]
 position = Vector2(78, 126)
 scale = Vector2(3, 3)
 texture = ExtResource("3_qwshj")
 hframes = 2
 frame = 1
 
-[node name="ClockLabel" type="Label" parent="DayNight" unique_id=1322927754]
-layout_mode = 0
-offset_left = 112.0
-offset_top = 104.0
-offset_right = 174.0
-offset_bottom = 140.0
-theme = ExtResource("4_hfhsn")
-theme_override_constants/outline_size = 8
-text = "44:44"
+[node name="AutosaveIcon" type="Sprite2D" parent="." unique_id=1756865146]
+visible = false
+position = Vector2(1055, 591)
+scale = Vector2(3, 3)
+texture = SubResource("CompressedTexture2D_luji1")
 
 [node name="Fade" type="ColorRect" parent="." unique_id=850223812]
 modulate = Color(1, 1, 1, 0)
@@ -203,7 +185,16 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="CraftingPanel" type="Control" parent="." unique_id=449598579]
+[node name="ClockLabel" type="Label" parent="." unique_id=1322927754]
+offset_left = 112.0
+offset_top = 104.0
+offset_right = 174.0
+offset_bottom = 140.0
+theme = ExtResource("4_hfhsn")
+theme_override_constants/outline_size = 8
+text = "44:44"
+
+[node name="Crafting Panel" type="Control" parent="." unique_id=449598579]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -213,7 +204,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="CraftingPanel" unique_id=218169308]
+[node name="Panel" type="Panel" parent="Crafting Panel" unique_id=218169308]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -223,7 +214,7 @@ grow_vertical = 2
 theme = ExtResource("4_hfhsn")
 theme_type_variation = &"MenuPanel"
 
-[node name="ProgressBar" type="ProgressBar" parent="CraftingPanel" unique_id=2020762854]
+[node name="ProgressBar" type="ProgressBar" parent="Crafting Panel" unique_id=2020762854]
 layout_mode = 0
 offset_left = 39.0
 offset_top = 581.0
@@ -233,7 +224,7 @@ theme = ExtResource("4_hfhsn")
 theme_override_fonts/font = ExtResource("5_qwshj")
 theme_override_font_sizes/font_size = 32
 
-[node name="CloseButton" type="Button" parent="CraftingPanel" unique_id=161906409]
+[node name="CloseButton" type="Button" parent="Crafting Panel" unique_id=161906409]
 layout_mode = 0
 offset_left = 920.0
 offset_top = 536.0
@@ -243,7 +234,7 @@ theme = ExtResource("4_hfhsn")
 theme_type_variation = &"GrayButton"
 text = "Close"
 
-[node name="CraftButton" type="Button" parent="CraftingPanel" unique_id=1859212047]
+[node name="CraftButton" type="Button" parent="Crafting Panel" unique_id=1859212047]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 514.0
@@ -254,7 +245,7 @@ theme_type_variation = &"BlueButtons"
 disabled = true
 text = "Craft"
 
-[node name="ItemList" type="VBoxContainer" parent="CraftingPanel" unique_id=63781857]
+[node name="ItemList" type="VBoxContainer" parent="Crafting Panel" unique_id=63781857]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -267,14 +258,14 @@ offset_bottom = -136.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Icon" type="TextureRect" parent="CraftingPanel" unique_id=654189446]
+[node name="Icon" type="TextureRect" parent="Crafting Panel" unique_id=654189446]
 layout_mode = 0
 offset_left = 52.0
 offset_top = 31.0
 offset_right = 265.0
 offset_bottom = 237.0
 
-[node name="Name" type="Label" parent="CraftingPanel" unique_id=2111213894]
+[node name="Name" type="Label" parent="Crafting Panel" unique_id=2111213894]
 layout_mode = 0
 offset_left = 455.0
 offset_top = 21.0
@@ -284,7 +275,7 @@ theme = ExtResource("4_hfhsn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="CraftingPanel" unique_id=2003383284]
+[node name="Description" type="Label" parent="Crafting Panel" unique_id=2003383284]
 layout_mode = 0
 offset_left = 397.0
 offset_top = 86.0
@@ -294,7 +285,7 @@ theme = ExtResource("4_hfhsn")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Cost" type="Label" parent="CraftingPanel" unique_id=1340498577]
+[node name="Cost" type="Label" parent="Crafting Panel" unique_id=1340498577]
 layout_mode = 0
 offset_left = 396.0
 offset_top = 380.0
@@ -304,7 +295,7 @@ theme = ExtResource("4_hfhsn")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="PlayerPanel" type="Control" parent="." unique_id=1801123476]
+[node name="Player Panel" type="Control" parent="." unique_id=1801123476]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -314,7 +305,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Q" type="Label" parent="PlayerPanel" unique_id=1365721339]
+[node name="Q" type="Label" parent="Player Panel" unique_id=1365721339]
 z_index = 1
 layout_mode = 0
 offset_left = 32.0
@@ -327,7 +318,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 text = "[Q]"
 horizontal_alignment = 1
 
-[node name="E" type="Label" parent="PlayerPanel" unique_id=302243028]
+[node name="E" type="Label" parent="Player Panel" unique_id=302243028]
 z_index = 1
 layout_mode = 1
 anchors_preset = 1
@@ -344,7 +335,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 text = "[E]"
 horizontal_alignment = 1
 
-[node name="Panel" type="TabContainer" parent="PlayerPanel" unique_id=670470095]
+[node name="Panel" type="TabContainer" parent="Player Panel" unique_id=670470095]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -353,17 +344,17 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 theme = ExtResource("4_hfhsn")
-current_tab = 2
+current_tab = 1
 script = ExtResource("6_mg6lk")
 
-[node name="Settings" type="Control" parent="PlayerPanel/Panel" unique_id=2016830327]
+[node name="Settings" type="Control" parent="Player Panel/Panel" unique_id=2016830327]
 visible = false
 layout_mode = 2
 focus_mode = 2
 script = ExtResource("10_45jp6")
 metadata/_tab_index = 0
 
-[node name="Quit" type="Button" parent="PlayerPanel/Panel/Settings" unique_id=1493065016]
+[node name="Quit" type="Button" parent="Player Panel/Panel/Settings" unique_id=1493065016]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 443.0
@@ -373,13 +364,12 @@ theme = ExtResource("4_hfhsn")
 theme_type_variation = &"RedButton"
 text = "Save And Quit"
 
-[node name="Inventory" type="Control" parent="PlayerPanel/Panel" unique_id=1379702969]
-visible = false
+[node name="Inventory" type="Control" parent="Player Panel/Panel" unique_id=1379702969]
 layout_mode = 2
 script = ExtResource("14_q8m6m")
 metadata/_tab_index = 1
 
-[node name="ItemList" type="VBoxContainer" parent="PlayerPanel/Panel/Inventory" unique_id=922009872]
+[node name="ItemList" type="VBoxContainer" parent="Player Panel/Panel/Inventory" unique_id=922009872]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -389,14 +379,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12
 
-[node name="Upgrades" type="Control" parent="PlayerPanel/Panel" unique_id=1762975685]
+[node name="Upgrades" type="Control" parent="Player Panel/Panel" unique_id=1762975685]
+visible = false
 layout_mode = 2
 focus_mode = 2
 theme = ExtResource("4_hfhsn")
 script = ExtResource("10_b1goy")
 metadata/_tab_index = 2
 
-[node name="SkillPoints" type="Label" parent="PlayerPanel/Panel/Upgrades" unique_id=468737102]
+[node name="SkillPoints" type="Label" parent="Player Panel/Panel/Upgrades" unique_id=468737102]
 layout_mode = 0
 offset_left = 13.0
 offset_top = 35.0
@@ -406,7 +397,7 @@ theme = ExtResource("4_hfhsn")
 theme_type_variation = &"LabelMain"
 text = "Skill Points : "
 
-[node name="InfoPanel" type="Panel" parent="PlayerPanel/Panel/Upgrades" unique_id=1263094567]
+[node name="InfoPanel" type="Panel" parent="Player Panel/Panel/Upgrades" unique_id=1263094567]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -422,7 +413,7 @@ grow_vertical = 2
 theme = ExtResource("4_hfhsn")
 theme_type_variation = &"InfoPanel"
 
-[node name="Lines" type="Line2D" parent="PlayerPanel/Panel/Upgrades/InfoPanel" unique_id=531746274]
+[node name="Lines" type="Line2D" parent="Player Panel/Panel/Upgrades/InfoPanel" unique_id=531746274]
 position = Vector2(-1768, -29)
 points = PackedVector2Array(1544, 275, 1544, 275, 1544, 275)
 width = 15.0
@@ -431,7 +422,7 @@ script = ExtResource("17_1lsdj")
 root_icon_path = NodePath("../../Buttons/TextureButton")
 upgrade_panel_path = NodePath("../..")
 
-[node name="UpgradeName" type="Label" parent="PlayerPanel/Panel/Upgrades/InfoPanel" unique_id=2011069109]
+[node name="UpgradeName" type="Label" parent="Player Panel/Panel/Upgrades/InfoPanel" unique_id=2011069109]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -446,7 +437,7 @@ text = "Upgrade Panel"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="UpgradeInfo" type="Label" parent="PlayerPanel/Panel/Upgrades/InfoPanel" unique_id=996252192]
+[node name="UpgradeInfo" type="Label" parent="Player Panel/Panel/Upgrades/InfoPanel" unique_id=996252192]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -464,7 +455,7 @@ text = "Select an Upgrade"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="UpgradeCost" type="Label" parent="PlayerPanel/Panel/Upgrades/InfoPanel" unique_id=191321388]
+[node name="UpgradeCost" type="Label" parent="Player Panel/Panel/Upgrades/InfoPanel" unique_id=191321388]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -479,7 +470,7 @@ theme_override_colors/font_color = Color(0.40784314, 0.49803922, 0.53333336, 1)
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Learn" type="Button" parent="PlayerPanel/Panel/Upgrades/InfoPanel" unique_id=499688775]
+[node name="Learn" type="Button" parent="Player Panel/Panel/Upgrades/InfoPanel" unique_id=499688775]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -497,7 +488,7 @@ theme_type_variation = &"BlueButtons"
 disabled = true
 text = "Learn"
 
-[node name="Buttons" type="Control" parent="PlayerPanel/Panel/Upgrades" unique_id=329525659]
+[node name="Buttons" type="Control" parent="Player Panel/Panel/Upgrades" unique_id=329525659]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -509,7 +500,7 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureButton" type="TextureRect" parent="PlayerPanel/Panel/Upgrades/Buttons" unique_id=1426842143]
+[node name="TextureButton" type="TextureRect" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1426842143]
 layout_mode = 0
 offset_left = 632.0
 offset_top = 176.0
@@ -518,7 +509,7 @@ offset_bottom = 208.0
 scale = Vector2(3, 3)
 texture = ExtResource("17_gqamb")
 
-[node name="TextureButton1" type="TextureButton" parent="PlayerPanel/Panel/Upgrades/Buttons" unique_id=287688282]
+[node name="TextureButton1" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=287688282]
 layout_mode = 0
 offset_left = 504.0
 offset_top = 296.0
@@ -528,7 +519,7 @@ scale = Vector2(3, 3)
 texture_normal = ExtResource("12_n04ve")
 texture_disabled = ExtResource("13_6maro")
 
-[node name="TextureButton2" type="TextureButton" parent="PlayerPanel/Panel/Upgrades/Buttons" unique_id=1842243983]
+[node name="TextureButton2" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1842243983]
 layout_mode = 0
 offset_left = 376.0
 offset_top = 296.0
@@ -538,7 +529,7 @@ scale = Vector2(3, 3)
 texture_normal = ExtResource("15_d1ul7")
 texture_disabled = ExtResource("15_45jp6")
 
-[node name="TextureButton3" type="TextureButton" parent="PlayerPanel/Panel/Upgrades/Buttons" unique_id=1898888710]
+[node name="TextureButton3" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1898888710]
 layout_mode = 0
 offset_left = 504.0
 offset_top = 416.00003
@@ -548,7 +539,7 @@ scale = Vector2(3, 3)
 texture_normal = ExtResource("17_68ajo")
 texture_disabled = ExtResource("17_q6a8d")
 
-[node name="TextureButton4" type="TextureButton" parent="PlayerPanel/Panel/Upgrades/Buttons" unique_id=1941602361]
+[node name="TextureButton4" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1941602361]
 layout_mode = 0
 offset_left = 376.0
 offset_top = 416.0
@@ -558,27 +549,7 @@ scale = Vector2(3, 3)
 texture_normal = ExtResource("16_pinj1")
 texture_disabled = ExtResource("19_dgrhb")
 
-[node name="TextureButton5" type="TextureButton" parent="PlayerPanel/Panel/Upgrades/Buttons" unique_id=1689820268]
-layout_mode = 0
-offset_left = 632.0
-offset_top = 296.0
-offset_right = 664.0
-offset_bottom = 328.0
-scale = Vector2(3, 3)
-texture_normal = ExtResource("22_wypb4")
-texture_disabled = ExtResource("39_q8m6m")
-
-[node name="TextureButton6" type="TextureButton" parent="PlayerPanel/Panel/Upgrades/Buttons" unique_id=824042633]
-layout_mode = 0
-offset_left = 632.0
-offset_top = 416.00003
-offset_right = 664.0
-offset_bottom = 448.00003
-scale = Vector2(3, 3)
-texture_normal = ExtResource("23_y1m5i")
-texture_disabled = ExtResource("41_1lsdj")
-
-[node name="TextureButton7" type="TextureButton" parent="PlayerPanel/Panel/Upgrades/Buttons" unique_id=539473197]
+[node name="TextureButton5" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1689820268]
 layout_mode = 0
 offset_left = 760.0
 offset_top = 296.0
@@ -588,47 +559,47 @@ scale = Vector2(3, 3)
 texture_normal = ExtResource("26_q8m6m")
 texture_disabled = ExtResource("27_1lsdj")
 
-[node name="TextureButton8" type="TextureButton" parent="PlayerPanel/Panel/Upgrades/Buttons" unique_id=1247758076]
+[node name="TextureButton6" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=824042633]
 layout_mode = 0
 offset_left = 760.0
-offset_top = 416.0
+offset_top = 416.00003
 offset_right = 792.0
-offset_bottom = 448.0
+offset_bottom = 448.00003
 scale = Vector2(3, 3)
 texture_normal = ExtResource("28_mtrk6")
 texture_disabled = ExtResource("29_ft0vu")
 
-[node name="TextureButton9" type="TextureButton" parent="PlayerPanel/Panel/Upgrades/Buttons" unique_id=763109338]
+[node name="TextureButton7" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=539473197]
 layout_mode = 0
 offset_left = 304.0
-offset_top = 176.00002
+offset_top = 176.0
 offset_right = 336.0
-offset_bottom = 208.00002
+offset_bottom = 208.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("18_q6a8d")
 texture_disabled = ExtResource("25_qoydj")
 
-[node name="TextureButton10" type="TextureButton" parent="PlayerPanel/Panel/Upgrades/Buttons" unique_id=1366240046]
+[node name="TextureButton8" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1247758076]
 layout_mode = 0
-offset_left = 168.0
+offset_left = 168.00002
 offset_top = 176.0
-offset_right = 200.0
+offset_right = 200.00002
 offset_bottom = 208.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("19_6lb63")
 texture_disabled = ExtResource("27_lolh4")
 
-[node name="TextureButton11" type="TextureButton" parent="PlayerPanel/Panel/Upgrades/Buttons" unique_id=1100206114]
+[node name="TextureButton9" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=763109338]
 layout_mode = 0
 offset_left = 32.0
-offset_top = 176.0
+offset_top = 176.00002
 offset_right = 64.0
-offset_bottom = 208.0
+offset_bottom = 208.00002
 scale = Vector2(3, 3)
 texture_normal = ExtResource("20_dgrhb")
 texture_disabled = ExtResource("29_gqamb")
 
-[node name="TextureButton12" type="TextureButton" parent="PlayerPanel/Panel/Upgrades/Buttons" unique_id=1786688692]
+[node name="TextureButton10" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1366240046]
 layout_mode = 0
 offset_left = 760.0
 offset_top = 176.0
@@ -638,7 +609,27 @@ scale = Vector2(3, 3)
 texture_normal = ExtResource("21_j0pu8")
 texture_disabled = ExtResource("31_q8m6m")
 
-[node name="TextureButton13" type="TextureButton" parent="PlayerPanel/Panel/Upgrades/Buttons" unique_id=996558837]
+[node name="TextureButton11" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1100206114]
+layout_mode = 0
+offset_left = 632.0
+offset_top = 296.0
+offset_right = 664.0
+offset_bottom = 328.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("22_wypb4")
+texture_disabled = ExtResource("39_q8m6m")
+
+[node name="TextureButton12" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=1786688692]
+layout_mode = 0
+offset_left = 632.0
+offset_top = 416.00003
+offset_right = 664.0
+offset_bottom = 448.00003
+scale = Vector2(3, 3)
+texture_normal = ExtResource("23_y1m5i")
+texture_disabled = ExtResource("41_1lsdj")
+
+[node name="TextureButton13" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=996558837]
 layout_mode = 0
 offset_left = 504.0
 offset_top = 176.0
@@ -648,7 +639,7 @@ scale = Vector2(3, 3)
 texture_normal = ExtResource("41_uqa0b")
 texture_disabled = ExtResource("42_hptg1")
 
-[node name="TextureButton14" type="TextureButton" parent="PlayerPanel/Panel/Upgrades/Buttons" unique_id=143552609]
+[node name="TextureButton14" type="TextureButton" parent="Player Panel/Panel/Upgrades/Buttons" unique_id=143552609]
 layout_mode = 0
 offset_left = 632.0
 offset_top = 56.0
@@ -658,13 +649,13 @@ scale = Vector2(3, 3)
 texture_normal = ExtResource("42_qoydj")
 texture_disabled = ExtResource("43_lolh4")
 
-[node name="Quest" type="Control" parent="PlayerPanel/Panel" unique_id=893934766]
+[node name="Quest" type="Control" parent="Player Panel/Panel" unique_id=893934766]
 visible = false
 layout_mode = 2
 focus_mode = 2
 metadata/_tab_index = 3
 
-[node name="NoQuest" type="Label" parent="PlayerPanel/Panel/Quest" unique_id=1892741266]
+[node name="NoQuest" type="Label" parent="Player Panel/Panel/Quest" unique_id=1892741266]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -684,13 +675,13 @@ theme_override_font_sizes/font_size = 64
 text = "No Quests Available"
 horizontal_alignment = 1
 
-[node name="Map" type="Control" parent="PlayerPanel/Panel" unique_id=678739934]
+[node name="Map" type="Control" parent="Player Panel/Panel" unique_id=678739934]
 visible = false
 layout_mode = 2
 focus_mode = 2
 metadata/_tab_index = 4
 
-[node name="NoMap" type="Label" parent="PlayerPanel/Panel/Map" unique_id=27068831]
+[node name="NoMap" type="Label" parent="Player Panel/Panel/Map" unique_id=27068831]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -709,7 +700,7 @@ theme_override_colors/font_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
 theme_override_font_sizes/font_size = 64
 text = "You dont have a map yet"
 
-[node name="MapLabel" type="Label" parent="PlayerPanel/Panel/Map" unique_id=1548568783]
+[node name="MapLabel" type="Label" parent="Player Panel/Panel/Map" unique_id=1548568783]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -727,7 +718,7 @@ theme_type_variation = &"LabelInfo"
 theme_override_colors/font_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
 text = "Map"
 
-[node name="Map" type="Control" parent="PlayerPanel/Panel/Map" unique_id=607509208]
+[node name="Map" type="Control" parent="Player Panel/Panel/Map" unique_id=607509208]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -743,7 +734,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("42_y1m5i")
 
-[node name="DeadPanel" type="Control" parent="." unique_id=1868140571]
+[node name="Dead Panel" type="Control" parent="." unique_id=1868140571]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -754,7 +745,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("47_q8m6m")
 
-[node name="Panel" type="Panel" parent="DeadPanel" unique_id=782658978]
+[node name="Panel" type="Panel" parent="Dead Panel" unique_id=782658978]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -762,7 +753,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="You Died" type="Label" parent="DeadPanel/Panel" unique_id=817392507]
+[node name="You Died" type="Label" parent="Dead Panel/Panel" unique_id=817392507]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -787,7 +778,7 @@ text = "You Died"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="Respawn" type="Button" parent="DeadPanel/Panel" unique_id=1837032603]
+[node name="Respawn" type="Button" parent="Dead Panel/Panel" unique_id=1837032603]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -804,8 +795,8 @@ theme = ExtResource("4_hfhsn")
 theme_type_variation = &"BlueButtons"
 text = "Respawn"
 
-[connection signal="pressed" from="CraftingPanel/CloseButton" to="." method="_on_close_button_pressed"]
-[connection signal="pressed" from="CraftingPanel/CraftButton" to="." method="_on_craft_button_pressed"]
-[connection signal="pressed" from="PlayerPanel/Panel/Settings/Quit" to="PlayerPanel/Panel/Settings" method="_on_quit_pressed"]
-[connection signal="pressed" from="PlayerPanel/Panel/Upgrades/InfoPanel/Learn" to="PlayerPanel/Panel/Upgrades" method="_on_learn_pressed"]
-[connection signal="pressed" from="DeadPanel/Panel/Respawn" to="DeadPanel" method="_on_respawn_pressed"]
+[connection signal="pressed" from="Crafting Panel/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="Crafting Panel/CraftButton" to="." method="_on_craft_button_pressed"]
+[connection signal="pressed" from="Player Panel/Panel/Settings/Quit" to="Player Panel/Panel/Settings" method="_on_quit_pressed"]
+[connection signal="pressed" from="Player Panel/Panel/Upgrades/InfoPanel/Learn" to="Player Panel/Panel/Upgrades" method="_on_learn_pressed"]
+[connection signal="pressed" from="Dead Panel/Panel/Respawn" to="Dead Panel" method="_on_respawn_pressed"]

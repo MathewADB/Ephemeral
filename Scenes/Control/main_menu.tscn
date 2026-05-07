@@ -632,7 +632,6 @@ text = "UI
 alignment = 1
 
 [node name="ExtrasSettings" type="Control" parent="." unique_id=515953505]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -706,13 +705,13 @@ theme_type_variation = &"QuestPanel"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ExtrasSettings/Panel" unique_id=139945440]
 layout_mode = 0
-offset_left = 16.0
+offset_left = 56.0
 offset_top = 120.0
-offset_right = 888.0
-offset_bottom = 632.0
+offset_right = 1096.0
+offset_bottom = 504.0
 
 [node name="GridContainer" type="GridContainer" parent="ExtrasSettings/Panel/ScrollContainer" unique_id=707838949]
-custom_minimum_size = Vector2(0, 410)
+custom_minimum_size = Vector2(0, 369.46)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -770,6 +769,7 @@ text = "???"
 autowrap_mode = 3
 
 [node name="VersionPage" type="Control" parent="." unique_id=917764440]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

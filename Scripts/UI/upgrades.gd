@@ -17,7 +17,7 @@ func _ready() -> void:
 
 	upgrade_buttons = upgrade_buttons.filter(func(b): return b is TextureButton)
 
-	var upgrade_names = UpgradeManager.upgrades.keys()
+	var upgrade_names = UpgradeManager.UPGRADES.keys()
 	for i in range(upgrade_buttons.size()):
 		var btn = upgrade_buttons[i] as TextureButton
 		if i < upgrade_names.size():
@@ -59,7 +59,7 @@ func _on_upgrade_button_pressed(btn: TextureButton) -> void:
 	# Highlight current selection
 	btn.modulate = Color(0.8, 0.9, 1.0, 1)
 
-	var u = UpgradeManager.upgrades[selected_upgrade_name]
+	var u = UpgradeManager.UPGRADES[selected_upgrade_name]
 
 	# Use key as display name
 	info_name.text = selected_upgrade_name

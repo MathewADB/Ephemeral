@@ -1,302 +1,355 @@
 extends CanvasLayer
 
+# =============================================================================
+# UI MANAGER — All in-game HUD, overlays, popups, and crafting UI
+# Autoload name: UI
+# Scene structure required — see SCENE STRUCTURE note at the bottom of file.
+# =============================================================================
+
+# ─────────────────────────────────────────────────────────────────────────────
+# NODE REFERENCES
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── HUD ─────────────────────────────────────────────────────────────────────
+@onready var _bars_hud:      Control            = $"BarsHUD"
+@onready var _level_bar:     TextureProgressBar = $Level/LevelBar
+@onready var _level_label:   Label              = $"Level/LevelLabel"
+@onready var _autosave_icon: Sprite2D           = $"AutosaveIcon"
+@onready var _mining_bar:    ProgressBar        = $Mining/Miningbar
+@onready var _popup_root:    Control            = $"Popup"
+@onready var _background:                       = $"Background"
+
+# ── Day / Night (three nodes expected by TimeManager) ───────────────────────
+@onready var _sky_rect:    ColorRect = $Background/SkyRect
+@onready var _sun_moon:    Sprite2D  = $DayNight/SunMoon
+@onready var _clock_label: Label     = $"DayNight/ClockLabel"
+
+# ── Fade overlay ─────────────────────────────────────────────────────────────
+@onready var _fade: ColorRect = $"Fade"
+
+# ── Panels ───────────────────────────────────────────────────────────────────
+@onready var _dead_panel:      Control = $"DeadPanel"
+@onready var _player_panel:    Control = $"PlayerPanel"
+@onready var _crafting_panel:  Control = $"CraftingPanel"
+@onready var _crafting_list:   VBoxContainer  = $"CraftingPanel/ItemList"
+@onready var _craft_button:    Button         = $"CraftingPanel/CraftButton"
+@onready var _craft_progress:  ProgressBar    = $"CraftingPanel/ProgressBar"
+@onready var _icon_rect:       TextureRect    = $"CraftingPanel/Icon"
+@onready var _name_label:      Label          = $"CraftingPanel/Name"
+@onready var _desc_label:      Label          = $"CraftingPanel/Description"
+@onready var _cost_label:      Label          = $"CraftingPanel/Cost"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PRELOADED SCENES
+# ─────────────────────────────────────────────────────────────────────────────
+
+const ITEM_POPUP_SCENE        := preload("res://Scenes/Control/item_popup.tscn")
+const XP_POPUP_SCENE          := preload("res://Scenes/Control/experience_popup.tscn")
+const TEXT_POPUP_SCENE        := preload("res://Scenes/Control/text_popup.tscn")
+const ACHIEVEMENT_POPUP_SCENE := preload("res://Scenes/Control/achievement_popup.tscn")
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CONFIG
+# ─────────────────────────────────────────────────────────────────────────────
+
+## Vertical offset (in pixels) of item collect popups from screen centre.
 @export var popup_offset := Vector2(0, 80)
-@onready var moonlight = $Moonlight
-@onready var autosaveicon = $AutosaveIcon
-@onready var level_bar = $Level/LevelBar
-@onready var level_label = $Level/LevelLabel
-@onready var fade = $Fade
-@onready var miningbar = $Mining/Miningbar
-@onready var time_icon = $TimeIconSmall
-@onready var bars = $"Bars HUD"
-@onready var crafting_panel = $"Crafting Panel"
-@onready var crafting_list = $"Crafting Panel/ItemList"
-@onready var craft_button = $"Crafting Panel/CraftButton"
-@onready var craft_progress = $"Crafting Panel/ProgressBar"
-@onready var icon_rect = $"Crafting Panel/Icon"
-@onready var name_label = $"Crafting Panel/Name"
-@onready var desc_label = $"Crafting Panel/Description"
-@onready var cost_label = $"Crafting Panel/Cost"
 
-var selected_recipe = null
-var crafting := false
+# ─────────────────────────────────────────────────────────────────────────────
+# STATE
+# ─────────────────────────────────────────────────────────────────────────────
 
-var popup_scene := preload("res://Scenes/Control/item_popup.tscn")
-var popup_index := 0
+var _selected_recipe: String = ""
+var _crafting: bool = false
+var _autosave_tween: Tween = null
+var _fade_tween:     Tween = null
 
-var xp_popup_scene := preload("res://Scenes/Control/experience_popup.tscn")
-var text_popup_scene = preload("res://Scenes/Control/text_popup.tscn")
-var achievement_popup_scene = preload("res://Scenes/Control/achievement_popup.tscn")
-
-var current_tween: Tween
+# ─────────────────────────────────────────────────────────────────────────────
+# READY
+# ─────────────────────────────────────────────────────────────────────────────
 
 func _ready() -> void:
+	await get_tree().process_frame
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	crafting_panel.visible = false
-	$"Player Panel".visible = true
-	set_time(Manager.is_night())
-	Manager.night_changed.connect(set_time)
-	Manager.xp_changed.connect(update_bar)
-	Manager.level_changed.connect(update_level)
+
+	# Hand day/night nodes to TimeManager
+	TimeManager.setup(_sky_rect, _sun_moon, _clock_label)
+
+	# Initial state
+	_dead_panel.visible     = false
+	_crafting_panel.visible = false
+	_player_panel.visible   = true
+	_fade.visible           = false
+	_mining_bar.visible     = false
+
+	# Connect game signals
+	Manager.night_changed.connect(_on_night_changed)
+	Manager.xp_changed.connect(_on_xp_changed)
+	Manager.level_changed.connect(_on_level_changed)
 	Manager.xp_gained.connect(show_xp_popup)
-	AchievementManager.achievement_unlocked.connect(show_achievement_popup)
-	update_bar(Manager.current_xp, Manager.get_required_xp(Manager.level))
-	update_level(Manager.level)
-	
-	for recipe_name in InventoryManager.crafting_recipes.keys():
-		var btn = Button.new()
-		btn.theme = load("res://Style/MainTheme.tres")
-		btn.text = recipe_name
-		btn.pressed.connect(_on_recipe_selected.bind(recipe_name))
-		crafting_list.add_child(btn)
+	AchievementManager.achievement_unlocked.connect(_on_achievement_unlocked)
+	InventoryManager.inventory_changed.connect(_on_inventory_changed)
 
-func _on_inventory_changed():
-	if selected_recipe != null:
-		craft_button.disabled = not InventoryManager.can_craft(selected_recipe)
-		
-# ===== You Died
+	# Sync initial HUD values
+	_on_xp_changed(Manager.current_xp, Manager.get_required_xp(Manager.level))
+	_on_level_changed(Manager.level)
+	_on_night_changed(Manager.is_night())
 
-func show_dead():
-	$"Dead Panel".visible = true 
+	# Build crafting recipe list
+	_build_crafting_list()
 
-# ===== menu settings
-
-func show_menu_settings():
-	$MenuSettings.visible = true
-	
-# ===== Autosave 
-
-func show_autosave_icon():
-	if autosaveicon == null:
-		return
-	
-	# Stop previous tween if running
-	if current_tween and current_tween.is_running():
-		current_tween.kill()
-
-	autosaveicon.visible = true
-	autosaveicon.modulate.a = 0.0
-
-	current_tween = create_tween()
-
-	# Fade in
-	current_tween.tween_property(autosaveicon, "modulate:a", 1.0, 0.3)
-
-	# Blink 3 times
-	for i in range(3):
-		current_tween.tween_property(autosaveicon, "modulate:a", 0.2, 0.2)
-		current_tween.tween_property(autosaveicon, "modulate:a", 1.0, 0.2)
-
-	# Fade out
-	current_tween.tween_property(autosaveicon, "modulate:a", 0.0, 0.4)
-
-	# Hide after finishing
-	current_tween.tween_callback(func():
-		autosaveicon.visible = false
-	)
-# ===== Crafting
-	
-func hide_ui():
-
-	$Mining.visible = false
-	$"Bars HUD".visible = false
-	$DayNight.visible = false
-	$Moonlight.visible = false
-	$Level.visible = false
-	$TimeIconSmall.visible = false
-	$Popup.visible = false
-	$Background.visible = false
-	
-func show_ui():
-
-	$"Bars HUD".visible = true
-	$DayNight.visible = true
-	$Moonlight.visible = true
-	$Level.visible = true
-	$TimeIconSmall.visible = true
-	$Popup.visible = true
-	$Background.visible = true
-	$Mining.visible = true
-	
-var fade_tween: Tween
-
-func fade_in(duration := 0.5):
-	if fade_tween and fade_tween.is_running():
-		fade_tween.kill()
-
-	fade.visible = true
-	fade.modulate.a = 0.0
-
-	fade_tween = create_tween()
-	fade_tween.tween_property(fade, "modulate:a", 1.0, duration)
-
-	await fade_tween.finished
-
-
-func fade_out(duration := 0.5):
-	if fade_tween and fade_tween.is_running():
-		fade_tween.kill()
-
-	fade.visible = true
-	fade.modulate.a = 1.0
-
-	fade_tween = create_tween()
-	fade_tween.tween_property(fade, "modulate:a", 0.0, duration)
-
-	await fade_tween.finished
-
-	fade.visible = false
-	
-func _on_recipe_selected(recipe_name: String) -> void:
-	selected_recipe = recipe_name
-	var recipe = InventoryManager.crafting_recipes[recipe_name]
-	
-	name_label.text = recipe_name
-	desc_label.text = recipe.get("description", "")
-	icon_rect.texture = recipe.get("icon", null)
-	
-	var cost_text := ""
-	for mat in recipe["materials"]:
-		cost_text += mat + " x" + str(recipe["materials"][mat]) + "\n"
-
-	cost_label.text = cost_text
-
-	craft_button.disabled = not can_craft(recipe_name)
-	
-func can_craft(recipe_name: String) -> bool:
-	var recipe = InventoryManager.crafting_recipes[recipe_name]
-	
-	for mat in recipe["materials"]:
-		if not InventoryManager.has_item(mat, recipe["materials"][mat]):
-			return false
-	
-	return true
-	
-func _on_craft_button_pressed() -> void:
-	if crafting or selected_recipe == null:
-		return
-		
-	if not can_craft(selected_recipe):
-		return
-		
-	var recipe = InventoryManager.crafting_recipes[selected_recipe]
-	
-	start_crafting(selected_recipe, recipe["time"])
-	
-func start_crafting(recipe_name: String, time: float):
-	crafting = true
-	craft_button.disabled = true
-	craft_progress.value = 0
-	
-	var tween = create_tween()
-	tween.tween_property(craft_progress, "value", 100, time)
-	
-	await tween.finished
-	
-	InventoryManager.craft(recipe_name)
-	AchievementManager.register_craft(1)
-	
-	crafting = false
-	craft_button.disabled = false
-	craft_progress.value = 0
-	
-func _on_close_button_pressed() -> void:
-	close_crafting()
-	
-func open_crafting():
-	crafting_panel.visible = true
-	get_tree().paused = true
-
-func close_crafting():
-	crafting_panel.visible = false
-	get_tree().paused = false
-	
-# ===== XP Bar
-
-func update_bar(current_xp, required_xp):		
-	if current_xp < level_bar.value:
-		var tween = create_tween()
-		tween.tween_property(level_bar, "value", level_bar.max_value, 0.4)
-		tween.tween_callback(func():
-			level_bar.max_value = required_xp
-			level_bar.value = 0
-		)
-		tween.tween_property(level_bar, "value", current_xp, 0.4)
-	else:
-		level_bar.max_value = required_xp
-		create_tween().tween_property(
-			level_bar,
-			"value",
-			current_xp,
-			0.5
-		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-
-func update_level(new_level):
-	level_label.text = str(new_level)
-
-	var tween = create_tween()
-	tween.tween_property(level_label, "scale", Vector2(1.2,1.2), 0.1)
-	tween.tween_property(level_label, "scale", Vector2(1,1), 0.1)
-	
-func set_time(is_night:bool):
-	if is_night :
-		time_icon.frame = 0 
-	else :
-		time_icon.frame = 1
-
-func show_item_popup(collectable, amount := 1):
-	var popup = popup_scene.instantiate()
-	$Popup.add_child(popup)
-
-	var center := get_viewport().get_visible_rect().size * 0.5
-	popup.position = center + popup_offset
-
-	popup.setup(collectable, amount)
-	
-func show_xp_popup(amount: int):
-	var popup = xp_popup_scene.instantiate()
-	$Popup.add_child(popup)
-
-	popup.anchor_left = 1
-	popup.anchor_right = 1
-	popup.anchor_top = 0
-	popup.anchor_bottom = 0
-
-	popup.offset_left = -160 
-	popup.offset_top = 160   
-
-	popup.setup(amount)
-	
-# ===== Text Popup =====
-func show_text_popup(text: String):
-	var popup = text_popup_scene.instantiate()
-	$Popup.add_child(popup)
-	popup.setup(text)
-	
-	popup.offset_top = 160   
+# ─────────────────────────────────────────────────────────────────────────────
+# SIGNAL HANDLERS
+# ─────────────────────────────────────────────────────────────────────────────
 
 @warning_ignore("unused_parameter")
-func show_achievement_popup(id: String, data: Dictionary):
-	var popup = achievement_popup_scene.instantiate()
-	$Popup.add_child(popup)
+func _on_night_changed(night: bool) -> void:
+	# The SunMoon sprite is updated by TimeManager every frame via _update_ui.
+	# This handler is kept for any additional night-transition effects.
+	pass
 
-	popup.anchor_left = 0.5
-	popup.anchor_right = 0.5
-	popup.anchor_top = 0.0
+
+func _on_xp_changed(current: float, required: float) -> void:
+	# Handle level-up bar wrap: if the new value is less than what's displayed
+	# animate a fill → reset → refill to communicate the rollover clearly.
+	if current < _level_bar.value and _level_bar.value > 0.0:
+		var t := create_tween()
+		t.tween_property(_level_bar, "value", _level_bar.max_value, 0.3)
+		t.tween_callback(func():
+			_level_bar.max_value = required
+			_level_bar.value     = 0.0)
+		t.tween_property(_level_bar, "value", current, 0.4) \
+		 .set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	else:
+		_level_bar.max_value = required
+		create_tween() \
+			.tween_property(_level_bar, "value", current, 0.5) \
+			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+
+func _on_level_changed(new_level: int) -> void:
+	_level_label.text = str(new_level)
+	var t := create_tween()
+	t.tween_property(_level_label, "scale", Vector2(1.3, 1.3), 0.1)
+	t.tween_property(_level_label, "scale", Vector2.ONE,       0.15)
+
+
+func _on_inventory_changed() -> void:
+	if _selected_recipe != "":
+		_craft_button.disabled = not InventoryManager.can_craft(_selected_recipe)
+
+
+func _on_achievement_unlocked(id: String, data: Dictionary) -> void:
+	show_achievement_popup(id, data)
+
+# ─────────────────────────────────────────────────────────────────────────────
+# HUD VISIBILITY
+# ─────────────────────────────────────────────────────────────────────────────
+
+## Groups that should be hidden during cutscenes / end screen.
+func hide_ui() -> void:
+	for node in [_bars_hud, _level_bar.get_parent(), _mining_bar.get_parent(),
+				  _popup_root, _background, _sun_moon.get_parent()]:
+		if node:
+			node.visible = false
+
+
+func show_ui() -> void:
+	for node in [_bars_hud, _level_bar.get_parent(), _mining_bar.get_parent(),
+				  _popup_root, _background, _sun_moon.get_parent()]:
+		if node:
+			node.visible = true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# MINING BAR
+# ─────────────────────────────────────────────────────────────────────────────
+
+func set_mining_progress(value: float) -> void:
+	_mining_bar.visible = true
+	_mining_bar.value   = clampf(value, 0.0, 1.0) * 100.0
+
+
+func hide_mining_progress() -> void:
+	_mining_bar.visible = false
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PANELS
+# ─────────────────────────────────────────────────────────────────────────────
+
+func show_dead() -> void:
+	_dead_panel.visible = true
+
+
+func hide_dead() -> void:
+	_dead_panel.visible = false
+
+# ─────────────────────────────────────────────────────────────────────────────
+# AUTOSAVE ICON
+# ─────────────────────────────────────────────────────────────────────────────
+
+func show_autosave_icon() -> void:
+	if _autosave_icon == null:
+		return
+
+	# Kill any running animation before restarting
+	if _autosave_tween and _autosave_tween.is_running():
+		_autosave_tween.kill()
+
+	_autosave_icon.visible    = true
+	_autosave_icon.modulate.a = 0.0
+	_autosave_tween = create_tween()
+
+	_autosave_tween.tween_property(_autosave_icon, "modulate:a", 1.0, 0.3)
+	for _i in range(3):
+		_autosave_tween.tween_property(_autosave_icon, "modulate:a", 0.2, 0.2)
+		_autosave_tween.tween_property(_autosave_icon, "modulate:a", 1.0, 0.2)
+	_autosave_tween.tween_property(_autosave_icon, "modulate:a", 0.0, 0.4)
+	_autosave_tween.tween_callback(func(): _autosave_icon.visible = false)
+
+# ─────────────────────────────────────────────────────────────────────────────
+# FADE OVERLAY
+# ─────────────────────────────────────────────────────────────────────────────
+
+## Fades the screen TO black. Awaitable.
+func fade_in(duration := 0.5) -> void:
+	_kill_fade_tween()
+	_fade.visible    = true
+	_fade.modulate.a = 0.0
+	_fade_tween = create_tween()
+	_fade_tween.tween_property(_fade, "modulate:a", 1.0, duration)
+	await _fade_tween.finished
+
+
+## Fades the screen FROM black. Awaitable.
+func fade_out(duration := 0.5) -> void:
+	_kill_fade_tween()
+	_fade.visible    = true
+	_fade.modulate.a = 1.0
+	_fade_tween = create_tween()
+	_fade_tween.tween_property(_fade, "modulate:a", 0.0, duration)
+	await _fade_tween.finished
+	_fade.visible = false
+
+
+func _kill_fade_tween() -> void:
+	if _fade_tween and _fade_tween.is_running():
+		_fade_tween.kill()
+
+# ─────────────────────────────────────────────────────────────────────────────
+# POPUPS
+# ─────────────────────────────────────────────────────────────────────────────
+
+func show_item_popup(collectable: Variant, amount := 1) -> void:
+	var popup = ITEM_POPUP_SCENE.instantiate()
+	_popup_root.add_child(popup)
+	popup.position = get_viewport().get_visible_rect().size * 0.5 + popup_offset
+	popup.setup(collectable, amount)
+
+
+func show_xp_popup(amount: float) -> void:
+	var popup = XP_POPUP_SCENE.instantiate()
+	_popup_root.add_child(popup)
+	popup.anchor_left   = 1.0
+	popup.anchor_right  = 1.0
+	popup.anchor_top    = 0.0
 	popup.anchor_bottom = 0.0
+	popup.offset_left   = -160.0
+	popup.offset_top    = 160.0
+	popup.setup(amount)
 
-	popup.offset_top = 40
 
+func show_text_popup(text: String, offset_top := 160.0) -> void:
+	var popup = TEXT_POPUP_SCENE.instantiate()
+	_popup_root.add_child(popup)
+	popup.offset_top = offset_top
+	popup.setup(text)
+
+
+func show_achievement_popup(_id: String, data: Dictionary) -> void:
+	var popup = ACHIEVEMENT_POPUP_SCENE.instantiate()
+	_popup_root.add_child(popup)
+	popup.anchor_left   = 0.5
+	popup.anchor_right  = 0.5
+	popup.anchor_top    = 0.0
+	popup.anchor_bottom = 0.0
+	popup.offset_top    = 40.0
 	popup.setup(
-		data.get("name", ""),
+		data.get("name",        ""),
 		data.get("description", ""),
-		data.get("icon", null)
+		data.get("icon",        null),
 	)
-	
-			
-func set_progress(value):
-	miningbar.visible = true
-	miningbar.value = value * 100
 
-func hide_progress():
-	miningbar.visible = false
+# ─────────────────────────────────────────────────────────────────────────────
+# CRAFTING PANEL
+# ─────────────────────────────────────────────────────────────────────────────
+
+func _build_crafting_list() -> void:
+	# Clear any previous buttons (useful if recipes can change at runtime)
+	for child in _crafting_list.get_children():
+		child.queue_free()
+
+	var theme_res = load("res://Style/MainTheme.tres")
+
+	for recipe_name in InventoryManager.crafting_recipes.keys():
+		var btn := Button.new()
+		btn.theme = theme_res
+		btn.text  = recipe_name
+		btn.pressed.connect(_on_recipe_selected.bind(recipe_name))
+		_crafting_list.add_child(btn)
+
+
+func open_crafting() -> void:
+	_crafting_panel.visible = true
+	get_tree().paused = true
+
+
+func close_crafting() -> void:
+	_crafting_panel.visible = false
+	get_tree().paused = false
+
+
+func _on_recipe_selected(recipe_name: String) -> void:
+	_selected_recipe = recipe_name
+	var recipe: Dictionary = InventoryManager.crafting_recipes[recipe_name]
+
+	_name_label.text  = recipe_name
+	_desc_label.text  = recipe.get("description", "")
+	_icon_rect.texture = recipe.get("icon", null)
+
+	var cost_lines := PackedStringArray()
+	for mat in recipe["materials"]:
+		cost_lines.append("%s ×%d" % [mat, recipe["materials"][mat]])
+	_cost_label.text = "\n".join(cost_lines)
+
+	_craft_button.disabled = not InventoryManager.can_craft(recipe_name)
+
+
+func _on_craft_button_pressed() -> void:
+	if _crafting or _selected_recipe == "":
+		return
+	if not InventoryManager.can_craft(_selected_recipe):
+		return
+
+	var recipe: Dictionary = InventoryManager.crafting_recipes[_selected_recipe]
+	_start_crafting(_selected_recipe, recipe["time"])
+
+
+func _start_crafting(recipe_name: String, time: float) -> void:
+	_crafting              = true
+	_craft_button.disabled = true
+	_craft_progress.value  = 0.0
+
+	var tween := create_tween()
+	tween.tween_property(_craft_progress, "value", 100.0, time)
+	await tween.finished
+
+	InventoryManager.craft(recipe_name)
+	AchievementManager.register_craft(1)
+
+	_crafting              = false
+	_craft_button.disabled = not InventoryManager.can_craft(recipe_name)
+	_craft_progress.value  = 0.0
+
+
+func _on_close_button_pressed() -> void:
+	close_crafting()
