@@ -114,9 +114,9 @@ func is_night() -> bool:
 ## Colour suitable for a sky or directional light modulate.
 ## dawn_color / day_color / dusk_color / night_color can be overridden.
 var dawn_color  := Color(0.941, 0.702, 0.584, 1.0)
-var day_color   := Color(1.0, 0.98, 0.961, 1.0)
+var day_color   := Color(1.0, 0.98, 0.961, 0.0)
 var dusk_color  := Color(0.808, 0.549, 0.51, 1.0)
-var night_color := Color(0.05, 0.06, 0.15)
+var night_color := Color(0.0, 0.0, 0.098, 1.0)
 
 func get_sky_color() -> Color:
 	var t := get_day_progress()
@@ -150,21 +150,58 @@ func get_sky_color() -> Color:
 ##   sky_rect    — ColorRect  (full-screen sky tint / background)
 ##   sun_moon    — Sprite2D   (animated sun/moon icon, frame 0 = moon, 1 = sun)
 ##   clock_label — Label      (optional, shows HH:MM)
-var _sky_rect:    ColorRect  = null
+var _world_modulate: CanvasModulate = null
+var _background: ColorRect
 var _sun_moon:    Sprite2D   = null
 var _clock_label: Label      = null
 
-func setup(sky_rect: ColorRect, sun_moon: Sprite2D, clock_label: Label = null) -> void:
-	_sky_rect    = sky_rect
-	_sun_moon    = sun_moon
+func setup(
+	sun_moon: Sprite2D,
+	clock_label: Label = null
+) -> void:
+	_sun_moon = sun_moon
 	_clock_label = clock_label
+
 	time_updated.connect(_update_ui)
 
+func register_world_modulate(modulate: CanvasModulate) -> void:
+	_world_modulate = modulate
 
+	if _world_modulate:
+		_world_modulate.color = get_world_light_color()
+		
+var day_light   := Color(1.0, 1.0, 1.0)
+var dusk_light  := Color(0.7, 0.75, 0.9)
+var night_light := Color(0.2, 0.25, 0.35)
+
+func get_world_light_color() -> Color:
+	var night := get_night_amount()
+
+	if night < 0.5:
+		return day_light.lerp(dusk_light, night * 2.0)
+
+	return dusk_light.lerp(
+		night_light,
+		(night - 0.5) * 2.0
+	)
+
+var sky_day   := Color("#99ccff")
+var sky_night := Color("#1b263b")
+
+func get_background_color() -> Color:
+	var night := get_night_amount()
+
+	# Smoothly darken the sky while keeping the same hue family
+	return sky_day.lerp(sky_night, night)
+		
+	
 func _update_ui() -> void:
-	if _sky_rect:
-		_sky_rect.color = get_sky_color()
-
+	if _world_modulate:
+		_world_modulate.color = get_world_light_color()
+	
+	if _background:
+		_background.color = get_background_color()
+		
 	if _sun_moon:
 		# Frame 0 = moon, Frame 1 = sun
 		_sun_moon.frame = 0 if is_night() else 1

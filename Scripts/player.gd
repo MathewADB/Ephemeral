@@ -130,9 +130,18 @@ func _check_fall_damage():
 	
 func handle_mining(delta):
 
-	if mineable == null or mining_tier < mineable.tier:
+	if mineable == null :
 		stop_mining()
 		return
+	
+	if mining_tier < mineable.tier:
+		mineable.label.modulate = Color(0.718, 0.0, 0.0, 1.0)
+		stop_mining()
+		return
+	else :
+		mineable.label.modulate = Color(1.0, 1.0, 1.0, 1.0)
+
+		
 
 	if mineable is InfiniteCollectable and mineable.count <= 0:
 		stop_mining()
@@ -196,7 +205,7 @@ func get_speed_multiplier() -> float:
 		var cell = tilemap.local_to_map(tilemap.to_local(global_position))
 		cell.y += 1
 		var data = tilemap.get_cell_tile_data(cell)
-		if data and data.has_custom_data("speed_multiplier"):
+		if data and data.has_custom_data("speed_multiplier") or last_speed_multiplier == 0.0:
 			last_speed_multiplier = float(data.get_custom_data("speed_multiplier"))
 		else:
 			last_speed_multiplier = 1.0

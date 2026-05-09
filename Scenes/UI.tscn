@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://c5lrcweg7lk2s"]
 
 [ext_resource type="Script" uid="uid://cfj4m4i73motg" path="res://Scripts/Managers/ui_manager.gd" id="1_dewlx"]
-[ext_resource type="Texture2D" uid="uid://bk6gt7ae81v5y" path="res://Sprites/BackGrounds/Sky .png" id="2_1lsdj"]
 [ext_resource type="PackedScene" uid="uid://hwmmwmdcli2k" path="res://Scenes/Control/BarsHud.tscn" id="2_hfhsn"]
 [ext_resource type="Texture2D" uid="uid://busi6fo40hl78" path="res://Sprites/UI/moon and sun icons.png" id="3_qwshj"]
 [ext_resource type="Texture2D" uid="uid://cs2qpfetvkqcu" path="res://Sprites/UI/Rain Drop.png" id="4_1lsdj"]
@@ -52,16 +51,10 @@ load_path = "res://.godot/imported/Slime Upgrade Icon.png-2cbb38f93843b5a5bce210
 [node name="UI" type="CanvasLayer" unique_id=1521172341]
 script = ExtResource("1_dewlx")
 
-[node name="Background" type="CanvasLayer" parent="." unique_id=2137228397]
-layer = -2
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1490952966]
+layer = -1
 
-[node name="Sky" type="Sprite2D" parent="Background" unique_id=799062423]
-position = Vector2(576, 324)
-scale = Vector2(1.125, 1.265625)
-texture = ExtResource("2_1lsdj")
-flip_v = true
-
-[node name="GPUParticles2D" type="CPUParticles2D" parent="Background" unique_id=2060053721]
+[node name="GPUParticles2D" type="CPUParticles2D" parent="CanvasLayer" unique_id=2060053721]
 position = Vector2(552, 656)
 amount = 30
 texture = ExtResource("4_1lsdj")
@@ -78,15 +71,6 @@ scale_amount_max = 0.8
 color = Color(0.25882354, 0.5764706, 0.7921569, 1)
 anim_speed_min = 0.2
 anim_speed_max = 0.8
-
-[node name="SkyRect" type="ColorRect" parent="Background" unique_id=1499192972]
-modulate = Color(0.92941177, 1, 1, 0.49803922)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
 [node name="BarsHUD" parent="." unique_id=616603374 instance=ExtResource("2_hfhsn")]
 
@@ -173,24 +157,32 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 856.0
+offset_top = 16.0
+offset_right = -48.0
+offset_bottom = -408.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SunMoon" type="Sprite2D" parent="DayNight" unique_id=1532518362]
-position = Vector2(78, 126)
-scale = Vector2(3, 3)
+position = Vector2(143.99998, 56.000008)
+scale = Vector2(3.0000021, 3.0000002)
 texture = ExtResource("3_qwshj")
 hframes = 2
 frame = 1
 
 [node name="ClockLabel" type="Label" parent="DayNight" unique_id=1322927754]
 layout_mode = 0
-offset_left = 112.0
-offset_top = 104.0
+offset_left = 48.0
+offset_top = 40.0
 offset_right = 174.0
-offset_bottom = 140.0
+offset_bottom = 80.0
 theme = ExtResource("4_hfhsn")
-theme_override_constants/outline_size = 8
+theme_override_colors/font_color = Color(0.5878531, 0.6799129, 0.7162396, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 8
 text = "44:44"
 
 [node name="Fade" type="ColorRect" parent="." unique_id=850223812]
@@ -202,6 +194,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="DamageFade" type="ColorRect" parent="." unique_id=708530373]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.2509804, 0.25882354, 0.8862745)
 
 [node name="CraftingPanel" type="Control" parent="." unique_id=449598579]
 process_mode = 3

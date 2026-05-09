@@ -4,8 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://cf8apcr8qtyd7" path="res://Sprites/BackGrounds/Floating Island Background.png" id="2_ihxv5"]
 [ext_resource type="TileSet" uid="uid://capwod7vgkwwm" path="res://Style/MainTileset.tres" id="2_syfyn"]
 [ext_resource type="PackedScene" uid="uid://cuqnsoy61186" path="res://Scenes/Player.tscn" id="2_vor7h"]
+[ext_resource type="Script" uid="uid://cka2npp1v874w" path="res://Scripts/UI/sky_rect.gd" id="5_gu7oc"]
 
 [node name="Section" type="Node2D" unique_id=1855033315]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1048374083]
+layer = -2
+
+[node name="Sky" type="ColorRect" parent="CanvasLayer" unique_id=1553159533]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.125, 1.265625)
+color = Color(0.59902084, 0.80045235, 0.9999998, 1)
 
 [node name="BackGround" type="Node2D" parent="." unique_id=218195439]
 
@@ -91,3 +104,6 @@ scroll_scale = Vector2(1.2, 1.2)
 modulate = Color(0.65834004, 0.6583399, 0.6583399, 1)
 scale = Vector2(2, 2)
 tile_set = ExtResource("2_syfyn")
+
+[node name="SkyRect" type="CanvasModulate" parent="." unique_id=132993350]
+script = ExtResource("5_gu7oc")

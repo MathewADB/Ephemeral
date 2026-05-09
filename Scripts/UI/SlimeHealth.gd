@@ -22,6 +22,8 @@ func update_bar(current: float, max_value: float):
 	var is_heal = pct > current_pct
 	
 	if is_damage:
+		UI.show_damage_vignette()
+
 		if front_tween and front_tween.is_running():
 			front_tween.kill()
 		if back_tween and back_tween.is_running():
@@ -60,7 +62,7 @@ func _flash(flash_color: Color):
 	t.tween_property(self,"modulate",Color(1,1,1),0.25)
 	
 func _on_damage():
-	_flash(Color(1,0.3,0.3))
+	_flash(Color("ff4d4dff"))
 	if damage_shake:
 		_shake()
 	

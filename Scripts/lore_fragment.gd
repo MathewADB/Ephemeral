@@ -2,6 +2,7 @@ extends Collectable
 
 var player : CharacterBody2D = null
 
+@onready var label = $E
 @export var lore_text : String
 
 func _on_detection_body_entered(body: Node2D) -> void:

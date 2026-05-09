@@ -10,6 +10,11 @@ var pulses := []
 var pulse_timer := 0.0
 var lines := []
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED
+	await get_tree().create_timer(1).timeout
+	process_mode = Node.PROCESS_MODE_INHERIT
+	
 func _process(delta: float) -> void:
 	pulse_timer += delta
 

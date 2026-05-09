@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ugyc8lgkfmg4"
-path="res://.godot/imported/cursor slime.png-5df7e1e0129442dc83202961fd2eac24.ctex"
+uid="uid://dmm55ubyjtq7n"
+path="res://.godot/imported/blue cursor slime.png-4f012c6b4160422e4865f2506da74e9b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/cursor slime.png"
-dest_files=["res://.godot/imported/cursor slime.png-5df7e1e0129442dc83202961fd2eac24.ctex"]
+source_file="res://Sprites/UI/blue cursor slime.png"
+dest_files=["res://.godot/imported/blue cursor slime.png-4f012c6b4160422e4865f2506da74e9b.ctex"]
 
 [params]
 

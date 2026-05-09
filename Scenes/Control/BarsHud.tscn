@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://csqlutyqb6v53" path="res://Scripts/UI/SlimeBars.gd" id="1_5g46u"]
 [ext_resource type="Script" uid="uid://d3aw13vjan16g" path="res://Scripts/UI/SlimeHealth.gd" id="1_5wrn8"]
-[ext_resource type="Texture2D" uid="uid://it18rltriwxm" path="res://Sprites/UI/slime alive icon.png" id="1_yu5ul"]
 [ext_resource type="Texture2D" uid="uid://bs52wng8j43pc" path="res://Sprites/UI/slime health bar under.png" id="2_5wrn8"]
 [ext_resource type="Texture2D" uid="uid://dlyaxfgujp3dh" path="res://Sprites/UI/slime health bar over.png" id="3_5g46u"]
 [ext_resource type="Texture2D" uid="uid://bt30r1wtbsyyw" path="res://Sprites/UI/slime health bar white.png" id="4_pup41"]
@@ -10,6 +9,46 @@
 [ext_resource type="Texture2D" uid="uid://b7gfmk3xa62n8" path="res://Sprites/UI/slime mana bar under.png" id="6_4hpcd"]
 [ext_resource type="Texture2D" uid="uid://bnacv43e05dxd" path="res://Sprites/UI/slime mana bar over.png" id="7_unoed"]
 [ext_resource type="Texture2D" uid="uid://ba1we1k6fq0x0" path="res://Sprites/UI/slime mana bar progress.png" id="8_hx5g8"]
+[ext_resource type="Texture2D" uid="uid://ctwws1pmy147r" path="res://Sprites/UI/slime alive icon animation.png" id="10_8cax1"]
+
+[sub_resource type="Animation" id="Animation_b1v8h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slime:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_frtll"]
+resource_name = "idle"
+length = 10.0
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slime:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 5.2, 5.4, 5.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g2g2x"]
+_data = {
+&"RESET": SubResource("Animation_b1v8h"),
+&"idle": SubResource("Animation_frtll")
+}
 
 [node name="Bars HUD" type="Control" unique_id=616603374]
 layout_mode = 3
@@ -89,4 +128,9 @@ texture_progress = ExtResource("5_v8j74")
 [node name="Slime" type="Sprite2D" parent="." unique_id=1785308884]
 position = Vector2(79, 66)
 scale = Vector2(3, 3)
-texture = ExtResource("1_yu5ul")
+texture = ExtResource("10_8cax1")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=652693028]
+libraries/ = SubResource("AnimationLibrary_g2g2x")
+autoplay = &"idle"

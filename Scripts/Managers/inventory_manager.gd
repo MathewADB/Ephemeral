@@ -49,7 +49,6 @@ const ITEM_DATA: Dictionary = {
 	"Lore Fragment": { "icon": preload("res://Sprites/Entities/Lore Fragment.png"), "rarity": "epic"     },
 }
 
-## Starting items for a new game (all counts at 0).
 const DEFAULT_ITEMS: Dictionary = {
 	"Ruby Stone": 0, "Ruby Gem": 0, "Dust": 0,
 	"Dust Gem": 0,   "Stone": 0,    "Lore Fragment": 0,

@@ -17,15 +17,14 @@ extends CanvasLayer
 @onready var _autosave_icon: Sprite2D           = $"AutosaveIcon"
 @onready var _mining_bar:    ProgressBar        = $Mining/Miningbar
 @onready var _popup_root:    Control            = $"Popup"
-@onready var _background:                       = $"Background"
 
 # ── Day / Night (three nodes expected by TimeManager) ───────────────────────
-@onready var _sky_rect:    ColorRect = $Background/SkyRect
 @onready var _sun_moon:    Sprite2D  = $DayNight/SunMoon
 @onready var _clock_label: Label     = $"DayNight/ClockLabel"
 
 # ── Fade overlay ─────────────────────────────────────────────────────────────
-@onready var _fade: ColorRect = $"Fade"
+@onready var _fade:        ColorRect = $"Fade"
+@onready var _damage_fade: ColorRect = $DamageFade
 
 # ── Panels ───────────────────────────────────────────────────────────────────
 @onready var _dead_panel:      Control = $"DeadPanel"
@@ -73,7 +72,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	# Hand day/night nodes to TimeManager
-	TimeManager.setup(_sky_rect, _sun_moon, _clock_label)
+	TimeManager.setup(_sun_moon, _clock_label)
 
 	# Initial state
 	_dead_panel.visible     = false
@@ -149,14 +148,14 @@ func _on_achievement_unlocked(id: String, data: Dictionary) -> void:
 ## Groups that should be hidden during cutscenes / end screen.
 func hide_ui() -> void:
 	for node in [_bars_hud, _level_bar.get_parent(), _mining_bar.get_parent(),
-				  _popup_root, _background, _sun_moon.get_parent()]:
+				  _popup_root, _sun_moon.get_parent()]:
 		if node:
 			node.visible = false
 
 
 func show_ui() -> void:
 	for node in [_bars_hud, _level_bar.get_parent(), _mining_bar.get_parent(),
-				  _popup_root, _background, _sun_moon.get_parent()]:
+				  _popup_root, _sun_moon.get_parent()]:
 		if node:
 			node.visible = true
 
@@ -210,7 +209,43 @@ func show_autosave_icon() -> void:
 # FADE OVERLAY
 # ─────────────────────────────────────────────────────────────────────────────
 
-## Fades the screen TO black. Awaitable.
+var _damage_tween: Tween
+
+func _kill_damage_tween():
+	if _damage_tween and _damage_tween.is_running():
+		_damage_tween.kill()
+		
+func show_damage_vignette(intensity := 1.0) -> void:
+	_kill_damage_tween()
+
+	_damage_fade.visible = true
+	_damage_fade.modulate = Color(1, 0, 0, 0) # start transparent red
+
+	_damage_tween = create_tween()
+
+	# QUICK HIT (impact)
+	_damage_tween.tween_property(
+		_damage_fade,
+		"modulate:a",
+		0.35 * intensity,
+		0.08
+	)
+
+	# tiny hold
+	_damage_tween.tween_interval(0.05)
+
+	# SLOW FADE OUT
+	_damage_tween.tween_property(
+		_damage_fade,
+		"modulate:a",
+		0.0,
+		0.6
+	)
+
+	_damage_tween.tween_callback(func():
+		_damage_fade.visible = false
+	)
+	
 func fade_in(duration := 0.5) -> void:
 	_kill_fade_tween()
 	_fade.visible    = true
@@ -258,12 +293,18 @@ func show_xp_popup(amount: float) -> void:
 	popup.setup(amount)
 
 
-func show_text_popup(text: String, offset_top := 160.0) -> void:
+func show_text_popup(text: String, offset_top := 200.0) -> void:
 	var popup = TEXT_POPUP_SCENE.instantiate()
 	_popup_root.add_child(popup)
 	popup.offset_top = offset_top
-	popup.setup(text)
+	popup.setup(text,48,Color(0.85, 0.95, 1.0))
 
+@warning_ignore("unused_parameter")
+func show_top_text_popup(text: String, text_size: int = 48, offset_top := 10.0) -> void:
+	var popup = TEXT_POPUP_SCENE.instantiate()
+	_popup_root.add_child(popup)
+	popup.offset_top = offset_top
+	popup.setup(text,text_size,Color(1.0, 1.0, 1.0, 1.0))
 
 func show_achievement_popup(_id: String, data: Dictionary) -> void:
 	var popup = ACHIEVEMENT_POPUP_SCENE.instantiate()

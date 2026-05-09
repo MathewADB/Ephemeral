@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://it18rltriwxm"
-path="res://.godot/imported/slime alive icon.png-7c0dc3f80df3435cf7731b2bd5db69de.ctex"
+uid="uid://ctwws1pmy147r"
+path="res://.godot/imported/slime alive icon animation.png-d5eba2441b9b70cbc5d883b5b7f7ec9d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/slime alive icon.png"
-dest_files=["res://.godot/imported/slime alive icon.png-7c0dc3f80df3435cf7731b2bd5db69de.ctex"]
+source_file="res://Sprites/UI/slime alive icon animation.png"
+dest_files=["res://.godot/imported/slime alive icon animation.png-d5eba2441b9b70cbc5d883b5b7f7ec9d.ctex"]
 
 [params]
 

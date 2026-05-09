@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cbn87xjnk5bx5" path="res://Sprites/Entities/Ruby Stone.png" id="1_licok"]
 [ext_resource type="Script" uid="uid://cu5hno52bei8f" path="res://Scripts/ore.gd" id="2_licok"]
+[ext_resource type="Theme" uid="uid://n0swqrnsm5tk" path="res://Style/MainTheme.tres" id="3_me652"]
 
 [sub_resource type="Gradient" id="Gradient_kyqiw"]
 offsets = PackedFloat32Array(0.14795919, 0.95408165)
@@ -39,6 +40,17 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=878156720]
+
+[node name="E" type="Label" parent="." unique_id=836789370]
+visible = false
+offset_left = -2.0
+offset_top = -24.000002
+offset_right = 12.0
+offset_bottom = 56.0
+scale = Vector2(0.3, 0.3)
+theme = ExtResource("3_me652")
+theme_override_constants/outline_size = 8
+text = "E"
 
 [connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]

@@ -117,7 +117,7 @@ var end_triggered:  bool = false
 var lore_goal:      int  = 3
 
 ## Time-of-day offset when a new game starts (0-1, where 0.36 ≈ early morning)
-var start_day_progress := 0.36
+var start_day_progress := 0.08
 
 ## Cached night state so we only emit night_changed on actual transitions.
 var _is_night: bool = false
@@ -309,6 +309,8 @@ func _check_level_up() -> void:
 		skill_points += 1
 
 		AchievementManager.register_level(level)
+		AudioManager.play_sfx("unlock")
+		UI.show_top_text_popup("LEVEL UP ",96,80)
 		level_changed.emit(level)
 		skill_points_changed.emit(skill_points)
 

@@ -3,9 +3,11 @@ extends Control
 @onready var label := $Label
 
 @export var lifetime := 5
-
-func setup(text: String):
+																									  
+func setup(text: String, font_size :int = 48, font_color: Color = Color(0.0, 0.0, 0.0, 1.0)):
 	label.text = ("\n" + text)
+	label.add_theme_color_override("font_color",font_color)
+	label.add_theme_font_size_override("font_size",font_size)
 	appear()
 
 func appear():
