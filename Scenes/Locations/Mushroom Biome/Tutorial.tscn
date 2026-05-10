@@ -44,47 +44,51 @@ unique_id = "Dust Tutorial 5"
 position = Vector2(2202, -178)
 unique_id = "Dust Tutorial 6"
 
-[node name="DeathZone" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="6" unique_id=296763166 instance=ExtResource("3_xj4vh")]
+[node name="Dust7" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="6" unique_id=287005188 instance=ExtResource("3_cy2v0")]
+position = Vector2(5676, -18)
+unique_id = "Dust Tutorial 7"
+
+[node name="DeathZone" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="7" unique_id=296763166 instance=ExtResource("3_xj4vh")]
 position = Vector2(34.895, 390)
 
-[node name="Movement Tutorial" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="7" unique_id=142264002 instance=ExtResource("4_cgss1")]
+[node name="Movement Tutorial" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="8" unique_id=142264002 instance=ExtResource("4_cgss1")]
 offset_left = 613.0
 offset_top = 359.0
 offset_right = 613.0
 offset_bottom = 359.0
 hint_text = "A    D         ←    →"
 
-[node name="Jump Tutorial" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="8" unique_id=1740249781 instance=ExtResource("4_cgss1")]
+[node name="Jump Tutorial" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="9" unique_id=1740249781 instance=ExtResource("4_cgss1")]
 offset_left = 1536.0
 offset_top = 358.0
 offset_right = 1536.0
 offset_bottom = 358.0
 hint_text = "Space   ↑"
 
-[node name="Mining Tutorial" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="9" unique_id=1842140396 instance=ExtResource("4_cgss1")]
+[node name="Mining Tutorial" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="10" unique_id=1842140396 instance=ExtResource("4_cgss1")]
 offset_left = 2325.0
 offset_top = 331.0
 offset_right = 2325.0
 offset_bottom = 331.0
 hint_text = "E      Pickup "
 
-[node name="Do it" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="10" unique_id=760824954 instance=ExtResource("4_cgss1")]
+[node name="Do it" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="11" unique_id=760824954 instance=ExtResource("4_cgss1")]
 offset_left = 5344.0
 offset_top = -592.0
 offset_right = 5344.0
 offset_bottom = -592.0
 hint_text = "Do it !"
 
-[node name="Door" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="11" unique_id=1982472237 instance=ExtResource("3_kdux7")]
+[node name="Door" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="12" unique_id=1982472237 instance=ExtResource("3_kdux7")]
 position = Vector2(7511, -94)
 Room_Name = "Red Mountain"
 Room = "res://Scenes/Locations/Mushroom Biome/Tutorial2.tscn"
 spawn_location = Vector2(150, 2)
 
-[node name="Firefly" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="12" unique_id=1028079278 instance=ExtResource("7_cy2v0")]
+[node name="Firefly" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="13" unique_id=1028079278 instance=ExtResource("7_cy2v0")]
 position = Vector2(1067, -9)
 
-[node name="Firefly2" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="13" unique_id=2115644726 instance=ExtResource("7_cy2v0")]
+[node name="Firefly2" parent="Main/Objects" parent_id_path=PackedInt32Array(242974950) index="14" unique_id=2115644726 instance=ExtResource("7_cy2v0")]
 position = Vector2(5057, -602)
 
 [node name="Player" parent="Main" parent_id_path=PackedInt32Array(1489948153) index="1" unique_id=796391081]

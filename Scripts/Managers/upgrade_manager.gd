@@ -222,3 +222,4 @@ func apply_effects() -> void:
 
 	if Manager.player:
 		Manager.player.set_stats()
+	Manager.emit_signal("map_updated")

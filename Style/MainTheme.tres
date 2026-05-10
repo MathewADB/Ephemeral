@@ -87,6 +87,17 @@ shadow_size = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g4fcp"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67e62"]
+bg_color = Color(0.043137256, 0.0627451, 0.1254902, 0.8666667)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4cg4g"]
 content_margin_left = 24.0
 content_margin_top = 12.0
@@ -394,6 +405,8 @@ CreditsButton/styles/hover_pressed = SubResource("StyleBoxEmpty_f8joc")
 CreditsButton/styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_nqn4a")
 CreditsButton/styles/normal = SubResource("StyleBoxEmpty_j4bnx")
 CreditsButton/styles/pressed = SubResource("StyleBoxEmpty_g4fcp")
+FlatPanel/base_type = &"Panel"
+FlatPanel/styles/panel = SubResource("StyleBoxFlat_67e62")
 GrayButton/base_type = &"Button"
 GrayButton/colors/font_color = Color(0.91764706, 0.91764706, 0.91764706, 1)
 GrayButton/colors/font_disabled_color = Color(0.4506483, 0.4506483, 0.45064825, 1)

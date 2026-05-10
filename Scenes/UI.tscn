@@ -307,7 +307,6 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="PlayerPanel" type="Control" parent="." unique_id=1801123476]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -355,7 +354,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 theme = ExtResource("4_hfhsn")
-current_tab = 2
+current_tab = 4
 script = ExtResource("6_mg6lk")
 
 [node name="Settings" type="Control" parent="PlayerPanel/Panel" unique_id=2016830327]
@@ -392,6 +391,7 @@ grow_vertical = 2
 theme_override_constants/separation = 12
 
 [node name="Upgrades" type="Control" parent="PlayerPanel/Panel" unique_id=1762975685]
+visible = false
 layout_mode = 2
 focus_mode = 2
 theme = ExtResource("4_hfhsn")
@@ -687,10 +687,19 @@ text = "No Quests Available"
 horizontal_alignment = 1
 
 [node name="Map" type="Control" parent="PlayerPanel/Panel" unique_id=678739934]
-visible = false
 layout_mode = 2
 focus_mode = 2
 metadata/_tab_index = 4
+
+[node name="Panel" type="Panel" parent="PlayerPanel/Panel/Map" unique_id=1003394427]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_hfhsn")
+theme_type_variation = &"FlatPanel"
 
 [node name="NoMap" type="Label" parent="PlayerPanel/Panel/Map" unique_id=27068831]
 layout_mode = 1
@@ -712,24 +721,23 @@ theme_override_font_sizes/font_size = 64
 text = "You dont have a map yet"
 
 [node name="MapLabel" type="Label" parent="PlayerPanel/Panel/Map" unique_id=1548568783]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -560.0
-offset_top = -267.0
-offset_right = -4.0
-offset_bottom = -195.0
+offset_left = -520.0
+offset_top = -234.5
+offset_right = 36.0
+offset_bottom = -162.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"LabelInfo"
-theme_override_colors/font_color = Color(0.9019608, 0.9098039, 0.92156863, 1)
-text = "Map"
+theme_override_font_sizes/font_size = 64
+text = "Himmel"
 
-[node name="Map" type="Control" parent="PlayerPanel/Panel/Map" unique_id=607509208]
+[node name="MapContainer" type="Control" parent="PlayerPanel/Panel/Map" unique_id=607509208]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -747,6 +755,7 @@ script = ExtResource("42_y1m5i")
 
 [node name="DeadPanel" type="Control" parent="." unique_id=1868140571]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

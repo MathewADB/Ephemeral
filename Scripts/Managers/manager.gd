@@ -114,7 +114,7 @@ var room_positions:    Dictionary = DEFAULT_ROOM_POSITIONS.duplicate(true)
 
 var death_count:    int  = 0
 var end_triggered:  bool = false
-var lore_goal:      int  = 3
+var lore_goal:      int  = 4
 
 ## Time-of-day offset when a new game starts (0-1, where 0.36 ≈ early morning)
 var start_day_progress := 0.08
