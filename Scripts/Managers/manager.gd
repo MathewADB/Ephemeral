@@ -365,8 +365,8 @@ func _trigger_end_game() -> void:
 	if player:
 		player.set_physics_process(false)
 
-	UI.show_text_popup("Something is awakening...")
-	await get_tree().create_timer(2.0).timeout
+	UI.show_text_popup("Something is awakening...",300.0)
+	await get_tree().create_timer(5.0).timeout
 	_play_end_cutscene()
 
 

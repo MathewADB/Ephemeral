@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b7gfmk3xa62n8" path="res://Sprites/UI/slime mana bar under.png" id="6_4hpcd"]
 [ext_resource type="Texture2D" uid="uid://bnacv43e05dxd" path="res://Sprites/UI/slime mana bar over.png" id="7_unoed"]
 [ext_resource type="Texture2D" uid="uid://ba1we1k6fq0x0" path="res://Sprites/UI/slime mana bar progress.png" id="8_hx5g8"]
-[ext_resource type="Texture2D" uid="uid://ctwws1pmy147r" path="res://Sprites/UI/slime alive icon animation.png" id="10_8cax1"]
+[ext_resource type="Texture2D" uid="uid://rt7vaua0se81" path="res://Sprites/UI/slime alive icon animation blue.png" id="10_8cax1"]
 
 [sub_resource type="Animation" id="Animation_b1v8h"]
 length = 0.001
@@ -65,8 +65,8 @@ script = ExtResource("1_5g46u")
 layout_mode = 0
 offset_left = 78.0
 offset_top = 42.0
-offset_right = 118.0
-offset_bottom = 87.0
+offset_right = 120.0
+offset_bottom = 80.0
 color = Color(0.2140564, 0.00042607746, 0.3502188, 1)
 
 [node name="ManaBar" type="Control" parent="." unique_id=659889968]

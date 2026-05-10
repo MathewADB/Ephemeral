@@ -21,7 +21,7 @@ func refresh():
 		var level = meta.get("level", 1)
 		var playtime = meta.get("playtime", 0)
 
-		play_button.text = "Slot %d - Lv.%d - %ds" % [slot_id + 1, level, playtime - 432] 
+		play_button.text = "Slot %d - Lv.%d - %ds" % [slot_id + 1, level, playtime - 100] 
 		delete_button.disabled = false
 	else:
 		play_button.text = "Slot %d - New Game" % (slot_id + 1)

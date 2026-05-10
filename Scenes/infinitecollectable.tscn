@@ -52,5 +52,16 @@ theme = ExtResource("3_topyl")
 theme_override_fonts/font = ExtResource("4_y15bj")
 theme_override_font_sizes/font_size = 32
 
+[node name="E" type="Label" parent="." unique_id=1331258624]
+visible = false
+offset_left = -1.0
+offset_top = -19.000002
+offset_right = 13.0
+offset_bottom = 61.0
+scale = Vector2(0.3, 0.3)
+theme = ExtResource("3_topyl")
+theme_override_constants/outline_size = 8
+text = "E"
+
 [connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]

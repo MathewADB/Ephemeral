@@ -177,6 +177,7 @@ func hide_mining_progress() -> void:
 
 func show_dead() -> void:
 	_dead_panel.visible = true
+	$DeadPanel/Panel/Respawn.grab_focus()
 
 
 func hide_dead() -> void:
@@ -190,7 +191,6 @@ func show_autosave_icon() -> void:
 	if _autosave_icon == null:
 		return
 
-	# Kill any running animation before restarting
 	if _autosave_tween and _autosave_tween.is_running():
 		_autosave_tween.kill()
 
@@ -219,11 +219,10 @@ func show_damage_vignette(intensity := 1.0) -> void:
 	_kill_damage_tween()
 
 	_damage_fade.visible = true
-	_damage_fade.modulate = Color(1, 0, 0, 0) # start transparent red
+	_damage_fade.modulate = Color(1, 0, 0, 0)
 
 	_damage_tween = create_tween()
 
-	# QUICK HIT (impact)
 	_damage_tween.tween_property(
 		_damage_fade,
 		"modulate:a",
@@ -231,10 +230,8 @@ func show_damage_vignette(intensity := 1.0) -> void:
 		0.08
 	)
 
-	# tiny hold
 	_damage_tween.tween_interval(0.05)
 
-	# SLOW FADE OUT
 	_damage_tween.tween_property(
 		_damage_fade,
 		"modulate:a",
@@ -255,7 +252,6 @@ func fade_in(duration := 0.5) -> void:
 	await _fade_tween.finished
 
 
-## Fades the screen FROM black. Awaitable.
 func fade_out(duration := 0.5) -> void:
 	_kill_fade_tween()
 	_fade.visible    = true

@@ -78,30 +78,32 @@ anim_speed_max = 0.8
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 1029.0
-offset_bottom = 145.0
+offset_left = 1064.0
+offset_top = 32.0
+offset_right = 13.0
+offset_bottom = 152.0
 grow_horizontal = 2
 
 [node name="LevelBar" type="TextureProgressBar" parent="Level" unique_id=1360542286]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 30.0
-offset_right = 25.0
-offset_bottom = 54.0
-scale = Vector2(3, 3)
-fill_mode = 3
+offset_left = -32.0
+offset_top = 40.0
+offset_right = -8.0
+offset_bottom = 48.0
+scale = Vector2(4, 4)
 nine_patch_stretch = true
-texture_under = ExtResource("7_vqx31")
-texture_progress = ExtResource("6_j04uc")
+texture_under = ExtResource("6_j04uc")
+texture_progress = ExtResource("7_vqx31")
 
 [node name="LevelLabel" type="Label" parent="Level" unique_id=882322449]
 layout_mode = 1
-offset_left = 16.0
-offset_top = 46.0
-offset_right = 61.0
-offset_bottom = 82.0
+offset_top = 32.0
+offset_right = 32.0
+offset_bottom = 72.0
 theme = ExtResource("4_hfhsn")
 theme_type_variation = &"LabelWhite"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -157,32 +159,30 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 856.0
-offset_top = 16.0
-offset_right = -48.0
-offset_bottom = -408.0
+offset_left = 936.0
+offset_top = -8.0
+offset_right = 32.0
+offset_bottom = -586.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SunMoon" type="Sprite2D" parent="DayNight" unique_id=1532518362]
-position = Vector2(143.99998, 56.000008)
-scale = Vector2(3.0000021, 3.0000002)
+position = Vector2(172.99994, 44)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("3_qwshj")
 hframes = 2
 frame = 1
 
 [node name="ClockLabel" type="Label" parent="DayNight" unique_id=1322927754]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 40.0
-offset_right = 174.0
-offset_bottom = 80.0
+offset_left = 90.0
+offset_top = 23.0
+offset_right = 162.0
+offset_bottom = 63.0
 theme = ExtResource("4_hfhsn")
-theme_override_colors/font_color = Color(0.5878531, 0.6799129, 0.7162396, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 0
-theme_override_constants/shadow_outline_size = 8
+theme_override_colors/font_color = Color(1, 1, 1, 0.8509804)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.79607844)
+theme_override_constants/outline_size = 6
 text = "44:44"
 
 [node name="Fade" type="ColorRect" parent="." unique_id=850223812]
@@ -747,7 +747,6 @@ script = ExtResource("42_y1m5i")
 
 [node name="DeadPanel" type="Control" parent="." unique_id=1868140571]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -757,12 +756,15 @@ grow_vertical = 2
 script = ExtResource("47_q8m6m")
 
 [node name="Panel" type="Panel" parent="DeadPanel" unique_id=782658978]
+self_modulate = Color(1, 1, 1, 0.83137256)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_hfhsn")
+theme_type_variation = &"MenuPanel"
 
 [node name="You Died" type="Label" parent="DeadPanel/Panel" unique_id=817392507]
 layout_mode = 1
